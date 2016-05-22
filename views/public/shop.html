@@ -1,0 +1,60 @@
+{% include "../_partial/head.html" %}
+<div data-am-sticky class="shop">
+    <div class="am-input-group">
+        <input type="text" class="am-form-field" placeholder="请输入关键字搜索">
+        <span class="am-icon-search"></span>
+    </div>
+    <div class="location">
+        <i class="am-icon-map-marker"></i><span>上海</span>
+    </div>
+</div>
+<div class="shop-list">
+    <div class="banner">
+        <img src="/img/shopbanner.jpg" />
+    </div>
+    <h2>常去店铺</h2>
+    <div class="shop-detail">
+        <img src="/img/shoptest.jpg" />
+        <div class="mask">
+            <div class="shop-name">长宁凯旋路店</div>
+            <div class="shop-address">
+                <p>长宁区凯旋路1008号遵义路路口</p>
+                <p>021-23658941</p>
+            </div>
+        </div>
+    </div>
+    <h2>上海其他店铺</h2>
+    <div class="shop-detail">
+        <img src="/img/shoptest.jpg" />
+        <div class="mask">
+            <div class="shop-name">长宁凯旋路店</div>
+            <div class="shop-address">
+                <p>长宁区凯旋路1008号遵义路路口</p>
+                <p>021-23658941</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "../_partial/foot.html" %}
+<script type="text/javascript">
+$('#your-slider').flexslider({
+    playAfterPaused: 8000,
+    before: function(slider) {
+        if (slider._pausedTimer) {
+            window.clearTimeout(slider._pausedTimer);
+            slider._pausedTimer = null;
+        }
+    },
+    after: function(slider) {
+            var pauseTime = slider.vars.playAfterPaused;
+            if (pauseTime && !isNaN(pauseTime) && !slider.playing) {
+                if (!slider.manualPause && !slider.manualPlay && !slider.stopped) {
+                    slider._pausedTimer = window.setTimeout(function() {
+                        slider.play();
+                    }, pauseTime);
+                }
+            }
+        }
+        // 设置其他参数
+});
+</script>

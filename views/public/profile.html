@@ -1,0 +1,55 @@
+{% include "../_partial/head.html" %}
+<section class="profile-wrap">
+    <div class="head-logo">
+        <div class="am-form-group am-form-file">
+            <img src="/img/app-icon72x72@2x.png" alt="跑步猫">
+            <input type="file" accept="image/*">
+        </div>
+        <p>点击头像上传图片</p>
+    </div>
+    <form method="post" class="am-form">
+        <ul>
+            <li>
+                <span class="tit">昵称</span>
+                <input type="text" name="" id="name" placeholder="请输入昵称">
+            </li>
+            <li>
+                <span class="tit">微信号</span>
+                <input type="text" name="" id="wx" placeholder="请输入微信号">
+            </li>
+            <li>
+                <span class="tit">身份证</span>
+                <input type="text" name="" id="sid" placeholder="请输入身份证">
+            </li>
+            <li>
+                <span class="tit">性别</span>
+                <label class="am-radio">
+                    <input type="radio" name="radio1" value="" data-am-ucheck> 男
+                </label>
+                <label class="am-radio">
+                    <input type="radio" name="radio1" value="" data-am-ucheck checked> 女
+                </label>
+            </li>
+            <li>
+                <span class="tit">生日</span>
+                <input type="date" name="" id="borth" placeholder="年/月/日">
+            </li>
+            <li>
+                <span class="tit">体重</span>
+                <input type="text" name="" id="weight" placeholder="请输入体重">
+                <i class="unit">kg</i>
+            </li>
+            <li>
+                <span class="tit">身高</span>
+                <input type="text" name="" id="height" placeholder="请输入身高">
+                <i class="unit">cm</i>
+            </li>
+        </ul>
+        <div class="am-cf">
+            <div class="submit">
+                <input type="submit" name="" value="立即体验" class="am-btn am-btn-primary am-btn-sm am-fl">
+            </div>
+        </div>
+    </form>
+</section>
+{% include "../_partial/foot.html" %}

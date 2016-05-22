@@ -57,13 +57,15 @@ const url = "http://localhost:8000",
     css_dir = dist_dir + "./css/",
     js_dir = dist_dir + "./js/",
     img_dir = dist_dir + "./img/",
-    plugins_dir = dist_dir + "./plugins/";
+    plugins_dir = dist_dir + "./plugins/",
+    fonts_dir = dist_dir + "./fonts/";
 
 const src_dir = "./src/",
     src_scss_dir = src_dir + "./scss/",
     src_js_dir = src_dir + "./js/",
     src_img_dir = src_dir + "./img/",
-    src_plugins_dir = src_dir + "./plugins/";
+    src_plugins_dir = src_dir + "./plugins/",
+    src_fonts_dir = src_dir + "./fonts/";
 
 gulp.task('watcher', () => {
     browserSync({
@@ -194,6 +196,16 @@ gulp.task('plugin', () => {
         .pipe(gulp.dest(plugins_src.outputfile));
 });
 
+const copy_fonts_src = {
+    inputfiles:src_fonts_dir+"./*",
+    outputfiles:fonts_dir
+}
+
+const copy_img_src = {
+    inputfiles:src_img_dir+"./*",
+    outputfiles:img_dir
+}
+
 /**
  * 文件清除
  * @return {[type]}     [description]
@@ -201,17 +213,34 @@ gulp.task('plugin', () => {
 gulp.task('clean', (cb) => {
     return del(['dist/*'], cb);
 });
+
+gulp.task('copy', ['copy:fonts', 'copy:img'], () => {});
+/*
+    复制 src/fonts 文件
+ */
+gulp.task('copy:fonts', () => {
+    return gulp.src(copy_fonts_src.inputfiles)
+        .pipe(gulp.dest(copy_fonts_src.outputfiles));
+});
+/*
+    复制 src/img 文件
+ */
+gulp.task('copy:img', () => {
+    return gulp.src(copy_img_src.inputfiles)
+        .pipe(gulp.dest(copy_img_src.outputfiles));
+});
+
 /**
  * 本地调试环境
  */
 
 gulp.task('server', ['clean'], (cb) => {
-    gulpSequence(['js:watch', 'plugin'], 'watcher')(cb)
+    gulpSequence(['copy','sass:watch','js:watch', 'plugin'], 'watcher')(cb)
 });
 /**
  * 部署
  */
 
 gulp.task('build', ['clean'], (cb) => {
-    gulpSequence(['sass:build', 'js:build', 'plugin'])(cb)
+    gulpSequence(['copy','sass:build', 'js:build', 'plugin'])(cb)
 })
