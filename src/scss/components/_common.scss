@@ -1,0 +1,11 @@
+.no-margin{
+	margin: 0rem;
+}
+
+.h5-item{
+	height: $h5-item-height;
+	line-height: $h5-item-height;
+	margin: $h5-item-margin;
+	color: $gray-font;
+	font-size: $font-size-xxl;
+}

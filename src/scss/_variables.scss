@@ -1,0 +1,40 @@
+// Set classes namespace, e.g. `am-`
+$namespace: null !default;
+// This sets 1rem to be 16px
+$rem-base: 16px;
+// color
+$black: #000 !default;
+$white: #fff !default;
+$gray-darker: #0f1415 !default;
+$gray-dark: #272e33 !default;
+$gray: #393d43 !default;
+$gray-light: #8d9092 !default;
+
+$gray-font:#a1a4a6 !default;
+
+$active:#fe0200 !default;
+// font-size
+// Define default font weights
+$font-weight-normal: normal !default;
+$font-weight-bold: bold !default;
+$font-size-xs: rem-calc(12) !default;
+$font-size-sm: rem-calc(14) !default;
+$font-size-default: rem-calc(16) !default;
+$font-size-lg: rem-calc(18) !default;
+$font-size-xl: rem-calc(20) !default;
+$font-size-xxl: rem-calc(24) !default;
+//border-line
+$base-border-color:#51585d;
+$base-border-line:1px solid $base-border-color;
+// components --> navbar
+$navbar-height-px:50px !default;
+$navbar-height:rem-calc($navbar-height-px);
+
+$navbar-li-margin-px:10px !default;
+$navbar-li-margin:rem-calc($navbar-li-margin-px) 0rem;
+// components --> common
+$h5-item-height-px:40px !default;
+$h5-item-height:rem-calc($h5-item-height-px);
+
+$h5-item-margin-px:10px 0px !default;
+$h5-item-margin:rem-calc($h5-item-margin-px);
