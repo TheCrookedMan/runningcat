@@ -81,7 +81,7 @@ gulp.task('watcher', () => {
      * 监视 Sass 文件的改动，如果发生变更，运行 'sass' 任务，并且重载文件
      * @type {[type]}
      */
-    gulp.watch(src_scss_dir + "/**/*.{sass,scss}", ['sass:watch', reload]);
+    gulp.watch(src_scss_dir + "/**/*.{sass,scss}", ['sass:watch']);
     /**
      * 监听 src/js 里面业务相关的JS文件
      * @type {Object}
@@ -91,7 +91,7 @@ gulp.task('watcher', () => {
      * views 下面的页面变更立即刷新
      * @return {[type]} [description]
      */
-    gulp.watch("./views/**/*.html", ['sass:watch',reload]);
+    gulp.watch("./views/**/*.html").on('change', reload);
     /**
      * 监听plugins文件夹
      * @return {[type]} [description]
@@ -122,6 +122,7 @@ gulp.task('sass:watch', function() {
             sourceRoot: 'source'
         }))
         .pipe(gulp.dest(sass_src.output_dir))
+        .pipe(reload({stream: true}))
         .pipe(notify({ message: 'sass:watch task ok' }));
 });
 /*
