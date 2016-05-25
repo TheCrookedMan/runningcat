@@ -1,0 +1,43 @@
+.payment {
+    $product-banner-height-px: 300px !default;
+    $product-banner-height: rem-calc($product-banner-height-px);
+    $header-panel-height-px: 60px !default;
+    $header-panel-height: rem-calc($header-panel-height-px);
+    header {
+        background-color: $gray-dark;
+        .header-panel {
+            margin: 0;
+            padding: 0;
+            // position: absolute;
+            height: $header-panel-height;
+            line-height: $header-panel-height;
+            width: 100%;
+            color: $white;
+        }
+        .pay-info {
+            img {
+                $img-size-px: 100px !default;
+                $img-size: rem-calc($img-size-px);
+                @include square($img-size);
+                border-radius: 50%;
+            }
+            .title {
+                color: $white;
+                font-size: $font-size-xxxl;
+                font-weight: $font-weight-bold;
+            }
+            p {
+                color: $gray-font;
+                font-size: $font-size-xl;
+                // font-weight: $font-weight-bold;
+                margin: 0;
+            }
+            $pay-info-bottom-px:10px !default;
+            $pay-info-bottom:rem-calc($pay-info-bottom-px);
+            padding-bottom: $pay-info-bottom;
+        }
+        .pay-info>li {
+            padding: 0;
+        }
+    }
+}

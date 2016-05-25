@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start-server": "node ./bin/www",
+    "start-server": "babel-node ./bin/www",
     "gulp-server": "gulp server",
     "gulp-build": "gulp build",
-    "test": "npm run gulp-server & npm run start-server",
-    "build": "npm run gulp-build & npm run start-server"
+    "test": "npm run gulp-server | npm run start-server test",
+    "build": "npm run gulp-build | npm run start-server"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -15,14 +15,24 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "querystring": "^0.2.0",
+    "swig": "^1.4.2"
   },
   "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-core": "^6.1.2",
+    "babel-loader": "^6.0.1",
+    "babel-plugin-transform-async-to-generator": "^6.8.0",
+    "babel-polyfill": "^6.9.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-stage-0": "^6.5.0",
     "browser-sync": "^2.12.8",
     "del": "^2.2.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
+    "gulp-filter": "^4.0.0",
     "gulp-minify-css": "^1.2.4",
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
@@ -30,6 +40,6 @@
     "gulp-sequence": "^0.4.5",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.3",
-    "swig": "^1.4.2"
+    "md5": "^2.1.0"
   }
 }

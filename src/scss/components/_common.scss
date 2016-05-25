@@ -9,3 +9,20 @@
 	color: $gray-font;
 	font-size: $font-size-xxl;
 }
+
+.spanBlock{
+	$spanBlock-padding-px:8px 0px !default;
+	$spanBlock-padding:rem-calc($spanBlock-padding-px);
+	$margin-right-px:20px !default;
+	$margin-right:rem-calc($margin-right-px) !important;
+
+	$width-px: 100px;
+	$width:rem-calc($width-px);
+	border:1px solid rgba(204, 191, 191, 0.2);
+	padding: $spanBlock-padding;
+	margin-right: $margin-right;
+	width:$width;
+	display: inline-block;
+	text-align: center;
+	border-radius: 3px;
+}

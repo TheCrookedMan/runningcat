@@ -1,0 +1,141 @@
+.productDetail {
+    $product-banner-height-px: 300px !default;
+    $product-banner-height: rem-calc($product-banner-height-px);
+    $header-panel-height-px: 60px !default;
+    $header-panel-height: rem-calc($header-panel-height-px);
+    header {
+        .header-panel {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            height: $header-panel-height;
+            line-height: $header-panel-height;
+            width: 100%;
+            color: $white;
+        }
+        img {
+            height: $product-banner-height;
+        }
+    }
+    .product-detail-list {
+        $product-detail-list-padding-px: 15px 20px !default;
+        $product-detail-list-padding: rem-calc($product-detail-list-padding-px);
+        padding: $product-detail-list-padding;
+        background-color: $gray-dark;
+        p {
+            color: $gray-font;
+            font-size: $font-size-xl;
+            font-weight: $font-weight-bold;
+            margin: 0.35rem 0rem;
+            .shop-address {
+                float: right;
+            }
+        }
+        .title {
+            color: $white;
+            font-size: $font-size-xxxl;
+            font-weight: $font-weight-bold;
+        }
+        .spec {
+            color: $gray-font;
+            font-size: $font-size-xl;
+            font-weight: $font-weight-bold;
+            $row-padding-px: 10px 0px;
+            $row-padding: rem-calc($row-padding-px);
+            .spec-row {
+                padding: $row-padding;
+            }
+        }
+        .buy {
+            $padding-px: 30px !default;
+            $padding: rem-calc($padding-px);
+            padding-top: $padding;
+            text-align: right;
+        }
+        @include number-controller(rgba(204, 191, 191, 0.2));
+    }
+    .product-detail-list>li {
+        background-color: transparent;
+        border: 0;
+    }
+    .product-info-commentary {
+        background-color: $gray-dark;
+        $padding-px: 15px 0px !default;
+        $padding: rem-calc($padding-px);
+        .tabs {
+            color: $white;
+            font-size: $font-size-xl;
+            font-weight: $font-weight-bold;
+            text-align: center;
+            .t {
+                margin: $padding;
+                border-right: $base-border-line // margin: 0;
+            }
+            margin-bottom: -1px;
+        }
+        .tabs>li.active {
+            border-bottom: 1px solid $active;
+        }
+        .tabs>li:last-child p {
+            border-right: 0px;
+        }
+        .info {
+            display: none;
+            img {
+                width: 100%;
+            }
+        }
+        .commentary {
+            // display: none;
+            .am-list>li {
+                background-color: transparent;
+                border: 0;
+            }
+            $img-px:50px !default;
+            $img:rem-calc($img-px);
+            $line-padding-px:0px 15px !default;
+            $line-padding:rem-calc($line-padding-px);
+            .line-1 {
+                overflow: hidden;
+                line-height: $img;
+                padding: $line-padding;
+                img {
+                    @include square($img);
+                    border-radius: 50%;
+                }
+                $name-margin-left-px:8px !default;
+                $name-margin-left:rem-calc($name-margin-left-px);
+                .name {
+                    color: $white;
+                    font-size: $font-size-xl;
+                    font-weight: $font-weight-bold;
+                    margin-left: $name-margin-left;
+                }
+                .spec {
+                    display: inline-block;
+                    float: right;
+                    margin: 0;
+                    $span-margin-px: 0px 5px !default;
+                    $span-margin: rem-calc($span-margin-px);
+                    span {
+                        color: $gray-font;
+                        margin: $span-margin;
+                    }
+                }
+            }
+            .line-2 {
+                color: $gray-font;
+                font-size: $font-size-xl;
+                font-weight: $font-weight-bold;
+                padding: $line-padding;
+            }
+        }
+    }
+    .product-info-commentary>li {
+        background-color: transparent;
+        border: 0;
+    }
+    .am-divider-default {
+        border-color: $gray;
+    }
+}

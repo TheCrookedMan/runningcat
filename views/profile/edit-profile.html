@@ -1,0 +1,136 @@
+{% include "../_partial/head.html" %}
+<style type="text/css">
+    body{
+        background-color: #e6e6e6
+    }
+</style>
+<section class="profile-wrap edit-profile">
+    <div class="head-logo">
+        <div class="am-form-group am-form-file">
+            <img src="/img/app-icon72x72@2x.png" alt="跑步猫">
+            <input type="file" accept="image/*">
+        </div>
+        <p>上传头像</p>
+    </div>
+    <hr>
+    <form method="post" class="am-form">
+        <ul>
+            <li>
+                <span class="tit">昵称<em>*</em></span>
+                <input type="text" name="" id="name" value="monkey">
+            </li>
+            <li>
+                <span class="tit">微信号<em>*</em></span>
+                <input type="text" name="" id="wx" value="monkey1101">
+            </li>
+            <li>
+                <span class="tit">出生日期<em>*</em></span>
+                <input type="date" name="" id="borth" value="1985/11/02">
+            </li>
+            <li>
+                <span class="tit">性别<em>*</em></span>
+                <input type="text" name="" id="sex" value="女"  data-am-modal="{target: '.select'}">
+            </li>
+            <li>
+                <span class="tit">身高<em>*</em></span>
+                <input type="text" name="" id="height" value="155cm" data-am-modal="{target: '.input'}">
+            </li>
+            <li>
+                <span class="tit">体重<em>*</em></span>
+                <input type="text" name="" id="weight" value="45kg" data-am-modal="{target: '.input'}">
+            </li>
+        </ul>
+        <hr>
+        <ul>
+            <li>
+                <span class="tit">身份证</span>
+                <input type="text" name="" id="sid" value="3425011985110330215">
+            </li>
+            <li>
+                <span class="tit">婚否</span>
+                <input type="text" name="" id="married " value="否">
+            </li>
+            <li>
+                <span class="tit">血型</span>
+                <input type="text" name="" id="blood" value="其他">
+            </li>
+            <li>
+                <span class="tit">职业</span>
+                <input type="text" name="" id="job" value="自由职业">
+            </li>
+            <li>
+                <span class="tit">身份证</span>
+                <input type="text" 地区="" id="sid" value="上海市闵行区仲春路2989号">
+            </li>
+        </ul>
+        <hr>
+        <div class="am-cf">
+            <div class="submit">
+                <input type="submit" name="" value="保存" class="am-btn am-btn-primary am-btn-sm am-fl">
+            </div>
+        </div>
+    </form>
+</section>
+
+
+<!-- 性别 -->
+<div class="am-modal am-modal-alert pub-dialog select" tabindex="-1">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">
+        <a href="javascript: void(0)" class="btn back"><i class="am-icon-angle-left"></i>设置性别</a>
+        <a href="javascript: void(0)" class="btn save"><i class="am-icon-save"></i>保存</a>
+    </div>
+    <div class="am-modal-bd">
+      <div class="select-attr">
+          <div class="list" data-id='sex'>
+              <a href="javascript: void(0)" class="cur">男</a>
+              <a href="javascript: void(0)">女</a>
+              <a href="javascript: void(0)" class="cur">男</a>
+              <a href="javascript: void(0)">女</a>
+              <a href="javascript: void(0)" class="cur">男</a>
+              <a href="javascript: void(0)">女</a>
+          </div>
+          <div class="tips">
+              填写性别，喵，喵，你看着办吧！
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 身高 -->
+<div class="am-modal am-modal-alert pub-dialog input" tabindex="-1">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">
+        <a href="javascript: void(0)" class="btn back"><i class="am-icon-angle-left"></i></a>
+        <a href="javascript: void(0)" class="btn save"><i class="am-icon-save"></i>保存</a>
+    </div>
+    <div class="am-modal-bd">
+      <div class="select-attr">
+          <div class="title">您的体重</div>
+          <div class="input-txt">
+              <input type="text">
+              <i>kg</i>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include "../_partial/foot.html" %}
+<script type="text/javascript">
+    $(function() {
+        var $modal = $('.pub-dialog');
+        var cur_text=$(".select-attr .list");
+        var text=null;
+        $(".pub-dialog").on('click',".back,.save",function(){
+            $modal.modal('close');
+            var idd=cur_text.data("id");
+            $('input#'+idd).val(text)
+        });
+        $(".select-attr").on('click',".list a",function(){
+            text=$(this).text();
+            $(this).addClass("cur").siblings().removeClass("cur");
+        });
+    });
+</script>

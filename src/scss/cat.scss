@@ -2,12 +2,18 @@
 
 @import "variables";
 
+//mixins
+@import "helper/number-control";
+@import "helper/mixins";
+
 // components
 @import "components/navbar";
 @import "components/common";
 
-
-
 @import "service/app";
-@import "service/market";
+
+@import "service/market/market";
+@import "service/market/productDetail";
+@import "service/market/payment";
+
 @import "service/profile";

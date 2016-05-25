@@ -1,0 +1,48 @@
+// product number controller
+@mixin number-controller($border-color:rgba(0, 0, 0, 0.2)) {
+    $base-px:48px !default;
+    $base:rem-calc($base-px);
+    .control {
+        display: inline-block;
+        .minus {
+            display: inline-block;
+            border: 1px solid $border-color;
+            margin: 0px;
+            // padding: 8px 10px;
+            width: $base;
+            line-height: $base;
+            height: $base;
+            text-align: center;
+        }
+        .plus {
+            display: inline-block;
+            border: 1px solid $border-color;
+            margin: 0px;
+            width: $base;
+            line-height: $base;
+            height: $base;
+            // padding: 8px 14px;
+            margin-left: -4px;
+            text-align: center;
+        }
+        .number {
+            display: inline-block;
+            margin: 0px;
+            // padding: 8px 10px;
+            line-height: $base;
+            height: $base;
+            width: rem-calc(50px);
+            border-top: 1px solid $border-color;
+            border-bottom: 1px solid $border-color;
+            margin-left: rem-calc(-4px);
+            color: $white;
+            text-align: center;
+            input {
+                border: 0px;
+                width: rem-calc(30px);
+                text-align: center;
+                background-color: transparent !important;
+            }
+        }
+    }
+}

@@ -11,10 +11,12 @@ const gulp = require('gulp'),
      */
     browserSync = require('browser-sync'),
     reload = browserSync.reload,
+    filter = require('gulp-filter'),
     /**
      * 编译 SASS
      * @type {[type]}
      */
+
     sass = require('gulp-ruby-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     /**
@@ -47,6 +49,7 @@ const gulp = require('gulp'),
      * @type {[type]}
      */
     concat = require('gulp-concat'),
+
     /**
      * 删除文件和文件夹
      */
@@ -122,7 +125,9 @@ gulp.task('sass:watch', function() {
             sourceRoot: 'source'
         }))
         .pipe(gulp.dest(sass_src.output_dir))
-        .pipe(reload({stream: true}))
+        // .pipe(reload({ stream: true }))
+        .pipe(filter('**/*.css'))
+        .pipe(browserSync.reload({stream:true}))
         .pipe(notify({ message: 'sass:watch task ok' }));
 });
 /*
@@ -198,13 +203,13 @@ gulp.task('plugin', () => {
 });
 
 const copy_fonts_src = {
-    inputfiles:src_fonts_dir+"./*",
-    outputfiles:fonts_dir
+    inputfiles: src_fonts_dir + "./*",
+    outputfiles: fonts_dir
 }
 
 const copy_img_src = {
-    inputfiles:src_img_dir+"./*",
-    outputfiles:img_dir
+    inputfiles: src_img_dir + "./*",
+    outputfiles: img_dir
 }
 
 /**
@@ -236,12 +241,12 @@ gulp.task('copy:img', () => {
  */
 
 gulp.task('server', ['clean'], (cb) => {
-    gulpSequence(['copy','sass:watch','js:watch', 'plugin'], 'watcher')(cb)
+    gulpSequence(['copy', 'sass:watch', 'js:watch', 'plugin'], 'watcher')(cb)
 });
 /**
  * 部署
  */
 
 gulp.task('build', ['clean'], (cb) => {
-    gulpSequence(['copy','sass:build', 'js:build', 'plugin'])(cb)
+    gulpSequence(['copy', 'sass:build', 'js:build', 'plugin'])(cb)
 })
