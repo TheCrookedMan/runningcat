@@ -1,103 +1,160 @@
-.profile-bg{
-	background-color: #e6e6e6;
-}
-.profile{
-	width:100%;display:inline-block;padding-bottom: 4rem;
-	.title{
-		width:100%;display:inline-block;padding:1rem 0;background:#cacaca;color: #000;font-size: 2rem;
-		text-align: center;border-bottom: #bfbfbf solid 1px;
-	}
-	.profile-btn{
-		width:100%;display:inline-block;border-bottom: #c6c6c6 solid 1px;padding-top: 0.8rem;
-		padding-bottom: 0.4rem;margin-bottom: 0.5rem;
-		ul{
-			width:100%;display:inline-block;
-			li{
-				width: 25% !important;float: left;text-align: center;border-right: #c6c6c6 solid 1px;
-				&:last-child {border:0;}
-				&:nth-of-type(2n+1) {
-				     clear: none; 
-				}
-				a{
-					color: #000;
-					span{
-						font-size: 1.6rem;position: relative;top: -0.3rem;
-					}
-					i{
-						color: #bcbcbc;font-size: 2.4rem;margin-right: 0.5rem;position: relative;top: -0.1rem;
-						display: inline-block;
-					}
-				}
-			}
-		}
-	}
-	.profile-link{
-		width:100%;display:inline-block;border-bottom: #c6c6c6 solid 1px;padding-top: 0.8rem;padding-bottom: 0.4rem;
-		ul{
-			width:100%;display:inline-block;background-color: #e6e6e6;margin-bottom: 1rem;
-			li{
-				border-right: #d2d2d2 solid 1px;border-bottom: #d2d2d2 solid 1px;padding: 1.2rem 0;
-				&:nth-of-type(2n){
-					border-right: 0;
-				}
-				a{
-					color: #000;
-					span{
-						font-size: 1.6rem;position: relative;top: -0.3rem;
-					}
-					i{
-						color: #ed3131;font-size: 2.4rem;margin-right: 0.5rem;position: relative;top: -0.1rem;
-						display: inline-block;margin-left: 3rem;
-					}
-				}
-			}
-		}
-	}
+.profile-bg {
+    background-color: #e6e6e6;
 }
 
-/*edit profile*/
-.edit-profile{
-	.head-logo{
-		width: 100%;display: inline-block;padding: 0;
-		.am-form-file{
-			float: left;margin-left: 2rem;position: relative;top: 1rem;
-		}
-		p{
-			float: right;width: auto;font-size: 1.8rem;margin-right: 2rem;margin-top: 2.6rem;
-			color: #333
-		}
-	}
-	hr{
-		display: block;height: 12px;background:#cacaca;
-		border-bottom: #c2c2c2 solid 1px;border-top: #c2c2c2 solid 1px;
-	}
-	.am-cf .submit input{
-		margin-top: 0;
-	}
-    .am-form{
-    	ul{
-    		li{
-    			width: 100%;
-    			span{
-    				&.tit{
-    					margin-left: 1rem;
-    				}
-    			}
-    			&:last-child{
-    				margin-bottom:-1rem;border: 0;
-    			}
-    			input{
-    				text-align:right
-    			}
-    		}
-    	}
+.profile {
+    width: 100%;
+    display: inline-block;
+    padding-bottom: 4rem;
+    .title {
+        width: 100%;
+        display: inline-block;
+        padding: 1rem 0;
+        background: #cacaca;
+        color: #000;
+        font-size: 2rem;
+        text-align: center;
+        border-bottom: #bfbfbf solid 1px;
+    }
+    .profile-btn {
+        width: 100%;
+        display: inline-block;
+        border-bottom: #c6c6c6 solid 1px;
+        padding-top: 0.8rem;
+        padding-bottom: 0.4rem;
+        margin-bottom: 0.5rem;
+        ul {
+            width: 100%;
+            display: inline-block;
+            li {
+                width: 25% !important;
+                float: left;
+                text-align: center;
+                border-right: #c6c6c6 solid 1px;
+                &:last-child {
+                    border: 0;
+                }
+                &:nth-of-type(2n+1) {
+                    clear: none;
+                }
+                a {
+                    color: #000;
+                    span {
+                        font-size: 1.6rem;
+                        position: relative;
+                        top: -0.3rem;
+                    }
+                    i {
+                        color: #bcbcbc;
+                        font-size: 2.4rem;
+                        margin-right: 0.5rem;
+                        position: relative;
+                        top: -0.1rem;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+    .profile-link {
+        width: 100%;
+        display: inline-block;
+        border-bottom: #c6c6c6 solid 1px;
+        padding-top: 0.8rem;
+        padding-bottom: 0.4rem;
+        ul {
+            width: 100%;
+            display: inline-block;
+            background-color: #e6e6e6;
+            margin-bottom: 1rem;
+            li {
+                border-right: #d2d2d2 solid 1px;
+                border-bottom: #d2d2d2 solid 1px;
+                padding: 1.2rem 0;
+                &:nth-of-type(2n) {
+                    border-right: 0;
+                }
+                a {
+                    color: #000;
+                    span {
+                        font-size: 1.6rem;
+                        position: relative;
+                        top: -0.3rem;
+                    }
+                    i {
+                        color: #ed3131;
+                        font-size: 2.4rem;
+                        margin-right: 0.5rem;
+                        position: relative;
+                        top: -0.1rem;
+                        display: inline-block;
+                        margin-left: 3rem;
+                    }
+                }
+            }
+        }
     }
 }
 
-.single-class{
-	width: 85%;margin:0 auto;
+
+/*edit profile*/
+
+.edit-profile {
+    .head-logo {
+        width: 100%;
+        display: inline-block;
+        padding: 0;
+        .am-form-file {
+            float: left;
+            margin-left: 2rem;
+            position: relative;
+            top: 1rem;
+        }
+        p {
+            float: right;
+            width: auto;
+            font-size: 1.8rem;
+            margin-right: 2rem;
+            margin-top: 2.6rem;
+            color: #333
+        }
+    }
+    hr {
+        display: block;
+        height: 12px;
+        background: #cacaca;
+        border-bottom: #c2c2c2 solid 1px;
+        border-top: #c2c2c2 solid 1px;
+    }
+    .am-cf .submit input {
+        margin-top: 0;
+    }
+    .am-form {
+        ul {
+            li {
+                width: 100%;
+                span {
+                    &.tit {
+                        margin-left: 1rem;
+                    }
+                }
+                &:last-child {
+                    margin-bottom: -1rem;
+                    border: 0;
+                }
+                input {
+                    text-align: right
+                }
+            }
+        }
+    }
 }
 
-.submit-class{
-	width: 100%;
+.single-class {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.submit-class {
+    width: 100%;
 }
