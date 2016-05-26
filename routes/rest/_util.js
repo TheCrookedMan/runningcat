@@ -3,9 +3,7 @@ import qs from 'querystring';
 import http from './http';
 import httpConfig from './config';
 
-
-
-module.exports = class Rest {
+export default class Rest {
     constructor(options) {
         this.options = options;
         this.options.data = !!this.options.data || {};
@@ -33,7 +31,7 @@ module.exports = class Rest {
         let optStr, sUrl, api;
         sUrl = [];
         optStr = [];
-        
+
         api = this._getSetting(funCode);
         sUrl.push(api.prefix);
         sUrl.push("?apiId=");
@@ -44,47 +42,36 @@ module.exports = class Rest {
         sUrl.push(this._makeToken(api));
         return sUrl.join("");
     }
-    post(req, res, next, ...rest) {
+    link(req, res, next) {
         let opts, self = this,
-            url;
-
-        let [success, error] = rest;
-        if (!success) {
-            success = (d) => {
-                var data;
-                if (undefined == d || "" == d) {
-                    data = {
-                        success: false,
-                        msg: '操作失败！'
-                    };
-                } else {
-                    data = JSON.parse(d);
-                }
-                if (!res.data) {
-                    res.data = {};
-                }
-                res.data[self.functionCode] = data;
-                next();
-            }
-        } else {
-            success();
-        }
-
-        if (!error) {
-            error = (d) => {
-                if (!res.data) {
-                    res.data = {};
-                }
-                res.data[self.functionCode] = {
+            url, success, error;
+        success = (d) => {
+            var data;
+            if (undefined == d || "" == d) {
+                data = {
                     success: false,
-                    msg: '网络错误！'
+                    msg: '操作失败！'
                 };
-                next();
+            } else {
+                data = JSON.parse(d);
             }
-        } else {
-            error();
+            if (!res.data) {
+                res.data = {};
+            }
+            res.data[self.functionCode] = data;
+            next();
         }
-
+        error = (d) => {
+            if (!res.data) {
+                res.data = {};
+            }
+            console.log("d:::" + d);
+            res.data[self.functionCode] = {
+                success: false,
+                msg: '网络错误！'
+            };
+            next();
+        }
         if (!!req && "GET" == req.method) {
             opts = req.query;
         } else if (!!req && "POST" == req.method) {
@@ -92,15 +79,75 @@ module.exports = class Rest {
         } else {
             opts = {};
         }
-
         for (let [k, v] of Object.entries(opts)) {
             this.options.data[k] = v;
         }
-
-
         url = this._getRestUrl(this.functionCode);
+        return http.rest(url, this.options.data, success, error);
+    }
+    post(req, res, ...rest) {
+        let opts, self = this,
+            url;
 
-
+        let [success, error] = rest;
+        if (!success) {
+            success = (d) => {
+                let $list, data;
+                if (undefined == d || "" == d) {
+                    data = {
+                        isSuccess: false,
+                        msg: '操作失败！'
+                    };
+                } else {
+                    data = JSON.parse(d);
+                }
+                if (data.isSuccess) {
+                    data.record = data.record === void 0 ? [] : data.record;
+                    if ("[object Object]" === Object.prototype.toString.call(data.record)) {
+                        $list = [];
+                        $list.push(data.record);
+                        data.record = $list;
+                    }
+                    return res.status(200).send({
+                        'data': data.record === void 0 ? [] : data.record,
+                        'success': data.isSuccess,
+                        'msg': data.msg,
+                        'code': data.code
+                    });
+                } else {
+                    return res.status(500).send({
+                        'data': [],
+                        'success': data.isSuccess,
+                        'msg': data.msg,
+                        'code': data.code
+                    });
+                }
+            }
+        } else {
+            success();
+        }
+        if (!error) {
+            error = (d) => {
+                return res.status(500).send({
+                    'success': false,
+                    'msg': '网络问题！',
+                    'code': '1000'
+                });
+            }
+        } else {
+            error();
+        }
+        if (!!req && "GET" == req.method) {
+            opts = req.query;
+        } else if (!!req && "POST" == req.method) {
+            opts = req.body;
+        } else {
+            opts = {};
+        }
+        for (let [k, v] of Object.entries(opts)) {
+            this.options.data[k] = v;
+        }
+        url = this._getRestUrl(this.functionCode);
         return http.rest(url, this.options.data, success, error);
     }
     _getSetting(functioncode) {

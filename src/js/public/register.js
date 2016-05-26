@@ -1,19 +1,25 @@
 (function() {
-    var time, count = 10;
+    var time, count = 60;
     $(".am-form").on("click", ".sendSMS", function(ev) {
-        var data = $(".am-form").serialize();
-        debugger
-        $(this).attr('disabled', 'disabled');
-        timeout();
-        sendSMS();
+        var data = common.parseForm(".am-form");
+
+        if (common.regMobileNo(data.mobileNo)) {
+            $(this).attr('disabled', 'disabled');
+            timeout();
+            sendSMS(data.mobileNo)
+        } else {
+            modal.alert("情确认手机号是否输入正确！");
+        }
     })
 
-    function sendSMS() {
-        $.post('/sendSMS').success(function() {
-            debugger
-        }).error(function() {
-            debugger
-        })
+    function sendSMS(mobileNo) {
+        $.post('/sendSMS', { 'mobileNo': mobileNo }).success(function(data) {
+            // if(!data.success){
+            // 	modal.alert(data.msg);
+            // }
+        }).error(function(data) {
+            modal.alert("情确认手机号是否输入正确！");
+        });
     }
 
     function timeout() {
@@ -29,4 +35,19 @@
             }
         }, 1000);
     }
+    $(".am-form").submit(function(ev) {
+        var data = common.parseForm(".am-form");
+        if (common.regMobileNo(data.mobileNo)) {
+            $.post('/checkSmscode', { 'mobileNo': data.mobileNo, 'smsCode': data.smsCode }).success(function(data) {
+                var params = $(".am-form").serialize();
+                window.location.href = "/public/profile.html?" + params;
+            }).error(function(data) {
+                modal.alert(data.responseJSON.msg);
+            })
+        } else {
+            modal.alert("情确认手机号是否输入正确！");
+        }
+
+        return false;
+    })
 }).call(this);

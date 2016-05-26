@@ -1,0 +1,167 @@
+.course{
+	width: 100%;display: inline-block;padding-bottom: 5.2rem;
+	p{
+		margin: 0;padding: 0;
+	}
+	ul{
+		
+	}
+	em{
+		font-style: normal;
+	}
+	i{
+		font-style: normal;
+	}
+	.pic{
+		width: 100%;display: inline-block;background: #f4f4f4;position: relative;
+		.am-slider-default .am-control-nav li a{
+		    background-color: #a1a1a1;box-shadow:none;
+		    &.am-active{
+		    	background-color: #fff;
+		    }
+		}
+		.am-slider-default{
+			position: relative;
+			.am-direction-nav{
+				display: none;
+			}
+		}
+		.am-control-nav{
+			position:absolute;bottom:1rem;
+		}
+		.title{
+			width: 100%;display: inline-block;padding-bottom: 2rem;
+			span{
+				margin-left: 1rem;font-size: 1.6rem;color: #707070;
+			}
+			img{
+				width: 5.5rem;
+                height: 5.5rem;
+                position: absolute;
+                right: 1.6rem;
+                bottom: 2.8rem;border-radius: 100px;
+			}
+		}
+	}
+	.info-list{
+		margin: 1rem 0;
+		ul{
+			margin: 0;padding: 0;width: 85%;display: inline-block;padding: 0.8rem 0;
+			li{
+				width: 100%;display: inline-block;position: relative;font-size: 1.4rem;padding: 0.4rem 0;
+				i{
+					color: #f73f3f;display: block;margin-right: 0.3rem;margin-left: 1.2rem;
+					position: absolute;top:0.4rem;left: 0;
+				}
+				span{
+					color: #707070;display: block;margin-right: 0.3rem;margin-left: 2.8rem;
+					border-bottom: #c6c6c6 solid 1px;width: 100%;padding-bottom:0.2rem;
+				}
+				&:last-child{
+					padding-bottom: 0;
+					span{
+						border:0;
+					}
+				}
+			}
+		}
+	}
+	.total{
+		padding: 0.7rem 0;font-size: 1.4rem;
+	}
+	.code{
+		color: #717171;width: 100%;display: inline-block;font-size: 1.4rem;position: relative;
+		margin: 0.3rem 0;
+		i{
+			position: absolute;left: 0rem;top: 0rem;
+		}
+		p{
+			display: inline-block;margin-left: 1.5rem;width: 90%;
+		}
+	}
+	.pub-rbtn{
+		.btn{
+			width: 10rem;padding: 0.5rem 0px;text-align: center;display: inline-block;
+		}
+	}
+	.pay-info{
+		display: inline-block;width: 100%;border-bottom: #bfbfbf solid 1px;padding: 1rem 0 0.7rem 0;
+		background: #cecece;
+		ul{
+			margin: 0;padding: 0;width: 80%;margin: 0 auto;
+			li{
+				display: inline-block;width: 100%;margin-bottom: 0.3rem;font-size: 1.4rem;
+				color: #717171;
+			}
+		}
+	}
+	.pay-spec{
+		display: inline-block;width: 100%;border-bottom: #bfbfbf solid 1px;
+		ul{
+			margin: 0;padding: 0;width: 90%;margin: 0 auto;
+			li{
+				display: inline-block;width: 100%;border-bottom: #7d7d7d solid 1px;position: relative;
+				padding: 0.8rem 0;
+				&:last-child{
+					border:0;
+				}
+				span{
+					font-size: 1.4rem;color: #717171;position: absolute;left: 0;
+					&.peo{
+						top: 2.2rem;
+					}
+				}
+				.list{
+					display: inline-block;margin-left: 3.5rem;
+					a{
+						display: block;color: #717171;border-radius: 3px;text-align: center;
+						margin-right: 1rem;padding: 0.2rem 0.8rem;margin-top: 0.5rem;float: left;
+						border:#717171 solid 1px;font-size: 1.4rem;
+						&.cur{
+							background: #f73f3f;color: #fff;border:0;
+						}
+					}
+				}
+				em{
+					color: #f73f3f;font-size: 1.4rem;display: inline-block;margin-left: 3.5rem;
+				}
+			}
+		}
+	}
+	.sucess{
+		width: 100%;display: inline-block;text-align: center;padding-top: 5rem;
+		padding-bottom: 4rem;
+		.ico{
+			width: 30%;display: inline-block;margin-bottom: 0.6rem;
+		}
+		p{
+			font-size: 1.4rem;color: #333;margin-top: 0.5rem;
+			&.tips{
+				color: #f73f3f;font-size: 2rem;
+			}
+			&.bottom{
+				position: absolute;bottom: 0rem;left: 0;width: 100%;text-align: center;
+			}
+		}
+		.btn{
+			width: 100%;display: inline-block;margin-top: 3rem;margin-bottom: 3rem;
+			a{
+				display: inline-block;margin-right: 2rem;border:#cccccc solid 1px;
+				color: #333;font-size: 1.6rem;padding: 0.5rem 2rem;
+			}
+		}	
+	}
+}
+.course-con{
+	display: inline-block;width: 100%;background: #e6e6e6;
+	.tit{
+		background: #4d4d4d;color: #f73f3f;font-size: 1.8rem;width: 100%;text-indent: 1rem;padding: 0.6rem 0;
+		display: inline-block;
+	}
+	.con{
+		width: 90%;margin-left: 5%;font-size: 1.4rem;color: #707070;padding: 0.8rem 0;
+		.flow{
+			width: 60%;
+		}
+	}
+}

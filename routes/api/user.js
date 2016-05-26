@@ -1,11 +1,11 @@
-var util = require('../rest/_util');
+import rest from '../rest/_util';
 /*
 	会员登录
  */
 exports.login = (req, res, next) => {
-    new util({
+    new rest({
         functionCode: 'member.userLogin',
-    }).rest(req, res, next);
+    }).post(req, res);
 }
 
 /*
@@ -13,9 +13,9 @@ exports.login = (req, res, next) => {
  */
 
 exports.registeUser = (req, res, next) => {
-    new util({
+    new rest({
         functionCode: 'member.registeUser',
-    }).rest(req, res, next);
+    }).post(req, res);
 }
 
 /*
@@ -23,9 +23,9 @@ exports.registeUser = (req, res, next) => {
  */
 
 exports.checkLogin = (req, res, next) => {
-    new util({
+    new rest({
         functionCode: 'member.checkLogin',
-    }).rest(req, res, next);
+    }).post(req, res);
 }
 
 /*
@@ -33,10 +33,9 @@ exports.checkLogin = (req, res, next) => {
  */
 
 exports.sendSMS = (req, res, next) => {
-    new util({
+    new rest({
         functionCode: 'member.sendSMS',
-    }).post(req, res, next);
-    // new util(1,2).toString();
+    }).post(req, res);
 }
 
 /*
@@ -44,7 +43,7 @@ exports.sendSMS = (req, res, next) => {
  */
 
 exports.checkSmscode = (req, res, next) => {
-    new util({
+    new rest({
         functionCode: 'member.checkSmscode',
-    }).rest(req, res, next);
+    }).post(req, res);
 }

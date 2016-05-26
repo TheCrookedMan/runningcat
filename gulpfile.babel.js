@@ -72,6 +72,10 @@ const src_dir = "./src/",
 
 gulp.task('watcher', () => {
     browserSync({
+        //不显示在浏览器中的任何通知。
+        notify: false,
+        //停止自动打开浏览器
+        open: false,
         proxy: {
             target: url,
             middleware: function(req, res, next) {
@@ -127,7 +131,7 @@ gulp.task('sass:watch', function() {
         .pipe(gulp.dest(sass_src.output_dir))
         // .pipe(reload({ stream: true }))
         .pipe(filter('**/*.css'))
-        .pipe(browserSync.reload({stream:true}))
+        .pipe(browserSync.reload({ stream: true }))
         .pipe(notify({ message: 'sass:watch task ok' }));
 });
 /*

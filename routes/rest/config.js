@@ -1,4 +1,5 @@
 let argv = process.argv.slice(2);
+
 if ("test" == argv) {
     exports.wechat = {
         'appId': 'wx34c51d105b17c3e6',

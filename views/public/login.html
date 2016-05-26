@@ -1,40 +1,49 @@
 {% include "../_partial/head.html" %}
 <style type="text/css">
-    body{
-        background-color: #eee;
-    }
+body {
+    background-color: #eee;
+}
 </style>
 <section class="login-wrap">
     <div class="am-logo">
         <img src="/img/logo.png" alt="跑步猫">
     </div>
     <form method="post" class="am-form">
-      <ul>
-        <li>
-          <i class="am-icon-user"></i><input type="text" name="" id="name" placeholder="用户名">
-        </li>
-        <li>
-          <i class="am-icon-lock"></i><input type="password" name="" id="password" placeholder="密码">
-        </li>
-      </ul>
-      <div class="am-cf">
-        <div class="submit">
-          <input type="submit" name="" value="登录" class="am-btn am-btn-primary am-btn-sm am-fl">
+        <ul>
+            <li>
+                <i class="am-icon-user"></i>
+                <input type="text" name="account" id="name" placeholder="用户名" required>
+            </li>
+            <li>
+                <i class="am-icon-lock"></i>
+                <input type="password" name="password" id="password" placeholder="密码" required>
+            </li>
+        </ul>
+        <div class="am-cf">
+            <div class="submit">
+                <input type="submit" name="" value="登录" class="am-btn am-btn-primary am-btn-sm am-fl">
+            </div>
+            <p>
+                <a href="/public/register.html" class="register-btn">注册账号</a>
+            </p>
         </div>
-        <p>
-          <a href="./register.html" class="register-btn">注册账号</a>
-        </p>
-      </div>
     </form>
     <div class="other-login">
         <div class="other-login-title">
             <h6><span>使用第三方账号登陆</span></h6>
         </div>
         <ul class="other-login-way">
-            <li><a href=""><img src="/img/qq.png" alt="QQ登陆"></a></li>
-            <li><a href=""><img src="/img/wx.png" alt="微信登陆"></a></li>
-            <li><a href=""><img src="/img/wb.png" alt="新浪登陆"></a></li>
+            <li>
+                <a href=""><img src="/img/qq.png" alt="QQ登陆"></a>
+            </li>
+            <li>
+                <a href=""><img src="/img/wx.png" alt="微信登陆"></a>
+            </li>
+            <li>
+                <a href=""><img src="/img/wb.png" alt="新浪登陆"></a>
+            </li>
         </ul>
     </div>
 </section>
 {% include "../_partial/foot.html" %}
+<script src="/js/public/login.js"></script>

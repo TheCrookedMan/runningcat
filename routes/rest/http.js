@@ -18,15 +18,13 @@
             'Content-Type': 'application/x-www-form-urlencoded',
             'Content-Length': jsonObject.length
         };
-        
         optionspost = {
-            'host': $config['host'],
-            'port': $config['post'],
+            'host': $config.wechat.host,
+            'port': $config.wechat.post,
             'path': url,
             'method': 'POST',
             'headers': postheaders
         };
-        console.log("optionspost:::"+JSON.stringify(optionspost));
         /*
           do the POST call
          */
@@ -35,7 +33,7 @@
             res.setEncoding("utf-8");
             dataStr = "";
             res.on('data', function(d) {
-                console.log("rest d:::" + d);
+                // console.log("rest d:::" + d);
                 dataStr += d;
             });
             res.on('end', function(ev) {
@@ -47,7 +45,7 @@
         });
 
         reqPost.on('error', function(e) {
-            console.log("e:::"+e);
+            // console.log("e:::"+e);
             error(e);
         });
 
