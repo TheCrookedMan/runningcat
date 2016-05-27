@@ -62,7 +62,12 @@ textarea {
     color: #f73f3f !important;
 }
 
-
+.fixed{
+    position:fixed;bottom:0;
+    .btn{
+        margin-right:0 !important;
+    }
+}
 /*login*/
 
 .am-logo {
@@ -691,6 +696,35 @@ ul.other-login-way li img {
     }
 }
 
+/*data-list*/
+.data-list{
+    width:100%;display:inline-block;position:relative;text-align:center;float:left;
+    .btn{
+        position:absolute;top:0.9rem;
+        &.pre{
+            left:0.5rem;
+        }
+        &.next{
+            right:0.5rem;
+        }
+        i{
+            color:#fff;
+        }
+    }
+    .list{
+        width:88%;display:inline-block;float:left;margin-left:6%;
+        p{
+            margin:0;padding:0;
+        }
+        a{
+            display:inline-block;background:#f45252;color:#fff;width:14.2%;float:left;
+            text-align:center;padding:0.3rem 0;
+            &.cur{
+                background:#b74142;
+            }
+        }
+    }
+}
 
 /* pub-title*/
 
@@ -713,7 +747,7 @@ ul.other-login-way li img {
     width: 100%;
     display: inline-block;
     padding: 0.8rem 0;
-    background: #fff;
+    background: #fff;margin-top:-0.4rem;
     .fl {
         color: #80858b;
         margin-left: 0.6rem;
@@ -900,7 +934,7 @@ ul.other-login-way li img {
                 .btn {
                     position: absolute;
                     right: 1rem;
-                    top: 3.5rem;
+                    top: 5.5rem;
                     padding: 0.5rem 1rem !important;
                     border-radius: 3px;
                 }
@@ -1003,50 +1037,6 @@ ul.other-login-way li img {
                 .am-tabs-bd {
                     border-color: #999;
                     margin-top: -0.5rem;
-                }
-            }
-            .table {
-                width: 100%;
-                display: inline-block;
-                border: #898989 solid 1px;
-                table {
-                    width: 100%;
-                    font-size: 1.2rem;
-                    .pub-rbtn {
-                        .btn {
-                            width: auto;
-                            padding: 0.2rem 2rem;
-                            margin-bottom: 0.5rem;
-                        }
-                    }
-                    &.skin0 {
-                        th {
-                            color: #fff;
-                            background: #f73f3f;
-                        }
-                    }
-                    &.skin1 {
-                        width: 90%;
-                        margin: 0 auto;
-                        th {
-                            color: #717171;
-                            border-bottom: #898989 solid 1px;
-                        }
-                    }
-                    th {
-                        text-align: center;
-                        padding: 0.5rem 0;
-                        font-weight: normal;
-                    }
-                    td {
-                        padding: 0.5rem 0;
-                        color: #717171;
-                        text-align: center;
-                        input {
-                            width: 4rem;
-                            text-align: center;
-                        }
-                    }
                 }
             }
         }
@@ -1337,5 +1327,122 @@ ul.other-login-way li img {
         color: #fff;
         padding: 0.2rem 2rem;
         font-size: 1.6rem;
+    }
+}
+.pub-wbtn {
+    width: 100%;
+    display: inline-block;
+    margin-top: 1.8rem;
+    text-align: right;
+    .btn {
+        display: inline-block;
+        display: inline-block;
+        border: #fff solid 1px;
+        color: #fff;
+        padding: 0.4rem 1rem;
+        font-size: 1.6rem;
+        border-radius:3px;
+    }
+}
+
+/*pub table*/
+.table {
+    width: 100%;
+    display: inline-block;
+    border: #898989 solid 1px;
+    table {
+        width: 100%;
+        font-size: 1.2rem;
+        .pub-rbtn {
+            .btn {
+                width: auto;
+                padding: 0.2rem 2rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+        &.skin0 {
+            th {
+                color: #fff;
+                background: #f73f3f;
+            }
+        }
+        &.skin1 {
+            width: 90%;
+            margin: 0 auto;
+            th {
+                color: #717171;
+                border-bottom: #898989 solid 1px;
+            }
+        }
+        th {
+            text-align: center;
+            padding: 0.5rem 0;
+            font-weight: normal;
+        }
+        td {
+            padding: 0.5rem 0;
+            color: #717171;
+            text-align: center;
+            input {
+                width: 4rem;
+                text-align: center;
+            }
+        }
+    }
+}
+
+.pub-countdown{
+    width:100%;display:inline-block;padding-bottom:0.5rem;margin-top:-0.7rem;
+    span{
+        color:#707070;font-size:1.2rem;
+        i{
+            color:#999;
+        }
+    }
+    .am-icon-clock-o{
+        font-size:1.4rem !important;
+    }
+    .am-badge{
+        padding: .15em .125em;font-weight:normal;border-radius:3px;
+    }
+    .am-selected{
+        width:auto;
+        .am-btn{
+            border:0;margin:0;padding: 0  0.8rem 0 0em;
+            i{
+                color:#d1d1d1;padding:0;margin:0;position:relative;top:-0.1rem;right:0.3rem;
+            }
+            &:focus{
+                background:none;
+            }
+        }
+    }
+    .fl{
+        margin-left:0.5rem;
+    }
+    .fr{
+       margin-top:0.1rem;
+    }
+}
+
+.pub_peolist {
+    display: inline-block;width:93%;
+    margin-left: 3.5rem;
+    a {
+        display: block;
+        color: #717171;
+        border-radius: 3px;
+        text-align: center;
+        margin-right: 0.6rem;
+        padding: 0.2rem 0.6rem;
+        margin-top: 0.5rem;
+        float: left;
+        border: #717171 solid 1px;
+        font-size: 1.4rem;
+        &.cur {
+            background: #f73f3f;
+            color: #fff;
+            border: 0;
+        }
     }
 }
