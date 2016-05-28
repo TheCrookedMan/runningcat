@@ -16,6 +16,40 @@
         text-align: center;
         border-bottom: #bfbfbf solid 1px;
     }
+    .pub-pinfo{
+        width:100%;display:inline-block;padding: 1rem 0rem 1.5rem 0;
+        position: relative;border-bottom: #d3d3d3 solid 1px;
+        .img{
+            width: 5.8rem;height: 5.8rem;position: absolute;left: 1.5rem;top:1.5rem;
+            img{
+                border-radius: 100px;border:#fdfdfd solid 2px;
+            }
+        }
+        .info{
+            padding-left: 8.5rem;display: inline-block;width: 100%;padding-top: 0.8rem;
+            h2{
+                margin: 0;padding: 0;float: left;color: #333;font-size: 1.8rem;font-weight: normal;
+                margin-right: 0.8rem;
+            }
+            span{
+                float: left;display: inline-block;margin-top: 0.4rem;
+                padding: 0rem 0.6rem;font-size: 0.6rem;color: #fff;
+                &.grade{
+                    background-color: #bcbcbc;padding: 0rem 0.2rem;
+                }
+                &.type{
+                    background-color: #faa614;
+                }
+            }
+            p{
+                width: 100%;display: inline-block;float: left;margin: 0;padding: 0;
+                color: #c7c7c7;font-size: 1.8rem;margin-top: 0.2rem;
+            }
+        }
+        .am-icon-angle-right{
+            position: absolute;right: 1.5rem;top: 1.8rem;color: #c8c8c8;font-weight: normal;font-size: 2.6rem;
+        }
+    }
     .profile-btn {
         width: 100%;
         display: inline-block;
@@ -157,4 +191,74 @@
 
 .submit-class {
     width: 100%;
+}
+
+.profile-coupon{
+    width:90%;margin-left:5%;padding-top:4rem;
+    .tit{
+        width:100%;text-align:center;font-size:1.4rem;
+    }
+    p{
+        width:100%;text-align:center;font-size:1.3rem;
+    }
+}
+.profile-message{
+    width:100%;display:inline-block;
+    dl{
+        margin:0;padding:0;border-bottom:#c5c5c5 solid 1px;padding-bottom:1rem;
+        margin-top:1rem;
+        &:last-child{
+            border-bottom:0;
+        }
+        dt{
+           margin:0;padding:0; width:90%;display:inline-block;margin-left:5%;
+           margin-right:5%;position:relative;
+           .fl{
+            width:auto;
+            span{
+                font-size:1.6rem;font-weight:normal;margin-left:0.5rem;color:#333;
+                display:inline-block;
+            }
+            .am-badge{
+                position:absolute;left:1.8rem;top:-0.2rem;border-radius:100px;color:#fff;
+                background:#f73f3f;font-weight:normal;padding:0.2em 0.4em;font-size:1.2rem !important;
+               }
+           }
+           .fr{
+            margin-top:0.3rem;
+            span{
+                color:#666;font-weight:normal;font-size:1.3rem;
+                a{
+                    color:#666;
+                }
+                i{
+                    margin-left:0.5rem;font-weight:normal;
+                }
+            }
+           }
+           img{
+            width:18%;border-radius:100px;display:inline-block;
+           }
+        }
+        dd{
+           margin:0;padding:0; width:90%;display:inline-block;margin-left:5%;
+           margin-right:5%;color:#666;font-size:1.4rem;
+        }
+    }
+}
+
+.pub-price{
+    width:100%;display:inline-block;background:#cacaca;padding:0.8rem 0;margin-top:1.5rem;
+    .pub-num{
+        margin-bottom:0.8rem;border-bottom:#a8a8a8 solid 1px;padding-bottom:0.8rem;
+        span{
+            color:#666;font-size:1.4rem;margin-left:1.6rem;
+            &.ml0{
+                margin-left:0;
+            }
+        }
+        &:last-child{
+            border-bottom:0;margin-bottom:0;padding-bottom:0;
+        }
+    }
 }
