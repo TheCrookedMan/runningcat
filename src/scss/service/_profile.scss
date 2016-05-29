@@ -199,7 +199,7 @@
         width:100%;text-align:center;font-size:1.4rem;
     }
     p{
-        width:100%;text-align:center;font-size:1.3rem;
+        width:100%;text-align:center;font-size:1.3rem;margin:1rem 0;
     }
 }
 .profile-message{
@@ -261,4 +261,9 @@
             border-bottom:0;margin-bottom:0;padding-bottom:0;
         }
     }
+}
+
+.ranking-list{
+   width:100%;display:inline-block; padding-bottom:5rem;padding-top:0;
+
 }

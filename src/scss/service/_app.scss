@@ -45,6 +45,30 @@ textarea {
 .bd0 {
     border: 0 !important;
 }
+.pb0{
+    padding-bottom:0 !important;
+}
+.pl0{
+    padding-left:0 !important
+}
+.pt0{
+    padding-top:0 !important;
+}
+.pr0{
+    padding-right:0 !important
+}
+.mr0{
+    margin-right:0 !important;
+}
+.ml0{
+    margin-left:0 !important;
+}
+.mt0{
+    margin-top:0 !important;
+}
+.mb0{
+    margin-bottom:0 !important;
+}
 .mt-05rem{
     margin-top:-0.5rem !important;
 }
@@ -57,6 +81,9 @@ textarea {
 em,i{
     font-style:normal;
 }
+p{
+    margin:0;padding:0;
+}
 .hr {
     display: block;
     height: 12px;
@@ -64,7 +91,20 @@ em,i{
     border-bottom: #c2c2c2 solid 1px;
     border-top: #c2c2c2 solid 1px;
 }
-
+.hrm0{
+    display: block;margin:0;
+    height: 12px;
+    background: #cacaca;
+    border-bottom: #c2c2c2 solid 1px;
+    border-top: #c2c2c2 solid 1px;
+}
+.pub-line{
+    display: block;margin-left:-2em;
+    height: 12px;
+    background: #cacaca;
+    border-bottom: #c2c2c2 solid 1px;
+    border-top: #c2c2c2 solid 1px;
+}
 .bg-e6 {
     background: #e6e6e6
 }
@@ -1077,10 +1117,6 @@ ul.other-login-way li img {
                 margin-bottom:1rem;
             }
         }
-        h3{
-            margin:0;padding:0;margin-bottom:1.2rem;color:#333;font-size:1.6rem;
-            font-weight:normal;margin-top:-0.5rem;
-        }
         .list-info{
             padding-top:0.0rem;
             &.left {
@@ -1115,6 +1151,31 @@ ul.other-login-way li img {
             li{
                 margin-bottom:1rem;
             }
+        }
+    }
+    &.skin5{
+        ul{
+            border:0;
+            li{
+                .list-info{
+                    border:0;
+                    .price{
+                        border:0 !important;
+                    }
+                    .code{
+                        &:last-child{
+                            padding-bottom:1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    h3{
+        margin:0;padding:0;margin-bottom:1.2rem;color:#333;font-size:1.6rem;
+        font-weight:normal;margin-top:-0.5rem;
+        p{
+            font-size:1rem;
         }
     }
     ul {
@@ -1168,7 +1229,7 @@ ul.other-login-way li img {
                         border-right-color: #e6e6e6;
                         border-width: 6px;
                         top: 50%;
-                        margin-top: -64px;
+                        margin-top: -4.2rem;
                     }
                     &::before {
                         right: 100%;
@@ -1176,7 +1237,7 @@ ul.other-login-way li img {
                         border-right-color: #666;
                         border-width: 7px;
                         top: 50%;
-                        margin-top: -65px;
+                        margin-top: -4.3rem;
                     }
                 }
                 &::before {
@@ -1265,6 +1326,9 @@ ul.other-login-way li img {
                 }
             }
         }
+       .day{
+        font-size:2rem;text-align:center;display:inline-block;width:100%;margin:0.5rem 0 1rem 0;
+       } 
     }
 }
 
@@ -1272,7 +1336,20 @@ ul.other-login-way li img {
     z-index: 10;
 }
 
-
+.status{
+   border:#7d7d7d solid 1px; width:96%;display:inline-block;height:15px;
+   position:relative;margin-top:0.3rem;margin-left:2%;
+   .line{
+    width:100%;
+   }
+   span{
+    background:#f45252;display:block;height:100%;position:absolute;left:0;top:0;
+    em{
+        position:relative;right:-2rem;display:inline-block;width:100%;
+        text-align:right;top:-0.3rem;
+    }
+   }
+}
 /*pub-profile*/
 
 .pub-pinfo {
@@ -1453,43 +1530,83 @@ ul.other-login-way li img {
     width: 100%;
     display: inline-block;
     border: #898989 solid 1px;
-    table {
-        width: 100%;
-        font-size: 1.2rem;
-        .pub-rbtn {
-            .btn {
-                width: auto;
-                padding: 0.2rem 2rem;
-                margin-bottom: 0.5rem;
-            }
+}
+table {
+    width: 100%;
+    font-size: 1.2rem;
+    .pub-rbtn {
+        .btn {
+            width: auto;
+            padding: 0.2rem 2rem;
+            margin-bottom: 0.5rem;
         }
-        &.skin0 {
-            th {
-                color: #fff;
-                background: #f73f3f;
-            }
-        }
-        &.skin1 {
-            width: 90%;
-            margin: 0 auto;
-            th {
-                color: #717171;
-                border-bottom: #898989 solid 1px;
-            }
-        }
+    }
+    &.skin0 {
         th {
-            text-align: center;
-            padding: 0.5rem 0;
-            font-weight: normal;
+            color: #fff;
+            background: #f73f3f;
         }
-        td {
-            padding: 0.5rem 0;
+    }
+    &.skin1 {
+        width: 90%;
+        margin: 0 auto;
+        th {
             color: #717171;
-            text-align: center;
-            input {
-                width: 4rem;
-                text-align: center;
+            border-bottom: #898989 solid 1px;
+        }
+    }
+    &.skin2{
+        tr{
+            &:last-child{
+                td{
+                    border-bottom:0;
+                }
             }
+        }
+        td{
+            border-bottom:#c5c5c5 solid 1px;color:#333;padding:1rem 0;
+            &.top{
+                color:#666;font-size:0.8rem;text-align:left;
+                em{
+                    font-size:1.6rem;
+                }
+                img{
+                    width:40%;
+                }
+            }
+            &.peo{
+                text-align:left;
+                span{
+                    font-size:1.4rem;
+                }
+                img{
+                    width:28%;border-radius:100px;margin-right:0.3rem;
+                }
+            }
+            &.num{
+               color:#f45252;font-size:1.8rem;
+            }
+            &.like{
+                color:#666;text-align:right;
+                p{
+                    margin:0;padding:0;color:#666;
+                    margin-top:-0.4rem;
+                }
+            }
+        }
+    }
+    th {
+        text-align: center;
+        padding: 0.5rem 0;
+        font-weight: normal;
+    }
+    td {
+        padding: 0.5rem 0;
+        color: #717171;
+        text-align: center;
+        input {
+            width: 4rem;
+            text-align: center;
         }
     }
 }
