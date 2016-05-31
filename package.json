@@ -5,9 +5,11 @@
   "scripts": {
     "start-server": "babel-node ./bin/www",
     "gulp-server": "gulp server",
-    "gulp-build": "gulp build",
     "test": "npm run gulp-server | npm run start-server test",
-    "build": "npm run gulp-build | npm run start-server"
+    "compile": "babel -d lib/ routes/",
+    "gulp-build": "gulp build",
+    "build": "npm run gulp-build && npm run compile",
+    "dev":"forever start ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

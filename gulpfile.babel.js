@@ -140,7 +140,7 @@ gulp.task('sass:watch', function() {
 gulp.task('sass:build', function() {
     return sass(sass_src.inputfile, { sourcemap: true })
         .on('error', sass.logError)
-        .pipe(rename({ suffix: '.min' }))
+        // .pipe(rename({ suffix: '.min' }))
         .pipe(minifycss())
         .pipe(gulp.dest(sass_src.output_dir))
         .pipe(notify({ message: 'sass:build task ok' }));
@@ -190,6 +190,7 @@ const plugins_src = {
  * @param  {[type]} (          [description]
  * @return {[type]}            [description]
  */
+
 gulp.task('plugin', () => {
     gulp.src(plugins_src.inputfile_js)
         .pipe(concat('plugins.min.js'))

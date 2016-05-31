@@ -4,10 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// var argv = process.argv.slice(2);
-
-var routes = require('./routes/routes');
-var api = require('./routes/api-router');
+var argv = process.argv.slice(2);
+var routes, api, temp;
+if ("test" == argv) {
+    routes = require('./routes/routes');
+    api = require('./routes/api-router');
+    temp = require('./routes/temp-router');
+} else {
+    routes = require('./lib/routes');
+    api = require('./lib/api-router');
+    temp = require('./lib/temp-router');
+}
 
 var app = express();
 
@@ -20,7 +27,6 @@ var _setting = {
         }
     }
 };
-
 
 swig.setDefaults(_setting);
 app.engine('html', swig.renderFile);
@@ -37,8 +43,9 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use('/', routes);
 app.use('/', api);
+app.use('/', temp);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

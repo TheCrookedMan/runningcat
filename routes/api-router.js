@@ -12,5 +12,4 @@ router.post('/checkSmscode',user.checkSmscode);
 
 //profile
 router.post('/catfood',profile.catfood);
-
 module.exports = router;

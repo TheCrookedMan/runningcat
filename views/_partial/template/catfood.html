@@ -1,0 +1,14 @@
+{% for catfood in data %}
+<li>
+    <i class="am-icon-dot-circle-o"></i>
+    <dl>
+        <dd>2016/6/26</dd>
+        {% if catfood.isUsed == 0 %}
+        <dd>数量：+{{catfood.amount}}</dd>
+        {% else %}
+        <dd>数量：-{{catfood.amount}}</dd>
+        {% endif %}
+        <dd>{{catfood.pathwayName}}</dd>
+    </dl>
+</li>
+{% endfor %}

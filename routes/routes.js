@@ -1,6 +1,6 @@
 import express from 'express';
 import user from './api/user';
-import profile from './api/profile';
+
 let router = express.Router();
 
 router.get('/public/register.html', (req, res, next) => {
@@ -13,11 +13,15 @@ router.get('/public/profile.html', (req, res, next) => {
 
 router.get('/public/shop.html', (req, res, next) => {
     return res.render('public/shop', { title: '店铺' });
-})
+});
 
 router.get('/profile/catfood.html', (req, res, next) => {
     return res.render('profile/catfood', { title: '猫粮记录' });
-})
+});
+
+router.get('/wechatAuth.html',(req,res,next)=>{
+    debugger
+});
 
 router.get('*.html', (req, res, next) => {
     var url = req.url;
