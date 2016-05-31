@@ -1,10 +1,10 @@
 let argv = process.argv.slice(2);
 
-if ("test" == argv) {
+if ("test" == argv || "dev" == argv) {
     exports.wechat = {
-        'appId': 'wx34c51d105b17c3e6',
+        'appId': 'wx16cd0f3f1f4ee12a',
         'redirectUri': 'http://weixinweb.epeit.com/',
-        'appsecret': '59c354328fec1ad8e0569fbc4544fcf0',
+        'appsecret': 'defcd1c0a12f0e6e383cfde5aff6d30e',
         'host':'115.159.62.18',
         'post':'8888'
     }

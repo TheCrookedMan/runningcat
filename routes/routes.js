@@ -1,6 +1,6 @@
 import express from 'express';
 import user from './api/user';
-import wechat from './api/wechat';
+import wechatAuth from './api/wechat';
 
 let router = express.Router();
 
@@ -22,8 +22,11 @@ router.get('/profile/catfood.html', (req, res, next) => {
 
 router.get('/wechatAuth.html', (req, res, next) => {
     let options = req.query;
-    wechat.accessToken(options.code,function(data){
-
+    wechatAuth.accessToken(options.code,function(data){
+        //没有errcode字段表示请求成功
+        if(!data.errcode){
+            
+        }
     })
 });
 

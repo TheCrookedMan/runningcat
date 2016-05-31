@@ -1,8 +1,6 @@
 {% for catfood in data %}
-<li>
-    {% if catfood.showCircle == true %}
-        <i class="am-icon-dot-circle-o"></i>
-    {% endif %}
+<li class="{{catfood.modifyTime|date('Y-m')}}">
+    <i class="am-icon-dot-circle-o"></i>
     <dl>
         <dd>{{catfood.modifyTime|date('Y-m-d')}}</dd>
         {% if catfood.isUsed == 0 %}
