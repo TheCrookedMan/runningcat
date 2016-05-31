@@ -1,5 +1,6 @@
 import express from 'express';
 import user from './api/user';
+import wechat from './api/wechat';
 
 let router = express.Router();
 
@@ -19,8 +20,11 @@ router.get('/profile/catfood.html', (req, res, next) => {
     return res.render('profile/catfood', { title: '猫粮记录' });
 });
 
-router.get('/wechatAuth.html',(req,res,next)=>{
-    debugger
+router.get('/wechatAuth.html', (req, res, next) => {
+    let options = req.query;
+    wechat.accessToken(options.code,function(data){
+
+    })
 });
 
 router.get('*.html', (req, res, next) => {

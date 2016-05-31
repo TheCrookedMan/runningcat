@@ -5,7 +5,7 @@ if ("test" == argv) {
         'appId': 'wx34c51d105b17c3e6',
         'redirectUri': 'http://weixinweb.epeit.com/',
         'appsecret': '59c354328fec1ad8e0569fbc4544fcf0',
-        'host':'120.26.231.199',
+        'host':'115.159.62.18',
         'post':'8888'
     }
 } else {

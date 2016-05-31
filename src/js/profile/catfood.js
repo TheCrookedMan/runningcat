@@ -5,6 +5,7 @@
     }, function(data) {
     	$(".pub-list ul").append(data);
     });
+    
     this.scroll.on(bottomCallback,topCallback);
     function bottomCallback(){
     	debugger
