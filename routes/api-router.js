@@ -12,4 +12,6 @@ router.post('/checkSmscode',user.checkSmscode);
 
 //profile
 router.post('/catfood',profile.catfood);
+router.post('/usrMemberCatfood/selectUsrSurplusAmount',profile.surplus);
+
 module.exports = router;

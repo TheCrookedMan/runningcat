@@ -39,4 +39,10 @@
     function topCallback() {
         //debugger
     }
+     $.post('/usrMemberCatfood/selectUsrSurplusAmount', {'personId':1}).success(function(data) {
+        alert("safdsaf")
+    }).error(function(data) {
+       
+    })
+
 }).call(this);
