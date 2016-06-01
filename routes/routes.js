@@ -92,16 +92,6 @@ router.get('/public/login.html', (req, res, next) => {
     return res.render('public/login', { title: '登录' });
 });
 
-router.get('/course/course.html', (req, res, next) => {
-    return res.render('course/course', { title: '单次课程' });
-});
-router.get('/course/course-detail.html', (req, res, next) => {
-    let courseId = req.query.courseId;
-    let dayOfWeek = req.query.dayOfWeek;
-    let imgUrl = req.query.imgUrl;
-    return res.render('course/course-detail', { title: '课程详情' ,courseId:courseId,dayOfWeek:dayOfWeek,imgUrl:imgUrl});
-});
-
 router.get('/till/till.html', (req, res, next) => {
     return res.render('till/till', { title: '特训营' });
 });
@@ -122,6 +112,27 @@ router.get('/profile/profile.html', (req, res, next) => {
 
 router.get('/profile/catfood.html', (req, res, next) => {
     return res.render('profile/catfood', { title: '猫粮记录' });
+});
+
+
+router.get('/course/course.html', (req, res, next) => {
+    return res.render('course/course', { title: '单次课程' });
+});
+
+router.get('/course/course-detail.html', (req, res, next) => {
+    let courseId = req.query.courseId;
+    let dayOfWeek = req.query.dayOfWeek;
+    let imgUrl = req.query.imgUrl;
+    return res.render('course/course-detail', { title: '课程详情' ,courseId:courseId,dayOfWeek:dayOfWeek,imgUrl:imgUrl});
+});
+
+router.get('/till/till.html', (req, res, next) => {
+    return res.render('till/till', { title: '特训营' });
+});
+
+router.get('/till/till-detail.html', (req, res, next) => {
+    let userId = req.query.userId;
+    return res.render('till/till-detail', { title: '特训营详情' ,userId:userId});
 });
 
 // router.get('*.html', (req, res, next) => {
