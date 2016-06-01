@@ -6,7 +6,10 @@ import httpConfig from './config';
 export default class Rest {
     constructor(options) {
         this.options = options;
-        this.options.data = !!this.options.data || {};
+        if(!this.options.data){
+            this.options.data = {}
+        }
+        // this.options.data = !!this.options.data || {};
         this.functionCode = options.functionCode;
     }
     _getRestUrl(funCode) {
@@ -148,6 +151,11 @@ export default class Rest {
             this.options.data[k] = v;
         }
         url = this._getRestUrl(this.functionCode);
+        return http.rest(url, this.options.data, success, error);
+    }
+    normalRequest(success, error) {
+        let url = this._getRestUrl(this.functionCode);
+        console.log("this.options.data:::"+JSON.stringify(this.options.data));
         return http.rest(url, this.options.data, success, error);
     }
     _getSetting(functioncode) {

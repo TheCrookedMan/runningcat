@@ -27,7 +27,7 @@ let get = (host, post, url, callback) => {
         'method': 'GET',
         'headers': postheaders
     }
-    console.log("optionspost:::"+JSON.stringify(optionspost));
+    console.log("optionspost:::" + JSON.stringify(optionspost));
     reqPost = https.request(optionspost, (res) => {
         let dataStr = "";
         res.setEncoding("utf-8");
@@ -51,11 +51,11 @@ exports.refreshToken = (refreshToken) => {
     url = "/sns/oauth2/refresh_token?appid=" + config.wechat.appId + "&grant_type=refresh_token&refresh_token=" + refreshToken;
     get(host, post, url, callback);
 }
-exports.getUserInfo = (ACCESS_TOKEN, OPENID, callback) => {
+exports.getUserInfo = (access_token, openid, callback) => {
     let host, post, url;
     host = "api.weixin.qq.com";
     post = "80";
-    url = "/sns/userinfo?access_token=" + ACCESS_TOKEN + "&openid=" + OPENID + "&lang=zh_CN";
+    url = "/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN";
     get(host, post, url, callback);
 }
 
