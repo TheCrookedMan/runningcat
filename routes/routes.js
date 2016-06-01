@@ -57,14 +57,34 @@ router.get('/profile/catfood.html', (req, res, next) => {
     return res.render('profile/catfood', { title: '猫粮记录' });
 });
 
-router.get('*.html', (req, res, next) => {
-    var url = req.url;
-    var allPath = url.substring(0, url.indexOf(".html"));
-    // var filename = allPath.substring(allPath.lastIndexOf("/"));
-    var filename = allPath.substring(1);
-    console.log("filename:::" + filename);
-    return res.render(filename, { title: filename });
+router.get('/course/course.html', (req, res, next) => {
+    return res.render('course/course', { title: '单次课程' });
 });
+
+router.get('/course/course-detail.html', (req, res, next) => {
+    let courseId = req.query.courseId;
+    let dayOfWeek = req.query.dayOfWeek;
+    let imgUrl = req.query.imgUrl;
+    return res.render('course/course-detail', { title: '课程详情' ,courseId:courseId,dayOfWeek:dayOfWeek,imgUrl:imgUrl});
+});
+
+router.get('/till/till.html', (req, res, next) => {
+    return res.render('till/till', { title: '特训营' });
+});
+
+router.get('/till/till-detail.html', (req, res, next) => {
+    let userId = req.query.userId;
+    return res.render('till/till-detail', { title: '特训营详情' ,userId:userId});
+});
+
+// router.get('*.html', (req, res, next) => {
+//     var url = req.url;
+//     var allPath = url.substring(0, url.indexOf(".html"));
+//     // var filename = allPath.substring(allPath.lastIndexOf("/"));
+//     var filename = allPath.substring(1);
+//     console.log("filename:::" + filename);
+//     return res.render(filename, { title: filename });
+// });
 
 /* GET home page. */
 

@@ -1,0 +1,26 @@
+{% for course in data %}
+<li>
+    <img src="/img/ico-shop.png" class="ico" style="display: none">
+    <div class="list-info">
+        <div class="img"><img src="http://115.159.62.18:8085/pic/images/{{course.imgUrl}}"></div>
+        <div class="info">
+           <h2>{{course.courseName}}</h2>
+           <p class="tit">
+               <span>高效燃脂</span>
+               <span><em>.</em>HIIT</span>
+               <span><em>.</em>初级</span>
+               <span><em>.</em>体能</span>
+           </p>
+           <p class="houre">
+               <i class="am-icon-instagram"></i><span class="text-muted">{{course.onceCourseHour}} 课时</span>
+           </p>
+           <p class="clock">
+               <i class="am-icon-clock-o"></i><span class="text-muted">{{course.startTime}}~{{course.endTime}}</span>
+           </p>
+        </div>
+        <div class="pub-btn">
+            <a href="/course/course-detail.html?courseId={{course.courseId}}" class="btn btn-red">预约</a>
+        </div>
+    </div>
+</li>
+{% endfor %}

@@ -1,8 +1,15 @@
 (function() {
-    list(0);
     var t = 0;
-
-    function list(isUsed) {
+    //查询剩余猫粮
+    $.post('/usrMemberCatfood/selectUsrSurplusAmount', {'memberId':1}).success(function(data) {
+        var res=data.data;
+        $("#surplus em").html(res[0].surplusAmount)
+    }).error(function(data) {
+       
+    })
+    //初始化猫粮列表
+    list(0);
+    function list(isUsed){
         $.get('/catfood.template', {
             memberId: 1,
             isUsed: isUsed
@@ -27,11 +34,7 @@
         }
         $("#t" + isUsed).show().siblings(".pub-list").hide();
     })
-    $("#sdfsd").unbind("click").click(function(e) {
-
-    });
     this.scroll.on(bottomCallback, topCallback);
-
     function bottomCallback() {
         //debugger
     }
@@ -39,10 +42,5 @@
     function topCallback() {
         //debugger
     }
-     $.post('/usrMemberCatfood/selectUsrSurplusAmount', {'personId':1}).success(function(data) {
-        alert("safdsaf")
-    }).error(function(data) {
-       
-    })
 
 }).call(this);
