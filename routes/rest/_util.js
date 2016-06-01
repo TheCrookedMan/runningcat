@@ -49,12 +49,11 @@ export default class Rest {
         let opts, self = this,
             url, success, error;
         success = (d) => {
-            var data;
+            let data;
             if (undefined == d || "" == d) {
-                data = {
-                    success: false,
-                    msg: '操作失败！'
-                };
+                next({
+                    msg: "服务器异常!"
+                });
             } else {
                 data = JSON.parse(d);
             }
@@ -65,14 +64,9 @@ export default class Rest {
             next();
         }
         error = (d) => {
-            if (!res.data) {
-                res.data = {};
-            }
-            res.data[self.functionCode] = {
-                success: false,
-                msg: '网络错误！'
-            };
-            next();
+            next({
+                msg: "网络异常!"
+            });
         }
         if (!!req && "GET" == req.method) {
             opts = req.query;
@@ -81,63 +75,75 @@ export default class Rest {
         } else {
             opts = {};
         }
-        for (let [k, v] of Object.entries(opts)) {
-            this.options.data[k] = v;
+
+        for (let key of Object.keys(opts)) {
+            this.options.data[key] = opts[key]
         }
+
+
         url = this._getRestUrl(this.functionCode);
         return http.rest(url, this.options.data, success, error);
     }
     post(req, res, ...rest) {
         let opts, self = this,
-            url;
+            url, __success, __error;
 
         let [success, error] = rest;
-        if (!success) {
-            success = (d) => {
-                let $list, data;
-                if (undefined == d || "" == d) {
-                    data = {
-                        isSuccess: false,
-                        msg: '操作失败！'
-                    };
-                } else {
-                    data = JSON.parse(d);
-                }
-                if (data.isSuccess) {
-                    data.record = data.record === void 0 ? [] : data.record;
-                    if ("[object Object]" === Object.prototype.toString.call(data.record)) {
-                        $list = [];
-                        $list.push(data.record);
-                        data.record = $list;
-                    }
-                    return res.status(200).send({
-                        'data': data.record === void 0 ? [] : data.record,
-                        'success': data.isSuccess,
-                        'msg': data.msg,
-                        'code': data.code
-                    });
-                } else {
-                    return res.status(500).send({
-                        'data': [],
-                        'success': data.isSuccess,
-                        'msg': data.msg,
-                        'code': data.code
-                    });
-                }
+
+        __success = (d) => {
+            let $list, data;
+            if (undefined == d || "" == d) {
+                next({
+                    msg: "服务器异常!"
+                });
+            } else {
+                data = JSON.parse(d);
             }
-        } else {
-            success();
+
+            if (typeof success == "function") {
+                success(data);
+            } else {
+                let array = data.record === void 0 ? {} : data.record;
+
+                return res.status(200).send({
+                    'data': array,
+                    'success': data.isSuccess,
+                    'msg': data.msg,
+                    'code': data.code
+                });
+                // if (data.isSuccess) {
+                //     data.record = data.record === void 0 ? [] : data.record;
+                //     if ("[object Object]" === Object.prototype.toString.call(data.record)) {
+                //         $list = [];
+                //         $list.push(data.record);
+                //         data.record = $list;
+                //     }
+                //     return res.status(200).send({
+                //         'data': data.record === void 0 ? [] : data.record,
+                //         'success': data.isSuccess,
+                //         'msg': data.msg,
+                //         'code': data.code
+                //     });
+                // } else {
+                //     return res.status(200).send({
+                //         'data': [],
+                //         'success': data.isSuccess,
+                //         'msg': data.msg,
+                //         'code': data.code
+                //     });
+                // }
+            }
+
         }
-        if (!error) {
-            error = (d) => {
-                return res.status(500).send({
-                    'success': false,
-                    'msg': '网络问题！',
-                    'code': '1000'
+
+        __error = (d) => {
+            if (typeof error == "function") {
+                error(d);
+            } else {
+                next({
+                    msg: "网络异常!"
                 });
             }
-        } else {
-            error();
         }
 
         if (!!req && "GET" == req.method) {
@@ -152,11 +158,27 @@ export default class Rest {
             this.options.data[key] = opts[key]
         }
         url = this._getRestUrl(this.functionCode);
-        return http.rest(url, this.options.data, success, error);
+        return http.rest(url, this.options.data, __success, __error);
     }
-    normalRequest(success, error) {
+    normalRequest(success) {
         let url = this._getRestUrl(this.functionCode);
-        return http.rest(url, this.options.data, success, error);
+        let __success, __error, data;
+        __success = (d) => {
+            if (undefined == d || "" == d) {
+                next({
+                    msg: "服务器异常!"
+                });
+            } else {
+                data = JSON.parse(d);
+                success(data);
+            }
+        }
+        __error = (d) => {
+            next({
+                msg: "网络异常!"
+            });
+        }
+        return http.rest(url, this.options.data, __success, __error);
     }
     _getSetting(functioncode) {
         return {

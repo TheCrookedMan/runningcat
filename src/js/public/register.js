@@ -4,8 +4,6 @@
         var data = common.parseForm(".am-form");
 
         if (common.regMobileNo(data.mobileNo)) {
-            $(this).attr('disabled', 'disabled');
-            timeout();
             sendSMS(data.mobileNo)
         } else {
             modal.alert("情确认手机号是否输入正确！");
@@ -14,9 +12,12 @@
 
     function sendSMS(mobileNo) {
         $.post('/sendSMS', { 'mobileNo': mobileNo }).success(function(data) {
-            // if(!data.success){
-            // 	modal.alert(data.msg);
-            // }
+            if (!data.success) {
+                modal.alert(data.msg);
+            } else {
+                $(this).attr('disabled', 'disabled');
+                timeout();
+            }
         }).error(function(data) {
             modal.alert(data.msg);
         });

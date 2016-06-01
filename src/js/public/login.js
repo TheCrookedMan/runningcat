@@ -7,7 +7,13 @@
 
     function login(data) {
         $.post('/login', data).success(function(data) {
-            window.location.href = "/public/shop.html";
+            if (data.success) {
+                var runningcatUserInfo = JSON.stringify(data.data);
+                $.cookie('runningcatUserInfo', runningcatUserInfo, { expires: 365, path: '/' });
+                window.location.href = "/public/shop.html";
+            } else {
+                modal.alert(data.msg);
+            }
         }).error(function(data) {
             modal.alert(data.responseJSON.msg);
         })

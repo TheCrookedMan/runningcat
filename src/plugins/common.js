@@ -18,6 +18,9 @@
         },
         regCardId: function(id) {
             return this.reg_cardId.test(id);
+        },
+        getUserInfo:function(){
+            return JSON.parse($.cookie("runningcatUserInfo"));
         }
     }
     this.common = new common();

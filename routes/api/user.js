@@ -1,4 +1,5 @@
 import rest from '../rest/_util';
+import common from '../common';
 /*
     会员登录
  */
@@ -7,6 +8,23 @@ exports.login = (req, res, next) => {
         functionCode: 'member.userLogin',
     }).post(req, res);
 }
+
+// , function(data) {
+//         /*
+//             登录成功的时候把用户信息存入cookie
+//          */
+//         let runningcatUserInfo = JSON.stringify(data.record);
+//         common.setCookie("runningcatUserInfo", runningcatUserInfo, res);
+
+//         let array = data.record === void 0 ? {} : data.record;
+
+//         return res.status(200).send({
+//             'data': array,
+//             'success': data.isSuccess,
+//             'msg': data.msg,
+//             'code': data.code
+//         });
+//     }
 
 /*
     会员注册
@@ -17,6 +35,22 @@ exports.registeUser = (req, res, next) => {
         functionCode: 'member.registeUser',
     }).post(req, res);
 }
+
+// , function(data) {
+//         /*
+//             注册成功的时候把用户信息存入cookie
+//          */
+//         let runningcatUserInfo = JSON.stringify(data.record);
+//         common.setCookie("runningcatUserInfo", runningcatUserInfo, res);
+//         let array = data.record === void 0 ? {} : data.record;
+
+//         return res.status(200).send({
+//             'data': array,
+//             'success': data.isSuccess,
+//             'msg': data.msg,
+//             'code': data.code
+//         });
+//     }
 
 /*
     发送验证码
@@ -42,24 +76,16 @@ exports.checkSmscode = (req, res, next) => {
     根据 openId 登录
  */
 
-exports.loginByopenId = (openId, success, error) => {
+exports.loginByopenId = (openId, success) => {
     let data = {};
     new rest({
         functionCode: 'member.loginByopenId',
         data: {
             openId: openId
         }
-    }).normalRequest(function(d) {
-        if (undefined == d || "" == d) {
-            data = {
-                isSuccess: false,
-                msg: '操作失败！'
-            };
-        } else {
-            data = JSON.parse(d);
-        }
+    }).normalRequest(function(data) {
         success(data);
-    }, error);
+    });
 }
 
 /*
@@ -72,16 +98,22 @@ exports.checkLogin = (req, res, next) => {
         //没有runningcatUserInfo表示没有注册或者登录过，需要跳转到登录
         res.redirect("/public/login.html");
     } else {
+        runningcatUserInfo = JSON.parse(runningcatUserInfo);
         let cookieUserId = runningcatUserInfo.cookieUserId;
         new rest({
             functionCode: 'member.checkLogin',
             data: {
-                cookieUserId: cookieUserId
+                cookieMemberId: cookieUserId
             }
-        }).normalRequest(function(success) {
-            //请求成功，需要区分信息
-        }, function(error) {
-            //服务器请求失败
+        }).normalRequest(function(data) {
+            /*
+                如果用户是登录的，直接 NEXT。否则重定向至登录页面。
+             */
+            if (data.isSuccess) {
+                next();
+            } else {
+                res.redirect("/public/login.html");
+            }
         });
     }
 }
