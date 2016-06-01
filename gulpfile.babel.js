@@ -55,7 +55,7 @@ const gulp = require('gulp'),
      */
     del = require('del');
 
-const url = "http://localhost:8000",
+const url = "http://localhost:9527",
     dist_dir = "./dist/",
     css_dir = dist_dir + "./css/",
     js_dir = dist_dir + "./js/",
@@ -73,9 +73,10 @@ const src_dir = "./src/",
 gulp.task('watcher', () => {
     browserSync({
         //不显示在浏览器中的任何通知。
-        notify: false,
+        // notify: false,
         //停止自动打开浏览器
-        open: false,
+        // open: false,
+        port: 4567,
         proxy: {
             target: url,
             middleware: function(req, res, next) {
@@ -180,7 +181,7 @@ gulp.task('js:build', () => {
 });
 
 const plugins_src = {
-    inputfile_js: src_plugins_dir + "/**/*.js",
+    inputfile_js: [src_plugins_dir + "/jquery.min.js",src_plugins_dir + "/jquery.cookie.js",src_plugins_dir + "/common.js",src_plugins_dir + "/amazeui/amazeui.min.js"],
     inputfile_css: src_plugins_dir + "/**/*.css",
     outputfile: plugins_dir
 }
@@ -200,7 +201,7 @@ gulp.task('plugin', () => {
             // preserveComments: 'all' //保留所有注释
             preserveComments: false
         }))
-        .pipe(gulp.dest(plugins_src.outputfile))
+        .pipe(gulp.dest(plugins_src.outputfile));
 
     return gulp.src(plugins_src.inputfile_css)
         .pipe(concat('plugins.min.css'))

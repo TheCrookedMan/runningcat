@@ -43,29 +43,45 @@ exports.checkSmscode = (req, res, next) => {
  */
 
 exports.loginByopenId = (openId, success, error) => {
+    let data = {};
     new rest({
         functionCode: 'member.loginByopenId',
         data: {
             openId: openId
         }
-    }).normalRequest(success, error);
+    }).normalRequest(function(d) {
+        if (undefined == d || "" == d) {
+            data = {
+                isSuccess: false,
+                msg: '操作失败！'
+            };
+        } else {
+            data = JSON.parse(d);
+        }
+        success(data);
+    }, error);
 }
-
 
 /*
     根据cookieUserId来验证用户是否登录
  */
 
 exports.checkLogin = (req, res, next) => {
-    let cookieUserId = req.cookies.cookieUserId;
-    if (!cookieUserId) {
-        //没有cookieUserId没有注册或者登录过，需要跳转到登录
+    let runningcatUserInfo = req.cookies.runningcatUserInfo;
+    if (!runningcatUserInfo) {
+        //没有runningcatUserInfo表示没有注册或者登录过，需要跳转到登录
+        res.redirect("/public/login.html");
     } else {
+        let cookieUserId = runningcatUserInfo.cookieUserId;
         new rest({
             functionCode: 'member.checkLogin',
             data: {
                 cookieUserId: cookieUserId
             }
-        }).normalRequest(function(success){}, function(error){});
+        }).normalRequest(function(success) {
+            //请求成功，需要区分信息
+        }, function(error) {
+            //服务器请求失败
+        });
     }
 }

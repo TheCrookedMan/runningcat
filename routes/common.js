@@ -25,3 +25,13 @@ exports.formatDate = (date, format) => {
     });
     return format;
 }
+
+exports.setCookie = (key, value, res) => {
+    let string = key + '=' + value + ';Max-Age=31536000; Path=/'
+    res.setHeader('Set-Cookie', string);
+}
+
+exports.removeCookie = (key, res) => {
+    let string = key + '=0;Max-Age=1; Path=/';
+    res.setHeader('Set-Cookie', string);
+}

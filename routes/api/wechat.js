@@ -27,7 +27,6 @@ let get = (host, post, url, callback) => {
         'method': 'GET',
         'headers': postheaders
     }
-    console.log("optionspost:::" + JSON.stringify(optionspost));
     reqPost = https.request(optionspost, (res) => {
         let dataStr = "";
         res.setEncoding("utf-8");
@@ -58,31 +57,3 @@ exports.getUserInfo = (access_token, openid, callback) => {
     url = "/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN";
     get(host, post, url, callback);
 }
-
-// export default class wechatAuth {
-//     constructor() {
-//         this.scopeType = {
-//             base: 'snsapi_base',
-//             userinfo: 'snsapi_userinfo'
-//         }
-//         this.redirect_uri = encodeURIComponent(config.redirectUri + "wechatAuth.html");
-//     }
-//     base() {
-//         this.getCode(this.scopeType.base, (data) => {
-//             debugger
-//         });
-//     }
-//     userinfo() {
-//         this.getCode(this.scopeType.userinfo, (data) => {
-//             debugger
-//         });
-//     }
-//     getCode(scope, callback) {
-//         let host, post, url;
-//         host = "open.weixin.qq.com";
-//         post = "80";
-//         url = "/connect/oauth2/authorize?appid=" + config.appId + "&redirect_uri=" + this.redirect_uri + "&response_type=code&scope=" + scope + "&state=STATE#wechat_redirect";
-
-//         this.get(host, post, url, callback);
-//     }
-// }

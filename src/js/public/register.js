@@ -18,7 +18,7 @@
             // 	modal.alert(data.msg);
             // }
         }).error(function(data) {
-            modal.alert("情确认手机号是否输入正确！");
+            modal.alert(data.msg);
         });
     }
 

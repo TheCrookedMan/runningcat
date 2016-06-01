@@ -7,14 +7,18 @@ body {
 <section class="profile-wrap">
     <div class="head-logo">
         <div class="am-form-group am-form-file">
-            <img src="/img/app-icon72x72@2x.png" alt="跑步猫">
-            <input type="file" accept="image/*">
+            <img src="/img/app-icon72x72@2x.png" alt="跑步猫" id="userPic">
+            <!-- <input type="file" accept="image/*"> -->
         </div>
-        <p>点击头像上传图片</p>
+        <!-- <p>点击头像上传图片</p> -->
+        <p id="nicknameText"></p>
     </div>
     <form method="post" class="am-form">
         <input type="hidden" name="password" value="{{password}}">
         <input type="hidden" name="mobileNo" value="{{mobileNo}}">
+        <input type="hidden" name="nickName" id="nickName">
+        <input type="hidden" name="photoUrl" id="photoUrl">
+        <input type="hidden" name="openId" id="openId">
         <ul>
             <li>
                 <span class="tit">用户名</span>

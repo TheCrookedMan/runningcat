@@ -1,4 +1,11 @@
 (function(){
+	var wechatUserInfo = $.cookie("wechatUserInfo");
+	wechatUserInfo = JSON.parse(wechatUserInfo);
+	$("#userPic").attr("src",wechatUserInfo.headimgurl);
+	$("#nicknameText").text(wechatUserInfo.nickname);
+	$("#nickName").val(wechatUserInfo.nickname);
+	$("#photoUrl").val(wechatUserInfo.headimgurl);
+	$("#openId").val(wechatUserInfo.openid);
 	$("form").submit(function(){
 		var data = common.parseForm(".am-form");
 		if(!regCardId.test(data.idcard)){

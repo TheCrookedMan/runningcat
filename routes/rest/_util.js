@@ -6,7 +6,7 @@ import httpConfig from './config';
 export default class Rest {
     constructor(options) {
         this.options = options;
-        if(!this.options.data){
+        if (!this.options.data) {
             this.options.data = {}
         }
         // this.options.data = !!this.options.data || {};
@@ -68,7 +68,6 @@ export default class Rest {
             if (!res.data) {
                 res.data = {};
             }
-            console.log("d:::" + d);
             res.data[self.functionCode] = {
                 success: false,
                 msg: '网络错误！'
@@ -140,6 +139,7 @@ export default class Rest {
         } else {
             error();
         }
+
         if (!!req && "GET" == req.method) {
             opts = req.query;
         } else if (!!req && "POST" == req.method) {
@@ -147,15 +147,15 @@ export default class Rest {
         } else {
             opts = {};
         }
-        for (let [k, v] of Object.entries(opts)) {
-            this.options.data[k] = v;
+
+        for (let key of Object.keys(opts)) {
+            this.options.data[key] = opts[key]
         }
         url = this._getRestUrl(this.functionCode);
         return http.rest(url, this.options.data, success, error);
     }
     normalRequest(success, error) {
         let url = this._getRestUrl(this.functionCode);
-        console.log("this.options.data:::"+JSON.stringify(this.options.data));
         return http.rest(url, this.options.data, success, error);
     }
     _getSetting(functioncode) {
