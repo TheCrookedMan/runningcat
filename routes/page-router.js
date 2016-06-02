@@ -151,7 +151,7 @@ router.get('/profile/message.html', (req, res, next) => {
 });
 
 router.get('/profile/ranking.html', (req, res, next) => {
-    return res.render('profile/ranking', { title: '我的排名' });
+    return res.render('profile/ranking', { title: '活力值排名' });
 });
 
 router.get('/profile/recharge.html', (req, res, next) => {
@@ -222,9 +222,7 @@ router.get('/till/till-detail.html', (req, res, next) => {
     return res.render('till/till-detail', { title: '特训营详情', userId: userId });
 });
 
-router.get('/profile/ranking.html', (req, res, next) => {
-    return res.render('profile/ranking', { title: '活力值排名' });
-});
+
 
 // router.get('*.html', (req, res, next) => {
 //     var url = req.url;
