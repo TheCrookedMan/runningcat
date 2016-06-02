@@ -11,6 +11,18 @@ router.get('/catfood.template', [profile.catfood], (req, res, next) => {
     });
 });
 
+router.get('/rankingFuel.template', [profile.queryUserFuelList], (req, res, next) => {
+    return res.render('_partial/template/rankingFuel', {
+        data: res.data['member.queryUserFuelList']['record']
+    });
+});
+
+router.get('/rankingTrain.template', [profile.queryUserTrainList], (req, res, next) => {
+    return res.render('_partial/template/rankingTrain', {
+        data: res.data['member.queryUserTrainList']['record']
+    });
+});
+
 router.get('/course.template', [course.course], (req, res, next) => {
     return res.render('_partial/template/course', {
         data: res.data['coursePlan.queryCoursePlanList']['record']

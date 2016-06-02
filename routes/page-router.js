@@ -131,6 +131,10 @@ router.get('/till/till-detail.html', (req, res, next) => {
     return res.render('till/till-detail', { title: '特训营详情', userId: userId });
 });
 
+router.get('/profile/ranking.html', (req, res, next) => {
+    return res.render('profile/ranking', { title: '活力值排名' });
+});
+
 // router.get('*.html', (req, res, next) => {
 //     var url = req.url;
 //     var allPath = url.substring(0, url.indexOf(".html"));
