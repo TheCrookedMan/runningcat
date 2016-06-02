@@ -18,3 +18,18 @@ exports.surplus = (req, res, next) => {
         functionCode: 'usrMemberCatfood.selectUsrSurplusAmount',
     }).post(req, res);
 }
+
+
+/*查询用户活力值排名*/
+exports.queryUserFuelList = (req, res, next) => {
+    new rest({
+        functionCode: 'member.queryUserFuelList',
+    }).link(req, res, next);
+}
+
+/*查询用户训练时间排名*/
+exports.queryUserTrainList = (req, res, next) => {
+    new rest({
+        functionCode: 'member.queryUserTrainList',
+    }).link(req, res, next);
+}

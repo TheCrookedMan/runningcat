@@ -13,8 +13,13 @@ router.post('/sendSMS',user.sendSMS);
 router.post('/checkSmscode',user.checkSmscode);
 
 //profile
+/*猫粮*/
 router.post('/catfood',profile.catfood);
 router.post('/usrMemberCatfood/selectUsrSurplusAmount',profile.surplus);
+
+/*排名*/
+router.post('/queryUserFuelList',profile.queryUserFuelList);
+router.post('/queryUserTrainList',profile.queryUserTrainList);
 
 //course
 router.post('/course',course.course);
