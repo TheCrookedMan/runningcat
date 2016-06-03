@@ -167,9 +167,9 @@ router.get('/profile/submit-class.html', (req, res, next) => {
 });
 
 router.get('/profile/till-list.html', (req, res, next) => {
-    return res.render('profile/till-list', { title: '我的特训营' });
+    let specialId = req.query.specialId;
+    return res.render('profile/till-list', { title: '我的特训营' , specialId: specialId});
 });
-
 
 router.get('/profile/till.html', (req, res, next) => {
     return res.render('profile/till', { title: '我的特训营' });
@@ -218,8 +218,8 @@ router.get('/till/till.html', (req, res, next) => {
 });
 
 router.get('/till/till-detail.html', (req, res, next) => {
-    let userId = req.query.userId;
-    return res.render('till/till-detail', { title: '特训营详情', userId: userId });
+    let specialId = req.query.specialId;
+    return res.render('till/till-detail', { title: '特训营详情', specialId: specialId });
 });
 
 

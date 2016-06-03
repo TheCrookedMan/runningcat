@@ -1,73 +1,81 @@
 (function() {
-    //var wechatUserInfo = $.cookie("wechatUserInfo");
-    //wechatUserInfo = eval(wechatUserInfo);
-    //console.log(wechatUserInfo.nickname)
-    //初始化猫粮列表
-    var t = 0;
-    var pageNo=1;
-    var pageSize=10;
-
-    $.get('/rankingFuel.template',{
-        pageNo: pageNo,
-        pageSize:pageSize
-    }, function(data) {
-        console.log(data);
-        $("#tFuel .rank-list").append(data);
-         
-    });
-
-    $.get('/rankingFuel.template',{
-        memberId: 1
-    }, function(data) {
-        $("#mFuel .myrank").append(data)
-    });
-    
-
-    $(".rank-tab li a").click(function() {
-        var spec = $(this).data("id");
-        $(this).addClass('cur').parent().siblings().children().removeClass('cur');
-        if (t == 0) {
-            if (spec == 'Fuel') {
+    var ranking = function() {
+        this.status = "Fuel";
+        this.pageNo = 1;
+        this.pageSize = 10;
+        this.isEnd = false;
+    }
+    ranking.prototype = {
+        init: function() {
+            var self = this;
+            $(".single-class .pub-tab").on("click", "a", function(ev) {
+                $(".single-class .pub-tab .cur").removeClass("cur");
+                $(this).addClass("cur");
+                self.status = $(this).data("id");
+                self.pageNo = 1;
+                $(".myrank").html("");
+                $(".rank-list").html("");
+                self.getRanking();
+                self.getMyranking();
+            });
+            self.getRanking();
+            self.getMyranking();
+            scroll.on(function() {
+                if (!self.isEnd) {
+                    self.pageNo++;
+                    self.getRanking();
+                }
+            }, function() {});
+        },
+        getRanking: function() {
+           var self = this;
+           if($(".rank-tab li a.cur").data("id")=="Fuel"){
+                 $.get('/rankingFuel.template', {
+                    pageNo: self.pageNo,
+                    pageSize: self.pageSize
+                }).success(function(data) {
+                    data = data.replace(/(^\s+)|(\s+$)/g, "");
+                    if ("" == data) {
+                        isEnd = true;
+                    } else {
+                        isEnd = false;
+                        $(".rank-list").append(data); 
+                    }
+                }).error(function(err) {});
+            }
+            else{
+                $.get('/rankingTrain.template', {
+                    pageNo: self.pageNo,
+                    pageSize: self.pageSize
+                }).success(function(data) {
+                    data = data.replace(/(^\s+)|(\s+$)/g, "");
+                    if ("" == data) {
+                        isEnd = true;
+                    } else {
+                        isEnd = false;
+                         $(".rank-list").append(data); 
+                    }
+                }).error(function(err) {});
+            }
+        },
+        getMyranking: function() {
+           var self = this;
+           if($(".rank-tab li a.cur").data("id")=="Fuel"){
                 $.get('/rankingFuel.template',{
-                    pageNo: pageNo,
-                    pageSize:pageSize
+                    memberId: userInfo.memberId
                 }, function(data) {
-                    $("#t" + spec+" .rank-list").append(data); 
-                });
-
-                $.get('/rankingFuel.template',{
-                    memberId: 1
-                }, function(data) {
-                    $("#m" + spec+" .myrank").append(data); 
+                    $(".myrank").append(data); 
                 });
             }
             else{
-                 $.get('/rankingTrain.template',{
-                    pageNo: pageNo,
-                    pageSize:pageSize
+               $.get('/rankingTrain.template',{
+                    memberId: userInfo.memberId
                 }, function(data) {
-                    $("#t" + spec+" .rank-list").append(data);   
-                });
-
-                $.get('/rankingTrain.template',{
-                    memberId: 1
-                }, function(data) {
-                    $("#m" + spec+" .myrank").append(data); 
+                    $(".myrank").append(data); 
                 });
             }
-            t = 1;
         }
-        $("#t" + spec).show().siblings("table").hide();
-        $("#m" + spec).show().siblings("table").hide();
-    })
-    this.scroll.on(bottomCallback, topCallback);
-    function bottomCallback() {
-        pageNo=pageNo+1;
-        pageSize=pageSize*pageNo;
     }
-
-    function topCallback() {
-        //debugger
-    }
-
+    this.ranking = new ranking();
+    this.ranking.init();    
 }).call(this);

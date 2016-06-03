@@ -66,3 +66,17 @@ exports.redMsg = (req, res, next) => {
         functionCode: 'member.redMsg',
     }).post(req, res);
 }
+
+/* 查询我的特训营 */
+exports.getUsrSpecialClass = (req, res, next) => {
+    new rest({
+        functionCode: 'usrClasstimeOrder.getUsrSpecialClass',
+    }).link(req, res, next);
+}
+
+/* 查询课次作业 */
+exports.getCourseWorkInfo = (req, res, next) => {
+    new rest({
+        functionCode: 'usrCoursetimeWork.getCourseWorkInfo',
+    }).link(req, res, next);
+}

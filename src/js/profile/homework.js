@@ -1,28 +1,26 @@
 (function() {
-    var courseList = function() {
+    var homeWork = function() {
         this.pageNo = 1;
         this.pageSize = 10;
         this.isEnd = false;
     }
-    courseList.prototype = {
+    homeWork.prototype = {
         init: function() {
             var self = this;
-            self.getCourse();
-            scroll.on(function(){
+            self.getHomeWork();
+            scroll.on(function() {
                 if (!self.isEnd) {
                     self.pageNo++;
-                    self.getCourse();
+                    self.getHomeWork();
                 }
             }, function() {});
         },
-        getCourse: function() {
+        getHomeWork: function() {
             var self = this;
-            $.get('/course.template', {
-                userId: userInfo.memberId,
-                storeId:4,
-                queryDate:1463587200000,
-                pageNo: self.pageNo,
-                pageSize: self.pageSize
+            $.get('/getCourseWorkInfo.template', {
+                memberId:46,
+                onceId: 55,
+                onceType: 1
             }).success(function(data) {
                 data = data.replace(/(^\s+)|(\s+$)/g, "");
                 if ("" == data) {
@@ -31,9 +29,10 @@
                     self.isEnd = false;
                     $(".pub-list ul").append(data);
                 }
+               // console.log(data)
             }).error(function(err) {});
         }
     }
-    this.courseList = new courseList();
-    this.courseList.init();
+    this.homeWork = new homeWork();
+    this.homeWork.init();
 }).call(this);

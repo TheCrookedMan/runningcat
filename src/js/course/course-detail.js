@@ -1,6 +1,6 @@
 (function() {
     var courseId=$("#courseId").val();
-    $.post('/coursePlan/queryCoursePlanInfo', {'userId':1,'courseId':courseId}).success(function(data) {
+    $.post('/coursePlan/queryCoursePlanInfo', {'userId':userInfo.memberId,'courseId':courseId}).success(function(data) {
         var res=data.data;
         $("#contactPhone").html(res.contactPhone);
         $("#courseDate").html(res.courseDate);
@@ -14,6 +14,7 @@
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
         $("#openCourseNum").html(res.openCourseNum);
+        $("#buyerNum").html(res.buyerNum);
         var carouselFigure=res.carouselFigure;
         var playTimePictures=res.playTimePictures;
         for(var ele in carouselFigure){

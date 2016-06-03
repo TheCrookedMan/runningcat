@@ -11,6 +11,18 @@ router.get('/catfood.template', [profile.catfood], (req, res, next) => {
     });
 });
 
+router.get('/getUsrSpecialClass.template', [profile.getUsrSpecialClass], (req, res, next) => {
+    return res.render('_partial/template/getUsrSpecialClass', {
+        data: res.data['usrClasstimeOrder.getUsrSpecialClass']['record']
+    });
+});
+
+router.get('/getCourseWorkInfo.template', [profile.getCourseWorkInfo], (req, res, next) => {
+    return res.render('_partial/template/getCourseWorkInfo', {
+        data: res.data['usrCoursetimeWork.getCourseWorkInfo']['record']
+    });
+});
+
 router.get('/rankingFuel.template', [profile.queryUserFuelList], (req, res, next) => {
     return res.render('_partial/template/rankingFuel', {
         data: res.data['member.queryUserFuelList']['record']

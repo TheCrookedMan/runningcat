@@ -20,6 +20,10 @@ router.post('/usrMemberCatfood/selectUsrSurplusAmount',profile.surplus);
 /* message */
 router.post('/message/delMsg',profile.delMsg);
 router.post('/message/redMsg',profile.redMsg);
+/*till*/
+router.post('/getUsrSpecialClass',profile.getUsrSpecialClass);
+/*home*/
+router.post('/getCourseWorkInfo',profile.getCourseWorkInfo);
 
 /*排名*/
 router.post('/queryUserFuelList',profile.queryUserFuelList);
