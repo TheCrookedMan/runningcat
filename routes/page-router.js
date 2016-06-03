@@ -70,7 +70,9 @@ router.get('/wechatAuth.html', (req, res, next) => {
     })
 });
 
-
+/*
+    public 页面
+ */
 
 router.get('/public/register.html', (req, res, next) => {
     return res.render('public/register', { title: '注册' });
@@ -88,14 +90,20 @@ router.get('/public/login.html', (req, res, next) => {
     return res.render('public/login', { title: '登录' });
 });
 
-router.get('/till/till.html', (req, res, next) => {
-    return res.render('till/till', { title: '特训营' });
+/*
+    market 商城
+ */
+
+router.get('/market/market.html', (req, res, next) => {
+    return res.render('market/market', { title: '商城' });
+});
+router.get('/market/payment.html', (req, res, next) => {
+    return res.render('market/payment', { title: '支付' });
+});
+router.get('/market/productDetail.html', (req, res, next) => {
+    return res.render('market/productDetail', { title: '商品详情' });
 });
 
-router.get('/till/till-detail.html', (req, res, next) => {
-    let userId = req.query.userId;
-    return res.render('till/till-detail', { title: '特训营详情', userId: userId });
-});
 
 /*
     个人中心 profile 相关的页面，首先需要验证
@@ -110,7 +118,77 @@ router.get('/profile/catfood.html', (req, res, next) => {
     return res.render('profile/catfood', { title: '猫粮记录' });
 });
 
+router.get('/profile/calories.html', (req, res, next) => {
+    return res.render('profile/calories', { title: '卡路里' });
+});
 
+router.get('/profile/class-recharge.html', (req, res, next) => {
+    return res.render('profile/class-recharge', { title: '课时充值' });
+});
+
+router.get('/profile/comment-class.html', (req, res, next) => {
+    return res.render('profile/comment-class', { title: '评价' });
+});
+
+router.get('/profile/done-class.html', (req, res, next) => {
+    return res.render('profile/done-class', { title: '我的单次课' });
+});
+
+router.get('/profile/done-till.html', (req, res, next) => {
+    return res.render('profile/done-till', { title: '我的特训营' });
+});
+
+router.get('/profile/edit-profile.html', (req, res, next) => {
+    return res.render('profile/edit-profile', { title: '完善信息' });
+});
+
+router.get('/profile/invite.html', (req, res, next) => {
+    return res.render('profile/invite', { title: 'RunningCat' });
+});
+
+router.get('/profile/message.html', (req, res, next) => {
+    return res.render('profile/message', { title: '系统消息' });
+});
+
+router.get('/profile/ranking.html', (req, res, next) => {
+    return res.render('profile/ranking', { title: '活力值排名' });
+});
+
+router.get('/profile/recharge.html', (req, res, next) => {
+    return res.render('profile/recharge', { title: '充值' });
+});
+
+router.get('/profile/single-class.html', (req, res, next) => {
+    return res.render('profile/single-class', { title: '我的私教' });
+});
+
+router.get('/profile/submit-class.html', (req, res, next) => {
+    return res.render('profile/submit-class', { title: '提交作业' });
+});
+
+router.get('/profile/till-list.html', (req, res, next) => {
+    return res.render('profile/till-list', { title: '我的特训营' });
+});
+
+
+router.get('/profile/till.html', (req, res, next) => {
+    return res.render('profile/till', { title: '我的特训营' });
+});
+
+
+/*
+    私教课
+ */
+router.get('/coach/coach.html', (req, res, next) => {
+    return res.render('coach/coach', { title: 'RUNNINGCAT BOX' });
+});
+
+router.get('/course/pay-page.html', (req, res, next) => {
+    return res.render('course/pay-page', { title: '私教课支付页面' });
+});
+router.get('/course/pay-sucess.html', (req, res, next) => {
+    return res.render('course/pay-sucess', { title: '约课成功' });
+});
 router.get('/course/course.html', (req, res, next) => {
     return res.render('course/course', { title: '单次课程' });
 });
@@ -122,6 +200,19 @@ router.get('/course/course-detail.html', (req, res, next) => {
     return res.render('course/course-detail', { title: '课程详情', courseId: courseId, dayOfWeek: dayOfWeek, imgUrl: imgUrl });
 });
 
+/*
+    特训营
+ */
+
+
+router.get('/till/pay-page.html', (req, res, next) => {
+    return res.render('till/pay-page', { title: '特训营支付页面' });
+});
+
+router.get('/till/pay-sucess.html', (req, res, next) => {
+    return res.render('till/pay-sucess', { title: '约课成功' });
+});
+
 router.get('/till/till.html', (req, res, next) => {
     return res.render('till/till', { title: '特训营' });
 });
@@ -131,9 +222,7 @@ router.get('/till/till-detail.html', (req, res, next) => {
     return res.render('till/till-detail', { title: '特训营详情', userId: userId });
 });
 
-router.get('/profile/ranking.html', (req, res, next) => {
-    return res.render('profile/ranking', { title: '活力值排名' });
-});
+
 
 // router.get('*.html', (req, res, next) => {
 //     var url = req.url;
