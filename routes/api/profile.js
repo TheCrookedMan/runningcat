@@ -1,6 +1,6 @@
 import rest from '../rest/_util';
 /*
-	猫粮纪录
+    猫粮纪录
  */
 
 exports.catfood = (req, res, next) => {
@@ -32,4 +32,37 @@ exports.queryUserTrainList = (req, res, next) => {
     new rest({
         functionCode: 'member.queryUserTrainList',
     }).link(req, res, next);
+}
+
+/*查询用户的单次课*/
+
+exports.getUsrClasstimeOrder = (req, res, next) => {
+    new rest({
+        functionCode: 'usrClasstimeOrder.getUsrClasstimeOrder',
+    }).link(req, res, next);
+}
+
+/* 查询用户系统消息 */
+exports.getMemberMessages = (req, res, next) => {
+    new rest({
+        functionCode: 'member.getMemberMessages',
+    }).link(req, res, next);
+}
+
+/*
+    删除系统消息
+ */
+exports.delMsg = (req, res, next) => {
+    new rest({
+        functionCode: 'member.delMsg',
+    }).post(req, res);
+}
+
+/*
+    设置消息已读
+ */
+exports.redMsg = (req, res, next) => {
+    new rest({
+        functionCode: 'member.redMsg',
+    }).post(req, res);
 }

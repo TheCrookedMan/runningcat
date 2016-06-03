@@ -2,20 +2,20 @@
     var courseId=$("#courseId").val();
     $.post('/coursePlan/queryCoursePlanInfo', {'userId':1,'courseId':courseId}).success(function(data) {
         var res=data.data;
-        $("#contactPhone").html(res[0].contactPhone);
-        $("#courseDate").html(res[0].courseDate);
-        $("#courseDesc").html(res[0].courseDesc);
-        $("#courseFlow").html(res[0].courseFlow);
-        $("#courseName").html(res[0].courseName);
-        $("#courseRemark").html(res[0].courseRemark);
-        $("#courseTarget").html(res[0].courseTarget);
-        $("#courseTip").html(res[0].courseTip);
-        $("#storeAddress").html(res[0].storeAddress);
-        $("#startTime").html(res[0].startTime);
-        $("#endTime").html(res[0].endTime);
-        $("#openCourseNum").html(res[0].openCourseNum);
-        var carouselFigure=res[0].carouselFigure;
-        var playTimePictures=res[0].playTimePictures;
+        $("#contactPhone").html(res.contactPhone);
+        $("#courseDate").html(res.courseDate);
+        $("#courseDesc").html(res.courseDesc);
+        $("#courseFlow").html(res.courseFlow);
+        $("#courseName").html(res.courseName);
+        $("#courseRemark").html(res.courseRemark);
+        $("#courseTarget").html(res.courseTarget);
+        $("#courseTip").html(res.courseTip);
+        $("#storeAddress").html(res.storeAddress);
+        $("#startTime").html(res.startTime);
+        $("#endTime").html(res.endTime);
+        $("#openCourseNum").html(res.openCourseNum);
+        var carouselFigure=res.carouselFigure;
+        var playTimePictures=res.playTimePictures;
         for(var ele in carouselFigure){
             var str="<li><img src='http://115.159.62.18:8085/pic/images/"+carouselFigure[ele].imgUrl+"'/></li>";
             $('#carouselFigure').append(str);

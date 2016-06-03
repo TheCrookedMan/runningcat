@@ -34,4 +34,24 @@ router.get('/till.template', [till.till], (req, res, next) => {
         data: res.data['specialClass.querySpecialClasses']['record']
     });
 });
+
+/*
+    我的单次课模板
+ */
+router.get('/tmpl-single-class.template', [profile.getUsrClasstimeOrder], (req, res, next) => {
+    return res.render('_partial/template/tmpl-single-class', {
+        data: res.data['usrClasstimeOrder.getUsrClasstimeOrder']['record']
+    });
+});
+
+/*
+    用户系统消息模板
+ */
+router.get('/message.template',[profile.getMemberMessages],(req,res,next)=>{
+    // console.log("message:::::"+JSON.stringify(res.data['member.getMemberMessages']['record']));
+    return res.render('_partial/template/message', {
+        data: res.data['member.getMemberMessages']['record']
+    });
+})
+
 module.exports = router;

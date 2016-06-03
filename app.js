@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var argv = process.argv.slice(2);
 var routes, api, temp, errorRouter;
+var myFilters = require('./self-defined-filters');
 if ("test" == argv) {
     routes = require('./routes/page-router');
     api = require('./routes/api-router');
@@ -30,6 +31,7 @@ var _setting = {
     }
 };
 
+myFilters(swig);
 swig.setDefaults(_setting);
 app.engine('html', swig.renderFile);
 // view engine setup

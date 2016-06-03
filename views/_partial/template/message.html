@@ -1,0 +1,17 @@
+{% for message in data %}
+<a href="javascript:;" class="message-collapse" data-id="{{message.id}}">
+    <dl>
+        <dt>
+            <div class="fl">
+                <span class="am-badge am-badge-danger">6</span>
+                <img src="http://115.159.62.18:8085/pic/images/{{message.sendPhotoUrl}}" alt="跑步猫">
+                <span>zuozuo</span>
+            </div>
+            <div class="fr">
+                <span>{{message.createTime|date('Y-m-d')}}<a href="javascript:;" data-id="{{message.id}}"><i class="am-icon-times"></i></a></span>
+            </div>
+        </dt>
+        <dd>{{message.content}}</dd>
+    </dl>
+</a>
+{% endfor %}

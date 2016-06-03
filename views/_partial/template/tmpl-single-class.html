@@ -1,0 +1,28 @@
+{% for classInfo in data %}
+<li>
+    <i class="am-icon-dot-circle-o"></i>
+    <div class="list-info left">
+        <div class="img"><img src="http://115.159.62.18:8085/pic/images/{{classInfo.trainerPhotoUrl}}" alt="跑步猫"></div>
+        <div class="info left">
+            <h2>{{classInfo.className}}</h2>
+            <p class="time">{{classInfo.courseDate|dateFormat('yyyy-MM-dd')}} {{classInfo.courseDate|toWeek()}} {{classInfo.startTime}}-{{classInfo.endTime}}</p>
+            <p class="address">{{classInfo.storeName}}</p>
+        </div>
+        <div class="pub-btn">
+            <!-- 课次状态： 正常签到=1，旷课签到=2，已请假=3，未签到=4 -->
+            {% if classInfo.courseOnceStatus == 1 %}
+                <a href="javascript:void(0)" class="btn btn-end">签到</a>
+            {% elseif classInfo.courseOnceStatus == 2 %}
+                <a href="javascript:void(0)" class="btn btn-end">旷课</a>
+            {% elseif classInfo.courseOnceStatus == 3 %}
+                <a href="javascript:void(0)" class="btn btn-end">已请假</a>
+            {% elseif classInfo.courseOnceStatus == 4 %}
+                <a href="javascript:void(0)" data-id="{{classInfo.id}}" data-signin-key="{{classInfo.signinKey}}" class="btn btn-red leave">请假</a>
+                <a href="javascript:void(0)" data-id="{{classInfo.id}}" class="btn btn-red signIn">签到</a>
+            {% endif %}
+        </div>
+    </div>
+</li>
+{% endfor %}
+
+
