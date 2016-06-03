@@ -1,0 +1,55 @@
+{% for ranking in data %}
+{% if ranking.rowNum == 1 %}
+<tr>
+    <td class="top"><img src="/img/top1.png" alt="跑步猫"></td>
+    <td class="peo">
+        <img src="http://115.159.62.18:8085/pic/images/{{ranking.photoUrl}}" alt="跑步猫">
+        <span>{{ranking.nickName}}</span>
+    </td>
+    <td class="num">{{ranking.totalFuel}}</td>
+    <td class="like">
+        <p>12</p>
+        <p><i class="am-icon-heart-o col-red"></i></p>
+    </td>
+</tr>
+{% elseif ranking.rowNum == 2 %}
+<tr>
+    <td class="top"><img src="/img/top2.png" alt="跑步猫"></td>
+    <td class="peo">
+        <img src="http://115.159.62.18:8085/pic/images/{{ranking.photoUrl}}" alt="跑步猫">
+        <span>{{ranking.nickName}}</span>
+    </td>
+    <td class="num">{{ranking.totalFuel}}</td>
+    <td class="like">
+        <p>12</p>
+        <p><i class="am-icon-heart-o col-red"></i></p>
+    </td>
+</tr>
+{% elseif ranking.rowNum == 3 %}
+<tr>
+    <td class="top"><img src="/img/top3.png" alt="跑步猫"></td>
+    <td class="peo">
+        <img src="http://115.159.62.18:8085/pic/images/{{ranking.photoUrl}}" alt="跑步猫">
+        <span>{{ranking.nickName}}</span>
+    </td>
+    <td class="num">{{ranking.totalFuel}}</td>
+    <td class="like">
+        <p>12</p>
+        <p><i class="am-icon-heart-o col-red"></i></p>
+    </td>
+</tr>
+{% else%}
+<tr>
+    <td class="top"><em class="col-red">{{ranking.rowNum}}</em>th</td>
+    <td class="peo">
+        <img src="http://115.159.62.18:8085/pic/images/{{ranking.photoUrl}}" alt="跑步猫">
+        <span>{{ranking.nickName}}</span>
+    </td>
+    <td class="num">{{ranking.totalFuel}}</td>
+    <td class="like">
+        <p>12</p>
+        <p><i class="am-icon-heart-o col-red"></i></p>
+    </td>
+</tr>
+{% endif %}
+{% endfor %}
