@@ -80,3 +80,17 @@ exports.getCourseWorkInfo = (req, res, next) => {
         functionCode: 'usrCoursetimeWork.getCourseWorkInfo',
     }).link(req, res, next);
 }
+
+/* 查询用户心率 */
+exports.queryUserHeartrate = (req, res, next) => {
+    new rest({
+        functionCode: 'userCenter.queryUserHeartrate',
+    }).post(req, res);
+}
+
+/* 查询用户卡路里 */
+exports.queryUserCaLone = (req, res, next) => {
+    new rest({
+        functionCode: 'userCenter.queryUserCaLone',
+    }).post(req, res);
+}

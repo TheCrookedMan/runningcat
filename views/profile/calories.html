@@ -1,11 +1,23 @@
 {% include "../_partial/head.html" %}
 <style type="text/css">
-    body{
-        background-color: #e6e6e6
-    }
+body {
+    background-color: #e6e6e6;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
 </style>
 <section class="profile-calories">
     <p><img src="/img/shoptest.jpg" alt="跑步猫"> </p>
+    <div class="calories-panel">
+        <div class="am-g h5-item">
+            <div class="am-u-sm-6">卡路里 (大卡)</div>
+            <div class="am-u-sm-6 am-text-right">
+                <input type="date" value="2016-04"><i class="am-icon-map" aria-hidden="true"></i></div>
+        </div>
+        <div class="calories-echarts"></div>
+    </div>
 </section>
-
 {% include "../_partial/foot.html" %}
+<script src="/plugins/echarts.simple.min.js"></script>
+<script src="/js/profile/calories.js"></script>

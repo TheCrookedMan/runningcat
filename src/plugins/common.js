@@ -1,8 +1,11 @@
+/*
+    common 公共
+ */
 (function() {
     var common = function() {
         this.reg_cellPhone = /^((\+?86)|(\(\+86\)))?(1[0-9]{10})$/;
         this.reg_cardId = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
-    }
+    };
     common.prototype = {
         parseForm: function(selector) {
             var data = $(selector).serializeArray(),
@@ -19,13 +22,19 @@
         regCardId: function(id) {
             return this.reg_cardId.test(id);
         },
-        getUserInfo:function(){
-            return JSON.parse($.cookie("runningcatUserInfo"));
+        getUserInfo: function() {
+            var runningcatUserInfo = $.cookie("runningcatUserInfo");
+            if(undefined == runningcatUserInfo){
+                return {}
+            }
+            return JSON.parse(runningcatUserInfo);
         }
-    }
+    };
     this.common = new common();
 }).call(this);
-
+/*
+    身份证验证
+ */
 (function() {
     var regCardId = function() {
         this.vcity = { 11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古",     21: "辽宁", 22: "吉林", 23: "黑龙江", 31: "上海", 32: "江苏",     33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南",     42: "湖北", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川", 52: "贵州", 53: "云南", 54: "西藏", 61: "陕西", 62: "甘肃", 63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国外" }; 
@@ -144,12 +153,12 @@
 (function() {
     var scroll = function() {}
     scroll.prototype = {
-        on: function(bottomCallback,topCallback) {
+        on: function(bottomCallback, topCallback) {
             $(window).scroll(function() {
                 var scrollTop = $(this).scrollTop();
                 var scrollHeight = $(document).height();
                 var windowHeight = $(this).height();
-                
+
                 if (scrollTop + windowHeight == scrollHeight) {
                     //滚动到底部执行事件  
                     bottomCallback && bottomCallback();

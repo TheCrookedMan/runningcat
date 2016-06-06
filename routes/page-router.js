@@ -125,9 +125,17 @@ router.get('/profile/calories.html', (req, res, next) => {
 router.get('/profile/class-recharge.html', (req, res, next) => {
     return res.render('profile/class-recharge', { title: '课时充值' });
 });
-
+/*
+    单次课评价
+ */
 router.get('/profile/comment-class.html', (req, res, next) => {
     return res.render('profile/comment-class', { title: '评价' });
+});
+/*
+    特训营单次课评价
+ */
+router.get('/profile/special-comment-class.html', (req, res, next) => {
+    return res.render('profile/special-comment-class', { title: '评价' });
 });
 
 router.get('/profile/done-class.html', (req, res, next) => {
@@ -168,12 +176,18 @@ router.get('/profile/submit-class.html', (req, res, next) => {
 
 router.get('/profile/till-list.html', (req, res, next) => {
     let specialId = req.query.specialId;
-    return res.render('profile/till-list', { title: '我的特训营' , specialId: specialId});
+    return res.render('profile/till-list', { title: '我的特训营', specialId: specialId });
 });
 
 router.get('/profile/till.html', (req, res, next) => {
     return res.render('profile/till', { title: '我的特训营' });
 });
+
+router.get('/profile/heartrate.html', (req, res, next) => {
+    return res.render('profile/heartrate', { title: '心率' });
+});
+
+
 
 
 /*

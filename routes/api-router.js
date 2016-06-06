@@ -4,6 +4,7 @@ import profile from './api/profile';
 import course from './api/course';
 import till from './api/till';
 import usrClass from './api/usr-class';
+import common from './api/common';
 const router = express.Router();
 
 // user
@@ -12,6 +13,9 @@ router.post('/registeUser',user.registeUser);
 // router.post('/checkLogin',user.checkLogin);
 router.post('/sendSMS',user.sendSMS);
 router.post('/checkSmscode',user.checkSmscode);
+
+router.post('/updateUserInfo',user.updateUserInfo);
+router.post('/memberInfo',user.memberInfo);
 
 //profile
 /*猫粮*/
@@ -44,5 +48,14 @@ router.post('/usr-class/getCourseWorkInfo',usrClass.getCourseWorkInfo);
 router.post('/usr-class/findMyCourseWorkt',usrClass.findMyCourseWorkt);
 router.post('/usr-class/doCourseWork',usrClass.doCourseWork);
 router.post('/usr-class/updateCourseWork',usrClass.updateCourseWork);
+
+// userCenter
+router.post('/userCenter/queryUserHeartrate',profile.queryUserHeartrate);
+router.post('/userCenter/queryUserCaLone',profile.queryUserCaLone);
+
+//单次课评价
+router.post('/classEvaluate/addUsrClassEvaluate',usrClass.addUsrClassEvaluate_classEvaluate);
+//特训营单次课添加评价
+router.post('/specialEvaluate/addUsrClassEvaluate',usrClass.addUsrClassEvaluate_specialEvaluate);
 
 module.exports = router;

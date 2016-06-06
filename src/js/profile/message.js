@@ -36,21 +36,34 @@
     this.message.init();
 
     $(".profile-message").on("click", ".fr a", function(ev) {
-        var msgId = $(this).data("id");
         modal.confirm({
+            relatedTarget:this,
             msg: "是否确认删除此条信息！",
             onConfirm: function(options) {
-                $.post('/message/delMsg',{
-                	msgId:msgId
-                }).success(function(data){
-
+                var msgId = $(this.relatedTarget).data("id");
+                var thisPanel = $(this.relatedTarget).parents("dl");
+                $.post('/message/delMsg', {
+                    msgId: msgId
+                }).success(function(data) {
+                    if (data.code == "0000" && data.success) {
+                        thisPanel.remove();
+                    } else {
+                        modal.alert(data.msg);
+                    }
                 })
             }
         })
+        ev.stopPropagation();
     });
-    $(".profile-message").on("click",".message-collapse",function(ev){
-    	var msgId = $(this).data("id");
-    	$.post('/message/redMsg',{msgId:msgId}).success(function(data){
-    	})
+    $(".profile-message").on("click", "dl.noRead", function(ev) {
+        var msgId = $(this).data("id");
+        var self = $(this);
+        $.post('/message/redMsg', { msgId: msgId }).success(function(data) {
+            if (data.code == "0000" && data.success) {
+                self.removeClass("noRead");
+            } else {
+                modal.alert(data.msg);
+            }
+        })
     });
 }).call(this)

@@ -8,3 +8,29 @@
 @mixin square($size) {
   @include size($size, $size);
 }
+
+// charts
+ @mixin charts($charts-name:heartrate) {
+     .profile-#{$charts-name} {
+         height: 100%;
+         $heartrate-panel-height-px: 360px !default;
+         $heartrate-panel-height: rem-calc($heartrate-panel-height-px);
+         .#{$charts-name}-panel {
+             height: $heartrate-panel-height;
+             bottom: 0;
+             position: absolute;
+             width: 100%;
+             $date-width-px: 80px !default;
+             $date-width: rem-calc($date-width-px);
+             input[type=date] {
+                 width: $date-width;
+                 margin-right: 10px;
+             }
+             $echarts-height-px:300px !default;
+             $echarts-height:rem-calc($echarts-height-px);
+             .#{$charts-name}-echarts {
+                 height: $echarts-height;
+             }
+         }
+     }
+ }
