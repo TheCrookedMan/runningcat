@@ -22,6 +22,7 @@ router.post('/message/delMsg',profile.delMsg);
 router.post('/message/redMsg',profile.redMsg);
 /*till*/
 router.post('/getUsrSpecialClass',profile.getUsrSpecialClass);
+router.post('/getUsrSpecialOnce',profile.getUsrSpecialOnce);
 /*home*/
 router.post('/getCourseWorkInfo',profile.getCourseWorkInfo);
 

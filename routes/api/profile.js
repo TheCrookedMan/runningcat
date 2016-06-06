@@ -74,6 +74,20 @@ exports.getUsrSpecialClass = (req, res, next) => {
     }).link(req, res, next);
 }
 
+/* 查询我的特训营课程 */
+exports.getUsrSpecialOnce = (req, res, next) => {
+    new rest({
+        functionCode: 'usrClasstimeOrder.getUsrSpecialOnce',
+    }).link(req, res, next);
+}
+
+/*特训营详情*/
+exports.tillDetail = (req, res, next) => {
+    new rest({
+        functionCode: 'specialClass.querySpecialClassInfo',
+    }).post(req, res);
+}
+
 /* 查询课次作业 */
 exports.getCourseWorkInfo = (req, res, next) => {
     new rest({

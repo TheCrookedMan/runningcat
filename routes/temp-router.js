@@ -17,6 +17,12 @@ router.get('/getUsrSpecialClass.template', [profile.getUsrSpecialClass], (req, r
     });
 });
 
+router.get('/getUsrSpecialOnce.template', [profile.getUsrSpecialOnce], (req, res, next) => {
+    return res.render('_partial/template/getUsrSpecialOnce', {
+        data: res.data['usrClasstimeOrder.getUsrSpecialOnce']['record']
+    });
+});
+
 router.get('/getCourseWorkInfo.template', [profile.getCourseWorkInfo], (req, res, next) => {
     return res.render('_partial/template/getCourseWorkInfo', {
         data: res.data['usrCoursetimeWork.getCourseWorkInfo']['record']
