@@ -84,7 +84,7 @@ router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getU
 /*
     特训营评价模板
  */
-router.get('/special-comment-class.template', [course.queryCoursePlanInfo, usrClass.getUsrClassEvaluate_specialEvaluate,usrClass.getTrainFeel,usrClass.getMemberFoodNum], (req, res, next) => {
+router.get('/special-comment-class.template', [till.querySpecialClassInfo, usrClass.getUsrClassEvaluate_specialEvaluate,usrClass.getTrainFeel,usrClass.getMemberFoodNum], (req, res, next) => {
     return res.render('_partial/template/special-comment-class', {
         data: res.data
     });

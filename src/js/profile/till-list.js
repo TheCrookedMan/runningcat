@@ -1,13 +1,5 @@
 (function() {
     //userInfo.memberId
-    var ll=$(".ll").val();
-    console.log(ll);
-    $.post('/specialClass/querySpecialClassInfo', {'userId':userInfo.memberId,'specialId':ll}).success(function(data) {
-        var res=data.data;
-        
-    }).error(function(data) {
-       
-    })
     var tillList = function() {
         this.pageNo = 1;
         this.pageSize = 10;

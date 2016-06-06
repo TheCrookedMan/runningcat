@@ -19,7 +19,7 @@
             var self = this;
             $.get('/till.template', {
                 userId: userInfo.memberId,
-                storeId:4,
+                storeId:1,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }).success(function(data) {

@@ -180,7 +180,8 @@ router.get('/profile/till-list.html', (req, res, next) => {
 });
 
 router.get('/profile/till.html', (req, res, next) => {
-    return res.render('profile/till', { title: '我的特训营' });
+    let specialId = req.query.specialId;
+    return res.render('profile/till', { title: '我的特训营', specialId: specialId });
 });
 
 router.get('/profile/heartrate.html', (req, res, next) => {
