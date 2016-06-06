@@ -16,7 +16,7 @@ exports.catfood = (req, res, next) => {
 exports.surplus = (req, res, next) => {
     new rest({
         functionCode: 'usrMemberCatfood.selectUsrSurplusAmount',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 
@@ -55,7 +55,7 @@ exports.getMemberMessages = (req, res, next) => {
 exports.delMsg = (req, res, next) => {
     new rest({
         functionCode: 'member.delMsg',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
@@ -64,7 +64,7 @@ exports.delMsg = (req, res, next) => {
 exports.redMsg = (req, res, next) => {
     new rest({
         functionCode: 'member.redMsg',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /* 查询我的特训营 */
@@ -85,12 +85,12 @@ exports.getCourseWorkInfo = (req, res, next) => {
 exports.queryUserHeartrate = (req, res, next) => {
     new rest({
         functionCode: 'userCenter.queryUserHeartrate',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /* 查询用户卡路里 */
 exports.queryUserCaLone = (req, res, next) => {
     new rest({
         functionCode: 'userCenter.queryUserCaLone',
-    }).post(req, res);
+    }).post(req, res, next);
 }

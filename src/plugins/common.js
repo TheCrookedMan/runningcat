@@ -5,6 +5,7 @@
     var common = function() {
         this.reg_cellPhone = /^((\+?86)|(\(\+86\)))?(1[0-9]{10})$/;
         this.reg_cardId = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+        this.reg_integer = /^\+?[1-9][0-9]*$/;
     };
     common.prototype = {
         parseForm: function(selector) {
@@ -21,6 +22,9 @@
         },
         regCardId: function(id) {
             return this.reg_cardId.test(id);
+        },
+        regInteger:function(num){
+            return this.reg_integer.test(num);
         },
         getUserInfo: function() {
             var runningcatUserInfo = $.cookie("runningcatUserInfo");

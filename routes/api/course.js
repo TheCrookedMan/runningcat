@@ -1,6 +1,6 @@
 import rest from '../rest/_util';
 /*
-	单次课程
+    单次课程
  */
 
 /*课程列表*/
@@ -14,7 +14,7 @@ exports.course = (req, res, next) => {
 exports.courseDetail = (req, res, next) => {
     new rest({
         functionCode: 'coursePlan.queryCoursePlanInfo',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*课程详情 link*/

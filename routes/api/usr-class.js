@@ -1,60 +1,60 @@
 import rest from '../rest/_util';
 /*
-	单次课签到
+    单次课签到
  */
 exports.doSignIn = (req, res, next) => {
     new rest({
         functionCode: 'usrClasstimeOrder.doSignIn',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
-	单次课请假
+    单次课请假
  */
 exports.doLeave = (req, res, next) => {
     new rest({
         functionCode: 'usrClasstimeOrder.doLeave',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
-	查询课次作业
+    查询课次作业
  */
 
 exports.getCourseWorkInfo = (req, res, next) => {
     new rest({
         functionCode: 'usrCoursetimeWork.getCourseWorkInfo',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
-	查询我的课次作业
+    查询我的课次作业
  */
 
 exports.findMyCourseWorkt = (req, res, next) => {
     new rest({
         functionCode: 'usrCoursetimeWork.findMyCourseWorkt',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
-	提交课次作业
+    提交课次作业
  */
 
 exports.doCourseWork = (req, res, next) => {
     new rest({
         functionCode: 'usrCoursetimeWork.doCourseWork',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
-	修改课次作业
+    修改课次作业
  */
 
 exports.updateCourseWork = (req, res, next) => {
     new rest({
         functionCode: 'usrCoursetimeWork.updateCourseWork',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
@@ -63,7 +63,7 @@ exports.updateCourseWork = (req, res, next) => {
 exports.getTrainFeel = (req, res, next) => {
     new rest({
         functionCode: 'classEvaluate.getTrainFeel',
-    }).link(req, res,next);
+    }).link(req, res, next);
 }
 
 /*
@@ -72,7 +72,7 @@ exports.getTrainFeel = (req, res, next) => {
 exports.addUsrClassEvaluate_classEvaluate = (req, res, next) => {
     new rest({
         functionCode: 'classEvaluate.addUsrClassEvaluate',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
@@ -82,7 +82,7 @@ exports.addUsrClassEvaluate_classEvaluate = (req, res, next) => {
 exports.getUsrClassEvaluate_classEvaluate = (req, res, next) => {
     new rest({
         functionCode: 'classEvaluate.getUsrClassEvaluate',
-    }).link(req, res,next);
+    }).link(req, res, next);
 }
 
 /*
@@ -91,7 +91,7 @@ exports.getUsrClassEvaluate_classEvaluate = (req, res, next) => {
 exports.getMemberFoodNum = (req, res, next) => {
     new rest({
         functionCode: 'classEvaluate.getMemberFoodNum',
-    }).link(req, res,next);
+    }).link(req, res, next);
 }
 
 /*
@@ -101,7 +101,7 @@ exports.getMemberFoodNum = (req, res, next) => {
 exports.addUsrClassEvaluate_specialEvaluate = (req, res, next) => {
     new rest({
         functionCode: 'specialEvaluate.addUsrClassEvaluate',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
@@ -110,7 +110,5 @@ exports.addUsrClassEvaluate_specialEvaluate = (req, res, next) => {
 exports.getUsrClassEvaluate_specialEvaluate = (req, res, next) => {
     new rest({
         functionCode: 'specialEvaluate.getUsrClassEvaluate',
-    }).link(req, res,next);
+    }).link(req, res, next);
 }
-
-

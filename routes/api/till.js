@@ -7,12 +7,12 @@ import rest from '../rest/_util';
 exports.till = (req, res, next) => {
     new rest({
         functionCode: 'specialClass.querySpecialClasses',
-    }).link(req, res,next);
+    }).link(req, res, next);
 }
 
 /*特训营详情*/
 exports.tillDetail = (req, res, next) => {
     new rest({
         functionCode: 'specialClass.querySpecialClassInfo',
-    }).post(req, res);
+    }).post(req, res, next);
 }

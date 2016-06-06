@@ -1,30 +1,72 @@
 {% include "../_partial/head.html" %}
+<link rel="stylesheet" type="text/css" href="/plugins/mobiscroll/css/mobiscroll.scroller.css">
+
+
 <style type="text/css">
 body {
     background-color: #e6e6e6
 }
 </style>
 <section class="profile-wrap edit-profile">
-    <form method="post" class="am-form">
-        
-    </form>
+    <form method="post" class="am-form"></form>
 </section>
-<!-- 性别 -->
-<div class="am-modal am-modal-alert pub-dialog select" tabindex="-1">
+
+<!-- 血型 -->
+<div class="am-modal am-modal-confirm pub-dialog" tabindex="-1" id="bloodModal">
     <div class="am-modal-dialog">
-        <div class="am-modal-hd">
-            <a href="javascript: void(0)" class="btn back"><i class="am-icon-angle-left"></i>设置性别</a>
-            <a href="javascript: void(0)" class="btn save"><i class="am-icon-save"></i>保存</a>
+        <div class="am-modal-hd am-modal-footer">
+            <a href="javascript: void(0)" class="btn back am-modal-btn" data-am-modal-cancel><i class="am-icon-angle-left"></i>设置性别</a>
+            <a href="javascript: void(0)" class="btn save am-modal-btn" data-am-modal-confirm><i class="am-icon-save"></i>保存</a>
         </div>
         <div class="am-modal-bd">
             <div class="select-attr">
                 <div class="list" data-id='sex'>
-                    <a href="javascript: void(0)" class="cur">男</a>
-                    <a href="javascript: void(0)">女</a>
-                    <a href="javascript: void(0)" class="cur">男</a>
-                    <a href="javascript: void(0)">女</a>
-                    <a href="javascript: void(0)" class="cur">男</a>
-                    <a href="javascript: void(0)">女</a>
+                    <a href="javascript: void(0)" class="cur">A</a>
+                    <a href="javascript: void(0)">B</a>
+                    <a href="javascript: void(0)">O</a>
+                    <a href="javascript: void(0)">AB</a>
+                    <a href="javascript: void(0)">其他</a>
+                </div>
+                <div class="tips">
+                    填写血型数据，以防你在运动过程中受伤，方便救治。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 婚否 -->
+<div class="am-modal am-modal-confirm pub-dialog" tabindex="-1" id="marriedModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd am-modal-footer">
+            <a href="javascript: void(0)" class="btn back am-modal-btn" data-am-modal-cancel><i class="am-icon-angle-left"></i>设置性别</a>
+            <a href="javascript: void(0)" class="btn save am-modal-btn" data-am-modal-confirm><i class="am-icon-save"></i>保存</a>
+        </div>
+        <div class="am-modal-bd">
+            <div class="select-attr">
+                <div class="list" data-id='sex'>
+                    <a href="javascript: void(0)" class="cur">已婚</a>
+                    <a href="javascript: void(0)">未婚</a>
+                    <a href="javascript: void(0)">保密</a>
+                </div>
+                <div class="tips"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 性别 -->
+<div class="am-modal am-modal-confirm pub-dialog" tabindex="-1" id="choiceSexModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd am-modal-footer">
+            <a href="javascript: void(0)" class="btn back am-modal-btn" data-am-modal-cancel><i class="am-icon-angle-left"></i>设置性别</a>
+            <a href="javascript: void(0)" class="btn save am-modal-btn" data-am-modal-confirm><i class="am-icon-save"></i>保存</a>
+        </div>
+        <div class="am-modal-bd">
+            <div class="select-attr">
+                <div class="list" data-id='sex'>
+                    <a href="javascript: void(0)" class="male" data-value="1">男</a>
+                    <a href="javascript: void(0)" class="female" data-value="0">女</a>
                 </div>
                 <div class="tips">
                     填写性别，喵，喵，你看着办吧！
@@ -33,12 +75,50 @@ body {
         </div>
     </div>
 </div>
-<!-- 身高 -->
-<div class="am-modal am-modal-alert pub-dialog input" tabindex="-1">
+
+<!-- 身份证 -->
+<div class="am-modal am-modal-confirm pub-dialog input" tabindex="-1" id="idcardModal">
     <div class="am-modal-dialog">
-        <div class="am-modal-hd">
-            <a href="javascript: void(0)" class="btn back"><i class="am-icon-angle-left"></i></a>
-            <a href="javascript: void(0)" class="btn save"><i class="am-icon-save"></i>保存</a>
+        <div class="am-modal-hd am-modal-footer">
+            <a href="javascript: void(0)" class="btn back am-modal-btn" data-am-modal-cancel><i class="am-icon-angle-left"></i></a>
+            <a href="javascript: void(0)" class="btn save am-modal-btn" data-am-modal-confirm><i class="am-icon-save"></i>保存</a>
+        </div>
+        <div class="am-modal-bd">
+            <div class="select-attr">
+                <div class="title">您的身份证号</div>
+                <div class="input-txt">
+                    <input type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 身高 -->
+<div class="am-modal am-modal-alert pub-dialog input" tabindex="-1" id="heightModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd am-modal-footer">
+            <a href="javascript: void(0)" class="btn back am-modal-btn" data-am-modal-cancel><i class="am-icon-angle-left"></i></a>
+            <a href="javascript: void(0)" class="btn save am-modal-btn" data-am-modal-confirm><i class="am-icon-save"></i>保存</a>
+        </div>
+        <div class="am-modal-bd">
+            <div class="select-attr">
+                <div class="title">您的身高</div>
+                <div class="input-txt">
+                    <input type="text">
+                    <i>cm</i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 体重 -->
+<div class="am-modal am-modal-alert pub-dialog input" tabindex="-1" id="beforeWeightModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd am-modal-footer">
+            <a href="javascript: void(0)" class="btn back am-modal-btn" data-am-modal-cancel><i class="am-icon-angle-left"></i></a>
+            <a href="javascript: void(0)" class="btn save am-modal-btn" data-am-modal-confirm><i class="am-icon-save"></i>保存</a>
         </div>
         <div class="am-modal-bd">
             <div class="select-attr">
@@ -51,5 +131,26 @@ body {
         </div>
     </div>
 </div>
+
+<!-- 地区 -->
+<div class="am-modal am-modal-alert pub-dialog input" tabindex="-1" id="areaModal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd am-modal-footer">
+            <a href="javascript: void(0)" class="btn back am-modal-btn" data-am-modal-cancel><i class="am-icon-angle-left"></i></a>
+            <a href="javascript: void(0)" class="btn save am-modal-btn" data-am-modal-confirm><i class="am-icon-save"></i>保存</a>
+        </div>
+        <div class="am-modal-bd">
+            <div class="select-attr">
+                <div class="title"></div>
+                <div class="input-txt">
+                    <input type="text" placeholder="请输入您的详细地址">
+                    <!-- <i>请输入您的详细地址</i> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% include "../_partial/foot.html" %}
+
+<script src="/plugins/mobiscroll.min.js"></script>
 <script src="/js/profile/edit-profile.js"></script>

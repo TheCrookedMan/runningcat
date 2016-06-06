@@ -1,30 +1,12 @@
 import rest from '../rest/_util';
-import common from '../common';
 /*
     会员登录
  */
 exports.login = (req, res, next) => {
     new rest({
         functionCode: 'member.userLogin',
-    }).post(req, res);
+    }).post(req, res, next);
 }
-
-// , function(data) {
-//         /*
-//             登录成功的时候把用户信息存入cookie
-//          */
-//         let runningcatUserInfo = JSON.stringify(data.record);
-//         common.setCookie("runningcatUserInfo", runningcatUserInfo, res);
-
-//         let array = data.record === void 0 ? {} : data.record;
-
-//         return res.status(200).send({
-//             'data': array,
-//             'success': data.isSuccess,
-//             'msg': data.msg,
-//             'code': data.code
-//         });
-//     }
 
 /*
     会员注册
@@ -33,24 +15,8 @@ exports.login = (req, res, next) => {
 exports.registeUser = (req, res, next) => {
     new rest({
         functionCode: 'member.registeUser',
-    }).post(req, res);
+    }).post(req, res, next);
 }
-
-// , function(data) {
-//         /*
-//             注册成功的时候把用户信息存入cookie
-//          */
-//         let runningcatUserInfo = JSON.stringify(data.record);
-//         common.setCookie("runningcatUserInfo", runningcatUserInfo, res);
-//         let array = data.record === void 0 ? {} : data.record;
-
-//         return res.status(200).send({
-//             'data': array,
-//             'success': data.isSuccess,
-//             'msg': data.msg,
-//             'code': data.code
-//         });
-//     }
 
 /*
     发送验证码
@@ -59,7 +25,7 @@ exports.registeUser = (req, res, next) => {
 exports.sendSMS = (req, res, next) => {
     new rest({
         functionCode: 'member.sendSMS',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
@@ -69,14 +35,14 @@ exports.sendSMS = (req, res, next) => {
 exports.checkSmscode = (req, res, next) => {
     new rest({
         functionCode: 'member.checkSmscode',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*
     根据 openId 登录
  */
 
-exports.loginByopenId = (openId, success) => {
+exports.loginByopenId = (openId, success, next) => {
     let data = {};
     new rest({
         functionCode: 'member.loginByopenId',
@@ -85,7 +51,7 @@ exports.loginByopenId = (openId, success) => {
         }
     }).normalRequest(function(data) {
         success(data);
-    });
+    }, next);
 }
 
 /*
@@ -114,7 +80,7 @@ exports.checkLogin = (req, res, next) => {
             } else {
                 res.redirect("/public/login.html");
             }
-        });
+        }, next);
     }
 }
 
@@ -124,7 +90,7 @@ exports.checkLogin = (req, res, next) => {
 exports.updateUserInfo = (req, res, next) => {
     new rest({
         functionCode: 'member.updateUserInfo',
-    }).post(req, res);
+    }).post(req, res, next);
 }
 
 /*

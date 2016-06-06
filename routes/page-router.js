@@ -1,6 +1,6 @@
 import express from 'express';
 import user from './api/user';
-import common from './common';
+import common from './tool/common';
 import wechatAuth from './api/wechat';
 let router = express.Router();
 
@@ -10,6 +10,7 @@ let router = express.Router();
 router.get('/wechatAuth.html', (req, res, next) => {
     let options = req.query,
         redirect_uri = options.state;
+
     wechatAuth.accessToken(options.code, function(params) {
         let data = JSON.parse(params);
         //没有errcode字段表示请求成功
@@ -17,7 +18,6 @@ router.get('/wechatAuth.html', (req, res, next) => {
             if ("snsapi_userinfo" == data.scope) {
                 let access_token = data.access_token,
                     openid = data.openid;
-
                 user.loginByopenId(openid, (record) => {
                     /*
                         code：10015 用户没有注册，如果返回没有注册就获取用户的微信信息并且把信息写入本地的cookie.然后重定向至按钮对应的页面
@@ -32,7 +32,6 @@ router.get('/wechatAuth.html', (req, res, next) => {
                                 next({
                                     msg: "微信授权获取用户信息失败！"
                                 });
-
                             } else {
                                 /*
                                     返回的userinfo信息里面有openid证明请求返回成功
@@ -59,8 +58,13 @@ router.get('/wechatAuth.html', (req, res, next) => {
                             msg: record.msg
                         });
                     }
-                });
+                },next);
             } else if ("snsapi_base" == data.scope) {}
+        } else {
+            //error
+            next({
+                msg: "微信授权失败！"
+            });
         }
     }, function(err) {
         //error

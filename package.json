@@ -9,7 +9,8 @@
     "compile": "babel -d lib/ routes/",
     "gulp-build": "gulp build",
     "build": "npm run gulp-build && npm run compile",
-    "dev":"forever start ./bin/www"
+    "dev":"forever start ./bin/www dev",
+    "server":"forever start -a -l forever.log -o out.log -e err.log app.js"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

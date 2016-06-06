@@ -7,6 +7,10 @@ import usrClass from './api/usr-class';
 import common from './api/common';
 const router = express.Router();
 
+// common
+router.post('/common/getSysDictionary',common.getSysDictionary);
+router.post('/common/getAreaList',common.getAreaList);
+
 // user
 router.post('/login',user.login);
 router.post('/registeUser',user.registeUser);

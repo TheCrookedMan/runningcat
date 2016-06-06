@@ -1,5 +1,4 @@
 import express from 'express';
-import common from './common';
 import profile from './api/profile';
 import course from './api/course';
 import usrClass from './api/usr-class';

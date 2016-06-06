@@ -5,7 +5,7 @@ let logErrors, clientErrorHandler, errorHandler;
 */
 
 logErrors = (err, req, res, next) => {
-    console.log("logErrors::::");
+    console.log("logErrors::::"+err.msg);
     let method = req.method.toUpperCase()
     console.error("================================================ 错误输出 begin ================================================");
     console.error("请求方式===============>   " + method);
@@ -26,7 +26,6 @@ logErrors = (err, req, res, next) => {
  */
 
 clientErrorHandler = (err, req, res, next) => {
-    console.log("clientErrorHandler::::");
     if (req.xhr) {
         res.status(500).send({ error: '数据获取失败，请检查REST接口是否正确。' });
     } else {
@@ -39,8 +38,8 @@ clientErrorHandler = (err, req, res, next) => {
  */
 
 errorHandler = (err, req, res, next) => {
-    console.log("errorHandler::::");
-    res.status(500);
+    console.log("errorHandler::::"+err.msg);
+    // res.status(500);
     res.render('error', { error: err.msg });
 }
 module.exports = (app) => {

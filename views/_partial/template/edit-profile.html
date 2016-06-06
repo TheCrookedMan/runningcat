@@ -8,7 +8,6 @@
 <hr>
 <input type="hidden" name="userName" value="{{memberInfo.userName}}">
 <input type="hidden" name="memberId" value="{{memberInfo.id}}">
-<input type="hidden" name="addressId">
 <ul>
     <li>
         <span class="tit">昵称<em>*</em></span>
@@ -20,38 +19,38 @@
     </li>
     <li>
         <span class="tit">出生日期<em>*</em></span>
-        <input type="date" name="birthday" id="borth" value="{{memberInfo.birthday}}" required>
+        <input type="date" name="birthday" id="borth" value="{{memberInfo.birthday|date('Y-m-d')}}" required>
     </li>
     <li>
         <span class="tit">性别<em>*</em></span>
         {% if memberInfo.sex == 1 %}
-            <input type="text"  id="sex" value="男" data-am-modal="{target: '.select'}" required>
+            <input type="text" id="sex" value="男" required>
         {% else %}
-            <input type="text" name="sex" id="sex" value="女" data-am-modal="{target: '.select'}" required>
+            <input type="text" id="sex" value="女" required>
         {% endif %}
-        <input type="hidden" name="sex" value="{{memberInfo.sex}}">
+        <input type="hidden" name="sex" id="sexInputBox" value="{{memberInfo.sex}}">
     </li>
     <li class="unit">
         <span class="tit">身高<em>*</em></span>
-        <input type="text" name="height" id="height" value="{{memberInfo.height}}" data-am-modal="{target: '.input'}" required>
+        <input type="text" name="height" id="height" value="{{memberInfo.height}}" required>
         <span class=" unit-span">cm</span>
     </li>
     <li class="unit">
         <span class="tit">体重<em>*</em></span>
-        <input type="text" name="beforeWeight" id="weight" value="{{memberInfo.beforeWeight}}" data-am-modal="{target: '.input'}" required>
+        <input type="text" name="beforeWeight" id="weight" value="{{memberInfo.beforeWeight}}" required>
         <span class=" unit-span">kg</span>
     </li>
 </ul>
 <hr>
 <ul>
     <li>
-        <span class="tit">身份证</span>
-        <input type="text" name="idcard" id="sid" value="{{memberInfo.idcard}}" required>
+        <span class="tit">身份证<em>*</em></span>
+        <input type="text" name="idcard" id="idcard" value="{{memberInfo.idcard}}" required>
     </li>
-    <!-- <li>
+    <li>
         <span class="tit">婚否</span>
-        <input type="text" name="" id="married " value="否">
-    </li> -->
+        <input type="text" name="maritalStatus" id="married" value="{{memberInfo.maritalStatus}}">
+    </li>
     <li>
         <span class="tit">血型</span>
         <input type="text" name="bloodtype" id="blood" value="{{memberInfo.bloodtype}}">
@@ -61,8 +60,10 @@
         <input type="text" name="profession" id="job" value="{{memberInfo.profession}}">
     </li>
     <li>
-        <span class="tit">地区</span>
-        <input type="text" name="memberAddress" id="sid" value="{{memberInfo.memberAddress}}">
+        <span class="tit">地区<em>*</em></span>
+        <select id="demo-test-select" class="area"></select>
+        <input type="text" name="memberAddress" id="addressInput" disalbed="disalbed" class="mbsc-control mbsc-control-ev" value="{{memberInfo.memberAddress}}" required>
+        <input type="hidden" name="addressId" id="addressId">
     </li>
 </ul>
 <hr>

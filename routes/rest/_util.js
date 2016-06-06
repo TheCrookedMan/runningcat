@@ -88,7 +88,7 @@ export default class Rest {
         let opts, self = this,
             url, __success, __error;
 
-        let [success, error] = rest;
+        let [next, success, error] = rest;
 
         __success = (d) => {
             let $list, data;
@@ -99,43 +99,18 @@ export default class Rest {
             } else {
                 data = JSON.parse(d);
             }
-
-            if (typeof success == "function") {
+            if (typeof success === "function") {
                 success(data);
             } else {
                 let array = data.record === void 0 ? {} : data.record;
-
                 return res.status(200).send({
                     'data': array,
                     'success': data.isSuccess,
                     'msg': data.msg,
                     'code': data.code
                 });
-                // if (data.isSuccess) {
-                //     data.record = data.record === void 0 ? [] : data.record;
-                //     if ("[object Object]" === Object.prototype.toString.call(data.record)) {
-                //         $list = [];
-                //         $list.push(data.record);
-                //         data.record = $list;
-                //     }
-                //     return res.status(200).send({
-                //         'data': data.record === void 0 ? [] : data.record,
-                //         'success': data.isSuccess,
-                //         'msg': data.msg,
-                //         'code': data.code
-                //     });
-                // } else {
-                //     return res.status(200).send({
-                //         'data': [],
-                //         'success': data.isSuccess,
-                //         'msg': data.msg,
-                //         'code': data.code
-                //     });
-                // }
             }
-
         }
-
         __error = (d) => {
             if (typeof error == "function") {
                 error(d);
@@ -145,7 +120,6 @@ export default class Rest {
                 });
             }
         }
-
         if (!!req && "GET" == req.method) {
             opts = req.query;
         } else if (!!req && "POST" == req.method) {
@@ -160,7 +134,7 @@ export default class Rest {
         url = this._getRestUrl(this.functionCode);
         return http.rest(url, this.options.data, __success, __error);
     }
-    normalRequest(success) {
+    normalRequest(success, next) {
         let url = this._getRestUrl(this.functionCode);
         let __success, __error, data;
         __success = (d) => {

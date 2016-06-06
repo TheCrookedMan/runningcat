@@ -5,18 +5,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var argv = process.argv.slice(2);
-var routes, api, temp, errorRouter;
-var myFilters = require('./self-defined-filters');
+var routes, api, temp, errorRouter,myFilters;
 if ("test" == argv) {
     routes = require('./routes/page-router');
     api = require('./routes/api-router');
     temp = require('./routes/temp-router');
     errorRouter = require('./routes/error-router');
+    myFilters = require('./routes/tool/self-defined-filters');
 } else {
     routes = require('./lib/page-router');
     api = require('./lib/api-router');
     temp = require('./lib/temp-router');
     errorRouter = require('./lib/error-router');
+    myFilters = require('./lib/tool/self-defined-filters');
 }
 
 var app = express();

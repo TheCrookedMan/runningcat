@@ -181,8 +181,13 @@ gulp.task('js:build', () => {
 });
 
 const plugins_src = {
-    inputfile_js: [src_plugins_dir + "/jquery.min.js",src_plugins_dir + "/jquery.cookie.js",src_plugins_dir + "/common.js",src_plugins_dir + "/amazeui/amazeui.min.js"],
+    inputfile_js: [src_plugins_dir + "/jquery.min.js", src_plugins_dir + "/jquery.cookie.js", src_plugins_dir + "/common.js", src_plugins_dir + "/amazeui/amazeui.min.js"],
     inputfile_css: src_plugins_dir + "/**/*.css",
+    outputfile: plugins_dir
+}
+
+const plugins_mobiscroll = {
+    inputfile_js: [src_plugins_dir + '/mobiscroll/js/mobiscroll.core.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.widget.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.scroller.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.select.js'],
     outputfile: plugins_dir
 }
 
@@ -203,7 +208,16 @@ gulp.task('plugin', () => {
         }))
         .pipe(gulp.dest(plugins_src.outputfile));
 
-    gulp.src(src_plugins_dir+"/echarts/echarts.simple.min.js").pipe(gulp.dest(plugins_src.outputfile));
+    gulp.src(src_plugins_dir + "/echarts/echarts.simple.min.js").pipe(gulp.dest(plugins_src.outputfile));
+    gulp.src(plugins_mobiscroll.inputfile_js)
+        .pipe(concat('mobiscroll.min.js'))
+        .pipe(uglify({
+            mangle: true, //类型：Boolean 默认：true 是否修改变量名
+            compress: true, //类型：Boolean 默认：true 是否完全压缩
+            // preserveComments: 'all' //保留所有注释
+            preserveComments: false
+        }))
+        .pipe(gulp.dest(plugins_src.outputfile));
 
     return gulp.src(plugins_src.inputfile_css)
         .pipe(concat('plugins.min.css'))
@@ -257,4 +271,4 @@ gulp.task('server', ['clean'], (cb) => {
 
 gulp.task('build', ['clean'], (cb) => {
     gulpSequence(['copy', 'sass:build', 'js:build', 'plugin'])(cb)
-})
+});
