@@ -76,8 +76,11 @@ router.get('/message.template', [profile.getMemberMessages], (req, res, next) =>
     评价模板
  */
 router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getUsrClassEvaluate_classEvaluate,usrClass.getTrainFeel,usrClass.getMemberFoodNum], (req, res, next) => {
+    let courseId = req.query.courseId,onceId = req.query.onceId;
     return res.render('_partial/template/comment-class', {
-        data: res.data
+        data: res.data,
+        courseId:courseId,
+        onceId:onceId
     });
 });
 /*

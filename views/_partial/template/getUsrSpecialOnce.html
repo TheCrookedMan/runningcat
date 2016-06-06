@@ -10,7 +10,7 @@
                <p class="time">{{list.courseDate|dateFormat('yyyy-MM-dd')}} {{list.courseDate|toWeek()}} {{list.className}}</p>
             </div>
             <div class="pub-btn">
-                <a href="/profile/special-comment-class.html?onceId={{list.id}}" class="btn btn-red">评价</a>
+                <a href="/profile/special-comment-class.html?onceId={{list.id}}&specialId={{list.id}}" class="btn btn-red">评价</a>
                 <a href="/profile/submit-class.html?onceId={{list.id}}" class="btn btn-red">作业</a>
             </div>
         </div>

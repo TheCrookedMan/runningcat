@@ -5,7 +5,11 @@ if ("test" == argv || "dev" == argv) {
         'appId': 'wx16cd0f3f1f4ee12a',
         'appsecret': 'defcd1c0a12f0e6e383cfde5aff6d30e',
         'host':'115.159.62.18',
-        'post':'8888'
+        'post':'8888',
+        'imageAddress': 'http://115.159.62.18:8087/pic/images',
+        'uploadHost': "115.159.62.18",
+        'uploadPost': "8087",
+        'uploadUrl': "/commonapi/proxy/uploadProxyForImage"
     }
 } else {
     exports.wechat = {

@@ -1,8 +1,8 @@
 (function() {
     $.get('/comment-class.template', {
-        courseId: 55,
-        memberId: 1,
-        onceId: 55
+        courseId: courseId,
+        memberId: userInfo.memberId,
+        onceId: onceId
     }).success(function(data) {
         $(".submit-class").html(data);
     });
@@ -30,8 +30,8 @@
         var trainScore = $(".comment .trainScore").find("i.am-icon-star");
         trainScore = trainScore.length * 2;
 
-        data.memberId = 1;
-        data.onceId = 55;
+        data.memberId = userInfo.memberId;
+        data.onceId = onceId;
         data.score = score;
         data.trainScore = trainScore;
 
