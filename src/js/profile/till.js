@@ -1,32 +1,48 @@
 (function() {
-    // //查询剩余猫粮
-    // $.post('/usrMemberCatfood/selectUsrSurplusAmount', {'memberId':userInfo.memberId}).success(function(data) {
-    //     var res=data.data;
-    //     $("#surplus em").html(res.surplusAmount)
-    // }).error(function(data) {
+    var specialId=$("#specialId").val();
+    $.post('/specialClass/querySpecialClassInfo', {'userId':userInfo.memberId,specialId: 5}).success(function(data) {
+        var res=data.data;
+        //console.log(res);
+        $("#className").html(res.className);
+        $("#storeAddress").html(res.storeAddress);
+        $("#startDate").html(new Date(res.startDate).toLocaleDateString());
+        $("#courseNum").html(res.courseNum);
+        $("#imgUrl").attr("src","http://115.159.62.18:8085/pic/images/"+res.imgUrl);
+        $("#week").html(new Date(res.startDate).getDay())
+    }).error(function(data) {
        
-    // })
-    var tillList = function() {
+    })
+    var getUsrSpecialOnce = function() {
+        this.status = 0;
         this.pageNo = 1;
         this.pageSize = 10;
         this.isEnd = false;
     }
-    tillList.prototype = {
+    getUsrSpecialOnce.prototype = {
         init: function() {
             var self = this;
-            self.getFillList();
+            $(".single-class .pub-tab").on("click", "a", function(ev) {
+                $(".single-class .pub-tab .cur").removeClass("cur");
+                $(this).addClass("cur");
+                self.status = $(this).data("status");
+                self.pageNo = 1;
+                $(".single-class .class-list ul").html("");
+                self.getSingleClass();
+            });
+            self.getSingleClass();
             scroll.on(function() {
                 if (!self.isEnd) {
                     self.pageNo++;
-                    self.getFillList();
+                    self.getSingleClass();
                 }
             }, function() {});
         },
-        getFillList: function() {
+        getSingleClass: function() {
             var self = this;
-            $.get('/getUsrSpecialClass.template', {
-                userId: 1,
-                storeId: 1,
+            $.get('/getUsrSpecialOnce.template', {
+                memberId: userInfo.memberId,
+                status: self.status,
+                specialId:specialId,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }).success(function(data) {
@@ -35,12 +51,11 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    $(".till ul").append(data);
+                    $(".single-class .class-list ul").append(data);
                 }
-               // console.log(data)
             }).error(function(err) {});
         }
     }
-    this.tillList = new tillList();
-    this.tillList.init();
+    this.getUsrSpecialOnce = new getUsrSpecialOnce();
+    this.getUsrSpecialOnce.init();
 }).call(this);

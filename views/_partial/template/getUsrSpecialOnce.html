@@ -1,0 +1,20 @@
+{% for i,till in data %}
+<li>
+    <i class="am-icon-dot-circle-o"></i>
+    <h3>第{{i}}周</h3>
+    <div class="list-info left">
+        {% for list in till %}
+        <div class="line">
+            <div class="img"><img src="/img/app-icon72x72@2x.png" alt="跑步猫"></div>
+            <div class="info left">
+               <p class="time">{{list.courseDate|dateFormat('yyyy-MM-dd')}} {{list.courseDate|toWeek()}} {{list.className}}</p>
+            </div>
+            <div class="pub-btn">
+                <a href="/profile/special-comment-class.html?onceId={{list.id}}" class="btn btn-red">评价</a>
+                <a href="/profile/submit-class.html?onceId={{list.id}}" class="btn btn-red">作业</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</li>
+{% endfor %}

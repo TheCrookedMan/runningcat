@@ -1,6 +1,6 @@
 (function() {
     $.get('/special-comment-class.template', {
-        courseId: 55,
+        specialId: 5,
         memberId: 1,
         onceId: 55
     }).success(function(data) {

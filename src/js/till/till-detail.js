@@ -2,28 +2,32 @@
     var specialId=$("#specialId").val();
     $.post('/specialClass/querySpecialClassInfo', {'userId':userInfo.memberId,'specialId':specialId}).success(function(data) {
         var res=data.data;
+        $("#classDesc").html(res.classDesc);
         $("#contactPhone").html(res.contactPhone);
-        $("#courseDate").html(res.courseDate);
-        $("#courseDesc").html(res.courseDesc);
-        $("#courseFlow").html(res.courseFlow);
-        $("#courseName").html(res.courseName);
-        $("#courseRemark").html(res.courseRemark);
-        $("#courseTarget").html(res.courseTarget);
-        $("#courseTip").html(res.courseTip);
         $("#storeAddress").html(res.storeAddress);
-        $("#startTime").html(res.startTime);
-        $("#endTime").html(res.endTime);
-        $("#openCourseNum").html(res.openCourseNum);
-        $("#buyerNum").html(res.buyerNum);
+        $("#trainingFlow").html(res.trainingFlow);
+        $("#trainingResults").html(res.trainingResults);
+        $("#trainingTips").html(res.trainingTips);
+        var trainers=res.trainers;
+        for(var p in trainers){
+             var str="<li><img src='http://115.159.62.18:8085/pic/images/"+trainers[p].jheadPhotoUrl+"'/><h2>"+trainers[p].userName+""+ trainers[p].nickName+"</h2><p>"+trainers[p].remark+"</p></li>";
+             console.log(str);
+             $("#trainers").append(str);
+        }
+        for(i=1;i<5;i++){
+            var pricestr="<a href='javascript:void(0)' class='cur'><p>"+(res.perPrice)*i+"人</p><p>"+(res.courseNum)*i+"课时</p></a>";
+            var priceslect="<option value="+i+">￥"+(res.perPrice)*i+"/人（所需"+(res.courseNum)*i+"课时）</option>"
+            $(".pub_peolist").append(pricestr);
+            $("#select").append(priceslect);
+        }
+        var start=new Date(res.startDate).toLocaleDateString();
+        var end=new Date(res.endDate).toLocaleDateString()
+        var datastr="训练周期："+start+"~"+end+"，"+res.weekNum+" 周共"+res.courseNum+"次课";
+        $("#data").html(datastr);
         var carouselFigure=res.carouselFigure;
-        var playTimePictures=res.playTimePictures;
         for(var ele in carouselFigure){
             var str="<li><img src='http://115.159.62.18:8085/pic/images/"+carouselFigure[ele].imgUrl+"'/></li>";
             $('#carouselFigure').append(str);
-        }
-        for(var ele in playTimePictures){
-            var str="<p><img src='http://115.159.62.18:8085/pic/images/"+playTimePictures[ele].imgUrl+"'/></p>";
-            $('#playTimePictures').append(str);
         }
     }).error(function(data) {
        

@@ -16,3 +16,10 @@ exports.tillDetail = (req, res, next) => {
         functionCode: 'specialClass.querySpecialClassInfo',
     }).post(req, res, next);
 }
+
+/*特训营详情 link*/
+exports.querySpecialClassInfo = (req, res, next) => {
+    new rest({
+        functionCode: 'specialClass.querySpecialClassInfo',
+    }).link(req, res, next);
+}
