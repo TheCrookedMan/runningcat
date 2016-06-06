@@ -49,31 +49,44 @@
         请假
      */
     $(".single-class").on("click", "a.leave", function(ev) {
-        var classtimeId = $(this).data("id");
-        var signinKey = $(this).data("signinKey");
         modal.confirm({
+            relatedTarget: this,
             msg: "您确认请假吗？",
             onConfirm: function(options) {
+                var classtimeId = $(this.relatedTarget).data("id");
+                var thisPanel = $(this.relatedTarget).parents("li");
+                var signinKey = $(this.relatedTarget).data("signinKey");
                 $.post("/usr-class/doLeave", {
                     memberId: userInfo.memberId,
                     classtimeId: classtimeId,
-                    signinKey:signinKey
+                    signinKey: signinKey
                 }).success(function(data) {
-
+                    if (data.code == "0000" && data.success) {
+                        thisPanel.remove();
+                    } else {
+                        modal.alert(data.msg);
+                    }
                 })
             }
-        })
+        });
+        ev.stopPropagation();
     });
     /*
         签到
      */
     $(".single-class").on("click", "a.signIn", function(ev) {
         var classtimeId = $(this).data("id");
+        var thisPanel = $(this).parents("li");
         $.post("/usr-class/doSignIn", {
             memberId: userInfo.memberId,
             classtimeId: classtimeId
         }).success(function(data) {
-
+            if (data.code == "0000" && data.success) {
+                thisPanel.remove();
+            } else {
+                modal.alert(data.msg);
+            }
         })
+        ev.stopPropagation();
     });
 }).call(this)

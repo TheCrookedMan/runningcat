@@ -31,17 +31,42 @@ module.exports = (swig) => {
         let date = typeof data == 'string' ? data * 1 : data;
         date = new Date(date);
         let map = {
-        	"1":"周一",
-        	"2":"周二",
-        	"3":"周三",
-        	"4":"周四",
-        	"5":"周五",
-        	"6":"周六",
-        	"7":"周日",
+            "1": "周一",
+            "2": "周二",
+            "3": "周三",
+            "4": "周四",
+            "5": "周五",
+            "6": "周六",
+            "7": "周日",
         }
         return map[date.getDay().toString()];
     };
 
+    let scopeFilter = (scope) => {
+        let baseScope = scope,
+            len = 0,
+            list = [],
+            str = "",
+            elen = 0;
+        if (baseScope > 10) {
+            baseScope = 10;
+        }
+        len = parseInt(baseScope / 2);
+        elen = baseScope % 2;
+        for (let i = 0; i < len; i++) {
+            list.push('<i class="am-icon-star"></i>');
+        }
+        for (let i = 0; i < 5 - len; i++) {
+            list.push('<i class="am-icon-star-o"></i>');
+        }
+        // if (elen >= 1) {
+        //     list.push('<i class="am-icon-star-half-full"></i>');
+        // }
+        str = list.join("&nbsp;");
+        return str;
+    }
+
     swig.setFilter("dateFormat", dateFormat);
     swig.setFilter("toWeek", toWeek);
+    swig.setFilter("scopeFilter", scopeFilter);
 }

@@ -203,6 +203,8 @@ gulp.task('plugin', () => {
         }))
         .pipe(gulp.dest(plugins_src.outputfile));
 
+    gulp.src(src_plugins_dir+"/echarts/echarts.simple.min.js").pipe(gulp.dest(plugins_src.outputfile));
+
     return gulp.src(plugins_src.inputfile_css)
         .pipe(concat('plugins.min.css'))
         .pipe(gulp.dest(plugins_src.outputfile));

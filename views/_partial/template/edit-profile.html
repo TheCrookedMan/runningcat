@@ -1,0 +1,73 @@
+<div class="head-logo">
+    <div class="am-form-group am-form-file">
+        <img src="{{memberInfo.photoUrl}}" alt="跑步猫">
+        <input type="file" accept="image/*">
+        <p>上传头像</p>
+    </div>
+</div>
+<hr>
+<input type="hidden" name="userName" value="{{memberInfo.userName}}">
+<input type="hidden" name="memberId" value="{{memberInfo.id}}">
+<input type="hidden" name="addressId">
+<ul>
+    <li>
+        <span class="tit">昵称<em>*</em></span>
+        <input type="text" name="nickName" id="name" value="{{memberInfo.nickName}}" required>
+    </li>
+    <li>
+        <span class="tit">微信号<em>*</em></span>
+        <input type="text" name="wechat" id="wx" value="{{memberInfo.wechat}}" required>
+    </li>
+    <li>
+        <span class="tit">出生日期<em>*</em></span>
+        <input type="date" name="birthday" id="borth" value="{{memberInfo.birthday}}" required>
+    </li>
+    <li>
+        <span class="tit">性别<em>*</em></span>
+        {% if memberInfo.sex == 1 %}
+            <input type="text"  id="sex" value="男" data-am-modal="{target: '.select'}" required>
+        {% else %}
+            <input type="text" name="sex" id="sex" value="女" data-am-modal="{target: '.select'}" required>
+        {% endif %}
+        <input type="hidden" name="sex" value="{{memberInfo.sex}}">
+    </li>
+    <li class="unit">
+        <span class="tit">身高<em>*</em></span>
+        <input type="text" name="height" id="height" value="{{memberInfo.height}}" data-am-modal="{target: '.input'}" required>
+        <span class=" unit-span">cm</span>
+    </li>
+    <li class="unit">
+        <span class="tit">体重<em>*</em></span>
+        <input type="text" name="beforeWeight" id="weight" value="{{memberInfo.beforeWeight}}" data-am-modal="{target: '.input'}" required>
+        <span class=" unit-span">kg</span>
+    </li>
+</ul>
+<hr>
+<ul>
+    <li>
+        <span class="tit">身份证</span>
+        <input type="text" name="idcard" id="sid" value="{{memberInfo.idcard}}" required>
+    </li>
+    <!-- <li>
+        <span class="tit">婚否</span>
+        <input type="text" name="" id="married " value="否">
+    </li> -->
+    <li>
+        <span class="tit">血型</span>
+        <input type="text" name="bloodtype" id="blood" value="{{memberInfo.bloodtype}}">
+    </li>
+    <li>
+        <span class="tit">职业</span>
+        <input type="text" name="profession" id="job" value="{{memberInfo.profession}}">
+    </li>
+    <li>
+        <span class="tit">地区</span>
+        <input type="text" name="memberAddress" id="sid" value="{{memberInfo.memberAddress}}">
+    </li>
+</ul>
+<hr>
+<div class="am-cf">
+    <div class="submit">
+        <input type="submit" name="" value="保存" class="am-btn am-btn-primary am-btn-sm am-fl">
+    </div>
+</div>

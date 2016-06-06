@@ -1,21 +1,23 @@
 {% include "../_partial/head.html" %}
 <style type="text/css">
-    body{
-        background-color: #cacaca
-    }
+body {
+    background-color: #cacaca
+}
 </style>
 <section class="profile">
     <div class="title">个人中心</div>
-    <div class="pub-pinfo profile-bg">
-        <div class="img"><img src="/img/app-icon72x72@2x.png" alt="跑步猫"></div>
-        <div class="info">
-           <h2>毒毒怪</h2>
-           <span class="grade">Lv.2</span>
-           <span class="type">普通会员</span>
-           <p>13918579133</p>
+    <a href="/profile/edit-profile.html">
+        <div class="pub-pinfo profile-bg">
+            <div class="img"><img src="/img/app-icon72x72@2x.png" alt="跑步猫"></div>
+            <div class="info">
+                <h2>毒毒怪</h2>
+                <span class="grade">Lv.2</span>
+                <span class="type">普通会员</span>
+                <p>13918579133</p>
+            </div>
+            <i class="am-icon-angle-right"></i>
         </div>
-        <i class="am-icon-angle-right"></i>
-    </div>
+    </a>
     <div class="profile-btn profile-bg">
         <ul class="doc-icon-list am-avg-sm-2 am-avg-md-3 am-avg-lg-4">
             <li><a href=""><i class="am-icon-check-square-o"></i><span>签到</span></a></li>
@@ -35,7 +37,7 @@
         </ul>
         <ul class="doc-icon-list am-avg-sm-2 am-avg-md-3 am-avg-lg-4">
             <li><a href="/profile/calories.html"><i class="am-icon-check-square-o"></i><span>卡路里</span></a></li>
-            <li><a href="/profile/calories.html"><i class="am-icon-comment-o"></i><span>心率</span></a></li>
+            <li><a href="/profile/heartrate.html"><i class="am-icon-comment-o"></i><span>心率</span></a></li>
             <li><a href="/profile/calories.html"><i class="am-icon-money"></i><span>HOLpoint</span></a></li>
         </ul>
         <ul class="doc-icon-list am-avg-sm-2 am-avg-md-3 am-avg-lg-4">
@@ -47,5 +49,4 @@
         </ul>
     </div>
 </section>
-{% include "../_partial/footer.html" %}
-{% include "../_partial/foot.html" %}
+{% include "../_partial/footer.html" %} {% include "../_partial/foot.html" %}

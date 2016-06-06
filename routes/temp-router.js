@@ -2,6 +2,8 @@ import express from 'express';
 import common from './common';
 import profile from './api/profile';
 import course from './api/course';
+import usrClass from './api/usr-class';
+import user from './api/user';
 import till from './api/till';
 let router = express.Router();
 
@@ -65,11 +67,33 @@ router.get('/tmpl-single-class.template', [profile.getUsrClasstimeOrder], (req, 
 /*
     用户系统消息模板
  */
-router.get('/message.template',[profile.getMemberMessages],(req,res,next)=>{
-    // console.log("message:::::"+JSON.stringify(res.data['member.getMemberMessages']['record']));
+router.get('/message.template', [profile.getMemberMessages], (req, res, next) => {
     return res.render('_partial/template/message', {
         data: res.data['member.getMemberMessages']['record']
     });
-})
+});
+
+/*
+    评价模板
+ */
+router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getUsrClassEvaluate_classEvaluate,usrClass.getTrainFeel,usrClass.getMemberFoodNum], (req, res, next) => {
+    return res.render('_partial/template/comment-class', {
+        data: res.data
+    });
+});
+/*
+    特训营评价模板
+ */
+router.get('/special-comment-class.template', [course.queryCoursePlanInfo, usrClass.getUsrClassEvaluate_specialEvaluate,usrClass.getTrainFeel,usrClass.getMemberFoodNum], (req, res, next) => {
+    return res.render('_partial/template/special-comment-class', {
+        data: res.data
+    });
+});
+
+router.get('/edit-profile.template',[user.memberInfo],(req, res, next)=>{
+    return res.render('_partial/template/edit-profile', {
+        memberInfo: res.data['member.memberinfo']['record']
+    });
+});
 
 module.exports = router;

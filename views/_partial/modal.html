@@ -40,7 +40,7 @@
                 $('#my-confirm .am-modal-bd').text(params.msg);
             }
             $('#my-confirm').modal({
-                relatedTarget: this,
+                relatedTarget: params.relatedTarget,
                 onConfirm: params.onConfirm,
                 onCancel: params.onCancel
             });

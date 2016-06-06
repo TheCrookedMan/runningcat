@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/', api);
 app.use('/', temp);
 app.use('/', routes);
-app.use(errorRouter);
+errorRouter(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

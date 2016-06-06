@@ -117,3 +117,22 @@ exports.checkLogin = (req, res, next) => {
         });
     }
 }
+
+/*
+    完善资料
+ */
+exports.updateUserInfo = (req, res, next) => {
+    new rest({
+        functionCode: 'member.updateUserInfo',
+    }).post(req, res);
+}
+
+/*
+    根据会员ID查找会员信息
+ */
+
+exports.memberInfo = (req, res, next) => {
+    new rest({
+        functionCode: 'member.memberinfo',
+    }).link(req, res, next);
+}
