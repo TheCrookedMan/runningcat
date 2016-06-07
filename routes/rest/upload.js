@@ -45,7 +45,6 @@ export default class uploadImage {
             req.setHeader("Content-Type", 'multipart/form-data; boundary=--' + boundaryKey);
             req.setHeader("Content-Length", contentLength + Buffer.byteLength(enddata));
             req.on('error', (e) => {
-                console.log("e::::"+e);
                 return error(e);
             });
             req.write($files[0].contentBinary);

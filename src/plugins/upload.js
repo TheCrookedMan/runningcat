@@ -4,8 +4,9 @@
         this.url = options.url;
         selector.on('change', function() {
             var oFReader = new FileReader();
+            var that = this;
             self.init(this.files[0], function(file, data, resp) {
-                debugger
+                options.callback && options.callback(file, data, resp);
             });
         });
     }

@@ -2,7 +2,7 @@
 <li>
     <i class="am-icon-dot-circle-o"></i>
     <div class="list-info left">
-        <div class="img"><img src="http://115.159.62.18:8085/pic/images/{{classInfo.trainerPhotoUrl}}" alt="跑步猫"></div>
+        <div class="img"><img src="{{settings.imageAddress}}{{classInfo.trainerPhotoUrl}}" alt="跑步猫"></div>
         <div class="info left">
             <h2>{{classInfo.className}}</h2>
             <p class="time">{{classInfo.courseDate|dateFormat('yyyy-MM-dd')}} {{classInfo.courseDate|toWeek()}} {{classInfo.startTime}}-{{classInfo.endTime}}</p>

@@ -18,11 +18,11 @@
         var carouselFigure=res.carouselFigure;
         var playTimePictures=res.playTimePictures;
         for(var ele in carouselFigure){
-            var str="<li><img src='http://115.159.62.18:8085/pic/images/"+carouselFigure[ele].imgUrl+"'/></li>";
+            var str="<li><img src='"+window.imageAddress+carouselFigure[ele].imgUrl+"'/></li>";
             $('#carouselFigure').append(str);
         }
         for(var ele in playTimePictures){
-            var str="<p><img src='http://115.159.62.18:8085/pic/images/"+playTimePictures[ele].imgUrl+"'/></p>";
+            var str="<p><img src='"+window.imageAddress+playTimePictures[ele].imgUrl+"'/></p>";
             $('#playTimePictures').append(str);
         }
     }).error(function(data) {
