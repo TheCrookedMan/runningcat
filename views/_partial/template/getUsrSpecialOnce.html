@@ -10,8 +10,18 @@
                <p class="time">{{list.courseDate|dateFormat('yyyy-MM-dd')}} {{list.courseDate|toWeek()}} {{list.className}}</p>
             </div>
             <div class="pub-btn">
-                <a href="/profile/special-comment-class.html?onceId={{list.id}}&specialId={{list.id}}" class="btn btn-red">评价</a>
-                <a href="/profile/submit-class.html?onceId={{list.id}}" class="btn btn-red">作业</a>
+                <!-- 课次状态： 正常签到=1，旷课签到=2，已请假=3，未签到=4 -->
+                {% if list.courseOnceStatus == 1 %}
+                    <a href="/profile/special-comment-class.html?onceId={{list.id}}&specialId={{list.id}}" class="btn btn-red">评价</a>
+                    <a href="/profile/homework-till.html?onceId={{list.id}}" class="btn btn-red">作业</a>
+                {% elseif list.courseOnceStatus == 2 %}
+                    <a href="javascript:void(0)" class="btn btn-end">旷课</a>
+                {% elseif list.courseOnceStatus == 3 %}
+                    <a href="javascript:void(0)" class="btn btn-end">已请假</a>
+                {% elseif list.courseOnceStatus == 4 %}
+                    <a href="javascript:void(0)" data-id="{{list.id}}" data-signin-key="{{list.signinKey}}" class="btn btn-red leave">请假</a>
+                    <a href="javascript:void(0)" data-id="{{list.id}}" class="btn btn-red signIn">签到</a>
+                {% endif %}
             </div>
         </div>
         {% endfor %}

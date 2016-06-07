@@ -58,4 +58,48 @@
     }
     this.getUsrSpecialOnce = new getUsrSpecialOnce();
     this.getUsrSpecialOnce.init();
+    /*
+        请假
+     */
+    $(".till-class").on("click", "a.leave", function(ev) {
+        modal.confirm({
+            relatedTarget: this,
+            msg: "您确认请假吗？",
+            onConfirm: function(options) {
+                var classtimeId = $(this.relatedTarget).data("id");
+                var thisPanel = $(this.relatedTarget).parents("li");
+                var signinKey = $(this.relatedTarget).data("signinKey");
+                $.post("/doLeave", {
+                    memberId: userInfo.memberId,
+                    classtimeId: classtimeId,
+                    signinKey: signinKey
+                }).success(function(data) {
+                    if (data.code == "0000" && data.success) {
+                        thisPanel.remove();
+                    } else {
+                        modal.alert(data.msg);
+                    }
+                })
+            }
+        });
+        ev.stopPropagation();
+    });
+    /*
+        签到
+     */
+    $(".till-class").on("click", "a.signIn", function(ev) {
+        var classtimeId = $(this).data("id");
+        var thisPanel = $(this).parents("li");
+        $.post("/doSignIn", {
+            memberId: userInfo.memberId,
+            classtimeId: classtimeId
+        }).success(function(data) {
+            if (data.code == "0000" && data.success) {
+                thisPanel.remove();
+            } else {
+                modal.alert(data.msg);
+            }
+        })
+        ev.stopPropagation();
+    });
 }).call(this);

@@ -1,4 +1,5 @@
 (function() {
+    var onceId=("#onceId").val();
     var homeWork = function() {
         this.pageNo = 1;
         this.pageSize = 10;
@@ -18,9 +19,9 @@
         getHomeWork: function() {
             var self = this;
             $.get('/getCourseWorkInfo.template', {
-                memberId:46,
-                onceId: 55,
-                onceType: 1
+                memberId:userInfo.memberId,
+                onceId: onceId,
+                onceType: 2
             }).success(function(data) {
                 data = data.replace(/(^\s+)|(\s+$)/g, "");
                 if ("" == data) {

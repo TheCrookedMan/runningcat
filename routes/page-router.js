@@ -174,9 +174,16 @@ router.get('/profile/single-class.html', (req, res, next) => {
     return res.render('profile/single-class', { title: '我的私教' });
 });
 
-router.get('/profile/submit-class.html', (req, res, next) => {
-    return res.render('profile/submit-class', { title: '提交作业' });
+router.get('/profile/homework-class.html', (req, res, next) => {
+    let onceId = req.query.onceId;
+    return res.render('profile/homework-class', { title: '单次课程作业', onceId: onceId  });
 });
+
+router.get('/profile/homework-till.html', (req, res, next) => {
+    let onceId = req.query.onceId;
+    return res.render('profile/homework-till', { title: '特训营作业', onceId: onceId  });
+});
+
 
 router.get('/profile/till-list.html', (req, res, next) => {
     let specialId = req.query.specialId;

@@ -88,6 +88,25 @@ exports.tillDetail = (req, res, next) => {
     }).post(req, res);
 }
 
+/*
+    特训营签到
+ */
+exports.doSignIn = (req, res, next) => {
+    new rest({
+        functionCode: 'usrClasstimeOrder.doSpecialSignIn',
+    }).post(req, res, next);
+}
+
+/*
+    特训营请假
+ */
+exports.doLeave = (req, res, next) => {
+    new rest({
+        functionCode: 'usrClasstimeOrder.doSpecialLeave',
+    }).post(req, res, next);
+}
+
+
 /* 查询课次作业 */
 exports.getCourseWorkInfo = (req, res, next) => {
     new rest({
