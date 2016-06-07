@@ -10,6 +10,7 @@ const router = express.Router();
 // common
 router.post('/common/getSysDictionary',common.getSysDictionary);
 router.post('/common/getAreaList',common.getAreaList);
+router.post('/common/uploadImage',common.uploadImage);
 
 // user
 router.post('/login',user.login);

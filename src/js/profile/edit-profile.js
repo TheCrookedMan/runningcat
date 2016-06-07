@@ -190,6 +190,8 @@
         });
         return false;
     });
+
+    $(".uploadImage").uploadImage();
     // function getBloodType(){
     //     // bloodType
     // }

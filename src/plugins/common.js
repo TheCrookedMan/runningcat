@@ -27,7 +27,7 @@
             return this.reg_integer.test(num);
         },
         getUserInfo: function() {
-            var runningcatUserInfo = $.cookie("runningcatUserInfo");
+            var runningcatUserInfo = $.AMUI.utils.cookie.get("runningcatUserInfo");
             if(undefined == runningcatUserInfo){
                 return {}
             }
