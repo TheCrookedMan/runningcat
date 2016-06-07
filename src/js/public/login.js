@@ -9,7 +9,7 @@
         $.post('/login', data).success(function(data) {
             if (data.success) {
                 var runningcatUserInfo = JSON.stringify(data.data);
-                $.cookie('runningcatUserInfo', runningcatUserInfo, { expires: 365, path: '/' });
+                $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, 365 * 24 * 60 * 60, '/');
                 window.location.href = "/public/shop.html";
             } else {
                 modal.alert(data.msg);

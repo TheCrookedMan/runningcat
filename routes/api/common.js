@@ -1,4 +1,5 @@
 import rest from '../rest/_util';
+import upload from '../rest/upload';
 
 /*区域列表获取*/
 exports.getAreaList = (req, res, next) => {
@@ -12,4 +13,8 @@ exports.getSysDictionary = (req, res, next) => {
     new rest({
         functionCode: 'sysDictionary.getSysDictionary',
     }).post(req, res, next);
+}
+
+exports.uploadImage = (req, res, next) => {
+    new upload(req, res, next);
 }
