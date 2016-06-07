@@ -33,6 +33,14 @@ exports.queryUserTrainList = (req, res, next) => {
         functionCode: 'member.queryUserTrainList',
     }).link(req, res, next);
 }
+/*
+    点赞
+ */
+exports.bePraise = (req, res, next) => {
+    new rest({
+        functionCode: 'member.bePraise',
+    }).post(req, res, next);
+}
 
 /*查询用户的单次课*/
 

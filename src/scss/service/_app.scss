@@ -1795,3 +1795,29 @@ table {
         }
     }
 }
+
+
+@font-face {font-family: "iconfont";
+  src: url('font/iconfont.eot?t=1465288521'); /* IE9*/
+  src: url('font/iconfont.eot?t=1465288521#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('font/iconfont.woff?t=1465288521') format('woff'), /* chrome, firefox */
+  url('font/iconfont.ttf?t=1465288521') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('font/iconfont.svg?t=1465288521#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+ 
+}
+.icon-keshi:before { content: "\e602"; }
+.icon-chudianyu:before { content: "\e9db"; }
+.icon-yu2:before { content: "\e630"; }
+.icon-kaluli:before { content: "\e603"; }
+.icon-xinlv:before { content: "\e664"; }
+.icon-xiaolv:before { content: "\e63a"; }
+.icon-paimingicon:before { content: "\e61a"; }
+.icon-paiming23:before { content: "\e609"; }
+.icon-paiming21:before { content: "\e608"; }
+.icon-paiming22:before { content: "\e607"; }
+.icon-paiming:before { content: "\e665"; }
+

@@ -375,6 +375,16 @@
     padding-bottom: 5rem;
     padding-top: 0;
 }
-
+.myrank .am-icon-heart-o:before {
+    content: "\f004";
+}
+.rank-list .am-icon-heart-o{
+    &.cur{
+        &:before{
+            content: "\f004";
+        }
+    }
+    
+}
 @import './profile/heartrate';
 @import './profile/calories';

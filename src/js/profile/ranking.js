@@ -77,5 +77,29 @@
         }
     }
     this.ranking = new ranking();
-    this.ranking.init();    
+    this.ranking.init();   
+
+    /*
+        点赞
+    */
+    $(".ranking-list").on("click", "a.praise", function(ev) {
+        var bePraisedId = $(this).data("id");
+        // $(this).children().addClass("cur");
+        // $(this).removeClass("praise");
+        // var pnum=parseInt($(this).parent().siblings().text());
+        $.post("/bePraise", {
+            memberId: userInfo.memberId,
+            bePraisedId: bePraisedId
+        }).success(function(data) {
+            if (data.code == "0000" && data.success) {
+                var res=data.data;
+                console.log(res.isDeleted);
+                // pnum=pnum+1;
+                // $(this).parent().siblings().text(pnum);
+            } else {
+                modal.alert(data.msg);
+            }
+        })
+        ev.stopPropagation();
+    }); 
 }).call(this);

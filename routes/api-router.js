@@ -33,6 +33,7 @@ router.post('/getUsrSpecialClass',profile.getUsrSpecialClass);
 router.post('/getUsrSpecialOnce',profile.getUsrSpecialOnce);
 router.post('/doSignIn',profile.doSignIn);
 router.post('/doLeave',profile.doLeave);
+router.post('/bePraise',profile.bePraise);
 /*home*/
 router.post('/getCourseWorkInfo',profile.getCourseWorkInfo);
 
