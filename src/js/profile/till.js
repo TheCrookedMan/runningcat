@@ -7,7 +7,7 @@
         $("#storeAddress").html(res.storeAddress);
         $("#startDate").html(new Date(res.startDate).toLocaleDateString());
         $("#courseNum").html(res.courseNum);
-        $("#imgUrl").attr("src","http://115.159.62.18:8085/pic/images/"+res.imgUrl);
+        $("#imgUrl").attr("src",window.imageAddress+res.imgUrl);
         $("#week").html(new Date(res.startDate).getDay())
     }).error(function(data) {
        

@@ -2,7 +2,7 @@
 {% for till in data %}
 <li>
   <div class="pic">
-    <img src="http://115.159.62.18:8085/pic/images/{{till.imgUrl}}" />
+    <img src="{{settings.imageAddress}}{{till.imgUrl}}" />
     <p>{{till.className}}</p>
   </div>
   <div class="info">

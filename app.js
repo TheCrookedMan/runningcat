@@ -5,19 +5,21 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var argv = process.argv.slice(2);
-var routes, api, temp, errorRouter,myFilters;
+var routes, api, temp, errorRouter,myFilters,config;
 if ("test" == argv) {
     routes = require('./routes/page-router');
     api = require('./routes/api-router');
     temp = require('./routes/temp-router');
     errorRouter = require('./routes/error-router');
     myFilters = require('./routes/tool/self-defined-filters');
+    config = require('./routes/rest/config');
 } else {
     routes = require('./lib/page-router');
     api = require('./lib/api-router');
     temp = require('./lib/temp-router');
     errorRouter = require('./lib/error-router');
     myFilters = require('./lib/tool/self-defined-filters');
+    config = require('./lib/rest/config');
 }
 
 var app = express();
@@ -38,6 +40,9 @@ app.engine('html', swig.renderFile);
 // view engine setup
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
+
+app.set('imageAddress', config.wechat.imageAddress);
+app.set('shareQRCodeAddress', config.wechat.shareQRCodeAddress);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

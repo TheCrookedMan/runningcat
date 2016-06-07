@@ -36,6 +36,7 @@ export default class uploadImage {
                 'method': 'POST',
                 'headers': postheaders
             };
+            
             req = http.request(options, (res) => {
                 res.on("data", (chunk) => {
                     success(chunk);
@@ -63,11 +64,8 @@ export default class uploadImage {
                 return res.status(200).send($json).end();
             };
             error = (d) => {
-                var $json, $str;
-                $str = d;
-                $json = JSON.parse($str);
                 next({
-                    msg: $json
+                    msg: d
                 });
                 // return res.status(500).send($json).end();
             };

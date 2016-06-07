@@ -10,7 +10,7 @@
         $("#trainingTips").html(res.trainingTips);
         var trainers=res.trainers;
         for(var p in trainers){
-             var str="<li><img src='http://115.159.62.18:8085/pic/images/"+trainers[p].jheadPhotoUrl+"'/><h2>"+trainers[p].userName+""+ trainers[p].nickName+"</h2><p>"+trainers[p].remark+"</p></li>";
+             var str="<li><img src='"+window.imageAddress+trainers[p].jheadPhotoUrl+"'/><h2>"+trainers[p].userName+""+ trainers[p].nickName+"</h2><p>"+trainers[p].remark+"</p></li>";
              console.log(str);
              $("#trainers").append(str);
         }
@@ -26,7 +26,7 @@
         $("#data").html(datastr);
         var carouselFigure=res.carouselFigure;
         for(var ele in carouselFigure){
-            var str="<li><img src='http://115.159.62.18:8085/pic/images/"+carouselFigure[ele].imgUrl+"'/></li>";
+            var str="<li><img src='"+window.imageAddress+carouselFigure[ele].imgUrl+"'/></li>";
             $('#carouselFigure').append(str);
         }
     }).error(function(data) {

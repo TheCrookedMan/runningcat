@@ -137,8 +137,15 @@
             ev.stopPropagation();
             return false;
         });
+        $(".uploadImage").uploadImage({
+            url: "/common/uploadImage",
+            callback: function(file, data, resp) {
+                var path = data.images[0].userFilePath;
+                $(".userLogo").attr('src', window.imageAddress + path);
+                $("#photoUrl").val(path);
+            }
+        });
     }
-
     function initAreaSelect(data) {
         var list = [];
         if (data.code == "0000" && data.success) {
@@ -170,7 +177,7 @@
                     $("#areaModal").modal({
                         relatedTarget: this,
                         onConfirm: function(options) {
-                            $("#addressInput").val(areaName+this.$dialog.find("input").val());
+                            $("#addressInput").val(areaName + this.$dialog.find("input").val());
                             $("#addressId").val(areaId);
                         },
                         onCancel: function() {}
@@ -178,20 +185,20 @@
                 }
             }
         });
-        setTimeout(function(){
+        setTimeout(function() {
             $("#demo-test-select").mobiscroll("show");
-        },200);
+        }, 200);
     };
 
-    $("form").submit(function(){
+    $("form").submit(function() {
         var data = common.parseForm("form");
-        $.post('/updateUserInfo',data).success(function(data){
+        $.post('/updateUserInfo', data).success(function(data) {
             modal.alert(data.msg);
         });
         return false;
     });
 
-    $(".uploadImage").uploadImage();
+
     // function getBloodType(){
     //     // bloodType
     // }
