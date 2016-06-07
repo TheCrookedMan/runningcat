@@ -31,6 +31,7 @@
            var self = this;
            if($(".rank-tab li a.cur").data("id")=="Fuel"){
                  $.get('/rankingFuel.template', {
+                    usrId:userInfo.memberId,
                     pageNo: self.pageNo,
                     pageSize: self.pageSize
                 }).success(function(data) {
@@ -84,22 +85,32 @@
     */
     $(".ranking-list").on("click", "a.praise", function(ev) {
         var bePraisedId = $(this).data("id");
-        // $(this).children().addClass("cur");
-        // $(this).removeClass("praise");
-        // var pnum=parseInt($(this).parent().siblings().text());
-        $.post("/bePraise", {
-            memberId: userInfo.memberId,
-            bePraisedId: bePraisedId
-        }).success(function(data) {
-            if (data.code == "0000" && data.success) {
-                var res=data.data;
-                console.log(res.isDeleted);
-                // pnum=pnum+1;
-                // $(this).parent().siblings().text(pnum);
-            } else {
-                modal.alert(data.msg);
-            }
-        })
-        ev.stopPropagation();
+        var status=$(this).data("status");
+        var pnum=parseInt($(this).parent().siblings().text());
+        var self=$(this);
+        if(status>0){
+            modal.alert("你已经点赞了");
+            $(this).children().addClass("cur")
+        }
+        else if(bePraisedId==userInfo.memberId){
+            modal.alert("不能给自己点赞哦");
+        }
+        else{
+           $.post("/bePraise", {
+                memberId: userInfo.memberId,
+                bePraisedId: bePraisedId
+            }).success(function(data) {
+                if (data.code == "0000" && data.success) {
+                    var res=data.data;
+                    pnum=pnum+1;
+                    self.parents(".like").children(".totalPraise").text(pnum);
+                    self.children("i").removeClass('am-icon-heart-o');
+                    self.children('i').addClass("am-icon-heart")
+                } else {
+                    modal.alert(data.msg);
+                }
+            })
+            ev.stopPropagation(); 
+        }       
     }); 
 }).call(this);

@@ -8,8 +8,16 @@
     </td>
     <td class="num">{{ranking.totalTrainTime}}</td>
     <td class="like">
-        <p>{{ranking.totalPraise}}</p>
-        <p><a href="javascript:void(0)" data-id="{{ranking.id}}" class="praise"><i class="am-icon-heart-o col-red"></i></a></p>
+        <p class="totalPraise">{{ranking.totalPraise}}</p>
+        <p>
+            <a href="javascript:void(0)" data-id="{{ranking.id}}" class="praise" data-status="{{ranking.praiseState}}">
+                {% if ranking.praiseState >0 %}
+                <i class="am-icon-heart col-red"></i>
+                {% else %}
+                <i class="am-icon-heart-o col-red"></i>
+                {% endif %}
+            </a>
+        </p>
     </td>
 </tr>
 {% elseif ranking.rowNum == 2 %}
@@ -21,8 +29,16 @@
     </td>
     <td class="num">{{ranking.totalTrainTime}}</td>
     <td class="like">
-        <p>{{ranking.totalPraise}}</p>
-        <p><a href="javascript:void(0)" data-id="{{ranking.id}}" class="praise"><i class="am-icon-heart-o col-red"></i></a></p>
+        <p class="totalPraise">{{ranking.totalPraise}}</p>
+        <p>
+            <a href="javascript:void(0)" data-id="{{ranking.id}}" class="praise" data-status="{{ranking.praiseState}}">
+                {% if ranking.praiseState >0 %}
+                <i class="am-icon-heart col-red"></i>
+                {% else %}
+                <i class="am-icon-heart-o col-red"></i>
+                {% endif %}
+            </a>
+        </p>
     </td>
 </tr>
 {% elseif ranking.rowNum == 3 %}
@@ -34,8 +50,16 @@
     </td>
     <td class="num">{{ranking.totalTrainTime}}</td>
     <td class="like">
-        <p>{{ranking.totalPraise}}</p>
-        <p><a href="javascript:void(0)" data-id="{{ranking.id}}" class="praise"><i class="am-icon-heart-o col-red"></i></a></p>
+        <p class="totalPraise">{{ranking.totalPraise}}</p>
+        <p>
+            <a href="javascript:void(0)" data-id="{{ranking.id}}" class="praise" data-status="{{ranking.praiseState}}">
+                {% if ranking.praiseState >0 %}
+                <i class="am-icon-heart col-red"></i>
+                {% else %}
+                <i class="am-icon-heart-o col-red"></i>
+                {% endif %}
+            </a>
+        </p>
     </td>
 </tr>
 {% else%}
@@ -47,8 +71,16 @@
     </td>
     <td class="num">{{ranking.totalTrainTime}}</td>
     <td class="like">
-        <p>{{ranking.totalPraise}}</p>
-        <p><a href="javascript:void(0)" data-id="{{ranking.id}}" class="praise"><i class="am-icon-heart-o col-red"></i></a></p>
+        <p class="totalPraise">{{ranking.totalPraise}}</p>
+        <p>
+            <a href="javascript:void(0)" data-id="{{ranking.id}}" class="praise" data-status="{{ranking.praiseState}}">
+                {% if ranking.praiseState >0 %}
+                <i class="am-icon-heart col-red"></i>
+                {% else %}
+                <i class="am-icon-heart-o col-red"></i>
+                {% endif %}
+            </a>
+        </p>
     </td>
 </tr>
 {% endif %}
