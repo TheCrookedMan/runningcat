@@ -137,6 +137,7 @@
             ev.stopPropagation();
             return false;
         });
+        $(".uploadImage").uploadImage({url:"/common/uploadImage"});
     }
 
     function initAreaSelect(data) {
@@ -191,7 +192,7 @@
         return false;
     });
 
-    $(".uploadImage").uploadImage();
+
     // function getBloodType(){
     //     // bloodType
     // }

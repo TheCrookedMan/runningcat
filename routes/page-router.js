@@ -155,7 +155,9 @@ router.get('/profile/edit-profile.html', (req, res, next) => {
 });
 
 router.get('/profile/invite.html', (req, res, next) => {
-    return res.render('profile/invite', { title: 'RunningCat' });
+    let runningcatUserInfo = JSON.parse(req.cookies.runningcatUserInfo);
+    let memberId = runningcatUserInfo.memberId;
+    return res.render('profile/invite', { title: 'RunningCat',memberId:memberId });
 });
 
 router.get('/profile/message.html', (req, res, next) => {

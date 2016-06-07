@@ -36,6 +36,7 @@ export default class uploadImage {
                 'method': 'POST',
                 'headers': postheaders
             };
+            
             req = http.request(options, (res) => {
                 res.on("data", (chunk) => {
                     success(chunk);
@@ -44,6 +45,7 @@ export default class uploadImage {
             req.setHeader("Content-Type", 'multipart/form-data; boundary=--' + boundaryKey);
             req.setHeader("Content-Length", contentLength + Buffer.byteLength(enddata));
             req.on('error', (e) => {
+                console.log("e::::"+e);
                 return error(e);
             });
             req.write($files[0].contentBinary);
@@ -63,11 +65,8 @@ export default class uploadImage {
                 return res.status(200).send($json).end();
             };
             error = (d) => {
-                var $json, $str;
-                $str = d;
-                $json = JSON.parse($str);
                 next({
-                    msg: $json
+                    msg: d
                 });
                 // return res.status(500).send($json).end();
             };
