@@ -32,6 +32,8 @@ router.post('/message/redMsg',profile.redMsg);
 /*till*/
 router.post('/getUsrSpecialClass',profile.getUsrSpecialClass);
 router.post('/getUsrSpecialOnce',profile.getUsrSpecialOnce);
+router.post('/doSignIn',profile.doSignIn);
+router.post('/doLeave',profile.doLeave);
 /*home*/
 router.post('/getCourseWorkInfo',profile.getCourseWorkInfo);
 
