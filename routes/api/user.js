@@ -70,7 +70,7 @@ exports.checkLogin = (req, res, next) => {
             functionCode: 'member.checkLogin',
             data: {
                 cookieMemberId: cookieUserId
-            }
+            };
         }).normalRequest(function(data) {
             /*
                 如果用户是登录的，直接 NEXT。否则重定向至登录页面。
