@@ -21,6 +21,15 @@
         </div>
     </div>
 </div>
+<!-- loding... -->
+<div class="am-modal am-modal-loading am-modal-no-btn" tabindex="-1" id="loading-modal">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd"></div>
+        <div class="am-modal-bd">
+            <i class="am-icon-spinner am-icon-spin am-icon-sm"></i>&nbsp;图片正在上传请稍等。。。
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
 (function() {
     var modal = function() {}
@@ -44,6 +53,9 @@
                 onConfirm: params.onConfirm,
                 onCancel: params.onCancel
             });
+        },
+        loading:function(string){
+            $("#loading-modal").modal(string);
         }
     }
     this.modal = new modal();

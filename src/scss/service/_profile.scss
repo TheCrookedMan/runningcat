@@ -29,8 +29,10 @@
             left: 1.5rem;
             top: 1.5rem;
             img {
-                border-radius: 100px;
+                border-radius: 50%;
                 border: #fdfdfd solid 2px;
+                height: 100%;
+                width: 100%;
             }
         }
         .info {

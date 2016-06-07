@@ -5,7 +5,6 @@ body {
 }
 </style>
 <script type="text/javascript">
-    
 </script>
 <section class="register-wrap">
     <div class="am-logo">
@@ -23,10 +22,11 @@ body {
             <li>
                 <input type="password" name="password" id="name" placeholder="密码" required>
             </li>
-            
             <li>
                 <input type="text" name="smsCode" id="code" placeholder="验证码" required>
             </li>
+            <input type="hidden" name="refereeId" value="{{refereeId}}">
+            <input type="hidden" name="storeId" value="{{storeId}}">
         </ul>
         <div class="am-cf">
             <div class="submit">

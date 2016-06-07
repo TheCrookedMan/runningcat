@@ -40,7 +40,8 @@ app.engine('html', swig.renderFile);
 // view engine setup
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
-
+//设置全局属性
+app.set('wechat_appId', config.wechat.appId);
 app.set('imageAddress', config.wechat.imageAddress);
 app.set('shareQRCodeAddress', config.wechat.shareQRCodeAddress);
 

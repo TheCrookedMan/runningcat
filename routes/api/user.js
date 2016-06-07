@@ -59,10 +59,16 @@ exports.loginByopenId = (openId, success, next) => {
  */
 
 exports.checkLogin = (req, res, next) => {
-    let runningcatUserInfo = req.cookies.runningcatUserInfo;
+    let runningcatUserInfo = req.cookies.runningcatUserInfo,
+        storeId = req.query.storeId;
     if (!runningcatUserInfo) {
         //没有runningcatUserInfo表示没有注册或者登录过，需要跳转到登录
-        res.redirect("/public/login.html");
+        //从店铺页面验证的授权，如果用户没有权限跳转登录页面的时候带上 storeId
+        if (!!storeId) {
+            res.redirect("/public/login.html?storeId=" + storeId);
+        } else {
+            res.redirect("/public/login.html");
+        }
     } else {
         runningcatUserInfo = JSON.parse(runningcatUserInfo);
         let cookieUserId = runningcatUserInfo.cookieUserId;
@@ -70,7 +76,7 @@ exports.checkLogin = (req, res, next) => {
             functionCode: 'member.checkLogin',
             data: {
                 cookieMemberId: cookieUserId
-            };
+            }
         }).normalRequest(function(data) {
             /*
                 如果用户是登录的，直接 NEXT。否则重定向至登录页面。
@@ -78,7 +84,12 @@ exports.checkLogin = (req, res, next) => {
             if (data.isSuccess) {
                 next();
             } else {
-                res.redirect("/public/login.html");
+                //从店铺页面验证的授权，如果用户没有权限跳转登录页面的时候带上 storeId
+                if (!!storeId) {
+                    res.redirect("/public/login.html?storeId=" + storeId);
+                } else {
+                    res.redirect("/public/login.html");
+                }
             }
         }, next);
     }
@@ -101,4 +112,14 @@ exports.memberInfo = (req, res, next) => {
     new rest({
         functionCode: 'member.memberinfo',
     }).link(req, res, next);
+}
+
+/*
+    根据会员ID查找会员信息
+ */
+
+exports.getUserInfo = (req, res, next) => {
+    new rest({
+        functionCode: 'member.memberinfo',
+    }).post(req, res, next);
 }

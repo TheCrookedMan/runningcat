@@ -49,7 +49,22 @@ router.get('/wechatAuth.html', (req, res, next) => {
                             把runningcat用户信息存入cookie中.
                          */
                         common.setCookie("runningcatUserInfo", runningcatUserInfo, res);
-                        res.redirect(redirect_uri);
+                        /*
+                            redirect_uri 如果为空的话，自动跳转至 /public/shop.html
+                         */
+                        if(!redirect_uri){
+                            res.redirect("/public/shop.html");
+                        } else {
+                            /*
+                                redirect_uri 跳转链接不能有登录、注册等页面跳转 因为已经登录成功了。如果 redirect_uri 含有下面的链接字符 那么自动跳转到 /public/shop.html
+                             */
+                            if(redirect_uri.indexOf('/public/register.html') == -1 && redirect_uri.indexOf('/public/profile.html') == -1 && redirect_uri.indexOf('/public/login.html') == -1){
+                                res.redirect(redirect_uri);
+                            } else {
+                                res.redirect("/public/shop.html");
+                            }
+                        }
+                        
                     } else {
                         /*
                             其他错误处理
@@ -58,7 +73,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                             msg: record.msg
                         });
                     }
-                },next);
+                }, next);
             } else if ("snsapi_base" == data.scope) {}
         } else {
             //error
@@ -79,11 +94,13 @@ router.get('/wechatAuth.html', (req, res, next) => {
  */
 
 router.get('/public/register.html', (req, res, next) => {
-    return res.render('public/register', { title: '注册' });
+    let refereeId = req.query.refereeId,
+        storeId = req.query.storeId;
+    return res.render('public/register', { title: '注册', refereeId: refereeId, storeId: storeId });
 });
 router.get('/public/profile.html', (req, res, next) => {
     let params = req.query;
-    return res.render('public/profile', { title: '完善资料', password: params.password, mobileNo: params.mobileNo });
+    return res.render('public/profile', { title: '完善资料', password: params.password, mobileNo: params.mobileNo, refereeId: params.refereeId, storeId: params.storeId });
 });
 
 router.get('/public/shop.html', (req, res, next) => {
@@ -91,7 +108,8 @@ router.get('/public/shop.html', (req, res, next) => {
 });
 
 router.get('/public/login.html', (req, res, next) => {
-    return res.render('public/login', { title: '登录' });
+    let storeId = req.query.storeId;
+    return res.render('public/login', { title: '登录', storeId: storeId });
 });
 
 /*
@@ -157,7 +175,7 @@ router.get('/profile/edit-profile.html', (req, res, next) => {
 router.get('/profile/invite.html', (req, res, next) => {
     let runningcatUserInfo = JSON.parse(req.cookies.runningcatUserInfo);
     let memberId = runningcatUserInfo.memberId;
-    return res.render('profile/invite', { title: 'RunningCat',memberId:memberId });
+    return res.render('profile/invite', { title: 'RunningCat', memberId: memberId });
 });
 
 router.get('/profile/message.html', (req, res, next) => {
@@ -178,12 +196,12 @@ router.get('/profile/single-class.html', (req, res, next) => {
 
 router.get('/profile/homework-class.html', (req, res, next) => {
     let onceId = req.query.onceId;
-    return res.render('profile/homework-class', { title: '单次课程作业', onceId: onceId  });
+    return res.render('profile/homework-class', { title: '单次课程作业', onceId: onceId });
 });
 
 router.get('/profile/homework-till.html', (req, res, next) => {
     let onceId = req.query.onceId;
-    return res.render('profile/homework-till', { title: '特训营作业', onceId: onceId  });
+    return res.render('profile/homework-till', { title: '特训营作业', onceId: onceId });
 });
 
 

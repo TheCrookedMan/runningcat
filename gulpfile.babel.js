@@ -191,6 +191,11 @@ const plugins_mobiscroll = {
     outputfile: plugins_dir
 }
 
+const plugins_wechat = {
+    inputfile_js:src_plugins_dir+'/wechat/*.js',
+    outputfile: plugins_dir
+}
+
 /**
  * 第三方插件合并压缩
  * @param  {[type]} (          [description]
@@ -209,6 +214,9 @@ gulp.task('plugin', () => {
         .pipe(gulp.dest(plugins_src.outputfile));
 
     gulp.src(src_plugins_dir + "/echarts/echarts.simple.min.js").pipe(gulp.dest(plugins_src.outputfile));
+    /*
+        mobiscroll 插件打包
+     */
     gulp.src(plugins_mobiscroll.inputfile_js)
         .pipe(concat('mobiscroll.min.js'))
         .pipe(uglify({
@@ -217,7 +225,19 @@ gulp.task('plugin', () => {
             // preserveComments: 'all' //保留所有注释
             preserveComments: false
         }))
-        .pipe(gulp.dest(plugins_src.outputfile));
+        .pipe(gulp.dest(plugins_mobiscroll.outputfile));
+    /*
+        wechat相关代码打包
+     */
+    gulp.src(plugins_wechat.inputfile_js)
+        .pipe(concat('wechat.min.js'))
+        .pipe(uglify({
+            mangle: true, //类型：Boolean 默认：true 是否修改变量名
+            compress: true, //类型：Boolean 默认：true 是否完全压缩
+            // preserveComments: 'all' //保留所有注释
+            preserveComments: false
+        }))
+        .pipe(gulp.dest(plugins_wechat.outputfile));
 
     return gulp.src(plugins_src.inputfile_css)
         .pipe(concat('plugins.min.css'))
