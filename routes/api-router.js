@@ -6,6 +6,7 @@ import till from './api/till';
 import usrClass from './api/usr-class';
 import common from './api/common';
 import wechat from './api/wechat';
+import order from './api/order';
 const router = express.Router();
 
 // common
@@ -73,4 +74,37 @@ router.post('/classEvaluate/addUsrClassEvaluate', usrClass.addUsrClassEvaluate_c
 //特训营单次课添加评价
 router.post('/specialEvaluate/addUsrClassEvaluate', usrClass.addUsrClassEvaluate_specialEvaluate);
 
+// order
+/*
+	查询出优惠的金额信息和优惠的猫粮信息
+ */
+router.post('/order/selectDiscountInfo',order.selectDiscountInfo);
+/*
+	课时充值接口
+ */
+router.post('/order/selectCopSalePolicy',order.selectCopSalePolicy);
+/*
+	单次课现金支付课时功能
+ */
+router.post('/order/classTimeMoneyPayment',order.classTimeMoneyPayment);
+/*
+	单次课课时支付预约课程
+ */
+router.post('/order/classTimePayOrder',order.classTimePayOrder);
+/*
+	查询优惠政策详细信息
+ */
+router.post('/order/selectCopSalePolicy',order.selectCopSalePolicy);
+/*
+	特训营现金支付课时功能
+ */
+router.post('/order/specialClassMoneyPayment',order.specialClassMoneyPayment);
+/*
+	特训营课时支付预约课程
+ */
+router.post('/order/specialClassPayOrder',order.specialClassPayOrder);
+/*
+	充值订单列表
+ */
+router.post('/order/selectUsrRechargeOrderList',order.selectUsrRechargeOrderList);
 module.exports = router;
