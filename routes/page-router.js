@@ -106,6 +106,7 @@ router.get('/public/profile.html', (req, res, next) => {
 
 router.get('/public/shop.html', (req, res, next) => {
     let storeId = req.query.storeId;
+    let storeName = req.query.storeName;
     return res.render('public/shop', { title: '店铺', storeId: storeId, storeName: storeName});
 });
 
