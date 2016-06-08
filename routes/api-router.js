@@ -111,5 +111,6 @@ router.post('/order/specialClassPayOrder',order.specialClassPayOrder);
 /*
 	充值订单列表
  */
-router.post('/order/selectUsrRechargeOrderList',order.selectUsrRechargeOrderList);
+router.post('/order/selectUsrRechargeOrderRemainNum',order.selectUsrRechargeOrderRemainNum);
+
 module.exports = router;

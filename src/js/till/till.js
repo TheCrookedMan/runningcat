@@ -37,4 +37,3 @@
     this.tillList = new tillList();
     this.tillList.init();
 }).call(this);
-

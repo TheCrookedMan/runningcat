@@ -5,6 +5,7 @@ import course from './api/course';
 import usrClass from './api/usr-class';
 import user from './api/user';
 import till from './api/till';
+import order from './api/order';
 let router = express.Router();
 
 /*店铺*/
@@ -89,27 +90,38 @@ router.get('/message.template', [profile.getMemberMessages], (req, res, next) =>
 /*
     评价模板
  */
-router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getUsrClassEvaluate_classEvaluate,usrClass.getTrainFeel,usrClass.getMemberFoodNum], (req, res, next) => {
-    let courseId = req.query.courseId,onceId = req.query.onceId;
+router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getUsrClassEvaluate_classEvaluate, usrClass.getTrainFeel, usrClass.getMemberFoodNum], (req, res, next) => {
+    let courseId = req.query.courseId,
+        onceId = req.query.onceId;
     return res.render('_partial/template/comment-class', {
         data: res.data,
-        courseId:courseId,
-        onceId:onceId
+        courseId: courseId,
+        onceId: onceId
     });
 });
 /*
     特训营评价模板
  */
-router.get('/special-comment-class.template', [till.querySpecialClassInfo, usrClass.getUsrClassEvaluate_specialEvaluate,usrClass.getTrainFeel,usrClass.getMemberFoodNum], (req, res, next) => {
+router.get('/special-comment-class.template', [till.querySpecialClassInfo, usrClass.getUsrClassEvaluate_specialEvaluate, usrClass.getTrainFeel, usrClass.getMemberFoodNum], (req, res, next) => {
     return res.render('_partial/template/special-comment-class', {
         data: res.data
     });
 });
 
-router.get('/edit-profile.template',[user.memberInfo],(req, res, next)=>{
+router.get('/edit-profile.template', [user.memberInfo], (req, res, next) => {
     return res.render('_partial/template/edit-profile', {
         memberInfo: res.data['member.memberinfo']['record']
     });
 });
+
+/*
+    充值记录模板
+ */
+router.get('/recharge-record.template', [order.selectUsrRechargeOrderList], (req, res, next) => {
+    return res.render('_partial/template/recharge-record', {
+        data: res.data['order.selectUsrRechargeOrderList']['record']
+    });
+});
+
 
 module.exports = router;

@@ -135,13 +135,13 @@
         },
         verifyBirthday: function(year, month, day, birthday)  {  
             var now = new Date();  
-            var now_year = now.getFullYear();  
+            var now_year = now.getFullYear();
             if (birthday.getFullYear() == year && (birthday.getMonth() + 1) == month && birthday.getDate() == day) {   
                 var time = now_year - year;   
-                if (time >= 0 && time <= 130)    {    
-                    return true;   
+                if (time >= 0 && time <= 130){    
+                    return true;
                 }   
-                return false;  
+                return false;
             }  
             return false; 
         },

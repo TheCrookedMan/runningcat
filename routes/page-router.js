@@ -2,6 +2,7 @@ import express from 'express';
 import user from './api/user';
 import common from './tool/common';
 import wechatAuth from './api/wechat';
+
 let router = express.Router();
 
 /*
@@ -52,19 +53,19 @@ router.get('/wechatAuth.html', (req, res, next) => {
                         /*
                             redirect_uri 如果为空的话，自动跳转至 /public/shop.html
                          */
-                        if(!redirect_uri){
+                        if (!redirect_uri) {
                             res.redirect("/public/shop.html");
                         } else {
                             /*
                                 redirect_uri 跳转链接不能有登录、注册等页面跳转 因为已经登录成功了。如果 redirect_uri 含有下面的链接字符 那么自动跳转到 /public/shop.html
                              */
-                            if(redirect_uri.indexOf('/public/register.html') == -1 && redirect_uri.indexOf('/public/profile.html') == -1 && redirect_uri.indexOf('/public/login.html') == -1){
+                            if (redirect_uri.indexOf('/public/register.html') == -1 && redirect_uri.indexOf('/public/profile.html') == -1 && redirect_uri.indexOf('/public/login.html') == -1) {
                                 res.redirect(redirect_uri);
                             } else {
                                 res.redirect("/public/shop.html");
                             }
                         }
-                        
+
                     } else {
                         /*
                             其他错误处理
@@ -105,7 +106,7 @@ router.get('/public/profile.html', (req, res, next) => {
 
 router.get('/public/shop.html', (req, res, next) => {
     let storeId = req.query.storeId;
-    return res.render('public/shop', { title: '店铺', storeId: storeId});
+    return res.render('public/shop', { title: '店铺', storeId: storeId });
 });
 
 router.get('/public/login.html', (req, res, next) => {
@@ -238,7 +239,7 @@ router.get('/course/pay-sucess.html', (req, res, next) => {
 });
 router.get('/course/course.html', (req, res, next) => {
     let storeId = req.query.storeId;
-    return res.render('course/course', { title: '单次课程' , storeId: storeId});
+    return res.render('course/course', { title: '单次课程', storeId: storeId });
 });
 
 router.get('/course/course-detail.html', (req, res, next) => {
@@ -263,7 +264,7 @@ router.get('/till/pay-sucess.html', (req, res, next) => {
 
 router.get('/till/till.html', (req, res, next) => {
     let storeId = req.query.storeId;
-    return res.render('till/till', { title: '特训营' , storeId: storeId});
+    return res.render('till/till', { title: '特训营', storeId: storeId });
 });
 
 router.get('/till/till-detail.html', (req, res, next) => {

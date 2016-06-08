@@ -16,6 +16,6 @@
             }
         }).error(function(data) {
             modal.alert(data.responseJSON.msg);
-        })
+        });
     }
 }).call(this)

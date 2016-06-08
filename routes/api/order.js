@@ -39,7 +39,6 @@ exports.classTimePayOrder = (req, res, next) => {
 /*
 	查询优惠政策详细信息
  */
-
 exports.selectCopSalePolicy = (req, res, next) => {
     new rest({
         functionCode: 'order.selectCopSalePolicy',
@@ -70,5 +69,14 @@ exports.specialClassPayOrder = (req, res, next) => {
 exports.selectUsrRechargeOrderList = (req, res, next) => {
     new rest({
         functionCode: 'order.selectUsrRechargeOrderList',
+    }).link(req, res, next);
+}
+
+/*
+	查询剩余课时总数
+ */
+exports.selectUsrRechargeOrderRemainNum = (req, res, next) => {
+    new rest({
+        functionCode: 'order.selectUsrRechargeOrderRemainNum',
     }).post(req, res, next);
 }
