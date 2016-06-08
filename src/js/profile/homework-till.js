@@ -1,5 +1,15 @@
 (function() {
-    var onceId=("#onceId").val();
+    var onceId=$("#onceId").val();
+
+    /*特训营详情*/
+    $.get('/pubtill.template', {
+        userId:userInfo.memberId,
+        specialId:onceId
+    }).success(function(data) {
+         $(".hr").before(data);
+    }).error(function(err) {});
+
+    /*特训营作业列表*/
     var homeWork = function() {
         this.pageNo = 1;
         this.pageSize = 10;

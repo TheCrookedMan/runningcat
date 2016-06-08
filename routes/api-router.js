@@ -57,10 +57,12 @@ router.post('/queryUserTrainList', profile.queryUserTrainList);
 //course
 router.post('/course', course.course);
 router.post('/coursePlan/queryCoursePlanInfo', course.courseDetail);
+router.post('/queryCoursePlanInfo', course.queryCoursePlanInfo);
 
 //till
 router.post('/till', till.till);
 router.post('/specialClass/querySpecialClassInfo', till.tillDetail);
+router.post('/querySpecialClassInfo', till.querySpecialClassInfo);
 
 //usr-class
 router.post('/usr-class/doSignIn', usrClass.doSignIn);

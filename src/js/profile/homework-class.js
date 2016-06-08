@@ -1,5 +1,15 @@
 (function() {
-    var onceId=("#onceId").val();
+    var onceId=$("#onceId").val();
+
+    /*课程详情*/
+    $.get('/pubclass.template', {
+        userId:userInfo.memberId,
+        courseId:onceId
+    }).success(function(data) {
+         $(".hr").before(data);
+    }).error(function(err) {});
+
+    /*课程作业列表*/
     var homeWork = function() {
         this.pageNo = 1;
         this.pageSize = 10;
@@ -36,4 +46,15 @@
     }
     this.homeWork = new homeWork();
     this.homeWork.init();
+
+    /*查询我的课次作业*/
+    $.get('/submitclass.template', {
+        memberId:userInfo.memberId,
+        courseId:onceId,
+        workId:1
+    }).success(function(data) {
+         //$(".hr").before(data);
+    }).error(function(err) {});
+
+
 }).call(this);
