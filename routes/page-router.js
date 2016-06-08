@@ -106,7 +106,7 @@ router.get('/public/profile.html', (req, res, next) => {
 
 router.get('/public/shop.html', (req, res, next) => {
     let storeId = req.query.storeId;
-    return res.render('public/shop', { title: '店铺', storeId: storeId });
+    return res.render('public/shop', { title: '店铺', storeId: storeId, storeName: storeName});
 });
 
 router.get('/public/login.html', (req, res, next) => {
@@ -239,7 +239,8 @@ router.get('/course/pay-sucess.html', (req, res, next) => {
 });
 router.get('/course/course.html', (req, res, next) => {
     let storeId = req.query.storeId;
-    return res.render('course/course', { title: '单次课程', storeId: storeId });
+    let storeName = req.query.storeName;
+    return res.render('course/course', { title: '单次课程' , storeId: storeId, storeName: storeName});
 });
 
 router.get('/course/course-detail.html', (req, res, next) => {
@@ -264,7 +265,8 @@ router.get('/till/pay-sucess.html', (req, res, next) => {
 
 router.get('/till/till.html', (req, res, next) => {
     let storeId = req.query.storeId;
-    return res.render('till/till', { title: '特训营', storeId: storeId });
+    let storeName = req.query.storeName;
+    return res.render('till/till', { title: '特训营' , storeId: storeId, storeName: storeName});
 });
 
 router.get('/till/till-detail.html', (req, res, next) => {

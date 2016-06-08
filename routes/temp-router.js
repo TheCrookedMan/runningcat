@@ -99,6 +99,7 @@ router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getU
         onceId: onceId
     });
 });
+
 /*
     特训营评价模板
  */
@@ -123,5 +124,25 @@ router.get('/recharge-record.template', [order.selectUsrRechargeOrderList], (req
     });
 });
 
+/*公共查询头部课程信息*/
+router.get('/pubclass.template', [course.queryCoursePlanInfo], (req, res, next) => {
+    return res.render('_partial/template/pubclass', {
+        data: res.data['coursePlan.queryCoursePlanInfo']['record']
+    });
+});
+
+/*公共查询头部特训营信息*/
+router.get('/pubtill.template', [till.querySpecialClassInfo], (req, res, next) => {
+    return res.render('_partial/template/pubtill', {
+        data: res.data['specialClass.querySpecialClassInfo']['record']
+    });
+});
+
+/*查询作业、提交作业*/
+router.get('/submitclass.template', [usrClass.findMyCourseWorkt], (req, res, next) => {
+    return res.render('_partial/template/submitclass', {
+        data: res.data['usrCoursetimeWork.findMyCourseWorkt']['record']
+    });
+});
 
 module.exports = router;

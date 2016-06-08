@@ -1,6 +1,6 @@
 {% for shop in data %}
 <div class="shop-detail">
-    <a href="/course/course.html?storeId={{shop.id}}"><img src="{{settings.imageAddress}}{{shop.storeUrl}}" /></a>
+    <a href="/course/course.html?storeId={{shop.id}}&storeName={{shop.storeName}}"><img src="{{settings.imageAddress}}{{shop.storeUrl}}" /></a>
     <div class="mask">
         <div class="shop-name">{{shop.storeName}}</div>
         <div class="shop-address">
