@@ -58,7 +58,9 @@
                 geocoder.getAddress(latLng);
                 //设置服务请求成功的回调函数
                 geocoder.setComplete(function(result) {
-                    alert(JSON.stringify(result));
+                    //alert(JSON.stringify(result));
+                    $("#cityName").text(result.city);
+                    shop.init();
                 });
                 //若服务请求失败，则运行以下函数
                 geocoder.setError(function() {
@@ -74,4 +76,49 @@
         });
     });
     var wxinit = new initWXConfig();
+
+    /*常去店铺*/
+    $.get('/oftenshop.template', {
+        memberId:userInfo.memberId
+    }).success(function(data) {
+         $(".often").after(data);
+    }).error(function(err) {});
+
+
+    /*获取店铺*/
+    var shop = function() {
+        this.pageNo = 1;
+        this.pageSize = 10;
+        this.isEnd = false;
+        this.cityName=$("#cityName").text();
+    }
+    shop.prototype = {
+        init: function() {
+            var self = this;
+            self.getList();
+            scroll.on(function(){
+                if (!self.isEnd) {
+                    self.pageNo++;
+                    self.getList();
+                }
+            }, function() {});
+        },
+        getList: function() {
+            var self = this;
+            $.get('/shop.template', {
+                cityName:self.cityName,
+                pageNo: self.pageNo,
+                pageSize: self.pageSize
+            }).success(function(data) {
+                data = data.replace(/(^\s+)|(\s+$)/g, "");
+                if ("" == data) {
+                    self.isEnd = true;
+                } else {
+                    self.isEnd = false;
+                    $(".other").after(data);
+                }
+            }).error(function(err) {});
+        }
+    }
+    this.shop = new shop();
 }).call(this)

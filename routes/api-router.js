@@ -1,6 +1,7 @@
 import express from 'express';
 import user from './api/user';
 import profile from './api/profile';
+import shop from './api/shop';
 import course from './api/course';
 import till from './api/till';
 import usrClass from './api/usr-class';
@@ -27,6 +28,10 @@ router.post('/updateUserInfo', user.updateUserInfo);
 router.post('/memberInfo', user.memberInfo);
 // 获取用户信息
 router.post('/user/getUserInfo', user.getUserInfo);
+
+//shop
+router.post('/queryOftenStore', shop.queryOftenStore);
+router.post('/queryCopStoreList', shop.queryCopStoreList);
 
 //profile
 /*猫粮*/
