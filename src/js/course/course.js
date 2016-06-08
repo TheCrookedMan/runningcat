@@ -3,6 +3,7 @@
         this.pageNo = 1;
         this.pageSize = 10;
         this.isEnd = false;
+        this.storeId=$("#storeId").val();
     }
     courseList.prototype = {
         init: function() {
@@ -19,7 +20,7 @@
             var self = this;
             $.get('/course.template', {
                 userId: userInfo.memberId,
-                storeId:4,
+                storeId:self.storeId,
                 queryDate:1463587200000,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize

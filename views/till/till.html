@@ -4,14 +4,15 @@
         background-color: #b3b3b3
     }
 </style>
+<input type="hidden" value="{{storeId}}" id="storeId">
 <section class="course">
     <div class="pub-tab skin1">
         <ul>
             <li>
-                <a href="/till/till.html"  class="cur">特训营</a>
+                <a href="/till/till.html?storeId={{storeId}}"  class="cur">特训营</a>
             </li>
             <li>
-                <a href="/course/course.html">常规课</a>
+                <a href="/course/course.html?storeId={{storeId}}">常规课</a>
             </li>
         </ul>
     </div>
