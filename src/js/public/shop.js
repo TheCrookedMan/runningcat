@@ -106,7 +106,7 @@
         getList: function() {
             var self = this;
             $.get('/shop.template', {
-                cityName:self.cityName,
+                provinceName:self.cityName,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }).success(function(data) {
