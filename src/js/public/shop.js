@@ -58,9 +58,10 @@
                 geocoder.getAddress(latLng);
                 //设置服务请求成功的回调函数
                 geocoder.setComplete(function(result) {
-                    //alert(JSON.stringify(result));
-                    $("#cityName").text(result.city);
-                    shop.init();
+                    // alert(JSON.stringify(result.detail.addressComponents));
+                    // alert(result.detail.addressComponents.city);
+                    $("#cityName").text(result.detail.addressComponents.city);
+                    shopList.init();
                 });
                 //若服务请求失败，则运行以下函数
                 geocoder.setError(function() {
@@ -90,7 +91,6 @@
         this.pageNo = 1;
         this.pageSize = 10;
         this.isEnd = false;
-        this.cityName=$("#cityName").text();
     }
     shop.prototype = {
         init: function() {
@@ -105,6 +105,7 @@
         },
         getList: function() {
             var self = this;
+            this.cityName=$("#cityName").text();
             $.get('/shop.template', {
                 provinceName:self.cityName,
                 pageNo: self.pageNo,
@@ -120,5 +121,5 @@
             }).error(function(err) {});
         }
     }
-    this.shop = new shop();
+    this.shopList = new shop();
 }).call(this)
