@@ -376,6 +376,7 @@ ul.other-login-way li img {
     position: relative;
     top: -0.3rem;
     height: 30px;
+    box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
 }
 
 .profile-wrap .am-form ul li input[type="radio"] {
@@ -785,36 +786,68 @@ ul.other-login-way li img {
     float: left;
     .btn {
         position: absolute;
-        top: 0.9rem;
-        &.pre {
-            left: 0.5rem;
+        // top: 1.2rem;
+        &.slider-pre {
+            padding: 1.25rem 0.625rem;
+            left: 0;
+            color: $gray-light;
+            // left: 0.5rem;
         }
-        &.next {
-            right: 0.5rem;
+        
+        &.slider-next {
+            padding: 1.25rem 0.625rem;
+            right: 0;
+            color: $gray-light;
+            // right: 0.5rem;
         }
-        i {
-            color: #fff;
+        &.active{
+            color: $white;
         }
+        // i {
+        //     color: #fff;
+        // }
     }
-    .list {
+    .swiper {
         width: 88%;
-        display: inline-block;
-        float: left;
+        // height: 46px;
+        // display: inline-block;
+        // float: left;
+        overflow: hidden;
         margin-left: 6%;
-        p {
-            margin: 0;
-            padding: 0;
-        }
-        a {
-            display: inline-block;
-            background: #f45252;
-            color: #fff;
-            width: 14.2%;
-            float: left;
-            text-align: center;
-            padding: 0.3rem 0;
-            &.cur {
-                background: #b74142;
+        .wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            overflow: scroll;
+            .slider {
+                width: 14.2%;
+                -webkit-flex-shrink: 0;
+                -ms-flex: 0 0 auto;
+                flex-shrink: 0;
+                height: 100%;
+                position: relative;
+                padding: 6px 0px;
+                color: $white;
+                // display: inline-block;
+                // background: #f45252;
+                // color: #fff;
+                // width: 14.2%;
+                // float: left;
+                // text-align: center;
+                // padding: 0.3rem 0;
+                p {
+                    margin: 0;
+                    padding: 0;
+                }
+                &.cur {
+                    background: #b74142;
+                }
             }
         }
     }
@@ -1796,28 +1829,61 @@ table {
     }
 }
 
-
-@font-face {font-family: "iconfont";
-  src: url('../fonts/iconfont.eot?t=1465288521'); /* IE9*/
-  src: url('../fonts/iconfont.eot?t=1465288521#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('../fonts/iconfont.woff?t=1465288521') format('woff'), /* chrome, firefox */
-  url('../fonts/iconfont.ttf?t=1465288521') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('../fonts/iconfont.svg?t=1465288521#iconfont') format('svg'); /* iOS 4.1- */
+@font-face {
+    font-family: "iconfont";
+    src: url('../fonts/iconfont.eot?t=1465288521');
+    /* IE9*/
+    src: url('../fonts/iconfont.eot?t=1465288521#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/iconfont.woff?t=1465288521') format('woff'), /* chrome, firefox */
+    url('../fonts/iconfont.ttf?t=1465288521') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../fonts/iconfont.svg?t=1465288521#iconfont') format('svg');
+    /* iOS 4.1- */
 }
 
 .iconfont {
-  font-family:"iconfont" !important;
- 
+    font-family: "iconfont" !important;
 }
-.icon-keshi:before { content: "\e602"; }
-.icon-chudianyu:before { content: "\e9db"; }
-.icon-yu2:before { content: "\e630"; }
-.icon-kaluli:before { content: "\e603"; }
-.icon-xinlv:before { content: "\e664"; }
-.icon-xiaolv:before { content: "\e63a"; }
-.icon-paimingicon:before { content: "\e61a"; }
-.icon-paiming23:before { content: "\e609"; }
-.icon-paiming21:before { content: "\e608"; }
-.icon-paiming22:before { content: "\e607"; }
-.icon-paiming:before { content: "\e665"; }
 
+.icon-keshi:before {
+    content: "\e602";
+}
+
+.icon-chudianyu:before {
+    content: "\e9db";
+}
+
+.icon-yu2:before {
+    content: "\e630";
+}
+
+.icon-kaluli:before {
+    content: "\e603";
+}
+
+.icon-xinlv:before {
+    content: "\e664";
+}
+
+.icon-xiaolv:before {
+    content: "\e63a";
+}
+
+.icon-paimingicon:before {
+    content: "\e61a";
+}
+
+.icon-paiming23:before {
+    content: "\e609";
+}
+
+.icon-paiming21:before {
+    content: "\e608";
+}
+
+.icon-paiming22:before {
+    content: "\e607";
+}
+
+.icon-paiming:before {
+    content: "\e665";
+}

@@ -1,71 +1,166 @@
 (function() {
-    $.post('/userCenter/queryUserHeartrate', {
-        // memberId:userInfo.memberId,
-        memberId: 1,
-        month: '2016-05'
-    }).success(function(data) {
-        var record = data.data;
-        initHeartrate(record);
-    });
+    var dom = document.getElementById("container");
+    var myChart = echarts.init(dom);
+    option = null;
+
+
+    var now = new Date();
+    var month = now.getMonth() + 1;
+    month = month.length > 1 ? month : "0" + month;
+    now = [now.getFullYear(), month].join('-');
+
+    function init(date) {
+        $("#changeDate").val(date);
+        $("#changeDate").mobiscroll().date({
+            dateFormat: 'yy-mm',
+            lang: 'zh',
+            maxDate: new Date(),
+            onBeforeShow: function(inst) {
+                inst.settings.wheels[0].length > 2 ? inst.settings.wheels[0].pop() : null;
+            },
+            headerText: function(valueText) {
+                array = valueText.split('-');
+                return array[0] + "年" + array[1] + "月";
+            },
+            onSelect: function(value) {
+                queryUserHeartrate(value);
+            }
+        });
+        queryUserHeartrate(date);
+    }
+    init(now);
+
+
+    function queryUserHeartrate(date) {
+        data = getFakeData(date);
+        initHeartrate(data);
+
+        // myChart.showLoading();
+        // $.post('/userCenter/queryUserHeartrate', {
+        //     memberId: userInfo.memberId,
+        //     month: date
+        // }).success(function(data) {
+        //     myChart.hideLoading();
+        //     var record = data.data;
+        //     initHeartrate(record);
+        // });
+    }
 
     function initHeartrate(data) {
-        var dom = document.getElementById("container");
-        var myChart = echarts.init(dom);
-        var app = {};
-        option = null;
-        var list = [];
-        for(var i=0;i<data.length;i++){
-        	var obj = data[i];
-        	var createTime = obj.createTime;
-        	
-        	list.push({
-        		name:common.formatDate(createTime,'yyyy-MM-dd'),
-        		value:[obj.heartRate]
-        	})
-        }
-        option = {
+        myChart.setOption(option = {
             title: {
-                text: '动态数据 + 时间坐标轴'
+                text: 'Confidence Band',
+                subtext: 'Example in MetricsGraphics.js',
+                left: 'center'
             },
             tooltip: {
                 trigger: 'axis',
-                formatter: function(params) {
-                    params = params[0];
-                    var date = new Date(params.name);
-                    return date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' : ' + params.value[1];
-                },
                 axisPointer: {
                     animation: false
+                },
+                formatter: function(params) {
+                    return params[2].name + '<br />' + params[2].value;
                 }
             },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '5%',
+                top: '5%',
+                containLabel: true
+            },
             xAxis: {
-                type: 'time',
+                type: 'category',
+                data: data.map(function(item) {
+                    return item.date;
+                }),
+                axisLabel: {
+                    formatter: function(value, idx) {
+                        var date = new Date(value);
+                        return [date.getMonth() + 1, date.getDate()].join('-')
+                    }
+                },
                 splitLine: {
                     show: false
                 }
             },
             yAxis: {
                 type: 'value',
-                min: 0,
-                max: 140,
                 boundaryGap: [0, '100%'],
                 splitLine: {
                     show: false
-                }
+                },
+                min: 0,
+                max: 140
             },
             series: [{
-                name: '模拟数据',
                 type: 'line',
-                showSymbol: false,
+                data: data.map(function(item) {
+                    return item.heartRate;
+                }),
                 hoverAnimation: false,
-                data: list
+                symbolSize: 6,
+                itemStyle: {
+                    normal: {
+                        color: '#c23531'
+                    }
+                },
+                showSymbol: false
             }]
-        };
-
-        if (option && typeof option === "object") {
-            myChart.setOption(option, true);
-        }
+        });
+        // if (option && typeof option === "object") {
+        //     var startTime = +new Date();
+        //     myChart.setOption(option, true);
+        //     var endTime = +new Date();
+        //     var updateTime = endTime - startTime;
+        //     console.log("Time used:", updateTime);
+        // }
     }
 
+
+
+    function getFakeData(date) {
+        var data = [];
+        var len = getDays(date);
+        var dd = new Date(date);
+        for (var i = 1; i <= len; i++) {
+            var obj = {};
+            dd.setDate(i);
+            obj.date = [dd.getFullYear(), dd.getMonth() + 1, dd.getDate()].join('-');
+            var number = Math.random() * 120 + 10;
+            obj.heartRate = number;
+            data.push(obj);
+        }
+        return data;
+    }
+
+    function getDays(date) {
+        //构造当前日期对象
+        var date = new Date(date);
+
+        //获取年份
+        var year = date.getFullYear();
+
+        //获取当前月份
+        var mouth = date.getMonth() + 1;
+
+        //定义当月的天数；
+        var days;
+
+        //当月份为二月时，根据闰年还是非闰年判断天数
+        if (mouth == 2) {
+            days = year % 4 == 0 ? 29 : 28;
+
+        } else if (mouth == 1 || mouth == 3 || mouth == 5 || mouth == 7 || mouth == 8 || mouth == 10 || mouth == 12) {
+            //月份为：1,3,5,7,8,10,12 时，为大月.则天数为31；
+            days = 31;
+        } else {
+            //其他月份，天数为：30.
+            days = 30;
+
+        }
+        console.log(days);
+        return days;
+    }
 
 }).call(this)

@@ -75,7 +75,7 @@ gulp.task('watcher', () => {
         //不显示在浏览器中的任何通知。
         // notify: false,
         //停止自动打开浏览器
-        // open: false,
+        open: false,
         port: 4567,
         proxy: {
             target: url,
@@ -181,13 +181,13 @@ gulp.task('js:build', () => {
 });
 
 const plugins_src = {
-    inputfile_js: [src_plugins_dir + "/jquery.min.js", src_plugins_dir + "/amazeui/amazeui.min.js", src_plugins_dir + "/common.js", src_plugins_dir + "/upload.js"],
+    inputfile_js: [src_plugins_dir + "/jquery.min.js", src_plugins_dir + "/jquery.cookie.js",src_plugins_dir + "/amazeui/amazeui.min.js", src_plugins_dir + "/common.js", src_plugins_dir + "/upload.js"],
     inputfile_css: src_plugins_dir + "/**/*.css",
     outputfile: plugins_dir
 }
 
 const plugins_mobiscroll = {
-    inputfile_js: [src_plugins_dir + '/mobiscroll/js/mobiscroll.core.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.widget.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.scroller.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.select.js'],
+    inputfile_js: [src_plugins_dir + '/mobiscroll/js/mobiscroll.core.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.widget.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.scroller.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.select.js',src_plugins_dir+'/mobiscroll/js/mobiscroll.util.datetime.js',src_plugins_dir+'/mobiscroll/js/mobiscroll.datetime.js',src_plugins_dir+'/mobiscroll/js/i18n/mobiscroll.i18n.zh.js'],
     outputfile: plugins_dir
 }
 

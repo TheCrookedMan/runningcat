@@ -146,6 +146,7 @@
             }
         });
     }
+
     function initAreaSelect(data) {
         var list = [];
         if (data.code == "0000" && data.success) {
@@ -189,13 +190,16 @@
             $("#demo-test-select").mobiscroll("show");
         }, 200);
     };
-
-    $("form").submit(function() {
-        var data = common.parseForm("form");
-        $.post('/updateUserInfo', data).success(function(data) {
-            modal.alert(data.msg);
-        });
-        return false;
+    $('#loginForm').validator({
+        submit: function(form) {
+            if (this.isFormValid()) {
+                var data = common.parseForm("form");
+                $.post('/updateUserInfo', data).success(function(data) {
+                    modal.alert(data.msg);
+                });
+            }
+            return false;
+        }
     });
 
 

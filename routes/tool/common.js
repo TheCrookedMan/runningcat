@@ -31,6 +31,10 @@ exports.setCookie = (key, value, res) => {
     res.setHeader('Set-Cookie', string);
 }
 
+exports.setCookies = (list, res) => {
+    res.setHeader('Set-Cookie', list);
+}
+
 exports.removeCookie = (key, res) => {
     let string = key + '=0;Max-Age=1; Path=/';
     res.setHeader('Set-Cookie', string);

@@ -199,6 +199,9 @@
                     topCallback && topCallback();
                 }
             });
+        },
+        off:function(){
+            $(window).off('scroll');
         }
     }
     this.scroll = new scroll();

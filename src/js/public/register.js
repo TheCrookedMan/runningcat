@@ -36,19 +36,22 @@
             }
         }, 1000);
     }
-    $(".am-form").submit(function(ev) {
-        var data = common.parseForm(".am-form");
-        if (common.regMobileNo(data.mobileNo)) {
-            $.post('/checkSmscode', { 'mobileNo': data.mobileNo, 'smsCode': data.smsCode }).success(function(data) {
-                var params = $(".am-form").serialize();
-                window.location.href = "/public/profile.html?" + params;
-            }).error(function(data) {
-                modal.alert(data.responseJSON.msg);
-            })
-        } else {
-            modal.alert("情确认手机号是否输入正确！");
+    $('#loginForm').validator({
+        submit: function(form) {
+            if (this.isFormValid()) {
+                var data = common.parseForm(".am-form");
+                if (common.regMobileNo(data.mobileNo)) {
+                    $.post('/checkSmscode', { 'mobileNo': data.mobileNo, 'smsCode': data.smsCode }).success(function(data) {
+                        var params = $(".am-form").serialize();
+                        window.location.href = "/public/profile.html?" + params;
+                    }).error(function(data) {
+                        modal.alert(data.responseJSON.msg);
+                    })
+                } else {
+                    modal.alert("情确认手机号是否输入正确！");
+                }
+            }
+            return false;
         }
-
-        return false;
-    })
+    });
 }).call(this);

@@ -13,7 +13,7 @@ body {
         <!-- <p>点击头像上传图片</p> -->
         <p id="nicknameText"></p>
     </div>
-    <form method="post" class="am-form">
+    <form method="post" class="am-form" data-am-validator id="loginForm">
         <input type="hidden" name="password" value="{{password}}">
         <input type="hidden" name="mobileNo" value="{{mobileNo}}">
         <input type="hidden" name="storeId" value="{{storeId}}">
@@ -23,7 +23,7 @@ body {
         <input type="hidden" name="openId" id="openId">
         <ul>
             <li>
-                <span class="tit">用户名</span>
+                <span class="tit">姓名</span>
                 <!-- <input type="text" name="nickName" id="name" placeholder=""> -->
                 <input type="text" name="userName" id="name" placeholder="" required>
             </li>

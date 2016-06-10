@@ -78,6 +78,7 @@
     });
     var wxinit = new initWXConfig();
 
+
     /*常去店铺*/
     $.get('/oftenshop.template', {
         memberId:userInfo.memberId
@@ -122,4 +123,6 @@
         }
     }
     this.shopList = new shop();
+    //测试
+    shopList.init();
 }).call(this)

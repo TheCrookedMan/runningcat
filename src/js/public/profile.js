@@ -1,19 +1,30 @@
 (function() {
-    var wechatUserInfo = $.AMUI.utils.cookie.get("wechatUserInfo");
+    var wechatUserInfo = "";
+
+    var wechatUserInfo1 = $.AMUI.utils.cookie.get("wechatUserInfo1");
+    var wechatUserInfo2 = $.AMUI.utils.cookie.get("wechatUserInfo2");
+    var wechatUserInfo3 = $.AMUI.utils.cookie.get("wechatUserInfo3");
+
+    wechatUserInfo = wechatUserInfo1 + wechatUserInfo2 + wechatUserInfo3;
     wechatUserInfo = JSON.parse(wechatUserInfo);
     $("#userPic").attr("src", wechatUserInfo.headimgurl);
     $("#nicknameText").text(wechatUserInfo.nickname);
     $("#nickName").val(wechatUserInfo.nickname);
     $("#photoUrl").val(wechatUserInfo.headimgurl);
     $("#openId").val(wechatUserInfo.openid);
-    $("form").submit(function() {
-        var data = common.parseForm(".am-form");
-        if (!regCardId.test(data.idcard)) {
-            modal.alert("身份证格式错误！");
+
+    $('#loginForm').validator({
+        submit: function(form) {
+            if (this.isFormValid()) {
+                var data = common.parseForm(".am-form");
+                if (!regCardId.test(data.idcard)) {
+                    modal.alert("身份证格式错误！");
+                    return false;
+                }
+                register(data);
+            }
             return false;
         }
-        register(data);
-        return false;
     });
 
     function register(data) {

@@ -37,7 +37,14 @@ router.get('/wechatAuth.html', (req, res, next) => {
                                 /*
                                     返回的userinfo信息里面有openid证明请求返回成功
                                  */
-                                common.setCookie("wechatUserInfo", userinfo, res);
+                                let wechatUserInfo1 = userinfo.substring(0,100);
+                                let wechatUserInfo2 = userinfo.substring(100,200);
+                                let wechatUserInfo3 = userinfo.substring(200);
+                                let list = [];
+                                list.push('wechatUserInfo1=' + wechatUserInfo1 + ';Max-Age=31536000; Path=/');
+                                list.push('wechatUserInfo2=' + wechatUserInfo2 + ';Max-Age=31536000; Path=/');
+                                list.push('wechatUserInfo3=' + wechatUserInfo3 + ';Max-Age=31536000; Path=/');
+                                common.setCookies(list, res);
                                 res.redirect(redirect_uri);
                             }
                         });
