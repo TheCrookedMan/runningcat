@@ -1,0 +1,45 @@
+<div class="am-popup-inner">
+    <div class="am-popup-hd">
+        <span data-am-modal-close class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+        <div class="table bd0">
+            <table class="skin1">
+                <colgroup>
+                    <col style="width:30%">
+                    <col style="width:30%">
+                    <col style="width:20%">
+                    <col style="width:20%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th>数量</th>
+                        <th>折扣</th>
+                        <th>减</th>
+                        <th>送</th>
+                    </tr>
+                    {% for detail in data %} {% if detail.isUse == 1 %}
+                    <tr>
+                        <td class="col-red">1-11课时</td>
+                        <td class="col-red">无折扣</td>
+                        <td class="col-red">0</td>
+                        <td class="col-red">0</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td >1-11课时</td>
+                        <td >无折扣</td>
+                        <td >0</td>
+                        <td >0</td>
+                    </tr>
+                    {% endif %} {% endfor %}
+                    <tr>
+                        <td colspan="4" class="col-red txt-l">
+                            *当前为金牌学员，可再享受9.5折优惠
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

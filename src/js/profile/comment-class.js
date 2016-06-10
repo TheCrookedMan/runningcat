@@ -72,4 +72,12 @@
         }
         ev.stopPropagation();
     });
+    $("body").on("keydown", ".pub-num .buy_num", function(ev) {
+        var buy_num = $(this).val();
+        if((event.keyCode < 48 || event.keyCode >57) && event.keyCode != 8){
+            modal.alert("请输入数字！");
+            return false;
+        }
+        ev.stopPropagation();
+    });
 }).call(this);

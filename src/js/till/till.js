@@ -3,7 +3,9 @@
         this.pageNo = 1;
         this.pageSize = 10;
         this.isEnd = false;
-        this.storeId=$("#storeId").val();
+        var store = common.getStoreInfo();
+        $(".pub-location .storeName").text(store.storeName);
+        this.storeId = store.storeId;
     }
     tillList.prototype = {
         init: function() {

@@ -145,4 +145,12 @@ router.get('/submitclass.template', [usrClass.findMyCourseWorkt], (req, res, nex
     });
 });
 
+/*充值 查询优惠政策详细信息*/
+router.get('/copSalePolicyDetail.template', [order.selectCopSalePolicy], (req, res, next) => {
+    return res.render('_partial/template/copSalePolicyDetail', {
+        data: res.data['order.selectCopSalePolicy']['record']
+    });
+});
+
+
 module.exports = router;

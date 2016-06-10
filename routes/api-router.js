@@ -89,7 +89,7 @@ router.post('/order/selectDiscountInfo',order.selectDiscountInfo);
 /*
 	课时充值接口
  */
-router.post('/order/selectCopSalePolicy',order.selectCopSalePolicy);
+router.post('/order/classRecharge',order.classRecharge);
 /*
 	单次课现金支付课时功能
  */
@@ -101,7 +101,7 @@ router.post('/order/classTimePayOrder',order.classTimePayOrder);
 /*
 	查询优惠政策详细信息
  */
-router.post('/order/selectCopSalePolicy',order.selectCopSalePolicy);
+// router.post('/order/selectCopSalePolicy',order.selectCopSalePolicy);
 /*
 	特训营现金支付课时功能
  */

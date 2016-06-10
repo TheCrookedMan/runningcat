@@ -104,7 +104,7 @@ gulp.task('watcher', () => {
      * 监听plugins文件夹
      * @return {[type]} [description]
      */
-    gulp.watch(src_plugins_dir + "/**/*.js", ['plugin', reload]);
+    gulp.watch(src_plugins_dir + "/**/*.js", ['plugin:watch', reload]);
 })
 
 /**
@@ -181,20 +181,51 @@ gulp.task('js:build', () => {
 });
 
 const plugins_src = {
-    inputfile_js: [src_plugins_dir + "/jquery.min.js", src_plugins_dir + "/jquery.cookie.js",src_plugins_dir + "/amazeui/amazeui.min.js", src_plugins_dir + "/common.js", src_plugins_dir + "/upload.js"],
+    inputfile_js: [src_plugins_dir + "/jquery.min.js", src_plugins_dir + "/jquery.cookie.js", src_plugins_dir + "/amazeui/amazeui.min.js", src_plugins_dir + "/common.js", src_plugins_dir + "/upload.js"],
     inputfile_css: src_plugins_dir + "/**/*.css",
     outputfile: plugins_dir
 }
 
 const plugins_mobiscroll = {
-    inputfile_js: [src_plugins_dir + '/mobiscroll/js/mobiscroll.core.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.widget.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.scroller.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.select.js',src_plugins_dir+'/mobiscroll/js/mobiscroll.util.datetime.js',src_plugins_dir+'/mobiscroll/js/mobiscroll.datetime.js',src_plugins_dir+'/mobiscroll/js/i18n/mobiscroll.i18n.zh.js'],
+    inputfile_js: [src_plugins_dir + '/mobiscroll/js/mobiscroll.core.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.widget.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.scroller.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.select.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.util.datetime.js', src_plugins_dir + '/mobiscroll/js/mobiscroll.datetime.js', src_plugins_dir + '/mobiscroll/js/i18n/mobiscroll.i18n.zh.js'],
     outputfile: plugins_dir
 }
 
 const plugins_wechat = {
-    inputfile_js:src_plugins_dir+'/wechat/*.js',
+    inputfile_js: src_plugins_dir + '/wechat/*.js',
     outputfile: plugins_dir
 }
+
+
+/**
+ * 第三方插件合并压缩  watch
+ * @param  {[type]} (          [description]
+ * @return {[type]}            [description]
+ */
+
+gulp.task('plugin:watch', () => {
+    gulp.src(plugins_src.inputfile_js)
+        .pipe(concat('plugins.min.js'))
+        .pipe(gulp.dest(plugins_src.outputfile));
+
+    gulp.src(src_plugins_dir + "/echarts/echarts.simple.min.js").pipe(gulp.dest(plugins_src.outputfile));
+    /*
+        mobiscroll 插件打包
+     */
+    gulp.src(plugins_mobiscroll.inputfile_js)
+        .pipe(concat('mobiscroll.min.js'))
+        .pipe(gulp.dest(plugins_mobiscroll.outputfile));
+    /*
+        wechat相关代码打包
+     */
+    gulp.src(plugins_wechat.inputfile_js)
+        .pipe(concat('wechat.min.js'))
+        .pipe(gulp.dest(plugins_wechat.outputfile));
+
+    return gulp.src(plugins_src.inputfile_css)
+        .pipe(concat('plugins.min.css'))
+        .pipe(gulp.dest(plugins_src.outputfile));
+});
 
 /**
  * 第三方插件合并压缩
@@ -202,7 +233,7 @@ const plugins_wechat = {
  * @return {[type]}            [description]
  */
 
-gulp.task('plugin', () => {
+gulp.task('plugin:build', () => {
     gulp.src(plugins_src.inputfile_js)
         .pipe(concat('plugins.min.js'))
         .pipe(uglify({
@@ -283,12 +314,12 @@ gulp.task('copy:img', () => {
  */
 
 gulp.task('server', ['clean'], (cb) => {
-    gulpSequence(['copy', 'sass:watch', 'js:watch', 'plugin'], 'watcher')(cb)
+    gulpSequence(['copy', 'sass:watch', 'js:watch', 'plugin:watch'], 'watcher')(cb)
 });
 /**
  * 部署
  */
 
 gulp.task('build', ['clean'], (cb) => {
-    gulpSequence(['copy', 'sass:build', 'js:build', 'plugin'])(cb)
+    gulpSequence(['copy', 'sass:build', 'js:build', 'plugin:build'])(cb)
 });

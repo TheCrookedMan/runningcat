@@ -1,4 +1,13 @@
 (function() {
+    $("body").on("click",".shop-detail a",function(ev){
+        var storeId = $(this).data("storeId");
+        var storeName = $(this).data("storeName");
+        var store = {
+            storeId:storeId,
+            storeName:storeName
+        }
+        $.AMUI.utils.cookie.set('store', JSON.stringify(store), 365 * 24 * 60 * 60, '/');
+    });
     function initWXConfig() {
         this.nonceStr = this.generateMixed(32);
         this.timestamp = new Date().getTime();

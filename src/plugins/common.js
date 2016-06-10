@@ -45,7 +45,7 @@
                 "S": date.getMilliseconds() //毫秒
             };
 
-            format = format.replace(/([yMdhmsqS])+/g, function(all, t){
+            format = format.replace(/([yMdhmsqS])+/g, function(all, t) {
                 var v = map[t];
                 if (v !== undefined) {
                     if (all.length > 1) {
@@ -59,6 +59,14 @@
                 return all;
             });
             return format;
+        },
+        getStoreInfo: function() {
+            var store = $.AMUI.utils.cookie.get("store");
+            if(!!store){
+                return JSON.parse(store);
+            } else {
+                return {}
+            }
         }
     };
     this.common = new common();
@@ -138,7 +146,7 @@
             var now_year = now.getFullYear();
             if (birthday.getFullYear() == year && (birthday.getMonth() + 1) == month && birthday.getDate() == day) {   
                 var time = now_year - year;   
-                if (time >= 0 && time <= 130){    
+                if (time >= 0 && time <= 130) {    
                     return true;
                 }   
                 return false;
@@ -200,7 +208,7 @@
                 }
             });
         },
-        off:function(){
+        off: function() {
             $(window).off('scroll');
         }
     }

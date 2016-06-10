@@ -1,6 +1,8 @@
 (function() {
     var courseList = function() {
-        this.storeId = $("#storeId").val();
+        var store = common.getStoreInfo();
+        $(".pub-location .storeName").text(store.storeName);
+        this.storeId = store.storeId;
     }
     courseList.prototype = {
         init: function(date) {

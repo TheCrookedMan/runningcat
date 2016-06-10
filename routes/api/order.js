@@ -12,9 +12,9 @@ exports.selectDiscountInfo = (req, res, next) => {
 /*
 	课时充值接口
  */
-exports.selectCopSalePolicy = (req, res, next) => {
+exports.classRecharge = (req, res, next) => {
     new rest({
-        functionCode: 'order.selectCopSalePolicy',
+        functionCode: 'order.classRecharge',
     }).post(req, res, next);
 }
 
@@ -42,7 +42,7 @@ exports.classTimePayOrder = (req, res, next) => {
 exports.selectCopSalePolicy = (req, res, next) => {
     new rest({
         functionCode: 'order.selectCopSalePolicy',
-    }).post(req, res, next);
+    }).link(req, res, next);
 }
 
 /*

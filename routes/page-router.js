@@ -37,8 +37,8 @@ router.get('/wechatAuth.html', (req, res, next) => {
                                 /*
                                     返回的userinfo信息里面有openid证明请求返回成功
                                  */
-                                let wechatUserInfo1 = userinfo.substring(0,100);
-                                let wechatUserInfo2 = userinfo.substring(100,200);
+                                let wechatUserInfo1 = userinfo.substring(0, 100);
+                                let wechatUserInfo2 = userinfo.substring(100, 200);
                                 let wechatUserInfo3 = userinfo.substring(200);
                                 let list = [];
                                 list.push('wechatUserInfo1=' + wechatUserInfo1 + ';Max-Age=31536000; Path=/');
@@ -114,7 +114,7 @@ router.get('/public/profile.html', (req, res, next) => {
 router.get('/public/shop.html', (req, res, next) => {
     let storeId = req.query.storeId;
     let storeName = req.query.storeName;
-    return res.render('public/shop', { title: '店铺', storeId: storeId, storeName: storeName});
+    return res.render('public/shop', { title: '店铺', storeId: storeId, storeName: storeName });
 });
 
 router.get('/public/login.html', (req, res, next) => {
@@ -246,9 +246,10 @@ router.get('/course/pay-sucess.html', (req, res, next) => {
     return res.render('course/pay-sucess', { title: '约课成功' });
 });
 router.get('/course/course.html', (req, res, next) => {
-    let storeId = req.query.storeId;
-    let storeName = req.query.storeName;
-    return res.render('course/course', { title: '单次课程' , storeId: storeId, storeName: storeName});
+    // let storeId = req.query.storeId;
+    // let storeName = req.query.storeName;
+    // return res.render('course/course', { title: '单次课程' , storeId: storeId, storeName: storeName});
+    return res.render('course/course', { title: '单次课程' });
 });
 
 router.get('/course/course-detail.html', (req, res, next) => {
@@ -272,9 +273,9 @@ router.get('/till/pay-sucess.html', (req, res, next) => {
 });
 
 router.get('/till/till.html', (req, res, next) => {
-    let storeId = req.query.storeId;
-    let storeName = req.query.storeName;
-    return res.render('till/till', { title: '特训营' , storeId: storeId, storeName: storeName});
+    // let storeId = req.query.storeId;
+    // let storeName = req.query.storeName;
+    return res.render('till/till', { title: '特训营' });
 });
 
 router.get('/till/till-detail.html', (req, res, next) => {
