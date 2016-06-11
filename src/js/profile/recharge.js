@@ -1,9 +1,23 @@
 (function() {
 
+    $.post('/user/getUserInfo', { memberId: userInfo.memberId }).success(function(data) {
+        if (data.code == "0000" && data.success) {
+            var record = data.data;
+            if (record.photoUrl.indexOf('wx.qlogo.cn') != -1) {
+                $(".course .img img").attr('src', record.photoUrl);
+            } else {
+                $(".course .img img").attr('src', window.imageAddress + record.photoUrl);
+            }
+            $(".course .info .nickName").text(record.nickName);
+            $(".course .info .mobileNo").text(record.mobileNo);
+        }
+    })
+
     function recharge() {
         var store = common.getStoreInfo();
         this.storeId = store.storeId;
         this.discountInfo = {};
+        this.gradePanelString = "";
     }
     recharge.prototype = {
         selectDiscountInfo: function(totalNum) {
@@ -30,6 +44,12 @@
                         $(".catExchangePrice").text(catExchangePrice);
                         $(".memberCatFood").text(memberCatFood);
                         $(".orderUnitPrice").text(orderUnitPrice);
+
+                        self.discountInfo = {
+                            totalNum: totalNum,
+                            nmemberCatFood: nmemberCatFood
+                        }
+                        self.gradePanelString = '<tr><td colspan="4" class="col-red txt-l">*当前为' + record.gradeName + '，可再享受' + (record.mlevemRatio * 10).toFixed(1) + '折优惠</td></tr>';
                     } else {
                         modal.alert(data.msg);
                     }
@@ -42,7 +62,11 @@
                 $(".catExchangePrice").text("0.00");
                 $(".memberCatFood").text("0");
                 $(".orderUnitPrice").text("0.00");
-
+                self.gradePanelString = "";
+                self.discountInfo = {
+                    totalNum: 0,
+                    nmemberCatFood: 0
+                }
             }
         },
         selectCopSalePolicy: function(totalNum) {
@@ -53,7 +77,8 @@
                     totalNum: totalNum,
                     storeId: self.storeId
                 }).success(function(data) {
-                    debugger
+                    $("#detail-popup").html(data);
+                    $("#detail-popup tbody").append(self.gradePanelString);
                 });
             } else {
                 modal.alert("请购买课时！");
@@ -61,7 +86,9 @@
         }
     }
     this.rechargeObj = new recharge();
-
+    /*
+    	课时数量加减控制器
+     */
     $("body").on("click", ".pub-num .num .min", function(ev) {
         var buy_num = $(".pub-num .buy_num").val();
         buy_num = parseInt(buy_num);
@@ -90,7 +117,6 @@
         rechargeObj.selectDiscountInfo(buy_num);
         ev.stopPropagation();
     });
-
     $("body").on("keydown", ".pub-num .buy_num", function(ev) {
         var buy_num = $(this).val();
         if ((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 8) {
@@ -99,7 +125,6 @@
         }
         ev.stopPropagation();
     });
-
     $("body").on("click", "#show-discount-detail", function(ev) {
         var buy_num = $(".pub-num .buy_num").val();
         if (buy_num > 0) {
@@ -114,5 +139,41 @@
         rechargeObj.selectCopSalePolicy(buy_num);
     });
 
-
-}).call(this)
+    function classRecharge() {
+        if (rechargeObj.discountInfo.totalNum > 0) {
+            $.post('/order/classRecharge', {
+                memberId: userInfo.memberId,
+                totalNum: rechargeObj.discountInfo.totalNum,
+                storeId: rechargeObj.storeId,
+                /* 课时来源：原始取得=1，转让取得=2，注册赠送=3，活动赠送=4 */
+                hourSouce: 1,
+                /* 支付方式：支付宝=1，微信=2，猫粮=3，优惠券=4，转让=5 */
+                payType: 2,
+                /* 1=会员，2=员工 */
+                type: 1,
+                catfood: rechargeObj.discountInfo.nmemberCatFood,
+                openId: common.getOpenId()
+            }).success(function(data) {
+                if (data.code == "0000" && data.success) {
+                    if (!data.data.retcode) {
+                    	modal.alert(data.data.error);
+                    } else {
+                        pay.go(data.data).then(function() {
+                            // success
+                        }, function() {
+                            // error
+                        })
+                    }
+                } else {
+                    modal.alert(data.msg);
+                }
+            })
+        } else {
+            modal.alert("请输入需要购买的课时数！");
+        }
+    }
+    $(".wechatPay").click(function(ev) {
+        classRecharge();
+        ev.stopPropagation();
+    });
+}).call(this);

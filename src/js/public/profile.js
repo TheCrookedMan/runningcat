@@ -1,12 +1,5 @@
 (function() {
-    var wechatUserInfo = "";
-
-    var wechatUserInfo1 = $.AMUI.utils.cookie.get("wechatUserInfo1");
-    var wechatUserInfo2 = $.AMUI.utils.cookie.get("wechatUserInfo2");
-    var wechatUserInfo3 = $.AMUI.utils.cookie.get("wechatUserInfo3");
-
-    wechatUserInfo = wechatUserInfo1 + wechatUserInfo2 + wechatUserInfo3;
-    wechatUserInfo = JSON.parse(wechatUserInfo);
+    var wechatUserInfo = common.getWechatInfo();
     $("#userPic").attr("src", wechatUserInfo.headimgurl);
     $("#nicknameText").text(wechatUserInfo.nickname);
     $("#nickName").val(wechatUserInfo.nickname);
