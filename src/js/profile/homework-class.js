@@ -55,19 +55,20 @@
         workId:11
     }).success(function(data) {
          $(".pub-list ul").append(data);
-         //console.log(data.data)
+
+         var imglength=0;
+         $(".uploadImage").uploadImage({
+            url: "/common/uploadImage",
+            callback: function(file, data, resp) {
+                imglength++;
+                var path = data.images[0].userFilePath;
+                var arr=new Array(imglength);
+                arr.push(path);
+                var str="<div class='task'><p><img src='"+window.imageAddress+arr[imglength]+"' id='imgUrl"+imglength+"'/></p></div>"
+                $(".uploadImage").parents(".img-list").prepend(str);
+            }
+        });
     }).error(function(err) {});
-
-
-    $(".uploadImage").uploadImage({
-        url: "/common/uploadImage",
-        callback: function(file, data, resp) {
-            var path = data.images[0].userFilePath;
-            console.log(path);
-            $(this).parents(".task").siblings(".task").find(".topicImgUrl").attr('src', window.imageAddress + path);
-            $(this).siblings(".photoUrl").val(path);
-        }
-    });
 
 
     /*提交作业*/
