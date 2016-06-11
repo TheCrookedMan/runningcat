@@ -34,7 +34,7 @@ exports.getCourseWorkInfo = (req, res, next) => {
 exports.findMyCourseWorkt = (req, res, next) => {
     new rest({
         functionCode: 'usrCoursetimeWork.findMyCourseWorkt',
-    }).post(req, res, next);
+    }).link(req, res, next);
 }
 
 /*

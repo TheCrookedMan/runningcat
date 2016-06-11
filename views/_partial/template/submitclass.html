@@ -1,30 +1,61 @@
+{% if data.workStatus == 1 %}
 <li>
     <i class="am-icon-dot-circle-o"><em>提交作业</em></i>
-    <div class="list-info">
-        <div class="info">
-           <p class="title">上传作业图片</p>
-        </div>
-        <div class="img-list upload">
-            <div class="task">
-                <p><img src="/img/app-icon72x72@2x.png"></p>
+    <form class="doCourseWork">
+        <div class="list-info">
+            <div class="info">
+               <p class="title">上传作业图片</p>
             </div>
-            <div class="task">
-                <p><img src="/img/app-icon72x72@2x.png"></p>
-            </div>
-            <div class="task">
-                <p><img src="/img/app-icon72x72@2x.png"></p>
-            </div>
-            <div class="task">
-                <p><img src="/img/app-icon72x72@2x.png"></p>
-                <div class="am-form-group am-form-file">
-                   <a href="javascript:void(0)"><i class="am-icon-plus"></i></a>
-                   <input type="file" accept="image/*">
+            <div class="img-list upload">
+                <div class="task">
+                    <p>
+                        <img src="/img/app-icon72x72@2x.png" alt="跑步猫" class="topicImgUrl" >
+                    </p>
+                </div>
+                <div class="task">
+                    <p><img src="/img/app-icon72x72@2x.png"></p>
+                    <div class="am-form-group am-form-file">
+                       <a href="javascript:void(0)"><i class="am-icon-plus"></i></a>
+                       <input type="file" accept="image/*" class="uploadImage">
+                       <input type="hidden" name="photoUrl" class="photoUrl" value="">
+                    </div>
                 </div>
             </div>
+            <textarea placeholder="受虐感言。。。" class="leaveMsg"></textarea>
+            <div class="pub-btn skin0">
+                <input type="submit" class="btn"  value="提交">
+            </div>
         </div>
-        <textarea placeholder="受虐感言。。。"></textarea>
-        <div class="pub-btn skin0">
-            <a href="javascript:void(0)" class="btn" data-id="{{data.id}}">提交</a>
-        </div>
-    </div>
+    </form>
 </li>
+{% else %}
+<li>
+    <i class="am-icon-dot-circle-o"><em>提交作业</em></i>
+    <form class="updateCourseWork">
+        <div class="list-info">
+            <div class="info">
+               <p class="title">上传作业图片</p>
+            </div>
+            <div class="img-list upload">
+                <div class="task">
+                    <p>
+                        <img src="{{settings.imageAddress}}{{data.topicImgUrl1}}" alt="跑步猫" class="topicImgUrl" >
+                    </p>
+                </div>
+                <div class="task">
+                    <p><img src="/img/app-icon72x72@2x.png"></p>
+                    <div class="am-form-group am-form-file">
+                       <a href="javascript:void(0)"><i class="am-icon-plus"></i></a>
+                       <input type="file" accept="image/*" class="uploadImage">
+                       <input type="hidden" name="photoUrl" class="photoUrl" value="{{data.topicImgUrl1}}">
+                    </div>
+                </div>
+            </div>
+            <textarea class="leaveMsg">{{data.workContent}}</textarea>
+            <div class="pub-btn skin0">
+                <input type="submit" class="btn"  value="提交">
+            </div>
+        </div>
+    </form>
+</li>
+{% endif %}
