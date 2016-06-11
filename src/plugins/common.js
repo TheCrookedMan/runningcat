@@ -62,11 +62,23 @@
         },
         getStoreInfo: function() {
             var store = $.AMUI.utils.cookie.get("store");
-            if(!!store){
+            if (!!store) {
                 return JSON.parse(store);
             } else {
                 return {}
             }
+        },
+        getWechatInfo: function() {
+            var wechatUserInfo = "";
+            var wechatUserInfo1 = $.AMUI.utils.cookie.get("wechatUserInfo1");
+            var wechatUserInfo2 = $.AMUI.utils.cookie.get("wechatUserInfo2");
+            var wechatUserInfo3 = $.AMUI.utils.cookie.get("wechatUserInfo3");
+            wechatUserInfo = wechatUserInfo1 + wechatUserInfo2 + wechatUserInfo3;
+            wechatUserInfo = JSON.parse(wechatUserInfo);
+            return wechatUserInfo;
+        },
+        getOpenId:function(){
+            return $.AMUI.utils.cookie.get("openId");
         }
     };
     this.common = new common();

@@ -65,7 +65,6 @@ module.exports = (swig) => {
         str = list.join("&nbsp;");
         return str;
     }
-
     swig.setFilter("dateFormat", dateFormat);
     swig.setFilter("toWeek", toWeek);
     swig.setFilter("scopeFilter", scopeFilter);

@@ -1,25 +1,16 @@
 {% for record in data %}
 <li>
     <i class="am-icon-dot-circle-o"></i>
-    <h3>2016/3/26  10课时<p>有效期至2016/06/2</p></h3>
+    <h3>{{record.orderStartDate|dateFormat('yyyy/MM/dd')}}  {{record.classNum}}课时<p>有效期至 {{record.orderEndDate|dateFormat('yyyy/MM/dd')}}</p></h3>
     <div class="list-info left pt0">
         <div class="info left pl0">
             <div class="status">
                 <div class="line">
-                    <span style="width:50%"><em>5/5</em></span>
+                    <span style="width:{{(record.remainNum/record.classNum)*100}}%"><em></em></span>
                 </div>
+                <div class="scale">{{record.classNum}}/{{record.remainNum}}</div>
             </div>
-            <div class="day">
-                65天
-            </div>
-            <div class="pub-countdown txt-c pb0">
-                <i class="am-badge am-badge-danger">15</i>
-                <span>时</span>
-                <i class="am-badge am-badge-danger">17</i>
-                <span>分</span>
-                <i class="am-badge am-badge-danger">20</i>
-                <span>秒</span>
-            </div>
+            <div class="countdown" data-order-end-date="{{record.orderEndDate}}"></div>
         </div>
     </div>
 </li>

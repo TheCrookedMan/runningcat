@@ -11,6 +11,7 @@
             self.pageSize = 10;
             self.isEnd = false;
             self.date = date;
+            $(".pub-list ul").html("");
             self.getCourse();
             scroll.off();
             scroll.on(function() {

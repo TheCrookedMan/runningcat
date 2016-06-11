@@ -11,6 +11,7 @@ let router = express.Router();
 router.get('/wechatAuth.html', (req, res, next) => {
     let options = req.query,
         redirect_uri = options.state;
+    let list = [];
 
     wechatAuth.accessToken(options.code, function(params) {
         let data = JSON.parse(params);
@@ -19,6 +20,8 @@ router.get('/wechatAuth.html', (req, res, next) => {
             if ("snsapi_userinfo" == data.scope) {
                 let access_token = data.access_token,
                     openid = data.openid;
+
+                list.push('openId=' + openid + ';Max-Age=31536000; Path=/');
                 user.loginByopenId(openid, (record) => {
                     /*
                         code：10015 用户没有注册，如果返回没有注册就获取用户的微信信息并且把信息写入本地的cookie.然后重定向至按钮对应的页面
@@ -40,7 +43,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                                 let wechatUserInfo1 = userinfo.substring(0, 100);
                                 let wechatUserInfo2 = userinfo.substring(100, 200);
                                 let wechatUserInfo3 = userinfo.substring(200);
-                                let list = [];
+                                
                                 list.push('wechatUserInfo1=' + wechatUserInfo1 + ';Max-Age=31536000; Path=/');
                                 list.push('wechatUserInfo2=' + wechatUserInfo2 + ';Max-Age=31536000; Path=/');
                                 list.push('wechatUserInfo3=' + wechatUserInfo3 + ';Max-Age=31536000; Path=/');
@@ -56,7 +59,9 @@ router.get('/wechatAuth.html', (req, res, next) => {
                         /*
                             把runningcat用户信息存入cookie中.
                          */
-                        common.setCookie("runningcatUserInfo", runningcatUserInfo, res);
+                        list.push('runningcatUserInfo=' + runningcatUserInfo + ';Max-Age=31536000; Path=/');
+                        common.setCookies(list, res);
+                        // common.setCookie("runningcatUserInfo", runningcatUserInfo, res);
                         /*
                             redirect_uri 如果为空的话，自动跳转至 /public/shop.html
                          */
