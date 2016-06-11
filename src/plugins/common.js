@@ -77,8 +77,22 @@
             wechatUserInfo = JSON.parse(wechatUserInfo);
             return wechatUserInfo;
         },
-        getOpenId:function(){
+        getOpenId: function() {
             return $.AMUI.utils.cookie.get("openId");
+        },
+        toWeek: function(data) {
+            var date = typeof data == 'string' ? data * 1 : data;
+            date = new Date(date);
+            var map = {
+                "1": "周一",
+                "2": "周二",
+                "3": "周三",
+                "4": "周四",
+                "5": "周五",
+                "6": "周六",
+                "7": "周日",
+            }
+            return map[date.getDay().toString()];
         }
     };
     this.common = new common();

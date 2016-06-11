@@ -1,9 +1,8 @@
 (function() {
-    var courseId=$("#courseId").val();
     $.post('/coursePlan/queryCoursePlanInfo', {'userId':userInfo.memberId,'courseId':courseId}).success(function(data) {
         var res=data.data;
         $("#contactPhone").html(res.contactPhone);
-        $("#courseDate").html(res.courseDate);
+        $("#courseDate").html(common.formatDate(res.courseDate,'yyyy-MM-dd'));
         $("#courseDesc").html(res.courseDesc);
         $("#courseFlow").html(res.courseFlow);
         $("#courseName").html(res.courseName);

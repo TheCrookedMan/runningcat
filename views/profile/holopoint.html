@@ -1,0 +1,24 @@
+{% include "../_partial/head.html" %}
+<style type="text/css">
+body {
+    background-color: #e6e6e6;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+</style>
+<section class="profile-holopoint">
+    <p><img src="/img/shoptest.jpg" alt="跑步猫"> </p>
+    <div class="holopoint-panel">
+        <div class="am-g h5-item">
+            <div class="am-u-sm-6">公里数 (KM)</div>
+            <div class="am-u-sm-6 am-text-right">
+                <input type="text" id="changeDate" class="am-u-sm-10"><i class="am-icon-map" aria-hidden="true"></i></div>
+        </div>
+        <div class="holopoint-echarts" id="container"></div>
+    </div>
+</section>
+{% include "../_partial/foot.html" %}
+<script src="/plugins/mobiscroll.min.js"></script>
+<script src="/plugins/echarts.simple.min.js"></script>
+<script src="/js/profile/holopoint.js"></script>

@@ -4,58 +4,34 @@ body {
     background-color: #e6e6e6
 }
 </style>
+<script>
+var courseId = "{{courseId}}";
+</script>
 <section class="course">
     <div class="pay-info">
-        <ul>
-            <li>
-                时间：2016/06/06 周二 11:00~12:00
-            </li>
-            <li>
-                所需课时：1课时
-            </li>
-            <li>
-                地址：上海长宁区凯旋路1010号C栋2F
-            </li>
-        </ul>
     </div>
     <div class="pay-spec bg-e6">
         <ul>
             <li>
                 <span class="peo">人数：</span>
                 <div class="pub_peolist">
-                    <a href="javascript:void(0)" class="cur">
-                        <p>1人</p>
-                        <p>1课时</p>
-                    </a>
-                    <a href="javascript:void(0)">
-                        <p>2人</p>
-                        <p>2课时</p>
-                    </a>
-                    <a href="javascript:void(0)">
-                        <p>3人</p>
-                        <p>3课时</p>
-                    </a>
-                    <a href="javascript:void(0)">
-                        <p>4人</p>
-                        <p>4课时</p>
-                    </a>
                 </div>
             </li>
             <li>
                 <span>金额：</span>
-                <em>￥200（需1课时）</em>
+                <em class="totalPrice"></em>
             </li>
         </ul>
     </div>
     <div class="pub-list skin2">
         <ul>
-            <li>
-                <i class="am-icon-dot-circle-o"></i>
+            <li class="classTimePayment cur">
+                <i class="list-icon am-icon-dot-circle-o"></i>
                 <div class="list-info">
                     <div class="info">
-                        <h2 class="cur">课时支付（可用课时:4）</h2>
+                        <h2>课时支付（可用课时:<span class="usrRechargeOrderRemainNum"></span>）</h2>
                     </div>
-                    <div class="table">
+                    <div class="table usrRechargeOrderList">
                         <table class="skin0">
                             <colgroup>
                                 <col style="width:33%">
@@ -63,22 +39,29 @@ body {
                                 <col style="width:33%">
                             </colgroup>
                             <tbody>
-                                <tr>
+                                <tr class="content">
                                     <th>截止时间</th>
                                     <th>剩余课时</th>
                                     <th>使用</th>
                                 </tr>
                                 <tr>
-                                    <td>2016-8-8</td>
-                                    <td>2</td>
-                                    <td>
-                                        <input type="text" value="1">
+                                    <td colspan="3" class="rechargeList">
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class="rechargePanel">
+                                    <td colspan="3" class="col-red">课时不足需要充值！</td>
+                                </tr>
+                                <tr class="rechargePanel">
                                     <td colspan="3">
                                         <div class="pub-rbtn txt-c">
-                                            <a href="/course/pay-sucess.html" class="btn">支付</a>
+                                            <a href="/profile/recharge.html" class="btn">充值</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="paymentPanel">
+                                    <td colspan="3">
+                                        <div class="pub-rbtn txt-c">
+                                            <a href="javascript:void(0);" class="btn classTimePaymentButton">支付</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -87,35 +70,37 @@ body {
                     </div>
                 </div>
             </li>
-            <li>
-                <i class="am-icon-circle-o"></i>
+            <li class="cashPayment">
+                <i class="list-icon am-icon-circle-o"></i>
                 <div class="list-info">
                     <div class="info">
                         <h2>现金支付</h2>
                     </div>
-                    <div class="price">
-                        <div class="tit">
-                            <a href="javascript: void(0)">折扣价<em>（￥190）</em></a>
-                            <a href="javascript:void(0)" data-am-modal="{target: '#detail-popup'}" class="col-red">折扣详细</a>
+                    <div class="info-body">
+                        <div class="price">
+                            <div class="tit">
+                                <a href="javascript: void(0)">折扣价<em>（￥<i class="discountPrice">0.00</i>）</em></a>
+                                <a href="javascript:void(0)" class="col-red" id="show-discount-detail">折扣详细</a>
+                            </div>
+                            <div class="code">
+                                <i class="am-icon-check-square-o"></i>
+                                <p>本次可使用猫粮<span class="nmemberCatFood">0</span>&nbsp;&nbsp;&nbsp;兑换：<span class="nmemberCatFood">0</span></p>
+                                <p class="col-red">*猫粮总数 <span class="memberCatFood">0</span>颗</p>
+                            </div>
+                            <!-- <div class="code">
+                                <i class="am-icon-square-o"></i>
+                                <p>优惠券</p>
+                            </div> -->
                         </div>
-                        <div class="code">
-                            <i class="am-icon-check-square-o"></i>
-                            <p>本次可用19颗猫粮 抵扣￥19</p>
-                            <p>*猫粮总数 100颗</p>
+                        <div class="total txt-l">
+                            应付金额(元):<span class="col-red">￥<i class="actualPrice">0.00</i></span>
                         </div>
-                        <div class="code">
-                            <i class="am-icon-square-o"></i>
-                            <p>优惠券</p>
+                        <div class="pub-rbtn txt-c">
+                            <a href="javascript:void(0)" class="btn wechatPayment">微信支付</a>
                         </div>
-                    </div>
-                    <div class="total txt-l">
-                        应付金额(元):<span class="col-red">￥171（立省29元）</span>
-                    </div>
-                    <div class="pub-rbtn txt-c">
-                        <a href="javascript:void(0)" class="btn">微信支付</a>
-                    </div>
-                    <div class="pub-rbtn txt-c">
-                        <a href="javascript:void(0)" class="btn">支付宝支付</a>
+                        <!-- <div class="pub-rbtn txt-c">
+                            <a href="javascript:void(0)" class="btn">支付宝支付</a>
+                        </div> -->
                     </div>
                 </div>
             </li>
@@ -124,53 +109,6 @@ body {
 </section>
 <!-- 折扣详情 -->
 <div class="am-popup" id="detail-popup">
-    <div class="am-popup-inner">
-        <div class="am-popup-hd">
-            <span data-am-modal-close class="am-close">&times;</span>
-        </div>
-        <div class="am-popup-bd">
-            <div class="table bd0">
-                <table class="skin1">
-                    <colgroup>
-                        <col style="width:30%">
-                        <col style="width:30%">
-                        <col style="width:20%">
-                        <col style="width:20%">
-                    </colgroup>
-                    <tbody>
-                        <tr>
-                            <th>数量</th>
-                            <th>折扣</th>
-                            <th>减</th>
-                            <th>送</th>
-                        </tr>
-                        <tr>
-                            <td class="col-red">1-11课时</td>
-                            <td class="col-red">无折扣</td>
-                            <td class="col-red">0</td>
-                            <td class="col-red">0</td>
-                        </tr>
-                        <tr>
-                            <td>1-11课时</td>
-                            <td>无折扣</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td>1-11课时</td>
-                            <td>无折扣</td>
-                            <td>0</td>
-                            <td>0</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" class="col-red txt-l">
-                                *当前为金牌学员，可再享受9.5折优惠
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 </div>
 {% include "../_partial/foot.html" %}
+<script src="/js/course/pay-page.js"></script>

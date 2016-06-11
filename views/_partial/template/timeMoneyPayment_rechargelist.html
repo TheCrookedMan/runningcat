@@ -1,0 +1,30 @@
+<table>
+    <colgroup>
+        <col style="width:33%">
+        <col style="width:33%">
+        <col style="width:33%">
+    </colgroup>
+    <tbody>
+        {% for record in usrRechargeOrderList %} 
+        {% if record.remainNum > 0 %}
+        <tr class="content">
+            <td>{{record.orderEndDate|dateFormat('yyyy-MM-dd')}}</td>
+            <td>{{record.remainNum}}</td>
+            <td>
+                {% if needCourseNum > 0 %}
+                     {% if needCourseNum > record.remainNum %}
+                    <input type="text" value="{{record.remainNum}}" data-max-num="{{record.remainNum}}" readonly="readonly"> 
+                    {% set needCourseNum = needCourseNum - record.remainNum %} 
+                    {% else %}
+                    <input type="text" value="{{needCourseNum}}" data-max-num="{{record.remainNum}}" readonly="readonly"> 
+                    {% set needCourseNum = 0 %} 
+                    {% endif %}
+                {% else %}
+                    <input type="text" value="0" data-max-num="{{record.remainNum}}" readonly="readonly">
+                {% endif %}
+            </td>
+        </tr>
+        {% endif %} 
+        {% endfor %}
+    </tbody>
+</table>

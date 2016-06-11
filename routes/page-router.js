@@ -43,7 +43,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                                 let wechatUserInfo1 = userinfo.substring(0, 100);
                                 let wechatUserInfo2 = userinfo.substring(100, 200);
                                 let wechatUserInfo3 = userinfo.substring(200);
-                                
+
                                 list.push('wechatUserInfo1=' + wechatUserInfo1 + ';Max-Age=31536000; Path=/');
                                 list.push('wechatUserInfo2=' + wechatUserInfo2 + ';Max-Age=31536000; Path=/');
                                 list.push('wechatUserInfo3=' + wechatUserInfo3 + ';Max-Age=31536000; Path=/');
@@ -159,6 +159,10 @@ router.get('/profile/calories.html', (req, res, next) => {
     return res.render('profile/calories', { title: '卡路里' });
 });
 
+router.get('/profile/holopoint.html', (req, res, next) => {
+    return res.render('profile/holopoint', { title: '里程数' });
+});
+
 router.get('/profile/class-recharge.html', (req, res, next) => {
     return res.render('profile/class-recharge', { title: '课时充值' });
 });
@@ -244,11 +248,16 @@ router.get('/coach/coach.html', (req, res, next) => {
     return res.render('coach/coach', { title: 'RUNNINGCAT BOX' });
 });
 
+/*
+    常规课
+ */
 router.get('/course/pay-page.html', (req, res, next) => {
-    return res.render('course/pay-page', { title: '私教课支付页面' });
+    let courseId = req.query.courseId;
+    return res.render('course/pay-page', { title: '私教课支付页面', courseId: courseId });
 });
-router.get('/course/pay-sucess.html', (req, res, next) => {
-    return res.render('course/pay-sucess', { title: '约课成功' });
+router.get('/course/pay-success.html', (req, res, next) => {
+    let courseId = req.query.courseId;
+    return res.render('course/pay-success', { title: '约课成功', courseId: courseId });
 });
 router.get('/course/course.html', (req, res, next) => {
     // let storeId = req.query.storeId;
@@ -270,11 +279,13 @@ router.get('/course/course-detail.html', (req, res, next) => {
 
 
 router.get('/till/pay-page.html', (req, res, next) => {
-    return res.render('till/pay-page', { title: '特训营支付页面' });
+    let specialId = req.query.specialId;
+    return res.render('till/pay-page', { title: '特训营支付页面', specialId: specialId });
 });
 
-router.get('/till/pay-sucess.html', (req, res, next) => {
-    return res.render('till/pay-sucess', { title: '约课成功' });
+router.get('/till/pay-success.html', (req, res, next) => {
+    let specialId = req.query.specialId;
+    return res.render('till/pay-success', { title: '约课成功', specialId: specialId });
 });
 
 router.get('/till/till.html', (req, res, next) => {

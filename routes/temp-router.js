@@ -152,5 +152,15 @@ router.get('/copSalePolicyDetail.template', [order.selectCopSalePolicy], (req, r
     });
 });
 
+/* 课时支付模板 */
+router.get('/timeMoneyPayment_rechargelist.template', [order.selectUsrRechargeOrderList], (req, res, next) => {
+    let needCourseNum = req.query.needCourseNum;
+    let usrRechargeOrderRemainNum = req.query.usrRechargeOrderRemainNum;
+    return res.render('_partial/template/timeMoneyPayment_rechargelist', {
+        usrRechargeOrderList: res.data['order.selectUsrRechargeOrderList']['record'],
+        needCourseNum: needCourseNum,
+        usrRechargeOrderRemainNum: usrRechargeOrderRemainNum
+    });
+})
 
 module.exports = router;

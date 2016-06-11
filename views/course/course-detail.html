@@ -4,7 +4,9 @@
         background-color: #b5b5b5
     }
 </style>
-<input type="hidden" value="{{courseId}}" id='courseId'>
+<script type="text/javascript">
+    var courseId = "{{courseId}}";
+</script>
 <section class="course">
     <div class="pic">
       <div class="am-slider am-slider-default" data-am-flexslider>
@@ -56,7 +58,6 @@
     <div class="course-con">
         <div class="tit">训练效果</div>
         <div class="con" id="courseTarget">
-         
         </div>
     </div>
     <div class="course-con">
@@ -68,7 +69,6 @@
     <div class="course-con">
         <div class="tit">FAQ</div>
         <div class="con">
-          
         </div>
     </div>
     <div class="course-con">
@@ -84,7 +84,7 @@
         </div>
     </div>
     <div class="pub-rbtn fixed">
-        <a href="/course/pay-page.html" class="btn">立即预约</a>
+        <a href="/course/pay-page.html?courseId={{courseId}}" class="btn">立即预约</a>
     </div>
 </section>
 {% include "../_partial/foot.html" %}

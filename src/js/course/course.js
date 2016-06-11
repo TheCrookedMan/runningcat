@@ -128,12 +128,12 @@
     $(".data-list").swiper({
         onClick: function(selector) {
             var date = selector.data("date");
-            date = new Date(date).getTime()
+            date = new Date(date).getTime();
             courseListObj.init(date);
         },
         onComplete: function(selector) {
             var date = selector.data("date");
-            date = new Date(date).getTime()
+            date = new Date(date).getTime();
             courseListObj.init(date);
         }
     });

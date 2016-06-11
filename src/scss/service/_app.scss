@@ -1148,6 +1148,14 @@ ul.other-login-way li img {
                 margin-bottom: 0;
             }
         }
+        .cur {
+            h2 {
+                color: #f73f3f!important;
+            }
+            .am-icon-dot-circle-o {
+                color: #f73f3f!important;
+            }
+        }
         .list-info {
             border: 0;
             padding-top: 0;
@@ -1156,9 +1164,6 @@ ul.other-login-way li img {
                 padding: 0;
                 h2 {
                     color: #717171;
-                    &.cur {
-                        color: #f73f3f;
-                    }
                 }
             }
             .am-tabs {
@@ -1301,7 +1306,7 @@ ul.other-login-way li img {
                 position: absolute;
                 left: -2.6rem;
                 top: 0rem;
-                color: #f73f3f;
+                // color: #f73f3f;
                 font-size: 1.6rem;
                 font-weight: bold;
                 background: #e6e6e6;
@@ -1831,7 +1836,7 @@ table {
         &.cur {
             background: #f73f3f;
             color: #fff;
-            border: 0;
+            border: 1px solid transparent;
         }
     }
 }

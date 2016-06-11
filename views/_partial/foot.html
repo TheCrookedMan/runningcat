@@ -13,4 +13,17 @@
 </html>
 <script>
 var userInfo = common.getUserInfo();
+$(document).ready(function() {
+    $(".navbar-footer a").each(function(i, I) {
+        var pageUrl = window.location.pathname;
+        var href = $(this).data("url");
+        var list = href.split(",");
+        $.each(list, function(j, J) {
+            if (pageUrl == J) {
+                $(I).addClass("active");
+            }
+        })
+
+    });
+})
 </script>

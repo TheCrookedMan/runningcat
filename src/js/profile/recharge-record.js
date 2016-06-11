@@ -36,9 +36,11 @@
     this.recharge = new recharge();
     this.recharge.init();
 
-    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId }).success(function(data) {
+    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1 }).success(function(data) {
         if (data.code == "0000" && data.success) {
             $(".single-class .pub-title .number").text(data.data);
+        } else {
+            $(".usrRechargeOrderRemainNum").text(0);
         }
     });
 
