@@ -5,15 +5,10 @@
         var address = $(this).data("storeAddress");
         var contactPhone = $(this).data("storePhone");
         var store = {
-<<<<<<< HEAD
-            storeId: storeId,
-            storeName: storeName
-=======
             storeId:storeId,
             storeName:storeName,
             address:address,
             contactPhone:contactPhone
->>>>>>> 046bf7b8d3f2504f7cc91844d5812ef271b26907
         }
         $.AMUI.utils.cookie.set('store', JSON.stringify(store), 365 * 24 * 60 * 60, '/');
     });
@@ -172,9 +167,6 @@
     }
     this.shopList = new shop();
     //测试
-<<<<<<< HEAD
-    // shopList.init();
-=======
     shopList.init();
 
     /*搜索店铺**/
@@ -182,5 +174,4 @@
         keyword=$(".am-form-field").val();
         shopList.search();
     })
->>>>>>> 046bf7b8d3f2504f7cc91844d5812ef271b26907
 }).call(this)

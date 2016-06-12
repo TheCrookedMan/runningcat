@@ -1,15 +1,15 @@
 (function() {
-
     /*排课时间*/
     var store = common.getStoreInfo();
-    $.get('/courseDate.template',{
+    $.get('/courseDate.template', {
         userId: userInfo.memberId,
         storeId: store.storeId,
     }).success(function(data) {
         $(".wrapper").append(data);
-        var default_data=$(".wrapper a:first").data("time");
+        var default_data = $(".wrapper a:first").data("time");
         $(".wrapper a:first").addClass("cur");
         courseListObj.init(default_data);
+        initSwiperList();
     }).error(function(err) {});
 
     var courseList = function() {
@@ -118,7 +118,6 @@
             var sliderWidth = this.$slider.width();
             var wrapperWidth = this.$wrapper.width();
             var scrollWidth = this.wrapper.scrollWidth;
-
             if (scrollWidth > wrapperWidth) {
                 if (scrollLeft + wrapperWidth < scrollWidth) {
                     this.$selector.find(".slider-next").addClass("active");
@@ -138,16 +137,19 @@
         new swiper(this, opts);
     }
 
-    $(".data-list").swiper({
-        onClick: function(selector) {
-            var date = selector.data("date");
-            date = new Date(date).getTime();
-            courseListObj.init(date);
-        },
-        onComplete: function(selector) {
-            var date = selector.data("date");
-            date = new Date(date).getTime();
-            courseListObj.init(date);
-        }
-    });
+    function initSwiperList() {
+        $(".data-list").swiper({
+            onClick: function(selector) {
+                var date = selector.data("date");
+                date = new Date(date).getTime();
+                courseListObj.init(date);
+            },
+            onComplete: function(selector) {
+                var date = selector.data("date");
+                date = new Date(date).getTime();
+                courseListObj.init(date);
+            }
+        });
+    }
+
 }).call(this);

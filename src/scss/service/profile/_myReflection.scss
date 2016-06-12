@@ -1,0 +1,16 @@
+$myReflection-charts-name:myReflection!default;
+@include charts($myReflection-charts-name);
+$radar-panel-height-px:300px;
+$radar-panel-height:rem-calc($radar-panel-height-px);
+$radar-margin-top-px:40px;
+$radar-margin-top:rem-calc($radar-margin-top-px);
+.profile-myReflection {
+    .time-panel {
+        float: right;
+    }
+    .radar-echarts {
+        height: $radar-panel-height;
+        width: 80%;
+        margin: $radar-margin-top auto 0;
+    }
+}

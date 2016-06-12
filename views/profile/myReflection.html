@@ -1,0 +1,26 @@
+{% include "../_partial/head.html" %}
+<style type="text/css">
+body {
+    background-color: #e6e6e6;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+</style>
+<section class="profile-myReflection">
+    <div class="am-g h5-item">
+        <div class="am-u-sm-6 am-text-right time-panel">
+            <input type="text" id="changeDate" class="am-u-sm-10"><i class="am-icon-map" aria-hidden="true"></i></div>
+    </div>
+    <div class="radar-echarts" id="radarEchart"></div>
+    <div class="myReflection-panel">
+        <div class="am-g h5-item">
+            <div class="am-u-sm-6">月度训练次数曲线表</div>
+        </div>
+        <div class="myReflection-echarts" id="container"></div>
+    </div>
+</section>
+{% include "../_partial/foot.html" %}
+<script src="/plugins/mobiscroll.min.js"></script>
+<script src="/plugins/echarts.min.js"></script>
+<script src="/js/profile/myReflection.js"></script>
