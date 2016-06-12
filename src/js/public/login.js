@@ -24,7 +24,8 @@
     //         return false;
     //     }
     // });
-
+    // var wechatUserInfo = common.getWechatInfo();
+    // alert("wechatUserInfo:::"+JSON.stringify(wechatUserInfo));
     $('#loginForm').validator({
         submit: function(form) {
             if (this.isFormValid()) {

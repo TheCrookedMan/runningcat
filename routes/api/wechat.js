@@ -52,15 +52,15 @@ exports.refreshToken = (refreshToken) => {
     get(host, post, url, callback);
 }
 exports.getUserInfo = (access_token, openid, callback) => {
-    let host, post, url;
-    host = "api.weixin.qq.com";
-    post = "80";
-    url = "/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN";
-    get(host, post, url, callback);
-}
-/*
-    获取wechat调用微信功能所需要的ticket
- */
+        let host, post, url;
+        host = "api.weixin.qq.com";
+        post = "80";
+        url = "/sns/userinfo?access_token=" + access_token + "&openid=" + openid + "&lang=zh_CN";
+        get(host, post, url, callback);
+    }
+    /*
+        获取wechat调用微信功能所需要的ticket
+     */
 exports.getJSApiTicket = (req, res, next) => {
     getAccessToken((data) => {
         if (data.success) {

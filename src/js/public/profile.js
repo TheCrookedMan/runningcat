@@ -5,21 +5,23 @@
     $("#nickName").val(wechatUserInfo.nickname);
     $("#photoUrl").val(wechatUserInfo.headimgurl);
     $("#openId").val(wechatUserInfo.openid);
-
+    $("#unionId").val(wechatUserInfo.unionid);
     $('#loginForm').validator({
         submit: function(form) {
+            
             if (this.isFormValid()) {
+                
                 var data = common.parseForm(".am-form");
                 if (!regCardId.test(data.idcard)) {
                     modal.alert("身份证格式错误！");
                     return false;
                 }
                 register(data);
+                return false;
             }
             return false;
         }
     });
-
     function register(data) {
         $.post('/registeUser', data).success(function(data) {
             if (data.success) {

@@ -69,12 +69,16 @@
             }
         },
         getWechatInfo: function() {
-            var wechatUserInfo = "";
+            var wechatUserInfo;
             var wechatUserInfo1 = $.AMUI.utils.cookie.get("wechatUserInfo1");
             var wechatUserInfo2 = $.AMUI.utils.cookie.get("wechatUserInfo2");
             var wechatUserInfo3 = $.AMUI.utils.cookie.get("wechatUserInfo3");
-            wechatUserInfo = wechatUserInfo1 + wechatUserInfo2 + wechatUserInfo3;
-            wechatUserInfo = JSON.parse(wechatUserInfo);
+            wechatUserInfo1 = JSON.parse(wechatUserInfo1);
+            wechatUserInfo2 = JSON.parse(wechatUserInfo2);
+            wechatUserInfo3 = JSON.parse(wechatUserInfo3);
+            wechatUserInfo = $.extend(wechatUserInfo1, wechatUserInfo2, wechatUserInfo3);
+            // alert(JSON.stringify(wechatUserInfo));
+            // wechatUserInfo = JSON.parse(wechatUserInfo);
             return wechatUserInfo;
         },
         getOpenId: function() {

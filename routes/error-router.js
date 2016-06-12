@@ -5,7 +5,7 @@ let logErrors, clientErrorHandler, errorHandler;
 */
 
 logErrors = (err, req, res, next) => {
-    console.log("logErrors::::"+err.msg);
+    console.log("logErrors::::"+JSON.stringify(err));
     let method = req.method.toUpperCase()
     console.error("================================================ 错误输出 begin ================================================");
     console.error("请求方式===============>   " + method);
@@ -38,7 +38,7 @@ clientErrorHandler = (err, req, res, next) => {
  */
 
 errorHandler = (err, req, res, next) => {
-    console.log("errorHandler::::"+err.msg);
+    console.log("errorHandler::::"+JSON.stringify(err));
     // res.status(500);
     res.render('error', { error: err.msg });
 }

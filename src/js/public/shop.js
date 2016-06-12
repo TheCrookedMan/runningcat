@@ -1,13 +1,14 @@
 (function() {
-    $("body").on("click",".shop-detail a",function(ev){
+    $("body").on("click", ".shop-detail a", function(ev) {
         var storeId = $(this).data("storeId");
         var storeName = $(this).data("storeName");
         var store = {
-            storeId:storeId,
-            storeName:storeName
+            storeId: storeId,
+            storeName: storeName
         }
         $.AMUI.utils.cookie.set('store', JSON.stringify(store), 365 * 24 * 60 * 60, '/');
     });
+
     function initWXConfig() {
         this.nonceStr = this.generateMixed(32);
         this.timestamp = new Date().getTime();
@@ -90,9 +91,9 @@
 
     /*常去店铺*/
     $.get('/oftenshop.template', {
-        memberId:userInfo.memberId
+        memberId: userInfo.memberId
     }).success(function(data) {
-         $(".often").after(data);
+        $(".often").after(data);
     }).error(function(err) {});
 
 
@@ -106,7 +107,7 @@
         init: function() {
             var self = this;
             self.getList();
-            scroll.on(function(){
+            scroll.on(function() {
                 if (!self.isEnd) {
                     self.pageNo++;
                     self.getList();
@@ -115,9 +116,9 @@
         },
         getList: function() {
             var self = this;
-            this.cityName=$("#cityName").text();
+            this.cityName = $("#cityName").text();
             $.get('/shop.template', {
-                provinceName:self.cityName,
+                provinceName: self.cityName,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }).success(function(data) {
@@ -133,5 +134,5 @@
     }
     this.shopList = new shop();
     //测试
-    shopList.init();
+    // shopList.init();
 }).call(this)
