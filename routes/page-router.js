@@ -296,7 +296,10 @@ router.get('/till/till.html', (req, res, next) => {
 
 router.get('/till/till-detail.html', (req, res, next) => {
     let specialId = req.query.specialId;
-    return res.render('till/till-detail', { title: '特训营详情', specialId: specialId });
+    let year = req.query.year;
+    let mm = req.query.mm;
+    let day = req.query.day;
+    return res.render('till/till-detail', { title: '特训营详情', specialId: specialId, year: year, mm: mm, day: day });
 });
 
 

@@ -23,3 +23,10 @@ exports.queryCoursePlanInfo = (req, res, next) => {
         functionCode: 'coursePlan.queryCoursePlanInfo',
     }).link(req, res, next);
 }
+
+/*课程列表*/
+exports.queryCoursePlanTimeList = (req, res, next) => {
+    new rest({
+        functionCode: 'coursePlan.queryCoursePlanTimeList',
+    }).link(req, res, next);
+}

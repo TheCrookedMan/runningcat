@@ -33,6 +33,7 @@ router.post('/user/getUserInfo', user.getUserInfo);
 //shop
 router.post('/queryOftenStore', shop.queryOftenStore);
 router.post('/queryCopStoreList', shop.queryCopStoreList);
+router.post('/queryIndexStoreList', shop.queryIndexStoreList);
 
 //profile
 /*猫粮*/
@@ -58,6 +59,7 @@ router.post('/queryUserTrainList', profile.queryUserTrainList);
 router.post('/course', course.course);
 router.post('/coursePlan/queryCoursePlanInfo', course.courseDetail);
 router.post('/queryCoursePlanInfo', course.queryCoursePlanInfo);
+router.post('/queryCoursePlanTimeList', course.queryCoursePlanTimeList);
 
 //till
 router.post('/till', till.till);

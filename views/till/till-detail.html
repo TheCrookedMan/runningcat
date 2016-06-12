@@ -12,23 +12,21 @@
           
         </ul>
       </div>
-      <div class="pub-countdown">
+      <div class="pub-countdown" data-year="{{year}}" data-mm="{{mm}}" data-day="{{day}}">
         <div class="fl">
           <i class="am-icon-clock-o col-red"></i>
           <span>剩</span>
-          <i class="am-badge am-badge-danger">04</i>
+          <i class="am-badge am-badge-danger t_d">00</i>
           <span>天</span>
-          <i class="am-badge am-badge-danger">15</i>
+          <i class="am-badge am-badge-danger t_h">00</i>
           <span>时</span>
-          <i class="am-badge am-badge-danger">17</i>
+          <i class="am-badge am-badge-danger t_m">00</i>
           <span>分</span>
-<!--           <i class="am-badge am-badge-danger">20</i>
-          <span>秒</span> -->
+          <i class="am-badge am-badge-danger t_s">00</i>
+          <span>秒</span>
         </div>
         <div class="fr">
-          <select data-am-selected id="select">
-            
-          </select>
+          <span>￥<em id="totalPrice"></em>/人（所需<em id="classNum"></em>课时）</span>
         </div>
       </div>
     </div>
@@ -38,7 +36,7 @@
           <i class="am-icon-instagram"></i><span id="data"></span>
         </li>
         <li>
-          <i class="am-icon-clock-o"></i><span>上课时间：每周三，五 18:00~19:00 </span>
+          <i class="am-icon-clock-o"></i><span>上课时间：<em id="classTime"></em> </span>
         </li>
         <li>
           <i class="am-icon-map-marker"></i><span id="storeAddress">上海</span>

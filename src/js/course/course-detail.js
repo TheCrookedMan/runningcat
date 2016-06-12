@@ -20,11 +20,14 @@
             var str="<li><img src='"+window.imageAddress+carouselFigure[ele].imgUrl+"'/></li>";
             $('#carouselFigure').append(str);
         }
+        $('.am-slider').flexslider();
         for(var ele in playTimePictures){
             var str="<p><img src='"+window.imageAddress+playTimePictures[ele].imgUrl+"'/></p>";
             $('#playTimePictures').append(str);
         }
     }).error(function(data) {
        
-    })
+    });
+
+    
 }).call(this);

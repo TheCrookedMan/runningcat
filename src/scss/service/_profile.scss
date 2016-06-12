@@ -145,7 +145,7 @@
                 a {
                     color: #000;
                     span {
-                        font-size: 1.6rem;
+                        font-size: 1.4rem;
                         position: relative;
                         top: -0.3rem;
                     }
@@ -295,7 +295,7 @@
                     position: absolute;
                     left: 1.8rem;
                     top: -0.2rem;
-                    border-radius: 100px;
+                    border-radius: 50%;
                     color: #fff;
                     background: #f73f3f;
                     font-weight: normal;
@@ -320,7 +320,7 @@
             }
             img {
                 width: 18%;
-                border-radius: 100px;
+                border-radius: 50%;
                 display: inline-block;
             }
         }
@@ -387,6 +387,9 @@
         }
     }
     
+}
+.fixed_btn{
+    position:fixed;right:0.5rem;bottom: 0;z-index: 99
 }
 @import './profile/heartrate';
 @import './profile/calories';
