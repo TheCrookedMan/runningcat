@@ -1,5 +1,5 @@
 {% for homework in data %}
-<li class="listHomework" data-id="{{homework.workId}}">
+<li class="listHomework">
     <i class="am-icon-dot-circle-o"><em>作业任务</em></i>
     <div class="list-info">
         <div class="info">
@@ -13,4 +13,5 @@
         </div>
     </div>
 </li>
+<input type="hidden" value="{{homework.workId}}" id="workId">
 {% endfor %}
