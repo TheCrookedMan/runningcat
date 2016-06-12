@@ -1,0 +1,6 @@
+{% for course in data %}
+<a href="javascript:void(0);" class="slider" data-date="{{course.courseDate|dateFormat('yyyy-MM-dd')}}" data-time="{{course.courseDate}}">
+    <p>{{course.courseDate|toWeek()}}</p>
+    <p>{{course.courseDate|dateFormat('MM/dd')}}</p>
+</a>
+{% endfor %}

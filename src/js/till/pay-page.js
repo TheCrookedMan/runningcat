@@ -35,18 +35,27 @@
                 payInfo.push("</ul>");
                 $(".pay-info").html(payInfo.join(""));
                 var peolist = [];
-                for (var i = 1; i < 5; i++) {
-                    if (i == 1) {
-                        peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-per-price="' + record.perPrice + '" data-course-num="' + record.courseNum + '" class="cur">');
-                    } else {
-                        peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-per-price="' + record.perPrice + '" data-course-num="' + record.courseNum + '">');
-                    }
+                // for (var i = 1; i < 5; i++) {
+                //     if (i == 1) {
+                //         peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-per-price="' + record.perPrice + '" data-course-num="' + record.courseNum + '" class="cur">');
+                //     } else {
+                //         peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-per-price="' + record.perPrice + '" data-course-num="' + record.courseNum + '">');
+                //     }
 
-                    peolist.push('<p>' + i + '人</p>');
-                    peolist.push('<p>' + i * record.courseNum + '课时</p>');
-                    peolist.push('</a>');
+                //     peolist.push('<p>' + i + '人</p>');
+                //     peolist.push('<p>' + i * record.courseNum + '课时</p>');
+                //     peolist.push('</a>');
+                // }
+                // $(".pub_peolist").html(peolist.join(""));
+                var buyCopies=record.specialPolicyList;
+                var total=record.totalPrice;
+                var perPrice=record.perPrice;
+                var tnum=total/perPrice;
+                for(var i in buyCopies){
+                    var pricestr="<a href='javascript:void(0)'><p>"+buyCopies[i].buyCopies+"人</p><p>"+tnum*buyCopies[i].buyCopies+"课时</p></a>";
+                    $(".pub_peolist").append(pricestr);
+                    $(".pub_peolist a:first").addClass('cur');
                 }
-                $(".pub_peolist").html(peolist.join(""));
                 totalPrice();
             }
         }).error(function(data) {

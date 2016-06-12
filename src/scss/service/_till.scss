@@ -1,7 +1,7 @@
 .till {
     width: 100%;
     display: inline-block;
-    padding-bottom: 4rem;
+    padding-bottom: 1rem;
     .status {
         margin-top: -0.82rem !important;
         margin-bottom: 0.2rem !important;
@@ -54,7 +54,7 @@
                     position: absolute;
                     bottom: -1rem;
                     left: 1rem;
-                    border-radius: 100px;
+                    border-radius: 50%;
                     width: 16%;
                     z-index: 1;
                 }
@@ -106,6 +106,10 @@
                         padding: 0.4rem 1.2rem;
                         font-size: 1.4rem;
                         color: #f73f3f;
+                        &.btn-end {
+                            color: #c6c6c6;
+                            border: #c6c6c6 solid 1px;
+                        }
                     }
                     img {
                         width: 18%;
@@ -124,11 +128,10 @@
         display: inline-block;
         margin-bottom: 1rem;
         img {
-            border-radius: 100px;
+            border-radius: 50%;
             border: #fff solid 2px;
             display: inline-block;
             width: 3.5em;
-            height: 3.5rem;
         }
         h2 {
             background: #f73f3f;

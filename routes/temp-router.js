@@ -20,6 +20,13 @@ router.get('/shop.template', [shop.queryCopStoreList], (req, res, next) => {
         data: res.data['store.queryCopStoreList']['record']
     });
 });
+
+router.get('/shopSearch.template', [shop.queryIndexStoreList], (req, res, next) => {
+    return res.render('_partial/template/shopSearch', {
+        data: res.data['store.queryIndexStoreList']['record']
+    });
+});
+
 /*猫粮*/
 router.get('/catfood.template', [profile.catfood], (req, res, next) => {
     return res.render('_partial/template/catfood', {
@@ -163,4 +170,10 @@ router.get('/timeMoneyPayment_rechargelist.template', [order.selectUsrRechargeOr
     });
 })
 
+/*查询排课时间*/
+router.get('/courseDate.template', [course.queryCoursePlanTimeList], (req, res, next) => {
+    return res.render('_partial/template/courseDate', {
+        data: res.data['coursePlan.queryCoursePlanTimeList']['record']
+    });
+});
 module.exports = router;

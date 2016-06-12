@@ -13,3 +13,10 @@ exports.queryCopStoreList = (req, res, next) => {
         functionCode: 'store.queryCopStoreList',
     }).link(req, res, next);
 }
+
+/*首页关键字搜索店铺列表*/
+exports.queryIndexStoreList = (req, res, next) => {
+    new rest({
+        functionCode: 'store.queryIndexStoreList',
+    }).link(req, res, next);
+}

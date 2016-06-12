@@ -467,7 +467,7 @@ ul.other-login-way li img {
 .shop .am-input-group {
     position: relative;
     float: left;
-    width: 70%;
+    width: 65%;
     margin-left: 1rem;
 }
 
@@ -522,7 +522,7 @@ ul.other-login-way li img {
 
 .shop-detail {
     width: 100%;
-    position: relative;
+    position: relative;margin-bottom:1rem;
 }
 
 .shop-detail .mask {
@@ -1304,7 +1304,7 @@ ul.other-login-way li img {
             }
             .am-icon-dot-circle-o {
                 position: absolute;
-                left: -2.6rem;
+                left: -2.8rem;
                 top: 0rem;
                 // color: #f73f3f;
                 font-size: 1.6rem;
@@ -1370,17 +1370,17 @@ ul.other-login-way li img {
                     background: #e6e6e6;
                 }
                 .img {
-                    width: 5rem;
-                    height: 5rem;
-                    position: absolute;
-                    left: 1rem;
+                    width: 5.2rem;
+                    height: 5.2rem;
+                    position: absolute;text-align: center;
+                    left: 1.5rem;
                     top: 1.5rem;
                     img {
-                        border-radius: 100px;
+                        border-radius: 50%;height:100%;
                     }
                 }
                 .info {
-                    padding-left: 7rem;
+                    padding-left: 7.5rem;
                     display: inline-block;
                     width: 100%;
                     padding-top: 0.2rem;
@@ -1735,7 +1735,7 @@ table {
                 }
                 img {
                     width: 28%;
-                    border-radius: 100px;
+                    border-radius: 50%;
                     margin-right: 0.3rem;
                 }
             }
@@ -1775,7 +1775,7 @@ table {
     width: 100%;
     display: inline-block;
     padding-bottom: 0.5rem;
-    margin-top: -0.7rem;
+    margin-top: 0rem;
     span {
         color: #707070;
         font-size: 1.2rem;
@@ -1838,6 +1838,12 @@ table {
             color: #fff;
             border: 1px solid transparent;
         }
+    }
+}
+.foot_ps{
+    width:100%;display:inline-block;
+    p{
+        text-indent:1rem;margin-bottom:0.5rem !important;width:100%;display:inline-block;color:#555;
     }
 }
 

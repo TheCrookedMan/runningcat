@@ -1,7 +1,21 @@
 (function() {
+
+    /*排课时间*/
+    var store = common.getStoreInfo();
+    $.get('/courseDate.template',{
+        userId: userInfo.memberId,
+        storeId: store.storeId,
+    }).success(function(data) {
+        $(".wrapper").append(data);
+        var default_data=$(".wrapper a:first").data("time");
+        $(".wrapper a:first").addClass("cur");
+        courseListObj.init(default_data);
+    }).error(function(err) {});
+
     var courseList = function() {
-        var store = common.getStoreInfo();
         $(".pub-location .storeName").text(store.storeName);
+        $(".foot_ps .storeAddress").text(store.address);
+        $(".foot_ps .contactPhone").text(store.contactPhone);
         this.storeId = store.storeId;
     }
     courseList.prototype = {
@@ -41,7 +55,6 @@
         }
     }
     this.courseListObj = new courseList();
-
 
     function swiper(selector, options) {
         this.slider = selector.find(".slider")[0];

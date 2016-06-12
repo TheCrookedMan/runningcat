@@ -37,7 +37,7 @@ module.exports = (swig) => {
             "4": "周四",
             "5": "周五",
             "6": "周六",
-            "7": "周日",
+            "0": "周日",
         }
         return map[date.getDay().toString()];
     };

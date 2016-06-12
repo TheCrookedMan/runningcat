@@ -2,9 +2,18 @@
     $("body").on("click", ".shop-detail a", function(ev) {
         var storeId = $(this).data("storeId");
         var storeName = $(this).data("storeName");
+        var address = $(this).data("storeAddress");
+        var contactPhone = $(this).data("storePhone");
         var store = {
+<<<<<<< HEAD
             storeId: storeId,
             storeName: storeName
+=======
+            storeId:storeId,
+            storeName:storeName,
+            address:address,
+            contactPhone:contactPhone
+>>>>>>> 046bf7b8d3f2504f7cc91844d5812ef271b26907
         }
         $.AMUI.utils.cookie.set('store', JSON.stringify(store), 365 * 24 * 60 * 60, '/');
     });
@@ -97,6 +106,7 @@
     }).error(function(err) {});
 
 
+    var keyword;
     /*获取店铺*/
     var shop = function() {
         this.pageNo = 1;
@@ -111,6 +121,16 @@
                 if (!self.isEnd) {
                     self.pageNo++;
                     self.getList();
+                }
+            }, function() {});
+        },
+        search:function(){
+            var self = this;
+            self.searchList();
+            scroll.on(function(){
+                if (!self.isEnd) {
+                    self.pageNo++;
+                    self.searchList();
                 }
             }, function() {});
         },
@@ -130,9 +150,37 @@
                     $(".other").after(data);
                 }
             }).error(function(err) {});
+        },
+        searchList:function(){
+            var self = this;
+            this.cityName=$("#cityName").text();
+            $.get('/shopSearch.template', {
+                searchKey:keyword,
+                provinceName:self.cityName,
+                pageNo: self.pageNo,
+                pageSize: self.pageSize
+            }).success(function(data) {
+                data = data.replace(/(^\s+)|(\s+$)/g, "");
+                if ("" == data) {
+                    self.isEnd = true;
+                } else {
+                    self.isEnd = false;
+                    $(".other").after(data);
+                }
+            }).error(function(err) {});
         }
     }
     this.shopList = new shop();
     //测试
+<<<<<<< HEAD
     // shopList.init();
+=======
+    shopList.init();
+
+    /*搜索店铺**/
+    $(".am-input-group").on("click", "a", function(ev) {
+        keyword=$(".am-form-field").val();
+        shopList.search();
+    })
+>>>>>>> 046bf7b8d3f2504f7cc91844d5812ef271b26907
 }).call(this)
