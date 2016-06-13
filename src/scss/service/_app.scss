@@ -131,7 +131,7 @@ p {
 }
 
 .col-red {
-    color: #f73f3f !important;
+    color: #fe0100 !important;
 }
 
 .fixed {
@@ -202,7 +202,7 @@ p {
     font-size: 2.4rem;
     width: 100%;
     line-height: 1.133rem;
-    background-color: #f73f3f;
+    background-color: #fe0100;
     border-radius: 2.133rem;
     margin-top: 2rem;
 }
@@ -316,7 +316,7 @@ ul.other-login-way li img {
 }
 
 .am-cf .ico {
-    color: #f73f3f;
+    color: #fe0100;
     width: 1.5rem;
     float: left;
     margin-left: 3.5rem;
@@ -396,7 +396,7 @@ ul.other-login-way li img {
     color: #a1a1a1;
     font-size: 1.6rem;
     em {
-        color: #f73f3f;
+        color: #fe0100;
         font-style: normal;
         margin-left: 0.2rem;
     }
@@ -522,7 +522,8 @@ ul.other-login-way li img {
 
 .shop-detail {
     width: 100%;
-    position: relative;margin-bottom:1rem;
+    position: relative;
+    margin-bottom: 1rem;
 }
 
 .shop-detail .mask {
@@ -592,7 +593,7 @@ ul.other-login-way li img {
                     margin-bottom: 1rem;
                     margin-left: 1.4rem;
                     &.cur {
-                        background: #f73f3f;
+                        background: #fe0100;
                     }
                 }
             }
@@ -731,7 +732,7 @@ ul.other-login-way li img {
                     font-size: 1.8rem;
                     border: #535353 solid 1px;
                     &.cur {
-                        background: #f73f3f;
+                        background: #fe0100;
                         color: #fff;
                     }
                 }
@@ -806,9 +807,11 @@ ul.other-login-way li img {
         //     color: #fff;
         // }
     }
+    $swiper-height-px:65px;
+    $swiper-height:rem-calc($swiper-height-px);
     .swiper {
         width: 88%;
-        // height: 46px;
+        height: $swiper-height;
         // display: inline-block;
         // float: left;
         overflow: hidden;
@@ -818,6 +821,7 @@ ul.other-login-way li img {
             width: 100%;
             height: 100%;
             z-index: 1;
+            top:-1px;
             display: -webkit-box;
             display: -moz-box;
             display: -ms-flexbox;
@@ -865,7 +869,7 @@ ul.other-login-way li img {
     a {
         font-size: 1.4rem;
         &.red {
-            color: #f73f3f;
+            color: #fe0100;
         }
     }
 }
@@ -1043,11 +1047,11 @@ ul.other-login-way li img {
                             }
                             i {
                                 margin-right: 0.5rem;
-                                color: #f73f3f;
+                                color: #fe0100;
                                 font-size: 5px;
                             }
                             .am-icon-circle {
-                                color: #f73f3f;
+                                color: #fe0100;
                             }
                             .am-icon-circle-o {
                                 color: #4d4d4d;
@@ -1129,7 +1133,7 @@ ul.other-login-way li img {
                                 i {}
                             }
                             &.clock {
-                                color: #f73f3f;
+                                color: #fe0100;
                             }
                         }
                     }
@@ -1150,10 +1154,10 @@ ul.other-login-way li img {
         }
         .cur {
             h2 {
-                color: #f73f3f!important;
+                color: #fe0100!important;
             }
             .am-icon-dot-circle-o {
-                color: #f73f3f!important;
+                color: #fe0100!important;
             }
         }
         .list-info {
@@ -1184,7 +1188,7 @@ ul.other-login-way li img {
                         &.am-active {
                             background: #e6e6e6;
                             a {
-                                color: #f73f3f;
+                                color: #fe0100;
                                 background: none;
                                 border-color: #999;
                                 border-bottom-color: transparent;
@@ -1306,7 +1310,7 @@ ul.other-login-way li img {
                 position: absolute;
                 left: -2.8rem;
                 top: 0rem;
-                // color: #f73f3f;
+                // color: #fe0100;
                 font-size: 1.6rem;
                 font-weight: bold;
                 background: #e6e6e6;
@@ -1372,11 +1376,13 @@ ul.other-login-way li img {
                 .img {
                     width: 5.2rem;
                     height: 5.2rem;
-                    position: absolute;text-align: center;
+                    position: absolute;
+                    text-align: center;
                     left: 1.5rem;
                     top: 1.5rem;
                     img {
-                        border-radius: 50%;height:100%;
+                        border-radius: 50%;
+                        height: 100%;
                     }
                 }
                 .info {
@@ -1412,7 +1418,7 @@ ul.other-login-way li img {
                         width: 107%;
                         margin-top: 2rem;
                         .btn {
-                            background: #f73f3f;
+                            background: #fe0100;
                             color: #fff;
                             padding: 0.2rem 2rem;
                             font-size: 1.6rem;
@@ -1422,9 +1428,9 @@ ul.other-login-way li img {
                         display: inline-block;
                         margin-right: 1rem;
                         display: inline-block;
-                        border: #f73f3f solid 1px;
+                        border: #fe0100 solid 1px;
                         padding: 0.2rem 0.8rem;
-                        color: #f73f3f;
+                        color: #fe0100;
                         &.btn-end {
                             color: #c6c6c6;
                             border: #c6c6c6 solid 1px;
@@ -1459,7 +1465,7 @@ ul.other-login-way li img {
         width: 100%;
     }
     span {
-        background: #f45252;
+        background: #fc5a58;
         display: block;
         height: 100%;
         position: absolute;
@@ -1579,7 +1585,7 @@ ul.other-login-way li img {
         font-size: 1.4rem;
     }
     .am-icon-star {
-        color: #f73f3f;
+        color: #fe0100;
     }
     .am-icon-star-o {
         color: #4d4d4d;
@@ -1614,7 +1620,8 @@ ul.other-login-way li img {
             height: 100%;
         }
         input {
-            width: 2rem;
+            width: 3.5rem;
+            min-width: 3rem;
             text-align: center;
             background: none;
             border: 0;
@@ -1636,7 +1643,7 @@ ul.other-login-way li img {
     display: inline-block;
     text-align: right;
     padding: 0.5rem 0px;
-    color: #f73f3f;
+    color: #fe0100;
     font-size: 1.2rem;
 }
 
@@ -1649,7 +1656,7 @@ ul.other-login-way li img {
         display: inline-block;
         margin-right: 1rem;
         display: inline-block;
-        background: #f73f3f;
+        background: #fe0100;
         color: #fff;
         padding: 0.2rem 2rem;
         font-size: 1.6rem;
@@ -1694,7 +1701,7 @@ table {
     &.skin0 {
         th {
             color: #fff;
-            background: #f73f3f;
+            background: #fe0100;
         }
     }
     &.skin1 {
@@ -1834,16 +1841,22 @@ table {
         border: #717171 solid 1px;
         font-size: 1.4rem;
         &.cur {
-            background: #f73f3f;
+            background: #fe0100;
             color: #fff;
             border: 1px solid transparent;
         }
     }
 }
-.foot_ps{
-    width:100%;display:inline-block;
-    p{
-        text-indent:1rem;margin-bottom:0.5rem !important;width:100%;display:inline-block;color:#555;
+
+.foot_ps {
+    width: 100%;
+    display: inline-block;
+    p {
+        text-indent: 1rem;
+        margin-bottom: 0.5rem !important;
+        width: 100%;
+        display: inline-block;
+        color: #555;
     }
 }
 

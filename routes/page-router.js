@@ -212,7 +212,8 @@ router.get('/profile/ranking.html', (req, res, next) => {
 });
 
 router.get('/profile/recharge.html', (req, res, next) => {
-    return res.render('profile/recharge', { title: '充值' });
+    let needCourseNum = req.query.needCourseNum == undefined ? 0 : req.query.needCourseNum;
+    return res.render('profile/recharge', { title: '充值', needCourseNum: needCourseNum });
 });
 
 router.get('/profile/single-class.html', (req, res, next) => {
@@ -283,7 +284,8 @@ router.get('/course/course-detail.html', (req, res, next) => {
 
 router.get('/till/pay-page.html', (req, res, next) => {
     let specialId = req.query.specialId;
-    return res.render('till/pay-page', { title: '特训营支付页面', specialId: specialId });
+    let buyCopies = req.query.buyCopies;
+    return res.render('till/pay-page', { title: '特训营支付页面', specialId: specialId ,buyCopies:buyCopies});
 });
 
 router.get('/till/pay-success.html', (req, res, next) => {

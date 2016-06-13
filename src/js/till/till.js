@@ -81,6 +81,6 @@
                 clearInterval(timer);
                 $(this).parent().siblings().find(".btn").removeAttr("href").addClass('btn-end').removeClass("btn-red")
             }
-        });  
+        });
     }, 1000);
 }).call(this);

@@ -58,14 +58,19 @@
         },
         start: function() {
             var self = this;
-            this.timer = setInterval(function() {
+            clearInterval(self.timer);
+            self.timer = setInterval(function() {
                 self.initCountdown();
             }, 1000);
         },
         formatTime: function(end) {
+            var self = this;
             var now = new Date().getTime();
             var end = end * 1;
             var difference = end - now;
+            if(difference <= 0){
+                return "<div class='day'>已过期</div>";
+            }
             var t = difference,
                 list = [];
             var d = Math.floor(t / 1000 / 60 / 60 / 24);

@@ -1,6 +1,7 @@
 (function() {
     var usrRechargeOrderRemainNum = 0;
     var needCourseNum = 0;
+    var buyCopiesNumber = 1;
     $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1 }).success(function(data) {
         if (data.code == "0000" && data.success) {
             usrRechargeOrderRemainNum = data.data;
@@ -63,6 +64,7 @@
 
     function totalPrice() {
         var num = $(".pub_peolist a.cur").data("num");
+        buyCopiesNumber = num;
         var oncePrice = $(".pub_peolist a.cur").data("oncePrice");
         var onceCourseHour = $(".pub_peolist a.cur").data("onceCourseHour");
         needCourseNum = num * onceCourseHour;
@@ -71,6 +73,8 @@
         string += "（需" + needCourseNum + "课时）";
 
         if (usrRechargeOrderRemainNum < needCourseNum) {
+            var href = $(".rechargePanel a").attr('href');
+            $(".rechargePanel a").attr('href',href+"?needCourseNum="+needCourseNum);
             $(".rechargePanel").show();
             $(".paymentPanel").hide();
         } else {
@@ -236,6 +240,7 @@
                 memberId: userInfo.memberId,
                 onceId: courseId,
                 storeId: rechargeObj.storeId,
+                buyCopies:buyCopiesNumber
             }).success(function(data) {
                 if (data.code == "0000" && data.success) {
                     window.location.href = "/course/pay-success.html?courseId=" + courseId;
@@ -263,7 +268,8 @@
                 type: 1,
                 catfood: rechargeObj.discountInfo.nmemberCatFood,
                 onceId: courseId,
-                openId: common.getOpenId()
+                openId: common.getOpenId(),
+                buyCopies:buyCopiesNumber
             }).success(function(data) {
                 if (data.code == "0000" && data.success) {
                     if (!data.data.retcode) {

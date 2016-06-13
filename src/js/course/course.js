@@ -8,7 +8,6 @@
         $(".wrapper").append(data);
         var default_data = $(".wrapper a:first").data("time");
         $(".wrapper a:first").addClass("cur");
-        courseListObj.init(default_data);
         initSwiperList();
     }).error(function(err) {});
 

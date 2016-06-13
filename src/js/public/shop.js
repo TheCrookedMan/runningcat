@@ -5,10 +5,10 @@
         var address = $(this).data("storeAddress");
         var contactPhone = $(this).data("storePhone");
         var store = {
-            storeId:storeId,
-            storeName:storeName,
-            address:address,
-            contactPhone:contactPhone
+            storeId: storeId,
+            storeName: storeName,
+            address: address,
+            contactPhone: contactPhone
         }
         $.AMUI.utils.cookie.set('store', JSON.stringify(store), 365 * 24 * 60 * 60, '/');
     });
@@ -74,8 +74,10 @@
                 geocoder.setComplete(function(result) {
                     // alert(JSON.stringify(result.detail.addressComponents));
                     // alert(result.detail.addressComponents.city);
-                    $("#cityName").text(result.detail.addressComponents.city);
-                    shopList.init();
+                    if (result.detail.addressComponents.city != $("#cityName").text()) {
+                        $("#cityName").text(result.detail.addressComponents.city);
+                        shopList.init();
+                    }
                 });
                 //若服务请求失败，则运行以下函数
                 geocoder.setError(function() {
@@ -119,10 +121,10 @@
                 }
             }, function() {});
         },
-        search:function(){
+        search: function() {
             var self = this;
             self.searchList();
-            scroll.on(function(){
+            scroll.on(function() {
                 if (!self.isEnd) {
                     self.pageNo++;
                     self.searchList();
@@ -146,12 +148,12 @@
                 }
             }).error(function(err) {});
         },
-        searchList:function(){
+        searchList: function() {
             var self = this;
-            this.cityName=$("#cityName").text();
+            this.cityName = $("#cityName").text();
             $.get('/shopSearch.template', {
-                searchKey:keyword,
-                provinceName:self.cityName,
+                searchKey: keyword,
+                provinceName: self.cityName,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }).success(function(data) {
@@ -171,7 +173,7 @@
 
     /*搜索店铺**/
     $(".am-input-group").on("click", "a", function(ev) {
-        keyword=$(".am-form-field").val();
+        keyword = $(".am-form-field").val();
         shopList.search();
     })
 }).call(this)

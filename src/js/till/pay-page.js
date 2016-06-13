@@ -16,6 +16,11 @@
             if (data.code == "0000" && data.success) {
                 var record = data.data,
                     payInfo = [];
+
+                var buyCopies = record.specialPolicyList;
+                var total = record.totalPrice;
+                var perPrice = record.perPrice;
+                var tnum = total / perPrice;
                 payInfo.push("<ul>");
                 payInfo.push("<li>");
                 payInfo.push("训练周期：");
@@ -30,7 +35,7 @@
                 payInfo.push("地址：" + record.storeAddress);
                 payInfo.push("</li>");
                 payInfo.push("<li>");
-                payInfo.push("价格：¥" + record.perPrice + "/人（需" + record.courseNum + "课时）");
+                payInfo.push("价格：¥" + record.perPrice + "/人（需" + tnum + "课时）");
                 payInfo.push("</li>");
                 payInfo.push("</ul>");
                 $(".pay-info").html(payInfo.join(""));
@@ -47,14 +52,16 @@
                 //     peolist.push('</a>');
                 // }
                 // $(".pub_peolist").html(peolist.join(""));
-                var buyCopies=record.specialPolicyList;
-                var total=record.totalPrice;
-                var perPrice=record.perPrice;
-                var tnum=total/perPrice;
-                for(var i in buyCopies){
-                    var pricestr="<a href='javascript:void(0)'><p>"+buyCopies[i].buyCopies+"人</p><p>"+tnum*buyCopies[i].buyCopies+"课时</p></a>";
+                var pricestr = "";
+                for (var i in buyCopies) {
+                    var k = parseInt(i)+1;
+                    if (k == buyCopiesNumber) {
+                        pricestr = "<a href='javascript:void(0)' class='cur' data-per-price='" + perPrice + "' data-course-num='" + tnum * buyCopies[i].buyCopies + "' data-num='" + buyCopies[i].buyCopies + "'><p>" + buyCopies[i].buyCopies + "人</p><p>" + tnum * buyCopies[i].buyCopies + "课时</p></a>";
+                    } else {
+                        pricestr="<a href='javascript:void(0)' data-per-price='"+perPrice+"' data-course-num='"+tnum*buyCopies[i].buyCopies+"' data-num='"+buyCopies[i].buyCopies+"'><p>"+buyCopies[i].buyCopies+"人</p><p>"+tnum*buyCopies[i].buyCopies+"课时</p></a>";
+                    }
                     $(".pub_peolist").append(pricestr);
-                    $(".pub_peolist a:first").addClass('cur');
+                    // $(".pub_peolist a:first").addClass('cur');
                 }
                 totalPrice();
             }
@@ -74,12 +81,15 @@
         var num = $(".pub_peolist a.cur").data("num");
         var perPrice = $(".pub_peolist a.cur").data("perPrice");
         var courseNum = $(".pub_peolist a.cur").data("courseNum");
-        needCourseNum = num * courseNum;
+        needCourseNum = courseNum;
+        buyCopiesNumber = num;
         var string = "¥ ";
         string += (num * perPrice).toFixed(2);
         string += "（需" + needCourseNum + "课时）";
 
         if (usrRechargeOrderRemainNum < needCourseNum) {
+            var href = $(".rechargePanel a").attr('href');
+            $(".rechargePanel a").attr('href',href+"?needCourseNum="+needCourseNum);
             $(".rechargePanel").show();
             $(".paymentPanel").hide();
         } else {
@@ -91,7 +101,7 @@
         $(".totalPrice").text(string);
     }
     /*
-    	获取可用课时纪录列表
+        获取可用课时纪录列表
      */
     function gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum) {
         $.get('/timeMoneyPayment_rechargelist.template', {
@@ -106,7 +116,7 @@
         }).error(function(err) {});
     }
     /*
-    	课时支付 输入课时 功能
+        课时支付 输入课时 功能
      */
     $("body").on("change", ".rechargeList input", function(ev) {
         var value = $(this).val();
@@ -243,9 +253,10 @@
                 memberId: userInfo.memberId,
                 groupId: specialId,
                 storeId: rechargeObj.storeId,
+                buyCopies: buyCopiesNumber
             }).success(function(data) {
                 if (data.code == "0000" && data.success) {
-                    window.location.href = "/till/pay-success.html?specialId="+specialId;
+                    window.location.href = "/till/pay-success.html?specialId=" + specialId;
                 } else {
                     modal.alert(data.msg);
                 }
@@ -267,7 +278,8 @@
                 type: 1,
                 catfood: rechargeObj.discountInfo.nmemberCatFood,
                 groupId: specialId,
-                openId: common.getOpenId()
+                openId: common.getOpenId(),
+                buyCopies: buyCopiesNumber
             }).success(function(data) {
                 if (data.code == "0000" && data.success) {
                     if (!data.data.retcode) {
