@@ -87,7 +87,7 @@
     }
     this.rechargeObj = new recharge();
     /*
-    	课时数量加减控制器
+        课时数量加减控制器
      */
     $("body").on("click", ".pub-num .num .min", function(ev) {
         var buy_num = $(".pub-num .buy_num").val();
@@ -156,7 +156,7 @@
             }).success(function(data) {
                 if (data.code == "0000" && data.success) {
                     if (!data.data.retcode) {
-                    	modal.alert(data.data.error);
+                        modal.alert(data.data.error);
                     } else {
                         pay.go(data.data).then(function() {
                             // success
@@ -176,4 +176,8 @@
         classRecharge();
         ev.stopPropagation();
     });
+    var courseNum = $(".pub-num .buy_num").val();
+    if (courseNum > 0) {
+        rechargeObj.selectDiscountInfo(courseNum);
+    }
 }).call(this);

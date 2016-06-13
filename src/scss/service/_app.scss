@@ -808,7 +808,7 @@ ul.other-login-way li img {
         //     color: #fff;
         // }
     }
-    $swiper-height-px:65px;
+    $swiper-height-px:70px;
     $swiper-height:rem-calc($swiper-height-px);
     .swiper {
         width: 88%;
@@ -828,7 +828,7 @@ ul.other-login-way li img {
             display: -ms-flexbox;
             display: -webkit-flex;
             display: flex;
-            overflow: scroll;
+            overflow-x: scroll;
             .slider {
                 width: 14.2%;
                 -webkit-flex-shrink: 0;

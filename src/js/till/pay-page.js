@@ -88,7 +88,7 @@
         string += "（需" + needCourseNum + "课时）";
 
         if (usrRechargeOrderRemainNum < needCourseNum) {
-            var href = $(".rechargePanel a").attr('href');
+            var href = $(".rechargePanel a").data('href');
             $(".rechargePanel a").attr('href',href+"?needCourseNum="+needCourseNum);
             $(".rechargePanel").show();
             $(".paymentPanel").hide();

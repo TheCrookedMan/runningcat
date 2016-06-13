@@ -21,13 +21,13 @@ router.get('/wechatAuth.html', (req, res, next) => {
                 let access_token = data.access_token,
                     openid = data.openid;
 
-                res.cookie('openId', openid, {maxAge:31536000,path:'/'});
+                res.cookie('openId', openid, { maxAge: 31536000, path: '/' });
                 user.loginByopenId(openid, (record) => {
                     /*
                         code：10015 用户没有注册，如果返回没有注册就获取用户的微信信息并且把信息写入本地的cookie.然后重定向至按钮对应的页面
                      */
                     if ("10015" == record.code) {
-                        res.cookie('runningcatUserInfo', "{}", {maxAge:31536000,path:'/'});
+                        res.cookie('runningcatUserInfo', "{}", { maxAge: 31536000, path: '/' });
                         wechatAuth.getUserInfo(access_token, openid, function(userinfo) {
                             let info = JSON.parse(userinfo);
                             if (!info.openid) {
@@ -41,7 +41,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                                 /*
                                     返回的userinfo信息里面有openid证明请求返回成功
                                  */
-                                res.cookie('wechatUserInfo', userinfo, {maxAge:31536000,path:'/'});
+                                res.cookie('wechatUserInfo', userinfo, { maxAge: 31536000, path: '/' });
                                 res.redirect(redirect_uri);
                             }
                         });
@@ -53,7 +53,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                         /*
                             把runningcat用户信息存入cookie中.
                          */
-                        res.cookie('runningcatUserInfo', runningcatUserInfo, {maxAge:31536000,path:'/'});
+                        res.cookie('runningcatUserInfo', runningcatUserInfo, { maxAge: 31536000, path: '/' });
                         /*
                             redirect_uri 如果为空的话，自动跳转至 /public/shop.html
                          */
@@ -113,7 +113,7 @@ router.get('/public/shop.html', (req, res, next) => {
     let storeName = req.query.storeName;
     // res.cookies['openId'] = "123";
     // req.cookies['openId'] = "123";
-    
+
     // let list = [];
     // list.push("openId=oLy9ruKx06rNSaQBFsxIdM4Vo5Lk;Max-Age=31536000; Path=/;proxy=true");
     // list.push("runningcatUserInfo={};Max-Age=31536000; Path=/");
@@ -212,7 +212,11 @@ router.get('/profile/ranking.html', (req, res, next) => {
 });
 
 router.get('/profile/recharge.html', (req, res, next) => {
-    let needCourseNum = req.query.needCourseNum == undefined ? 0 : req.query.needCourseNum;
+    let needCourseNum = req.query.needCourseNum;
+    if (needCourseNum == undefined) {
+        needCourseNum = 0;
+    }
+    console.log("needCourseNum:::"+needCourseNum);
     return res.render('profile/recharge', { title: '充值', needCourseNum: needCourseNum });
 });
 
@@ -285,7 +289,7 @@ router.get('/course/course-detail.html', (req, res, next) => {
 router.get('/till/pay-page.html', (req, res, next) => {
     let specialId = req.query.specialId;
     let buyCopies = req.query.buyCopies;
-    return res.render('till/pay-page', { title: '特训营支付页面', specialId: specialId ,buyCopies:buyCopies});
+    return res.render('till/pay-page', { title: '特训营支付页面', specialId: specialId, buyCopies: buyCopies });
 });
 
 router.get('/till/pay-success.html', (req, res, next) => {
