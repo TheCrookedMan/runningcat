@@ -8,15 +8,15 @@
 </li>
 <li>
   <div class="pic">
-    <img src="/img/shoptest.jpg" />
-    <img src="/img/app-icon72x72@2x.png" alt="跑步猫" class="peo">
+    <img src="{{settings.imageAddress}}{{till.imgUrl}}" />
+    <!-- <img src="/img/app-icon72x72@2x.png" alt="跑步猫" class="peo"> -->
   </div>
   <div class="info">
     <div class="tit">
       <p>{{till.className}}</p>
-      <p>2015.04~2015.06  </p>
-      <p>每周二 18:30~19:30 </p>
-      <p>共24次课</p>
+      <p>{{till.startDate|dateFormat('MM/dd')}}~{{till.endDate|dateFormat('MM/dd')}}  </p>
+      <p>{{till.classTime}}</p>
+      <p>共{{till.totalNum}}次课</p>
     </div>
     <div class="pub-btn skin0 mt0">
         <a href="/profile/till.html?specialId={{till.id}}" class="btn btn-red">课表</a>
