@@ -21,13 +21,13 @@ router.get('/wechatAuth.html', (req, res, next) => {
                 let access_token = data.access_token,
                     openid = data.openid;
 
-                list.push("openId=" + openid+";Max-Age=31536000; Path=/");
+                res.cookie('openId', openid, {maxAge:31536000,path:'/'});
                 user.loginByopenId(openid, (record) => {
                     /*
                         code：10015 用户没有注册，如果返回没有注册就获取用户的微信信息并且把信息写入本地的cookie.然后重定向至按钮对应的页面
                      */
                     if ("10015" == record.code) {
-                        list.push("runningcatUserInfo={};Max-Age=31536000; Path=/");
+                        res.cookie('runningcatUserInfo', "{}", {maxAge:31536000,path:'/'});
                         wechatAuth.getUserInfo(access_token, openid, function(userinfo) {
                             let info = JSON.parse(userinfo);
                             if (!info.openid) {
@@ -41,34 +41,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                                 /*
                                     返回的userinfo信息里面有openid证明请求返回成功
                                  */
-                                let wechatUserInfo1 = {
-                                    openid: info.openid,
-                                    nickname: info.nickname,
-                                    sex: info.sex,
-                                    language: info.language,
-                                    city: info.city,
-                                    province: info.province,
-                                    country: info.country
-                                };
-                                let wechatUserInfo2 = {
-                                    headimgurl: info.headimgurl
-                                }
-                                let wechatUserInfo3 = {
-                                    privilege: info.privilege,
-                                    unionid: info.unionid,
-                                    subscribe: info.subscribe,
-                                    subscribe_time: info.subscribe_time,
-                                    remark: info.remark,
-                                    groupid: info.groupid
-                                }
-                                wechatUserInfo1 = JSON.stringify(wechatUserInfo1);
-                                wechatUserInfo2 = JSON.stringify(wechatUserInfo2);
-                                wechatUserInfo3 = JSON.stringify(wechatUserInfo3);
-
-                                list.push("wechatUserInfo1=" + wechatUserInfo1+";Max-Age=31536000; Path=/");
-                                list.push("wechatUserInfo2=" + wechatUserInfo2+";Max-Age=31536000; Path=/");
-                                list.push("wechatUserInfo3=" + wechatUserInfo3+";Max-Age=31536000; Path=/");
-                                res.setHeader('Set-Cookie', list);
+                                res.cookie('wechatUserInfo', userinfo, {maxAge:31536000,path:'/'});
                                 res.redirect(redirect_uri);
                             }
                         });
@@ -80,8 +53,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                         /*
                             把runningcat用户信息存入cookie中.
                          */
-                        list.push("runningcatUserInfo=" + runningcatUserInfo+";Max-Age=31536000; Path=/");
-                        res.setHeader('Set-Cookie', list);
+                        res.cookie('runningcatUserInfo', runningcatUserInfo, {maxAge:31536000,path:'/'});
                         /*
                             redirect_uri 如果为空的话，自动跳转至 /public/shop.html
                          */
@@ -139,11 +111,15 @@ router.get('/public/profile.html', (req, res, next) => {
 router.get('/public/shop.html', (req, res, next) => {
     let storeId = req.query.storeId;
     let storeName = req.query.storeName;
+    // res.cookies['openId'] = "123";
+    // req.cookies['openId'] = "123";
+    
     // let list = [];
-    // list.push("openId=123123; path=/; max-age=360000");
-    // list.push("wechatUserInfo1={aaa:456456}; path=/; max-age=360000");
-    // list.push("wechatUserInfo2={ccc:123}; path=/; max-age=360000");
-    // list.push("wechatUserInfo3={ccc:sdf}; path=/; max-age=360000");
+    // list.push("openId=oLy9ruKx06rNSaQBFsxIdM4Vo5Lk;Max-Age=31536000; Path=/;proxy=true");
+    // list.push("runningcatUserInfo={};Max-Age=31536000; Path=/");
+    // list.push("wechatUserInfo1={\"openid\":\"oLy9ruKx06rNSaQBFsxIdM4Vo5Lk\",\"nickname\":\"|\",\"sex\":1,\"language\":\"zh_CN\",\"city\":\"\",\"province\":\"上海\",\"country\":\"中国\"};Max-Age=31536000; Path=/");
+    // list.push( "wechatUserInfo2={\"headimgurl\":\"http://wx.qlogo.cn/mmopen/J1EYE814VZic83pfL3fdnRP4GF7mBZzZOBWJ3IvebURORknxSzPRjEDudRRbUCDkjGGTccMIiaFAyZzIcyWfpKlg/0\"};Max-Age=31536000; Path=/");
+    // list.push("wechatUserInfo3={\"privilege\":[]};Max-Age=31536000; Path=/");
     // res.setHeader("Set-Cookie", list);
     return res.render('public/shop', { title: '店铺', storeId: storeId, storeName: storeName });
 });
@@ -188,6 +164,10 @@ router.get('/profile/calories.html', (req, res, next) => {
 router.get('/profile/holopoint.html', (req, res, next) => {
     return res.render('profile/holopoint', { title: '里程数' });
 });
+router.get('/profile/myReflection.html', (req, res, next) => {
+    return res.render('profile/myReflection', { title: '我的成就' });
+});
+
 
 router.get('/profile/class-recharge.html', (req, res, next) => {
     return res.render('profile/class-recharge', { title: '课时充值' });
@@ -264,9 +244,6 @@ router.get('/profile/heartrate.html', (req, res, next) => {
     return res.render('profile/heartrate', { title: '心率' });
 });
 
-
-
-
 /*
     私教课
  */
@@ -327,8 +304,6 @@ router.get('/till/till-detail.html', (req, res, next) => {
     let day = req.query.day;
     return res.render('till/till-detail', { title: '特训营详情', specialId: specialId, year: year, mm: mm, day: day });
 });
-
-
 
 // router.get('*.html', (req, res, next) => {
 //     var url = req.url;

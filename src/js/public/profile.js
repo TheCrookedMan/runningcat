@@ -8,9 +8,7 @@
     $("#unionId").val(wechatUserInfo.unionid);
     $('#loginForm').validator({
         submit: function(form) {
-            
             if (this.isFormValid()) {
-                
                 var data = common.parseForm(".am-form");
                 if (!regCardId.test(data.idcard)) {
                     modal.alert("身份证格式错误！");

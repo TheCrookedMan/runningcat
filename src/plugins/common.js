@@ -69,17 +69,8 @@
             }
         },
         getWechatInfo: function() {
-            var wechatUserInfo;
-            var wechatUserInfo1 = $.AMUI.utils.cookie.get("wechatUserInfo1");
-            var wechatUserInfo2 = $.AMUI.utils.cookie.get("wechatUserInfo2");
-            var wechatUserInfo3 = $.AMUI.utils.cookie.get("wechatUserInfo3");
-            wechatUserInfo1 = JSON.parse(wechatUserInfo1);
-            wechatUserInfo2 = JSON.parse(wechatUserInfo2);
-            wechatUserInfo3 = JSON.parse(wechatUserInfo3);
-            wechatUserInfo = $.extend(wechatUserInfo1, wechatUserInfo2, wechatUserInfo3);
-            // alert(JSON.stringify(wechatUserInfo));
-            // wechatUserInfo = JSON.parse(wechatUserInfo);
-            return wechatUserInfo;
+            var wechatUserInfo = $.AMUI.utils.cookie.get("wechatUserInfo");
+            return JSON.parse(wechatUserInfo);
         },
         getOpenId: function() {
             return $.AMUI.utils.cookie.get("openId");
