@@ -72,13 +72,13 @@
         {
             day1="0"+day1.toString();
         }
-        else if(hour<10){
+        if(hour<10){
             hour="0"+hour.toString();
         }
-        else if(minute<10){
+        if(minute<10){
             minute="0"+minute.toString(); 
         }
-         else if(second<10){
+        if(second<10){
             second="0"+second.toString();
         }
 
