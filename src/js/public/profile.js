@@ -3,13 +3,14 @@
     if (!wechatUserInfo) {
         wechatUserInfo = {};
     }
-
+    var store = common.getStoreInfo();
     $("#userPic").attr("src", wechatUserInfo.headimgurl);
     $("#nicknameText").text(wechatUserInfo.nickname);
     $("#nickName").val(wechatUserInfo.nickname);
     $("#photoUrl").val(wechatUserInfo.headimgurl);
     $("#openId").val(wechatUserInfo.openid);
     $("#unionId").val(wechatUserInfo.unionid);
+    $("#storeId").val(store.storeId);
 
     var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
     $tooltip.appendTo(document.body);

@@ -102,6 +102,7 @@
         data = data.replace(/(^\s+)|(\s+$)/g, "");
         if ("" != data) {
             $(".often").after(data);
+            $(".often").show();
         }
     }).error(function(err) {});
 

@@ -245,7 +245,8 @@ gulp.task('plugin:build', () => {
         }))
         .pipe(gulp.dest(plugins_src.outputfile));
 
-    gulp.src(src_plugins_dir + "/echarts/echarts.simple.min.js").pipe(gulp.dest(plugins_src.outputfile));
+    // gulp.src(src_plugins_dir + "/echarts/echarts.simple.min.js").pipe(gulp.dest(plugins_src.outputfile));
+    gulp.src(src_plugins_dir + "/echarts/echarts.min.js").pipe(gulp.dest(plugins_src.outputfile));
     /*
         mobiscroll 插件打包
      */
