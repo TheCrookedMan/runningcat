@@ -739,7 +739,7 @@ ul.other-login-way li img {
                     font-size: 1.8rem;
                     border: #535353 solid 1px;
                     &.cur {
-                        background: #fe0100;
+                        background: #1a1a1a;
                         color: #fff;
                     }
                 }
@@ -747,7 +747,7 @@ ul.other-login-way li img {
         }
     }
     &.skin1 {
-        background: #f45252;
+        background: #990100;
         .data-sort {
             width: 100%;
             margin-top: 0;
@@ -856,7 +856,7 @@ ul.other-login-way li img {
                     padding: 0;
                 }
                 &.cur {
-                    background: #b74142;
+                    background: #770101;
                 }
             }
         }
@@ -1140,7 +1140,7 @@ ul.other-login-way li img {
                                 i {}
                             }
                             &.clock {
-                                color: #fe0100;
+                                color: #990100;
                             }
                         }
                     }
@@ -1381,10 +1381,10 @@ ul.other-login-way li img {
                     background: #e6e6e6;
                 }
                 .img {
-                    width: 5.2rem;
-                    height: 5.2rem;
+                    width: 6.7rem;
+                    height: 6.7rem;
                     position: absolute;
-                    text-align: center;
+                    text-align: left;
                     left: 1.5rem;
                     top: 1.5rem;
                     img {
@@ -1393,7 +1393,7 @@ ul.other-login-way li img {
                     }
                 }
                 .info {
-                    padding-left: 7.5rem;
+                    padding-left: 9.2rem;
                     display: inline-block;
                     width: 100%;
                     padding-top: 0.2rem;
