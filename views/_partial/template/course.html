@@ -1,6 +1,8 @@
 {% for course in data %}
 <li>
-    <img src="/img/ico-shop.png" class="ico" style="display: none">
+    {% if course.ticketShortage <=10 %}
+    <img src="/img/ico-shop.png" class="ico">
+    {% endif %}
     <div class="list-info">
         <div class="img"><img src="{{settings.imageAddress}}{{course.imgUrl}}"></div>
         <div class="info">
@@ -19,7 +21,11 @@
            </p>
         </div>
         <div class="pub-btn">
+            {% if course.isBuyFlag == 0 %}
             <a href="/course/course-detail.html?courseId={{course.courseId}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}" class="btn btn-red">预约</a>
+            {% elseif course.isBuyFlag == 1 %}
+            <a  class="btn btn-end">预约</a>
+            {% endif %}
         </div>
     </div>
 </li>

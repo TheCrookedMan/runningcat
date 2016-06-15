@@ -70,16 +70,16 @@
 
         if (day1<10)
         {
-            day1="0"+day1;
+            day1="0"+day1.toString();
         }
-        else if(hour<10){
-            hour="0"+hour;
+        if(hour<10){
+            hour="0"+hour.toString();
         }
-        else if(minute<10){
-            minute="0"+minute; 
+        if(minute<10){
+            minute="0"+minute.toString(); 
         }
-         else if(second<10){
-            second="0"+second;
+        if(second<10){
+            second="0"+second.toString();
         }
 
         if (leftsecond > 1) {
