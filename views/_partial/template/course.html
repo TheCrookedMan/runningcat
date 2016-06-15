@@ -1,7 +1,9 @@
 {% for course in data %}
 <li>
-    {% if course.ticketShortage <=10 %}
-    <img src="/img/ico-shop.png" class="ico">
+    {% if course.courseMaxNum && course.buyerNum %}
+      {% if course.courseMaxNum-course.buyerNum <=course.ticketShortage %}
+        <img src="/img/ico-shop.png" class="ico">
+      {% endif %}
     {% endif %}
     <div class="list-info">
         <div class="img"><img src="{{settings.imageAddress}}{{course.imgUrl}}"></div>

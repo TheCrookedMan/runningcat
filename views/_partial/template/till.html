@@ -31,10 +31,13 @@
         {% elseif till.isBuyFlag == 1 %}
         <a  class="btn btn-end">报名</a>
         {% endif %}
-        {% if till.maxNum-till.buyerNum <=till.ticketShortage %}
-        <p>
-          <img src="/img/ico-stock.png" />
-        </p>
+        
+        {% if till.maxNum && till.buyerNum %}
+          {% if till.maxNum-till.buyerNum <=till.ticketShortage %}
+            <p>
+              <img src="/img/ico-stock.png" />
+            </p>
+          {% endif %}
         {% endif %}
     </div>
   </div>
