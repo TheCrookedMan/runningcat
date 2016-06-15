@@ -48,7 +48,7 @@
                     if (data.code == "0000" && data.success) {
                         thisPanel.remove();
                     } else {
-                        modal.alert(data.msg);
+                        // modal.alert(data.msg);
                     }
                 })
             }
@@ -62,7 +62,7 @@
             if (data.code == "0000" && data.success) {
                 self.removeClass("noRead");
             } else {
-                modal.alert(data.msg);
+                // modal.alert(data.msg);
             }
         })
     });

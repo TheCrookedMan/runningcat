@@ -32,7 +32,7 @@
     function queryUserHeartrate(date) {
         // $.post('/member/getTrainTimes',{memberId:userInfo.memberId,month:date}).success(function(data){
         //     if(data.code == "0000" && data.success){
-        //         initHolopoint(data);
+        //         initMyReflection(data);
         //     }
         // });
         $.post('/member/getAchievement', { memberId: userInfo.memberId, month: date }).success(function(data) {
@@ -52,7 +52,7 @@
                 ]
                 initIndicator(record);
             }
-        })
+        });
         data = getFakeData(date);
         initMyReflection(data);
     }

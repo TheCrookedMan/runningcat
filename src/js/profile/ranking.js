@@ -107,7 +107,7 @@
                     self.children("i").removeClass('am-icon-heart-o');
                     self.children('i').addClass("am-icon-heart")
                 } else {
-                    modal.alert(data.msg);
+                    // modal.alert(data.msg);
                 }
             })
             ev.stopPropagation(); 

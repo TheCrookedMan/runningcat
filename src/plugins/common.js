@@ -6,6 +6,9 @@
         this.reg_cellPhone = /^((\+?86)|(\(\+86\)))?(1[0-9]{10})$/;
         this.reg_cardId = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
         this.reg_integer = /^\+?[1-9][0-9]*$/;
+        this.reg_skip = /\s/;
+        this.reg_beforeWeight = /^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
+        this.reg_height = /^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
     };
     common.prototype = {
         parseForm: function(selector) {
@@ -26,6 +29,31 @@
         regInteger: function(num) {
             return this.reg_integer.test(num);
         },
+        regSkip: function(str) {
+            return this.reg_skip.test(str);
+        },
+        regBeforeWeight: function(value) {
+            return this.reg_beforeWeight.test(value);
+        },
+        regHeight:function(value){
+            return this.reg_height.test(value);
+        },
+        regRealAge: function(date) {
+            date = new Date(date);
+            var now = new Date().getTime();
+            var age = date.getTime();
+            var difference = now - age;
+            if(difference < 0){
+                return false;
+            } else {
+                 var d = Math.floor(difference / 1000 / 60 / 60 / 24 / 365);
+                 if(d >= 16 && d <= 60){
+                    return true;
+                 } else {
+                    return false;
+                 }
+            }
+        },
         getUserInfo: function() {
             var runningcatUserInfo = $.AMUI.utils.cookie.get("runningcatUserInfo");
             if (undefined == runningcatUserInfo) {
@@ -33,6 +61,7 @@
             }
             return JSON.parse(runningcatUserInfo);
         },
+
         formatDate: function(date, format) {
             date = new Date(date);
             var map = {

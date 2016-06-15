@@ -39,7 +39,7 @@
             if(data.code == "0000" && data.success){
                 modal.alert("评论成功！");
             } else {
-                modal.alert(data.msg);
+                modal.alert("评论失败！");
             }
         })
         return false;

@@ -49,7 +49,7 @@
             relatedTarget: this,
             onConfirm: function(options) {
                 var value = this.$dialog.find("input").val();
-                if (!common.regInteger(value)) {
+                if (!common.regBeforeWeight(value)) {
                     modal.alert("请输入正确的数字！");
                     return false;
                 } else {
@@ -190,7 +190,30 @@
             $("#demo-test-select").mobiscroll("show");
         }, 200);
     };
-    $('#loginForm').validator({
+
+    var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
+    $tooltip.appendTo(document.body);
+    var $form = $('#loginForm');
+
+    $form.validator({
+        validate: function(validity) {
+            $tooltip.hide();
+            if (validity.field.name == "wechat") {
+                if (validity.field.value == "" || common.regSkip(validity.field.value)) {
+                    validity.valid = false;
+                } else {
+                    validity.valid = true;
+                }
+            } else if (validity.field.name == "idcard") {
+                validity.valid = regCardId.test(validity.field.value);
+            } else if (validity.field.name == "birthday") {
+                if (validity.field.value == "" || !common.regRealAge(validity.field.value)) {
+                    validity.valid = false;
+                } else {
+                    validity.valid = true;
+                }
+            }
+        },
         submit: function(form) {
             if (this.isFormValid()) {
                 var data = common.parseForm("form");
@@ -201,6 +224,35 @@
             return false;
         }
     });
+
+    var validator = $form.data('amui.validator');
+
+    $form.on('focusin focusout', '.am-form-error input', function(e) {
+        if (e.type === 'focusin') {
+            var $this = $(this);
+            var offset = $this.offset();
+            var msg = $this.data('foolishMsg') || validator.getValidationMessage($this.data('validity'));
+
+            $tooltip.text(msg).show().css({
+                left: offset.left + 10,
+                top: offset.top - $(this).outerHeight() - 10
+            });
+        } else {
+            $tooltip.hide();
+        }
+    });
+
+    // $('#loginForm').validator({
+    //     submit: function(form) {
+    //         if (this.isFormValid()) {
+    //             var data = common.parseForm("form");
+    //             $.post('/updateUserInfo', data).success(function(data) {
+    //                 modal.alert(data.msg);
+    //             });
+    //         }
+    //         return false;
+    //     }
+    // });
 
 
     // function getBloodType(){

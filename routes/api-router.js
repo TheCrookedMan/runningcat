@@ -43,6 +43,8 @@ router.post('/usrMemberCatfood/selectUsrSurplusAmount', profile.surplus);
 router.post('/member/getTrainTimes',profile.getTrainTimes);
 /*查询我的成就数据*/
 router.post('/member/getAchievement',profile.getAchievement);
+/**/
+router.post('/userCenter/queryUserFuel',profile.queryUserFuel);
 
 /* message */
 router.post('/message/delMsg', profile.delMsg);

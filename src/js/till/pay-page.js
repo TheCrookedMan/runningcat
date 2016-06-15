@@ -199,7 +199,7 @@
                         }
                         self.gradePanelString = '<tr><td colspan="4" class="col-red txt-l">*当前为' + record.gradeName + '，可再享受' + (record.mlevemRatio * 10).toFixed(1) + '折优惠</td></tr>';
                     } else {
-                        modal.alert(data.msg);
+                        // modal.alert(data.msg);
                     }
                 });
             } else {
@@ -258,7 +258,7 @@
                 if (data.code == "0000" && data.success) {
                     window.location.href = "/till/pay-success.html?specialId=" + specialId;
                 } else {
-                    modal.alert(data.msg);
+                    // modal.alert(data.msg);
                 }
             });
         } else {
@@ -292,7 +292,7 @@
                         });
                     }
                 } else {
-                    modal.alert(data.msg);
+                    // modal.alert(data.msg);
                 }
             })
         } else {

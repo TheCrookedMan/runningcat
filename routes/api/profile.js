@@ -29,13 +29,13 @@ exports.queryUserFuelList = (req, res, next) => {
 
 /*查询用户训练时间排名*/
 exports.queryUserTrainList = (req, res, next) => {
-    new rest({
-        functionCode: 'member.queryUserTrainList',
-    }).link(req, res, next);
-}
-/*
-    点赞
- */
+        new rest({
+            functionCode: 'member.queryUserTrainList',
+        }).link(req, res, next);
+    }
+    /*
+        点赞
+     */
 exports.bePraise = (req, res, next) => {
     new rest({
         functionCode: 'member.bePraise',
@@ -138,15 +138,22 @@ exports.queryUserCaLone = (req, res, next) => {
 }
 
 /* 查询我的成就数据 */
-exports.getAchievement = (req,res,next) =>{
+exports.getAchievement = (req, res, next) => {
     new rest({
         functionCode: 'member.getAchievement',
     }).post(req, res, next);
 }
 
 /* 我的成就每月锻炼次数 */
-exports.getTrainTimes = (req,res,next) =>{
+exports.getTrainTimes = (req, res, next) => {
     new rest({
         functionCode: 'member.getTrainTimes',
+    }).post(req, res, next);
+}
+
+/* 查询用户能量 */
+exports.queryUserFuel = (req, res, next) => {
+    new rest({
+        functionCode: 'userCenter.queryUserFuel',
     }).post(req, res, next);
 }

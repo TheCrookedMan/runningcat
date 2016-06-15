@@ -31,6 +31,11 @@
     init(now);
 
     function queryUserHeartrate(date) {
+        // $.post('/userCenter/queryUserFuel', { memberId: userInfo.memberId, month: date }).success(function(data) {
+        //     if (data.code == "0000" && data.success) {
+        //         initHolopoint(data);
+        //     }
+        // });
         data = getFakeData(date);
         initHolopoint(data);
     }
@@ -98,6 +103,7 @@
             }]
         });
     }
+
     function getFakeData(date) {
         var data = [];
         var len = getDays(date);

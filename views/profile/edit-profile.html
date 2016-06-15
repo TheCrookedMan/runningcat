@@ -6,9 +6,35 @@
 body {
     background-color: #e6e6e6
 }
+#vld-tooltip {
+    position: absolute;
+    z-index: 1000;
+    padding: 5px 10px;
+    background: #F37B1D;
+    min-width: 150px;
+    color: #fff;
+    transition: all 0.15s;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    display: none;
+}
+
+#vld-tooltip:before {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -8px;
+    content: "";
+    border-width: 0 8px 8px;
+    border-color: transparent transparent #F37B1D;
+    border-style: none inset solid;
+    --webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
 </style>
 <section class="profile-wrap edit-profile">
-    <form method="post" class="am-form" data-am-validator id="loginForm"></form>
+    <form method="post" class="am-form" id="loginForm"></form>
 </section>
 
 <!-- 血型 -->

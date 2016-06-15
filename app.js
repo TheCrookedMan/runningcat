@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var compression = require('compression');
 var argv = process.argv.slice(2);
 var routes, api, temp, errorRouter,myFilters,config;
 if ("test" == argv) {
@@ -23,6 +24,8 @@ if ("test" == argv) {
 }
 
 var app = express();
+
+app.use(compression());
 
 var swig = require('swig');
 var _setting = {

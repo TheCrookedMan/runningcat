@@ -19,7 +19,7 @@
                 timeout();
             }
         }).error(function(data) {
-            modal.alert(data.msg);
+            // modal.alert(data.msg);
         });
     }
 

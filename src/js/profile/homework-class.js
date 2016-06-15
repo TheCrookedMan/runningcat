@@ -85,7 +85,7 @@
             if(data.code == "0000" && data.success){
                 modal.alert("提交作业成功！");
             } else {
-                modal.alert(data.msg);
+                modal.alert("提交作业失败！");
             }
         })
         return false;
@@ -109,7 +109,7 @@
             if(data.code == "0000" && data.success){
                 modal.alert("修改作业成功！");
             } else {
-                modal.alert(data.msg);
+                modal.alert("修改作业失败！");
             }
         })
         return false;

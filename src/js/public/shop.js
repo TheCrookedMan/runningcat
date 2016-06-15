@@ -81,14 +81,14 @@
                 });
                 //若服务请求失败，则运行以下函数
                 geocoder.setError(function() {
-                    alert("出错了，请输入正确的经纬度！！！");
+                    // alert("出错了，请输入正确的经纬度！！！");
                 });
             },
             cancel: function() {
-                alert("用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。");
+                // alert("用户点击取消时的回调函数，仅部分有用户取消操作的api才会用到。");
             },
             fail: function() {
-                alert("接口调用失败时执行的回调函数。");
+                // alert("接口调用失败时执行的回调函数。");
             }
         });
     });
@@ -99,7 +99,10 @@
     $.get('/oftenshop.template', {
         memberId: userInfo.memberId
     }).success(function(data) {
-        $(".often").after(data);
+        data = data.replace(/(^\s+)|(\s+$)/g, "");
+        if ("" != data) {
+            $(".often").after(data);
+        }
     }).error(function(err) {});
 
 

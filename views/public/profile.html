@@ -3,6 +3,33 @@
 body {
     background-color: #eee;
 }
+
+#vld-tooltip {
+    position: absolute;
+    z-index: 1000;
+    padding: 5px 10px;
+    background: #F37B1D;
+    min-width: 150px;
+    color: #fff;
+    transition: all 0.15s;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+    display: none;
+}
+
+#vld-tooltip:before {
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -8px;
+    content: "";
+    border-width: 0 8px 8px;
+    border-color: transparent transparent #F37B1D;
+    border-style: none inset solid;
+    --webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
 </style>
 <section class="profile-wrap">
     <div class="head-logo">
@@ -13,7 +40,7 @@ body {
         <!-- <p>点击头像上传图片</p> -->
         <p id="nicknameText"></p>
     </div>
-    <form method="post" class="am-form" data-am-validator id="loginForm">
+    <form method="post" class="am-form" id="loginForm">
         <input type="hidden" name="password" value="{{password}}">
         <input type="hidden" name="mobileNo" value="{{mobileNo}}">
         <input type="hidden" name="storeId" value="{{storeId}}">
@@ -24,17 +51,23 @@ body {
         <input type="hidden" name="unionId" id="unionId">
         <ul>
             <li>
-                <span class="tit">姓名</span>
-                <!-- <input type="text" name="nickName" id="name" placeholder=""> -->
-                <input type="text" name="userName" id="name" placeholder="" required>
+                <div class="am-form-group">
+                    <span class="tit">姓名</span>
+                    <!-- <input type="text" name="nickName" id="name" placeholder=""> -->
+                    <input type="text" name="userName" id="name" placeholder="" required data-foolish-msg="请输入您的真实姓名！">
+                </div>
             </li>
             <li>
-                <span class="tit">微信号</span>
-                <input type="text" name="wechat" id="wx" placeholder="" required>
+                <div class="am-form-group">
+                    <span class="tit">微信号</span>
+                    <input type="text" name="wechat" id="wx" placeholder="" required data-foolish-msg="请输入正确的微信号！">
+                </div>
             </li>
             <li>
-                <span class="tit">身份证</span>
-                <input type="text" name="idcard" id="sid" placeholder="" required>
+                <div class="am-form-group">
+                    <span class="tit">身份证</span>
+                    <input type="text" name="idcard" id="sid" placeholder="" required data-foolish-msg="请输入正确的身份证号码！">
+                </div>
             </li>
             <li>
                 <span class="tit">性别</span>
@@ -46,18 +79,24 @@ body {
                 </label>
             </li>
             <li>
-                <span class="tit">生日</span>
-                <input type="date" name="birthday" id="borth" placeholder="年/月/日" required>
+                <div class="am-form-group">
+                    <span class="tit">生日</span>
+                    <input type="date" name="birthday" id="borth" placeholder="年/月/日" required data-foolish-msg="请输入正确的出生日期！">
+                </div>
             </li>
             <li>
-                <span class="tit">体重</span>
-                <input type="text" name="beforeWeight" id="weight" placeholder="" required>
-                <i class="unit">kg</i>
+                <div class="am-form-group">
+                    <span class="tit">体重</span>
+                    <input type="text" name="beforeWeight" id="weight" placeholder="" required data-foolish-msg="请输入正确的体重信息！">
+                    <i class="unit">kg</i>
+                </div>
             </li>
             <li>
-                <span class="tit">身高</span>
-                <input type="text" name="height" id="height" placeholder="" required>
-                <i class="unit">cm</i>
+                <div class="am-form-group">
+                    <span class="tit">身高</span>
+                    <input type="text" name="height" id="height" placeholder="" required data-foolish-msg="请输入正确的身高信息！">
+                    <i class="unit">cm</i>
+                </div>
             </li>
         </ul>
         <div class="am-cf">

@@ -1,11 +1,8 @@
 <div class="head-logo">
     <div class="am-form-group am-form-file">
         {% if memberInfo.photoUrl.indexOf('wx.qlogo.cn') != -1 %}
-            <img src="{{memberInfo.photoUrl}}" alt="跑步猫" class="userLogo" >
-        {% else %}
-            <img src="{{settings.imageAddress}}{{memberInfo.photoUrl}}" alt="跑步猫" class="userLogo" >
-        {% endif %}
-        
+        <img src="{{memberInfo.photoUrl}}" alt="跑步猫" class="userLogo"> {% else %}
+        <img src="{{settings.imageAddress}}{{memberInfo.photoUrl}}" alt="跑步猫" class="userLogo"> {% endif %}
         <input type="file" accept="image/*" class="uploadImage">
         <p>上传头像</p>
     </div>
@@ -20,38 +17,45 @@
         <input type="text" name="nickName" id="name" value="{{memberInfo.nickName}}" required>
     </li>
     <li>
-        <span class="tit">微信号<em>*</em></span>
-        <input type="text" name="wechat" id="wx" value="{{memberInfo.wechat}}" required>
+        <div class="am-form-group">
+            <span class="tit">微信号<em>*</em></span>
+            <input type="text" name="wechat" id="wx" value="{{memberInfo.wechat}}" required data-foolish-msg="请输入正确的微信号！">
+        </div>
     </li>
     <li>
-        <span class="tit">出生日期<em>*</em></span>
-        <input type="date" name="birthday" id="borth" value="{{memberInfo.birthday|date('Y-m-d')}}" required>
+        <div class="am-form-group">
+            <span class="tit">出生日期<em>*</em></span>
+            <input type="date" name="birthday" id="borth" value="{{memberInfo.birthday|date('Y-m-d')}}" required required data-foolish-msg="请输入正确的出生日期！">
+        </div>
     </li>
     <li>
-        <span class="tit">性别<em>*</em></span>
-        {% if memberInfo.sex == 1 %}
-            <input type="text" id="sex" value="男" required>
-        {% else %}
-            <input type="text" id="sex" value="女" required>
-        {% endif %}
+        <span class="tit">性别<em>*</em></span> {% if memberInfo.sex == 1 %}
+        <input type="text" id="sex" value="男" required> {% else %}
+        <input type="text" id="sex" value="女" required> {% endif %}
         <input type="hidden" name="sex" id="sexInputBox" value="{{memberInfo.sex}}">
     </li>
     <li class="unit">
-        <span class="tit">身高<em>*</em></span>
-        <input type="text" name="height" id="height" value="{{memberInfo.height}}" required>
-        <span class=" unit-span">cm</span>
+        <div class="am-form-group">
+            <span class="tit">体重<em>*</em></span>
+            <input type="text" name="beforeWeight" id="weight" value="{{memberInfo.beforeWeight}}" required data-foolish-msg="请输入正确的体重信息！">
+            <span class=" unit-span">kg</span>
+        </div>
     </li>
     <li class="unit">
-        <span class="tit">体重<em>*</em></span>
-        <input type="text" name="beforeWeight" id="weight" value="{{memberInfo.beforeWeight}}" required>
-        <span class=" unit-span">kg</span>
+        <div class="am-form-group">
+            <span class="tit">身高<em>*</em></span>
+            <input type="text" name="height" id="height" value="{{memberInfo.height}}" required data-foolish-msg="请输入正确的身高信息！">
+            <span class=" unit-span">cm</span>
+        </div>
     </li>
 </ul>
 <hr>
 <ul>
     <li>
-        <span class="tit">身份证<em>*</em></span>
-        <input type="text" name="idcard" id="idcard" value="{{memberInfo.idcard}}" required>
+        <div class="am-form-group">
+            <span class="tit">身份证<em>*</em></span>
+            <input type="text" name="idcard" id="idcard" value="{{memberInfo.idcard}}" required data-foolish-msg="请输入正确的身份证号码！">
+        </div>
     </li>
     <li>
         <span class="tit">婚否</span>

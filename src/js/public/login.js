@@ -43,7 +43,7 @@
                 $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, 365 * 24 * 60 * 60, '/');
                 window.location.href = "/public/shop.html";
             } else {
-                modal.alert(data.msg);
+                // modal.alert(data.msg);
             }
         }).error(function(data) {
             modal.alert(data.responseJSON.msg);
