@@ -162,7 +162,7 @@ router.get('/profile/calories.html', (req, res, next) => {
 });
 
 router.get('/profile/holopoint.html', (req, res, next) => {
-    return res.render('profile/holopoint', { title: '里程数' });
+    return res.render('profile/holopoint', { title: '活力值' });
 });
 router.get('/profile/myReflection.html', (req, res, next) => {
     return res.render('profile/myReflection', { title: '我的成就' });

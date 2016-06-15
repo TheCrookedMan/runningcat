@@ -30,6 +30,29 @@
     init(now);
 
     function queryUserHeartrate(date) {
+        // $.post('/member/getTrainTimes',{memberId:userInfo.memberId,month:date}).success(function(data){
+        //     if(data.code == "0000" && data.success){
+        //         initHolopoint(data);
+        //     }
+        // });
+        $.post('/member/getAchievement', { memberId: userInfo.memberId, month: date }).success(function(data) {
+            if (data.code == "0000" && data.success) {
+                var record = data.data;
+                record = [
+                    { name: '力量', max: 6500 },
+                    { name: '柔韧', max: 16000 },
+                    { name: '速度', max: 30000 },
+                    { name: '协调', max: 38000 },
+                    { name: '精准', max: 52000 },
+                    { name: '平测', max: 25000 },
+                    { name: '心肺', max: 25000 },
+                    { name: '耐力', max: 25000 },
+                    { name: '敏捷', max: 25000 },
+                    { name: '功率', max: 25000 }
+                ]
+                initIndicator(record);
+            }
+        })
         data = getFakeData(date);
         initMyReflection(data);
     }
@@ -147,8 +170,8 @@
     var radarEchartDom = document.getElementById("radarEchart");
     var radarEchart = echarts.init(radarEchartDom);
 
-    function initIndicator() {
-        radarEchart.setOption( {
+    function initIndicator(data) {
+        radarEchart.setOption({
             title: {
                 text: ''
             },
@@ -158,30 +181,20 @@
             },
             radar: {
                 // shape: 'circle',
-                indicator: [
-                    { name: '力量', max: 6500 },
-                    { name: '柔韧', max: 16000 },
-                    { name: '速度', max: 30000 },
-                    { name: '协调', max: 38000 },
-                    { name: '精准', max: 52000 },
-                    { name: '平测', max: 25000 },
-                    { name: '心肺', max: 25000 },
-                    { name: '耐力', max: 25000 },
-                    { name: '敏捷', max: 25000 },
-                    { name: '功率', max: 25000 }
-                ]
+                indicator: data
             },
             series: [{
                 name: '预算 vs 开销（Budget vs spending）',
                 type: 'radar',
                 // areaStyle: {normal: {}},
                 data: [{
-                    value: [5000, 14000, 28000, 31000, 42000, 21000,19000,19000,19000,19000],
+                    value: [5000, 14000, 28000, 31000, 42000, 21000, 19000, 19000, 19000, 19000],
                     name: '实际开销（Actual Spending）'
                 }]
             }]
         });
     }
-    initIndicator();
+
+
 
 }).call(this)

@@ -136,3 +136,17 @@ exports.queryUserCaLone = (req, res, next) => {
         functionCode: 'userCenter.queryUserCaLone',
     }).post(req, res, next);
 }
+
+/* 查询我的成就数据 */
+exports.getAchievement = (req,res,next) =>{
+    new rest({
+        functionCode: 'member.getAchievement',
+    }).post(req, res, next);
+}
+
+/* 我的成就每月锻炼次数 */
+exports.getTrainTimes = (req,res,next) =>{
+    new rest({
+        functionCode: 'member.getTrainTimes',
+    }).post(req, res, next);
+}

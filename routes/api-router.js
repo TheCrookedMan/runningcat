@@ -39,6 +39,11 @@ router.post('/queryIndexStoreList', shop.queryIndexStoreList);
 /*猫粮*/
 router.post('/catfood', profile.catfood);
 router.post('/usrMemberCatfood/selectUsrSurplusAmount', profile.surplus);
+/*我的成就每月锻炼次数*/
+router.post('/member/getTrainTimes',profile.getTrainTimes);
+/*查询我的成就数据*/
+router.post('/member/getAchievement',profile.getAchievement);
+
 /* message */
 router.post('/message/delMsg', profile.delMsg);
 router.post('/message/redMsg', profile.redMsg);
@@ -116,5 +121,7 @@ router.post('/order/specialClassPayOrder',order.specialClassPayOrder);
 	充值订单列表
  */
 router.post('/order/selectUsrRechargeOrderRemainNum',order.selectUsrRechargeOrderRemainNum);
+
+
 
 module.exports = router;
