@@ -25,7 +25,8 @@
     <li>
         <div class="am-form-group">
             <span class="tit">出生日期<em>*</em></span>
-            <input type="date" name="birthday" id="borth" value="{{memberInfo.birthday|date('Y-m-d')}}" required required data-foolish-msg="请输入正确的出生日期！">
+            <input type="date" name="birthday" id="borth"  required required data-foolish-msg="请输入正确的出生日期！">
+            <input type="text" value="{{memberInfo.birthday|dateFormat('yyyy-MM-dd')}}" id="val">
         </div>
     </li>
     <li>

@@ -135,8 +135,8 @@ p {
 }
 
 .fixed {
-    position: fixed;
-    bottom: 0;
+    position: fixed;right:0;z-index:9999;
+    bottom: 0 !important;
     .btn {
         margin-right: 0 !important;
     }
@@ -173,13 +173,13 @@ p {
 
 .login-wrap .am-form ul li input {
     border: 0;
-    background: none;
+    background: none;box-shadow: none !important;
 }
 
 .login-wrap .am-form ul li input:focus {
     background: none;
     border: 0;
-    box-shadow: none;
+    box-shadow: none !important;
 }
 
 .login-wrap .am-form ul li i {
@@ -368,7 +368,7 @@ ul.other-login-way li img {
     padding-left: 5rem;
     border-bottom: #d2d2d2 solid 1px;
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 1rem;height:30px;
 }
 
 .profile-wrap .am-form ul li input,
@@ -378,11 +378,22 @@ ul.other-login-way li img {
     background: none;
     font-size: 1.4rem;
     position: relative;
-    top: -0.3rem;
+    top: -0.1rem;
     height: 30px;
     box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
 }
-
+.profile-wrap .am-form ul li #borth{
+    width:100%;position:absolute;right:0;top:0rem;height:30px;z-index:9;
+}
+.profile-wrap .am-form ul li #val{
+    width:100%;position:absolute;right:0;top:0rem;height:30px;z-index:8;
+}
+.profile-wrap .am-form ul li #weight{
+    right:0.2rem !important;top: -0.2rem;
+}
+.profile-wrap .am-form ul li #height{
+    right:0.4rem !important;top: -0.1rem;
+}
 .profile-wrap .am-form ul li input[type="radio"] {
     height: auto;
 }
@@ -1315,7 +1326,7 @@ ul.other-login-way li img {
             }
             .am-icon-dot-circle-o {
                 position: absolute;
-                left: -2.8rem;
+                left: -3rem;
                 top: 0rem;
                 // color: #fe0100;
                 font-size: 1.6rem;

@@ -2,7 +2,11 @@
 {% for till in data %}
 <li>
   <div class="pic">
-    <a href="/till/till-detail.html?specialId={{till.id}}&year={{till.startDate|dateFormat('yyyy')}}&mm={{till.startDate|dateFormat('MM')}}&day={{till.startDate|dateFormat('dd')}}"><img src="{{settings.imageAddress}}{{till.imgUrl}}" /></a>
+    {% if till.isBuyFlag == 0 %}
+      <a href="/till/till-detail.html?specialId={{till.id}}&year={{till.startDate|dateFormat('yyyy')}}&mm={{till.startDate|dateFormat('MM')}}&day={{till.startDate|dateFormat('dd')}}"><img src="{{settings.imageAddress}}{{till.imgUrl}}" /></a>
+    {% elseif till.isBuyFlag == 1 %}
+      <img src="{{settings.imageAddress}}{{till.imgUrl}}" />
+    {% endif %}
     <p>{{till.className}}</p>
   </div>
   <div class="info">
@@ -29,7 +33,7 @@
         {% if till.isBuyFlag == 0 %}
         <a href="/till/till-detail.html?specialId={{till.id}}&year={{till.startDate|dateFormat('yyyy')}}&mm={{till.startDate|dateFormat('MM')}}&day={{till.startDate|dateFormat('dd')}}" class="btn btn-red">报名</a>
         {% elseif till.isBuyFlag == 1 %}
-        <a  class="btn btn-end">报名</a>
+        <a  class="btn btn-end">已结束</a>
         {% endif %}
         
         {% if till.maxNum && till.buyerNum %}

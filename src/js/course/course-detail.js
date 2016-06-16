@@ -12,14 +12,21 @@
         $("#storeAddress").html(res.storeAddress);
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
-        $("#openCourseNum").html(res.openCourseNum);
+        $("#openCourseNum").html(res.courseMaxNum);
         $("#buyerNum").html(res.buyerNum);
         var carouselFigure=res.carouselFigure;
         var playTimePictures=res.playTimePictures;
-        for(var ele in carouselFigure){
-            var str="<li><img src='"+window.imageAddress+carouselFigure[ele].imgUrl+"'/></li>";
+        if(carouselFigure){
+            for(var ele in carouselFigure){
+                var str="<li><img src='"+window.imageAddress+carouselFigure[ele].imgUrl+"'/></li>";
+                $('#carouselFigure').append(str);
+            }
+        }
+        else{
+            var str="<li><img src='/img/shoptest.jpg'/></li>";
             $('#carouselFigure').append(str);
         }
+        
         $('.am-slider').flexslider();
         for(var ele in playTimePictures){
             var str="<p><img src='"+window.imageAddress+playTimePictures[ele].imgUrl+"'/></p>";
