@@ -216,7 +216,7 @@ router.get('/profile/recharge.html', (req, res, next) => {
     if (needCourseNum == undefined) {
         needCourseNum = 0;
     }
-    console.log("needCourseNum:::"+needCourseNum);
+    console.log("needCourseNum:::" + needCourseNum);
     return res.render('profile/recharge', { title: '充值', needCourseNum: needCourseNum });
 });
 
@@ -274,7 +274,7 @@ router.get('/course/course.html', (req, res, next) => {
     return res.render('course/course', { title: '单次课程' });
 });
 
-router.get('/course/course-detail.html', (req, res, next) => {
+router.get('/course/course-detail.html',[user.checkLogin], (req, res, next) => {
     let courseId = req.query.courseId;
     let dayOfWeek = req.query.dayOfWeek;
     let imgUrl = req.query.imgUrl;
@@ -303,7 +303,7 @@ router.get('/till/till.html', (req, res, next) => {
     return res.render('till/till', { title: '特训营' });
 });
 
-router.get('/till/till-detail.html', (req, res, next) => {
+router.get('/till/till-detail.html', [user.checkLogin], (req, res, next) => {
     let specialId = req.query.specialId;
     let year = req.query.year;
     let mm = req.query.mm;

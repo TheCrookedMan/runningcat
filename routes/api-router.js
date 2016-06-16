@@ -29,6 +29,7 @@ router.post('/updateUserInfo', user.updateUserInfo);
 router.post('/memberInfo', user.memberInfo);
 // 获取用户信息
 router.post('/user/getUserInfo', user.getUserInfo);
+router.post('/authLogin', user.authLogin);
 
 //shop
 router.post('/queryOftenStore', shop.queryOftenStore);
@@ -40,11 +41,11 @@ router.post('/queryIndexStoreList', shop.queryIndexStoreList);
 router.post('/catfood', profile.catfood);
 router.post('/usrMemberCatfood/selectUsrSurplusAmount', profile.surplus);
 /*我的成就每月锻炼次数*/
-router.post('/member/getTrainTimes',profile.getTrainTimes);
+router.post('/member/getTrainTimes', profile.getTrainTimes);
 /*查询我的成就数据*/
-router.post('/member/getAchievement',profile.getAchievement);
-/**/
-router.post('/userCenter/queryUserFuel',profile.queryUserFuel);
+router.post('/member/getAchievement', profile.getAchievement);
+/*查询我的fuel*/
+router.post('/userCenter/queryUserFuel', profile.queryUserFuel);
 
 /* message */
 router.post('/message/delMsg', profile.delMsg);
@@ -94,19 +95,19 @@ router.post('/specialEvaluate/addUsrClassEvaluate', usrClass.addUsrClassEvaluate
 /*
 	查询出优惠的金额信息和优惠的猫粮信息
  */
-router.post('/order/selectDiscountInfo',order.selectDiscountInfo);
+router.post('/order/selectDiscountInfo', order.selectDiscountInfo);
 /*
 	课时充值接口
  */
-router.post('/order/classRecharge',order.classRecharge);
+router.post('/order/classRecharge', order.classRecharge);
 /*
 	单次课现金支付课时功能
  */
-router.post('/order/classTimeMoneyPayment',order.classTimeMoneyPayment);
+router.post('/order/classTimeMoneyPayment', order.classTimeMoneyPayment);
 /*
 	单次课课时支付预约课程
  */
-router.post('/order/classTimePayOrder',order.classTimePayOrder);
+router.post('/order/classTimePayOrder', order.classTimePayOrder);
 /*
 	查询优惠政策详细信息
  */
@@ -114,15 +115,15 @@ router.post('/order/classTimePayOrder',order.classTimePayOrder);
 /*
 	特训营现金支付课时功能
  */
-router.post('/order/specialClassMoneyPayment',order.specialClassMoneyPayment);
+router.post('/order/specialClassMoneyPayment', order.specialClassMoneyPayment);
 /*
 	特训营课时支付预约课程
  */
-router.post('/order/specialClassPayOrder',order.specialClassPayOrder);
+router.post('/order/specialClassPayOrder', order.specialClassPayOrder);
 /*
 	充值订单列表
  */
-router.post('/order/selectUsrRechargeOrderRemainNum',order.selectUsrRechargeOrderRemainNum);
+router.post('/order/selectUsrRechargeOrderRemainNum', order.selectUsrRechargeOrderRemainNum);
 
 
 

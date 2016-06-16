@@ -54,6 +54,46 @@ exports.loginByopenId = (openId, success, next) => {
     }, next);
 }
 
+/* 约课、购买课时等前端验证 */
+
+exports.authLogin = (req, res, next) => {
+    let runningcatUserInfo = req.cookies.runningcatUserInfo;
+    if (!runningcatUserInfo) {
+        res.status(200).send({
+            'success': false,
+            'msg': '请先登录！',
+            'redirect': '/public/login.html'
+        });
+    } else {
+        runningcatUserInfo = JSON.parse(runningcatUserInfo);
+        let cookieUserId = runningcatUserInfo.cookieUserId;
+        new rest({
+            functionCode: 'member.checkLogin',
+            data: {
+                cookieMemberId: cookieUserId
+            }
+        }).normalRequest(function(data) {
+            /*
+                如果用户是登录的，直接 NEXT。否则重定向至登录页面。
+             */
+            let msg = data.msg;
+            let success = data.isSuccess;
+            let redirect = "/public/login.html";
+            if (success) {
+                redirect = "";
+            } else {
+                msg = "请先登录！";
+            }
+            res.status(200).send({
+                'success': success,
+                'msg': msg,
+                'redirect': redirect
+            });
+        }, next);
+    }
+}
+
+
 /*
     根据cookieUserId来验证用户是否登录
  */

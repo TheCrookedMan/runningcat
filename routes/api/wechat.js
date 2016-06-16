@@ -146,7 +146,6 @@ let getTicket = (access_token, callback) => {
                     errcode: record.errcode,
                     errmsg: record.errmsg
                 }
-
             }
             callback(data);
         });
