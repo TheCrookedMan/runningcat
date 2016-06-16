@@ -25,9 +25,9 @@
         .img {
             width: 5.8rem;
             height: 5.8rem;
-            position: absolute;
+            position: relative;
             left: 1.5rem;
-            top: 1.5rem;
+            top: 0;
             img {
                 border-radius: 50%;
                 border: #fdfdfd solid 2px;
@@ -36,7 +36,7 @@
             }
         }
         .info {
-            padding-left: 8.5rem;
+            padding-left: 0rem;
             display: inline-block;
             width: 100%;
             padding-top: 0.8rem;

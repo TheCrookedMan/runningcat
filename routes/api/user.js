@@ -57,8 +57,12 @@ exports.loginByopenId = (openId, success, next) => {
 /* 约课、购买课时等前端验证 */
 
 exports.authLogin = (req, res, next) => {
-    let runningcatUserInfo = req.cookies.runningcatUserInfo;
-    if (!runningcatUserInfo) {
+    let runningcatUserInfo = req.cookies.runningcatUserInfo,
+        userInfo;
+    if (runningcatUserInfo) {
+        userInfo = JSON.parse(runningcatUserInfo);
+    }
+    if (!runningcatUserInfo || !userInfo.cookieUserId) {
         res.status(200).send({
             'success': false,
             'msg': '请先登录！',
@@ -100,8 +104,12 @@ exports.authLogin = (req, res, next) => {
 
 exports.checkLogin = (req, res, next) => {
     let runningcatUserInfo = req.cookies.runningcatUserInfo,
-        storeId = req.query.storeId;
-    if (!runningcatUserInfo) {
+        storeId = req.query.storeId,
+        userInfo;
+    if (runningcatUserInfo) {
+        userInfo = JSON.parse(runningcatUserInfo);
+    }
+    if (!runningcatUserInfo || !userInfo.cookieUserId) {
         //没有runningcatUserInfo表示没有注册或者登录过，需要跳转到登录
         //从店铺页面验证的授权，如果用户没有权限跳转登录页面的时候带上 storeId
         if (!!storeId) {

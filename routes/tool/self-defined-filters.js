@@ -65,7 +65,27 @@ module.exports = (swig) => {
         str = list.join("&nbsp;");
         return str;
     }
+    let compareDate = (date) => {
+        let theTime = new Date(date),
+            now = new Date();
+
+        let aY, bY, aM, bM, aD, bD;
+        aY = theTime.getFullYear();
+        aM = theTime.getMonth()+1;
+        aD = theTime.getDate();
+
+        bY = now.getFullYear();
+        bM = now.getMonth()+1;
+        bD = now.getDate();
+
+        if(aY == bY && aM == bM && aD == bD){
+            return true;
+        } else {
+            return false;
+        }
+    }
     swig.setFilter("dateFormat", dateFormat);
     swig.setFilter("toWeek", toWeek);
     swig.setFilter("scopeFilter", scopeFilter);
+    swig.setFilter("compareDate", compareDate);
 }

@@ -1,6 +1,16 @@
+
 {% for course in data %}
+{% set date = course.courseDate|dateFormat('yyyy-MM-dd') %}
+{% if course.courseDate|compareDate %}
+<a href="javascript:void(0);" class="slider cur" data-date="{{course.courseDate|dateFormat('yyyy-MM-dd')}}" data-time="{{course.courseDate}}">
+    <p>{{course.courseDate|toWeek()}}</p>
+    <p>{{course.courseDate|dateFormat('MM/dd')}}</p>
+</a>
+{% else %}
 <a href="javascript:void(0);" class="slider" data-date="{{course.courseDate|dateFormat('yyyy-MM-dd')}}" data-time="{{course.courseDate}}">
     <p>{{course.courseDate|toWeek()}}</p>
     <p>{{course.courseDate|dateFormat('MM/dd')}}</p>
 </a>
+{% endif %}
+
 {% endfor %}

@@ -28,10 +28,10 @@
             }, function() {});
         },
         getRanking: function() {
-           var self = this;
-           if($(".rank-tab li a.cur").data("id")=="Fuel"){
-                 $.get('/rankingFuel.template', {
-                    usrId:userInfo.memberId,
+            var self = this;
+            if ($(".rank-tab li a.cur").data("id") == "Fuel") {
+                $.get('/rankingFuel.template', {
+                    usrId: userInfo.memberId,
                     pageNo: self.pageNo,
                     pageSize: self.pageSize
                 }).success(function(data) {
@@ -40,11 +40,10 @@
                         isEnd = true;
                     } else {
                         isEnd = false;
-                        $(".rank-list").append(data); 
+                        $(".rank-list").append(data);
                     }
                 }).error(function(err) {});
-            }
-            else{
+            } else {
                 $.get('/rankingTrain.template', {
                     pageNo: self.pageNo,
                     pageSize: self.pageSize
@@ -54,63 +53,63 @@
                         isEnd = true;
                     } else {
                         isEnd = false;
-                         $(".rank-list").append(data); 
+                        $(".rank-list").append(data);
                     }
                 }).error(function(err) {});
             }
         },
         getMyranking: function() {
-           var self = this;
-           if($(".rank-tab li a.cur").data("id")=="Fuel"){
-                $.get('/rankingFuel.template',{
+            var self = this;
+            if ($(".rank-tab li a.cur").data("id") == "Fuel") {
+                $.get('/rankingFuel.template', {
                     memberId: userInfo.memberId
                 }, function(data) {
-                    $(".myrank").append(data); 
+                    $(".myrank").append(data);
                 });
-            }
-            else{
-               $.get('/rankingTrain.template',{
+            } else {
+                $.get('/rankingTrain.template', {
                     memberId: userInfo.memberId
                 }, function(data) {
-                    $(".myrank").append(data); 
+                    $(".myrank").append(data);
                 });
             }
         }
     }
     this.ranking = new ranking();
-    this.ranking.init();   
+    this.ranking.init();
 
     /*
         点赞
     */
     $(".ranking-list").on("click", "a.praise", function(ev) {
         var bePraisedId = $(this).data("id");
-        var status=$(this).data("status");
-        var pnum=parseInt($(this).parent().siblings().text());
-        var self=$(this);
-        if(status>0){
+        var status = $(this).data("status");
+        var pnum = parseInt($(this).parent().siblings().text());
+        var self = $(this);
+        if (status > 0) {
             modal.alert("你已经点赞了");
             $(this).children().addClass("cur")
         }
-        else if(bePraisedId==userInfo.memberId){
-            modal.alert("不能给自己点赞哦");
-        }
-        else{
-           $.post("/bePraise", {
+        // else if(bePraisedId==userInfo.memberId){
+        //     modal.alert("不能给自己点赞哦");
+        // }
+        else {
+            $.post("/bePraise", {
                 memberId: userInfo.memberId,
                 bePraisedId: bePraisedId
             }).success(function(data) {
                 if (data.code == "0000" && data.success) {
-                    var res=data.data;
-                    pnum=pnum+1;
+                    var res = data.data;
+                    pnum = pnum + 1;
                     self.parents(".like").children(".totalPraise").text(pnum);
                     self.children("i").removeClass('am-icon-heart-o');
-                    self.children('i').addClass("am-icon-heart")
+                    self.children('i').addClass("am-icon-heart");
+                    self.data('status','1');
                 } else {
                     // modal.alert(data.msg);
                 }
             })
-            ev.stopPropagation(); 
-        }       
-    }); 
+            ev.stopPropagation();
+        }
+    });
 }).call(this);

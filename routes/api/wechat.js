@@ -88,7 +88,7 @@ let getAccessToken = (callback) => {
     host = "api.weixin.qq.com";
     post = "80";
     url = '/cgi-bin/token?grant_type=client_credential&appid=' + config.wechat.appId + '&secret=' + config.wechat.appsecret;
-
+    
     if (!access_token) {
         get(host, post, url, (data) => {
             let record = JSON.parse(data);
@@ -101,7 +101,7 @@ let getAccessToken = (callback) => {
                     success: false
                 }
             } else {
-                nodeCache.put("access_token", record.access_token, record.expires_in * 1000);
+                nodeCache.put("access_token", record.access_token, record.expires_in);
                 data = {
                     access_token: record.access_token,
                     success: true
@@ -125,6 +125,7 @@ let getTicket = (access_token, callback) => {
     host = "api.weixin.qq.com";
     post = "80";
     url = '/cgi-bin/ticket/getticket?access_token=' + access_token + '&type=jsapi';
+    
     if (!ticket) {
         get(host, post, url, (data) => {
             let record = JSON.parse(data);
@@ -139,7 +140,7 @@ let getTicket = (access_token, callback) => {
                     errmsg: record.errmsg
                 }
             } else {
-                nodeCache.put("ticket", record.ticket, record.expires_in * 1000);
+                nodeCache.put("ticket", record.ticket, record.expires_in);
                 data = {
                     ticket: record.ticket,
                     success: true,

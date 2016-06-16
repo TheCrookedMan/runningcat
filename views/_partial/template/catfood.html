@@ -3,7 +3,7 @@
     <i class="am-icon-dot-circle-o"></i>
     <dl>
         <dd>{{catfood.modifyTime|date('Y-m-d')}}</dd>
-        {% if catfood.isUsed == 0 %}
+        {% if catfood.isUsed == 1 %}
         <dd>数量：+{{catfood.amount}}</dd>
         {% else %}
         <dd>数量：-{{catfood.amount}}</dd>

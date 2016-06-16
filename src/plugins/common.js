@@ -243,6 +243,7 @@
     var scroll = function() {}
     scroll.prototype = {
         on: function(bottomCallback, topCallback) {
+            this.off();
             $(window).scroll(function() {
                 var scrollTop = $(this).scrollTop();
                 var scrollHeight = $(document).height();

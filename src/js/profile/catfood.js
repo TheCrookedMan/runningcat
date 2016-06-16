@@ -7,7 +7,7 @@
        
     })
     var catfood = function() {
-        this.status = 0;
+        this.status = 1;
         this.pageNo = 1;
         this.pageSize = 10;
         this.isEnd = false;

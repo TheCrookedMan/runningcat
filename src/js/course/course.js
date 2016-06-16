@@ -7,7 +7,7 @@
     }).success(function(data) {
         $(".wrapper").append(data);
         var default_data = $(".wrapper a:first").data("time");
-        $(".wrapper a:first").addClass("cur");
+        // $(".wrapper a:first").addClass("cur");
         initSwiperList();
     }).error(function(err) {});
 
@@ -107,8 +107,8 @@
             });
 
             if (self.$selector.find(".slider").length > 0) {
-                self.$slider.addClass("cur");
-                self.options.onComplete && self.options.onComplete(self.$slider);
+                // self.$slider.addClass("cur");
+                self.options.onComplete && self.options.onComplete(this.$wrapper.find('.cur'));
             }
             self.sliderButtonType();
         },
