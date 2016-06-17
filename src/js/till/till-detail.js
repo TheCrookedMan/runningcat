@@ -1,5 +1,6 @@
 (function() {
     var specialId=$("#specialId").val();
+    var isBuyFlag=$("#isBuyFlag").val();
     $.post('/specialClass/querySpecialClassInfo', {'userId':userInfo.memberId,'specialId':specialId}).success(function(data) {
 
         var res=data.data;
@@ -104,4 +105,9 @@ $(".pub_peolist").on("click","a",function(ev){
     $(this).addClass("cur");
     window.location.href = url;
 })
+
+if(isBuyFlag == 1){
+    $(".pub-rbtn .btn").removeAttr("href");
+    $(".pub-rbtn .btn").addClass("end");
+}
 }).call(this);

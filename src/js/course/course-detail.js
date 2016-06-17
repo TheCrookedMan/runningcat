@@ -1,4 +1,5 @@
 (function() {
+    var isBuyFlag=$("#isBuyFlag").val();
     $.post('/coursePlan/queryCoursePlanInfo', {'userId':userInfo.memberId,'courseId':courseId}).success(function(data) {
         var res=data.data;
         $("#contactPhone").html(res.contactPhone);
@@ -37,5 +38,9 @@
        
     });
 
+    if(isBuyFlag == 1){
+        $(".pub-rbtn .btn").removeAttr("href");
+        $(".pub-rbtn .btn").addClass("end");
+    }
     
 }).call(this);
