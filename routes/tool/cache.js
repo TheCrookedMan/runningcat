@@ -41,7 +41,7 @@ exports.del = (key) => {
     if (oldRecord) {
         clearTimeout(oldRecord.timeout);
         if (!isNaN(oldRecord.expire) && oldRecord.expire < Date.now()) {
-            canDelete = false;
+            canDelete = true;
         }
     } else {
         canDelete = false;
