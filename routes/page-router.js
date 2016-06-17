@@ -5,6 +5,10 @@ import wechatAuth from './api/wechat';
 
 let router = express.Router();
 
+router.get('/map/tencent.html', (req, res, next) => {
+    return res.render('map/tencent', { title: '地图' });
+})
+
 /*
     微信公众号验证是否注册登录流程（先验证）
  */
@@ -274,7 +278,7 @@ router.get('/course/course.html', (req, res, next) => {
     return res.render('course/course', { title: '单次课程' });
 });
 
-router.get('/course/course-detail.html',[user.checkLogin], (req, res, next) => {
+router.get('/course/course-detail.html', [user.checkLogin], (req, res, next) => {
     let courseId = req.query.courseId;
     let dayOfWeek = req.query.dayOfWeek;
     let imgUrl = req.query.imgUrl;

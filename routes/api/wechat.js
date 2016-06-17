@@ -101,7 +101,10 @@ let getAccessToken = (callback) => {
                     success: false
                 }
             } else {
-                nodeCache.put("access_token", record.access_token, record.expires_in);
+                /*
+                    由于缓存的计时单位是毫秒，所以时间 需要 X1000 ；
+                 */
+                nodeCache.put("access_token", record.access_token, record.expires_in*1000);
                 data = {
                     access_token: record.access_token,
                     success: true
@@ -140,7 +143,10 @@ let getTicket = (access_token, callback) => {
                     errmsg: record.errmsg
                 }
             } else {
-                nodeCache.put("ticket", record.ticket, record.expires_in);
+                /*
+                    由于缓存的计时单位是毫秒，所以时间 需要 X1000 ；
+                 */
+                nodeCache.put("ticket", record.ticket, record.expires_in*1000);
                 data = {
                     ticket: record.ticket,
                     success: true,
