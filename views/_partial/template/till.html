@@ -2,16 +2,12 @@
 {% for till in data %}
 <li>
   <div class="pic">
-    {% if till.isBuyFlag == 0 %}
-      <a href="/till/till-detail.html?specialId={{till.id}}&year={{till.startDate|dateFormat('yyyy')}}&mm={{till.startDate|dateFormat('MM')}}&day={{till.startDate|dateFormat('dd')}}"><img src="{{settings.imageAddress}}{{till.imgUrl}}" /></a>
-    {% elseif till.isBuyFlag == 1 %}
-      <img src="{{settings.imageAddress}}{{till.imgUrl}}" />
-    {% endif %}
+      <a href="/till/till-detail.html?specialId={{till.id}}&isBuyFlag={{till.isBuyFlag}}&year={{till.startDate|dateFormat('yyyy')}}&mm={{till.startDate|dateFormat('MM')}}&day={{till.startDate|dateFormat('dd')}}"><img src="{{settings.imageAddress}}{{till.imgUrl}}" /></a>
     <p>{{till.className}}</p>
   </div>
   <div class="info">
     <div class="tit">
-      <p><em>￥<em>{{till.perPrice}}</em>/人</em> {{till.weekNum}}周 {{till.courseNum}}次课</p>
+      <p><em>￥<em>{{till.totalPrice}}</em>/人</em> {{till.weekNum}}周 {{till.courseNum}}次课</p>
       <p>{{till.startDate|dateFormat('MM/dd')}}~{{till.endDate|dateFormat('MM/dd')}} ，{{till.classTime}}</p>
       <p>招募人数：限{{till.maxNum}}人</p>
       {% if till.isBuyFlag == 0 %}
@@ -48,7 +44,7 @@
     </div>
     <div class="pub-btn"> 
         {% if till.isBuyFlag == 0 %}
-        <a href="/till/till-detail.html?specialId={{till.id}}&year={{till.startDate|dateFormat('yyyy')}}&mm={{till.startDate|dateFormat('MM')}}&day={{till.startDate|dateFormat('dd')}}" class="btn btn-red">报名</a>
+        <a href="/till/till-detail.html?specialId={{till.id}}&isBuyFlag={{till.isBuyFlag}}&year={{till.startDate|dateFormat('yyyy')}}&mm={{till.startDate|dateFormat('MM')}}&day={{till.startDate|dateFormat('dd')}}" class="btn btn-red">报名</a>
         {% elseif till.isBuyFlag == 1 %}
         <a  class="btn btn-end">已结束</a>
         {% endif %}

@@ -220,7 +220,7 @@ router.get('/profile/recharge.html', (req, res, next) => {
 });
 
 router.get('/profile/single-class.html', (req, res, next) => {
-    return res.render('profile/single-class', { title: '我的私教' });
+    return res.render('profile/single-class', { title: '我的常规课' });
 });
 
 router.get('/profile/homework-class.html', (req, res, next) => {
@@ -277,7 +277,8 @@ router.get('/course/course-detail.html', [user.checkLogin], (req, res, next) => 
     let courseId = req.query.courseId;
     let dayOfWeek = req.query.dayOfWeek;
     let imgUrl = req.query.imgUrl;
-    return res.render('course/course-detail', { title: '课程详情', courseId: courseId, dayOfWeek: dayOfWeek, imgUrl: imgUrl });
+    let isBuyFlag=req.isBuyFlag;
+    return res.render('course/course-detail', { title: '课程详情', courseId: courseId, dayOfWeek: dayOfWeek, imgUrl: imgUrl,isBuyFlag:isBuyFlag });
 });
 
 /*
@@ -307,7 +308,8 @@ router.get('/till/till-detail.html', [user.checkLogin], (req, res, next) => {
     let year = req.query.year;
     let mm = req.query.mm;
     let day = req.query.day;
-    return res.render('till/till-detail', { title: '特训营详情', specialId: specialId, year: year, mm: mm, day: day });
+    let isBuyFlag=req.isBuyFlag;
+    return res.render('till/till-detail', { title: '特训营详情', specialId: specialId, year: year, mm: mm, day: day,isBuyFlag:isBuyFlag });
 });
 
 // router.get('*.html', (req, res, next) => {
@@ -322,7 +324,7 @@ router.get('/till/till-detail.html', [user.checkLogin], (req, res, next) => {
 /* GET home page. */
 
 router.get('*', (req, res, next) => {
-    return res.render('public/shop', { title: '课程' });
+    return res.render('public/shop', { title: '店铺' });
 });
 
 module.exports = router;

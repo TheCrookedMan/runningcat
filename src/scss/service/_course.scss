@@ -70,7 +70,7 @@
                 font-size: 1.2rem;
                 padding: 0.4rem 0;
                 i {
-                    color: #fe0100;
+                    color: #990100;
                     display: block;
                     margin-right: 0.3rem;
                     margin-left: 1.2rem;
@@ -215,10 +215,10 @@
                     }
                 }
                 em {
-                    color: #fe0100;
+                    color: #990100;
                     font-size: 1.4rem;
                     display: inline-block;
-                    margin-left: 3.5rem;
+                    margin-left: 4rem;
                 }
             }
         }
@@ -239,7 +239,7 @@
             color: #333;
             margin-top: 0.5rem;
             &.tips {
-                color: #fe0100;
+                color: #990100;
                 font-size: 2rem;
             }
             &.bottom {
@@ -273,7 +273,7 @@
     background: #e6e6e6;
     .tit {
         background: #4d4d4d;
-        color: #fe0100;
+        color: #990100;
         font-size: 1.8rem;
         width: 100%;
         text-indent: 1rem;
