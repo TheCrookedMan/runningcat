@@ -11,7 +11,7 @@
   </div>
   <div class="info">
     <div class="tit">
-      <p><em>￥<em>{{till.perPrice}}</em>/人</em> {{till.weekNum}}周 {{till.courseNum}}次课</p>
+      <p><em>￥<em>{{till.totalPrice}}</em>/人</em> {{till.weekNum}}周 {{till.courseNum}}次课</p>
       <p>{{till.startDate|dateFormat('MM/dd')}}~{{till.endDate|dateFormat('MM/dd')}} ，{{till.classTime}}</p>
       <p>招募人数：限{{till.maxNum}}人</p>
       {% if till.isBuyFlag == 0 %}
