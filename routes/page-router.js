@@ -4,11 +4,6 @@ import common from './tool/common';
 import wechatAuth from './api/wechat';
 
 let router = express.Router();
-
-router.get('/map/tencent.html', (req, res, next) => {
-    return res.render('map/tencent', { title: '地图' });
-});
-
 /*
     微信公众号验证是否注册登录流程（先验证）
  */
