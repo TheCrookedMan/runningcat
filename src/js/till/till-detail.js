@@ -21,7 +21,7 @@
 
         /*循环教练*/
         for(var p in trainers){
-             var str="<li><img src='"+window.imageAddress+trainers[p].jheadPhotoUrl+"'/><h2>"+trainers[p].userName+""+ trainers[p].nickName+"</h2><p>"+trainers[p].remark+"</p></li>";
+             var str="<li><img src='"+window.imageAddress+trainers[p].jheadPhotoUrl+"'/><h2>"+trainers[p].userName+""+ trainers[p].englishName+"</h2><p>"+trainers[p].remark+"</p></li>";
              $("#trainers").append(str);
         }
 
