@@ -277,7 +277,7 @@ router.get('/course/course-detail.html', [user.checkLogin], (req, res, next) => 
     let courseId = req.query.courseId;
     let dayOfWeek = req.query.dayOfWeek;
     let imgUrl = req.query.imgUrl;
-    let isBuyFlag=req.isBuyFlag;
+    let isBuyFlag=req.query.isBuyFlag;
     return res.render('course/course-detail', { title: '课程详情', courseId: courseId, dayOfWeek: dayOfWeek, imgUrl: imgUrl,isBuyFlag:isBuyFlag });
 });
 
@@ -308,7 +308,7 @@ router.get('/till/till-detail.html', [user.checkLogin], (req, res, next) => {
     let year = req.query.year;
     let mm = req.query.mm;
     let day = req.query.day;
-    let isBuyFlag=req.isBuyFlag;
+    let isBuyFlag = req.query.isBuyFlag;
     return res.render('till/till-detail', { title: '特训营详情', specialId: specialId, year: year, mm: mm, day: day,isBuyFlag:isBuyFlag });
 });
 

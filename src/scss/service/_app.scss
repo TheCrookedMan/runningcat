@@ -1707,6 +1707,9 @@ ul.other-login-way li img {
         color: #fff;
         padding: 0.2rem 2rem;
         font-size: 1.6rem;
+        &.end{
+            background:#c6c6c6 !important;
+        }
     }
 }
 
