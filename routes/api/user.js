@@ -39,15 +39,15 @@ exports.checkSmscode = (req, res, next) => {
 }
 
 /*
-    根据 openId 登录
+    根据 unionId 登录
  */
 
-exports.loginByopenId = (openId, success, next) => {
+exports.loginByunionId = (unionId, success, next) => {
     let data = {};
     new rest({
         functionCode: 'member.loginByopenId',
         data: {
-            openId: openId
+            unionId: unionId
         }
     }).normalRequest(function(data) {
         success(data);

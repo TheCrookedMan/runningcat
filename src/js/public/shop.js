@@ -1,4 +1,6 @@
 (function() {
+    // $.AMUI.utils.cookie.set('city', $("#cityName").text(), 365 * 24 * 60 * 60, '/');
+
     $("body").on("click", ".shop-detail a", function(ev) {
         var storeId = $(this).data("storeId");
         var storeName = $(this).data("storeName");
@@ -74,8 +76,10 @@
                 geocoder.setComplete(function(result) {
                     // alert(JSON.stringify(result.detail.addressComponents));
                     // alert(result.detail.addressComponents.city);
-                    if (result.detail.addressComponents.city != $("#cityName").text()) {
-                        $("#cityName").text(result.detail.addressComponents.city);
+                    var cityName = result.detail.addressComponents.city;
+                    if (cityName != $("#cityName").text()) {
+                        // $.AMUI.utils.cookie.set('city', cityName, 365 * 24 * 60 * 60, '/');
+                        $("#cityName").text(cityName);
                         shopList.search();
                     }
                 });

@@ -125,6 +125,11 @@ router.post('/order/specialClassPayOrder', order.specialClassPayOrder);
  */
 router.post('/order/selectUsrRechargeOrderRemainNum', order.selectUsrRechargeOrderRemainNum);
 
+/* 单次课支付页面数据获取 */
+router.post('/order/classTimeMoneyPaymentData',order.classTimeMoneyPaymentData);
+
+/* 特训营支付页面数据获取 */
+router.post('/order/specialClassMoneyPaymentData',order.specialClassMoneyPaymentData);
 
 
 module.exports = router;

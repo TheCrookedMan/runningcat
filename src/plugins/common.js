@@ -101,6 +101,9 @@
             var wechatUserInfo = $.AMUI.utils.cookie.get("wechatUserInfo");
             return JSON.parse(wechatUserInfo);
         },
+        getCityName:function(){
+            return $.AMUI.utils.cookie.get("city");
+        },
         getOpenId: function() {
             return $.AMUI.utils.cookie.get("openId");
         },

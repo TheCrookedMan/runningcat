@@ -22,18 +22,18 @@
         padding: 1rem 0rem 1.5rem 0;
         position: relative;
         border-bottom: #d3d3d3 solid 1px;
-        .img {
-            width: 5.8rem;
-            height: 5.8rem;
-            position: relative;
-            left: 1.5rem;
-            top: 0;
-            img {
-                border-radius: 50%;
-                border: #fdfdfd solid 2px;
-                height: 100%;
-                width: 100%;
-            }
+        // .img {
+        //     width: 5.8rem;
+        //     height: 5.8rem;
+        //     position: relative;
+        //     left: 1.5rem;
+        //     top: 0;
+        // }
+        img {
+            border-radius: 50%;
+            border: #fdfdfd solid 2px;
+            height: 100%;
+            width: 100%;
         }
         .info {
             padding-left: 0rem;
@@ -214,10 +214,10 @@
                 input {
                     text-align: right
                 }
-                #demo-test-select_dummy{
+                #demo-test-select_dummy {
                     display: none;
                 }
-                #demo-test-select{
+                #demo-test-select {
                     display: none;
                 }
             }
@@ -377,20 +377,26 @@
     padding-bottom: 5rem;
     padding-top: 0;
 }
+
 .myrank .am-icon-heart-o:before {
     content: "\f004";
 }
-.rank-list .am-icon-heart-o{
-    &.cur{
-        &:before{
+
+.rank-list .am-icon-heart-o {
+    &.cur {
+        &:before {
             content: "\f004";
         }
     }
-    
 }
-.fixed_btn{
-    position:fixed;right:0.5rem;bottom: 0;z-index: 99
+
+.fixed_btn {
+    position: fixed;
+    right: 0.5rem;
+    bottom: 0;
+    z-index: 99
 }
+
 @import './profile/heartrate';
 @import './profile/calories';
 @import './profile/holopoint';

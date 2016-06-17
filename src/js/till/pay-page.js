@@ -54,11 +54,11 @@
                 // $(".pub_peolist").html(peolist.join(""));
                 var pricestr = "";
                 for (var i in buyCopies) {
-                    var k = parseInt(i)+1;
+                    var k = parseInt(i) + 1;
                     if (k == buyCopiesNumber) {
                         pricestr = "<a href='javascript:void(0)' class='cur' data-per-price='" + perPrice + "' data-course-num='" + tnum * buyCopies[i].buyCopies + "' data-num='" + buyCopies[i].buyCopies + "'><p>" + buyCopies[i].buyCopies + "人</p><p>" + tnum * buyCopies[i].buyCopies + "课时</p></a>";
                     } else {
-                        pricestr="<a href='javascript:void(0)' data-per-price='"+perPrice+"' data-course-num='"+tnum*buyCopies[i].buyCopies+"' data-num='"+buyCopies[i].buyCopies+"'><p>"+buyCopies[i].buyCopies+"人</p><p>"+tnum*buyCopies[i].buyCopies+"课时</p></a>";
+                        pricestr = "<a href='javascript:void(0)' data-per-price='" + perPrice + "' data-course-num='" + tnum * buyCopies[i].buyCopies + "' data-num='" + buyCopies[i].buyCopies + "'><p>" + buyCopies[i].buyCopies + "人</p><p>" + tnum * buyCopies[i].buyCopies + "课时</p></a>";
                     }
                     $(".pub_peolist").append(pricestr);
                     // $(".pub_peolist a:first").addClass('cur');
@@ -83,13 +83,11 @@
         var courseNum = $(".pub_peolist a.cur").data("courseNum");
         needCourseNum = courseNum;
         buyCopiesNumber = num;
-        var string = "¥ ";
-        string += (num * perPrice).toFixed(2);
-        string += "（需" + needCourseNum + "课时）";
+
 
         if (usrRechargeOrderRemainNum < needCourseNum) {
             var href = $(".rechargePanel a").data('href');
-            $(".rechargePanel a").attr('href',href+"?needCourseNum="+needCourseNum);
+            $(".rechargePanel a").attr('href', href + "?needCourseNum=" + needCourseNum);
             $(".rechargePanel").show();
             $(".paymentPanel").hide();
         } else {
@@ -98,7 +96,7 @@
         }
         rechargeObj.selectDiscountInfo(needCourseNum);
         gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum);
-        $(".totalPrice").text(string);
+        setTotalPrice();
     }
     /*
         获取可用课时纪录列表
@@ -203,7 +201,7 @@
                     }
                 });
             } else {
-                $(".totalPrice").text("0.00");
+                // $(".totalPrice").text("0.00");
                 $(".actualPrice").text("0.00");
                 $(".discountPrice").text("0.00");
                 $(".nmemberCatFood").text("0");
@@ -300,4 +298,16 @@
         }
         ev.stopPropagation();
     });
+
+    function setTotalPrice() {
+        $.post('/order/specialClassMoneyPaymentData', { memberId: userInfo.memberId, 'groupId': specialId, storeId: rechargeObj.storeId, buyCopies: buyCopiesNumber }).success(function(data) {
+            if (data.code == "0000" && data.success) {
+                var record = data.data;
+                var string = "¥ ";
+                string += record.totalPrice.toFixed(2);
+                string += "（需" + record.totalNum + "课时）";
+                $(".totalPrice").text(string);
+            }
+        })
+    }
 }).call(this)

@@ -80,3 +80,17 @@ exports.selectUsrRechargeOrderRemainNum = (req, res, next) => {
         functionCode: 'order.selectUsrRechargeOrderRemainNum',
     }).post(req, res, next);
 }
+
+/* 单次课支付页面数据获取 */
+exports.classTimeMoneyPaymentData = (req, res, next)=>{
+    new rest({
+        functionCode: 'order.classTimeMoneyPaymentData',
+    }).post(req, res, next);
+}
+
+/* 特训营支付页面数据获取 */
+exports.specialClassMoneyPaymentData = (req, res, next)=>{
+    new rest({
+        functionCode: 'order.specialClassMoneyPaymentData',
+    }).post(req, res, next);
+}

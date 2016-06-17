@@ -68,13 +68,10 @@
         var oncePrice = $(".pub_peolist a.cur").data("oncePrice");
         var onceCourseHour = $(".pub_peolist a.cur").data("onceCourseHour");
         needCourseNum = num * onceCourseHour;
-        var string = "¥ ";
-        string += (num * oncePrice).toFixed(2);
-        string += "（需" + needCourseNum + "课时）";
 
         if (usrRechargeOrderRemainNum < needCourseNum) {
             var href = $(".rechargePanel a").data('href');
-            $(".rechargePanel a").attr('href',href+"?needCourseNum="+needCourseNum);
+            $(".rechargePanel a").attr('href', href + "?needCourseNum=" + needCourseNum);
             $(".rechargePanel").show();
             $(".paymentPanel").hide();
         } else {
@@ -83,7 +80,7 @@
         }
         rechargeObj.selectDiscountInfo(needCourseNum);
         gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum);
-        $(".totalPrice").text(string);
+        setTotalPrice();
     }
     /*
         获取可用课时纪录列表
@@ -188,7 +185,7 @@
                     }
                 });
             } else {
-                $(".totalPrice").text("0.00");
+                // $(".totalPrice").text("0.00");
                 $(".actualPrice").text("0.00");
                 $(".discountPrice").text("0.00");
                 $(".nmemberCatFood").text("0");
@@ -240,7 +237,7 @@
                 memberId: userInfo.memberId,
                 onceId: courseId,
                 storeId: rechargeObj.storeId,
-                buyCopies:buyCopiesNumber
+                buyCopies: buyCopiesNumber
             }).success(function(data) {
                 if (data.code == "0000" && data.success) {
                     window.location.href = "/course/pay-success.html?courseId=" + courseId;
@@ -269,7 +266,7 @@
                 catfood: rechargeObj.discountInfo.nmemberCatFood,
                 onceId: courseId,
                 openId: common.getOpenId(),
-                buyCopies:buyCopiesNumber
+                buyCopies: buyCopiesNumber
             }).success(function(data) {
                 if (data.code == "0000" && data.success) {
                     if (!data.data.retcode) {
@@ -284,10 +281,27 @@
                 } else {
                     // modal.alert(data.msg);
                 }
-            })
+            });
         } else {
             modal.alert("请输入需要购买课程所需的课时！");
         }
         ev.stopPropagation();
     });
+
+    function setTotalPrice() {
+        $.post('/order/classTimeMoneyPaymentData', {
+            memberId: userInfo.memberId,
+            onceId: courseId,
+            storeId: rechargeObj.storeId,
+            buyCopies: buyCopiesNumber
+        }).success(function(data) {
+            if (data.code == "0000" && data.success) {
+                var record = data.data;
+                var string = "¥ ";
+                string += record.totalPrice.toFixed(2);
+                string += "（需" + record.totalNum + "课时）";
+                $(".totalPrice").text(string);
+            }
+        })
+    }
 }).call(this)
