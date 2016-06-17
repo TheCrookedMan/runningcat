@@ -6,8 +6,7 @@
       {% endif %}
     {% endif %}
     <div class="list-info">
-        {% if course.isBuyFlag == 0 %}
-        <a href="/course/course-detail.html?courseId={{course.courseId}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}">
+        <a href="/course/course-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}">
           <div class="img"><img src="{{settings.imageAddress}}{{course.imgUrl}}"></div>
           <div class="info">
              <h2>{{course.courseName}}</h2>
@@ -25,27 +24,9 @@
              </p>
           </div>
         </a>
-        {% elseif course.isBuyFlag == 1 %}
-          <div class="img"><img src="{{settings.imageAddress}}{{course.imgUrl}}"></div>
-          <div class="info">
-             <h2>{{course.courseName}}</h2>
-             <p class="tit">
-                 <span>高效燃脂</span>
-                 <span><em>.</em>HIIT</span>
-                 <span><em>.</em>初级</span>
-                 <span><em>.</em>体能</span>
-             </p>
-             <p class="houre">
-                 <i class="am-icon-instagram"></i><span class="text-muted">{{course.onceCourseHour}} 课时</span>
-             </p>
-             <p class="clock">
-                 <i class="am-icon-clock-o"></i><span class="text-muted">{{course.startTime}}~{{course.endTime}}</span>
-             </p>
-          </div>
-        {% endif %}
         <div class="pub-btn">
             {% if course.isBuyFlag == 0 %}
-            <a href="/course/course-detail.html?courseId={{course.courseId}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}" class="btn btn-red">预约</a>
+            <a href="/course/course-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}" class="btn btn-red">预约</a>
             {% elseif course.isBuyFlag == 1 %}
             <a  class="btn btn-end">已结束</a>
             {% endif %}

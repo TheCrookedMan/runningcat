@@ -131,7 +131,7 @@ p {
 }
 
 .col-red {
-    color: #fe0100 !important;
+    color: #990100 !important;
 }
 
 .fixed {
@@ -202,7 +202,7 @@ p {
     font-size: 2.4rem;
     width: 100%;
     line-height: 1.133rem;
-    background-color: #fe0100;
+    background-color: #990100;
     border-radius: 2.133rem;
     margin-top: 2rem;
 }
@@ -317,7 +317,7 @@ ul.other-login-way li img {
 }
 
 .am-cf .ico {
-    color: #fe0100;
+    color: #990100;
     width: 1.5rem;
     float: left;
     margin-left: 3.5rem;
@@ -414,7 +414,7 @@ ul.other-login-way li img {
     color: #a1a1a1;
     font-size: 1.6rem;
     em {
-        color: #fe0100;
+        color: #990100;
         font-style: normal;
         margin-left: 0.2rem;
     }
@@ -615,7 +615,7 @@ ul.other-login-way li img {
                     margin-bottom: 1rem;
                     margin-left: 1.4rem;
                     &.cur {
-                        background: #fe0100;
+                        background: #990100;
                     }
                 }
             }
@@ -891,7 +891,7 @@ ul.other-login-way li img {
     a {
         font-size: 1.4rem;
         &.red {
-            color: #fe0100;
+            color: #990100;
         }
     }
 }
@@ -1069,11 +1069,11 @@ ul.other-login-way li img {
                             }
                             i {
                                 margin-right: 0.5rem;
-                                color: #fe0100;
+                                color: #990100;
                                 font-size: 5px;
                             }
                             .am-icon-circle {
-                                color: #fe0100;
+                                color: #990100;
                             }
                             .am-icon-circle-o {
                                 color: #4d4d4d;
@@ -1177,10 +1177,10 @@ ul.other-login-way li img {
         }
         .cur {
             h2 {
-                color: #fe0100!important;
+                color: #990100!important;
             }
             .am-icon-dot-circle-o {
-                color: #fe0100!important;
+                color: #990100!important;
             }
         }
         .list-info {
@@ -1211,7 +1211,7 @@ ul.other-login-way li img {
                         &.am-active {
                             background: #e6e6e6;
                             a {
-                                color: #fe0100;
+                                color: #990100;
                                 background: none;
                                 border-color: #999;
                                 border-bottom-color: transparent;
@@ -1333,7 +1333,7 @@ ul.other-login-way li img {
                 position: absolute;
                 left: -3rem;
                 top: 0rem;
-                // color: #fe0100;
+                // color: #990100;
                 font-size: 1.6rem;
                 font-weight: bold;
                 background: #e6e6e6;
@@ -1441,7 +1441,7 @@ ul.other-login-way li img {
                         width: 107%;
                         margin-top: 2rem;
                         .btn {
-                            background: #fe0100;
+                            background: #990100;
                             color: #fff;
                             padding: 0.2rem 2rem;
                             font-size: 1.6rem;
@@ -1451,9 +1451,9 @@ ul.other-login-way li img {
                         display: inline-block;
                         margin-right: 1rem;
                         display: inline-block;
-                        border: #fe0100 solid 1px;
+                        border: #990100 solid 1px;
                         padding: 0.2rem 0.8rem;
-                        color: #fe0100;
+                        color: #990100;
                         &.btn-end {
                             color: #c6c6c6;
                             border: #c6c6c6 solid 1px;
@@ -1608,7 +1608,7 @@ ul.other-login-way li img {
         font-size: 1.4rem;
     }
     .am-icon-star {
-        color: #fe0100;
+        color: #990100;
     }
     .am-icon-star-o {
         color: #4d4d4d;
@@ -1666,7 +1666,7 @@ ul.other-login-way li img {
     display: inline-block;
     text-align: right;
     padding: 0.5rem 0px;
-    color: #fe0100;
+    color: #990100;
     font-size: 1.2rem;
 }
 
@@ -1679,7 +1679,7 @@ ul.other-login-way li img {
         display: inline-block;
         margin-right: 1rem;
         display: inline-block;
-        background: #fe0100;
+        background: #990100;
         color: #fff;
         padding: 0.2rem 2rem;
         font-size: 1.6rem;
@@ -1724,7 +1724,7 @@ table {
     &.skin0 {
         th {
             color: #fff;
-            background: #fe0100;
+            background: #990100;
         }
     }
     &.skin1 {
@@ -1807,6 +1807,9 @@ table {
     display: inline-block;
     padding-bottom: 0.5rem;
     margin-top: 0rem;
+    .am-badge-danger {
+        background-color: #990100 !important;
+    }
     span {
         color: #707070;
         font-size: 1.2rem;
@@ -1865,7 +1868,7 @@ table {
         border: #717171 solid 1px;
         font-size: 1.4rem;
         &.cur {
-            background: #fe0100;
+            background: #990100;
             color: #fff;
             border: 1px solid transparent;
         }
