@@ -26,7 +26,7 @@
                 $(this).addClass("cur");
                 self.status = $(this).data("status");
                 self.pageNo = 1;
-                $(".single-class .class-list ul").html("");
+                $(".single-class .class-list ul").html('<li><i class="am-icon-dot-circle-o"></i><p class="pub_nodata">暂无特训营记录！</p></li>');
                 self.getSingleClass();
             });
             self.getSingleClass();
@@ -51,7 +51,12 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    $(".single-class .class-list ul").append(data);
+                    if(self.pageNo == 1){
+                        $(".single-class .class-list ul").html(data);
+                    }
+                    else{
+                        $(".single-class .class-list ul").append(data);
+                    } 
                 }
             }).error(function(err) {});
         }

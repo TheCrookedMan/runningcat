@@ -16,14 +16,15 @@
         $("#buyerNum").html(res.buyerNum);
         var carouselFigure=res.carouselFigure;
         var playTimePictures=res.playTimePictures;
-        if(carouselFigure){
+        //console.log(carouselFigure)
+        if(carouselFigure.length){
             for(var ele in carouselFigure){
                 var str="<li><img src='"+window.imageAddress+carouselFigure[ele].imgUrl+"'/></li>";
                 $('#carouselFigure').append(str);
             }
         }
         else{
-            var str="<li><img src='/img/shoptest.jpg'/></li>";
+            var str="<li><img src='/img/default.jpg'/></li>";
             $('#carouselFigure').append(str);
         }
         

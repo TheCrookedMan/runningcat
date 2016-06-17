@@ -27,7 +27,12 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    $(".profile-message").append(data);
+                    if (self.pageNo == 1) {
+                        $(".profile-message").html(data);
+                    }
+                    else{
+                        $(".profile-message").append(data);
+                    }
                 }
             }).error(function(err) {});
         }

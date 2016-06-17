@@ -33,7 +33,12 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    $(".till ul").append(data);
+                    if(self.pageNo == 1){
+                        $(".till ul").html(data);
+                    }
+                    else{
+                        $(".till ul").append(data);
+                    }
                 }
             }).error(function(err) {});
         }
@@ -43,7 +48,7 @@
 
     // 倒计时
     var timer = window.setInterval(function(){
-        $(".pub-countdown").each(function(i){
+        $(".start").each(function(i){
             var year=$(this).data("year");
             var month=$(this).data("mm");
             var day=$(this).data("day");

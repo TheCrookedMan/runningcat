@@ -14,7 +14,8 @@
       <p><em>￥<em>{{till.perPrice}}</em>/人</em> {{till.weekNum}}周 {{till.courseNum}}次课</p>
       <p>{{till.startDate|dateFormat('MM/dd')}}~{{till.endDate|dateFormat('MM/dd')}} ，{{till.classTime}}</p>
       <p>招募人数：限{{till.maxNum}}人</p>
-      <div class="pub-countdown" data-year="{{till.startDate|dateFormat('yyyy')}}" data-mm="{{till.startDate|dateFormat('MM')}}" data-day="{{till.startDate|dateFormat('dd')}}">
+      {% if till.isBuyFlag == 0 %}
+      <div class="pub-countdown start" data-year="{{till.startDate|dateFormat('yyyy')}}" data-mm="{{till.startDate|dateFormat('MM')}}" data-day="{{till.startDate|dateFormat('dd')}}">
         <div class="fl">
           <i class="am-icon-clock-o col-red"></i>
           <span>剩</span>
@@ -28,6 +29,22 @@
           <span>秒</span>
         </div>
       </div>
+      {% elseif till.isBuyFlag == 1 %}
+      <div class="pub-countdown end">
+        <div class="fl">
+          <i class="am-icon-clock-o col-red"></i>
+          <span>剩</span>
+          <i class="am-badge am-badge-danger t_d">00</i>
+          <span>天</span>
+          <i class="am-badge am-badge-danger t_h">00</i>
+          <span>时</span>
+          <i class="am-badge am-badge-danger t_m">00</i>
+          <span>分</span>
+          <i class="am-badge am-badge-danger t_s">00</i>
+          <span>秒</span>
+        </div>
+      </div>
+      {% endif %}
     </div>
     <div class="pub-btn"> 
         {% if till.isBuyFlag == 0 %}

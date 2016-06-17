@@ -27,7 +27,12 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    $(".recharge-record ul").append(data);
+                    if(self.pageNo == 1){
+                        $(".recharge-record ul").html(data);
+                    }
+                    else{
+                        $(".recharge-record ul").append(data);
+                    }
                     countdownTimer.start();
                 }
             }).error(function(err) {});
