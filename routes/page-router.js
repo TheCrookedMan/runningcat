@@ -173,20 +173,20 @@ router.get('/profile/class-recharge.html', (req, res, next) => {
     return res.render('profile/class-recharge', { title: '课时充值' });
 });
 /*
-    单次课评价
+    常规课评价
  */
 router.get('/profile/comment-class.html', (req, res, next) => {
     return res.render('profile/comment-class', { title: '评价' });
 });
 /*
-    特训营单次课评价
+    特训营常规课评价
  */
 router.get('/profile/special-comment-class.html', (req, res, next) => {
     return res.render('profile/special-comment-class', { title: '评价' });
 });
 
 router.get('/profile/done-class.html', (req, res, next) => {
-    return res.render('profile/done-class', { title: '我的单次课' });
+    return res.render('profile/done-class', { title: '我的常规课' });
 });
 
 router.get('/profile/done-till.html', (req, res, next) => {
@@ -225,7 +225,7 @@ router.get('/profile/single-class.html', (req, res, next) => {
 
 router.get('/profile/homework-class.html', (req, res, next) => {
     let onceId = req.query.onceId;
-    return res.render('profile/homework-class', { title: '单次课程作业', onceId: onceId });
+    return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId });
 });
 
 router.get('/profile/homework-till.html', (req, res, next) => {
@@ -260,7 +260,7 @@ router.get('/coach/coach.html', (req, res, next) => {
  */
 router.get('/course/pay-page.html', (req, res, next) => {
     let courseId = req.query.courseId;
-    return res.render('course/pay-page', { title: '私教课支付页面', courseId: courseId });
+    return res.render('course/pay-page', { title: '常规课支付页面', courseId: courseId });
 });
 router.get('/course/pay-success.html', (req, res, next) => {
     let courseId = req.query.courseId;
@@ -269,8 +269,8 @@ router.get('/course/pay-success.html', (req, res, next) => {
 router.get('/course/course.html', (req, res, next) => {
     // let storeId = req.query.storeId;
     // let storeName = req.query.storeName;
-    // return res.render('course/course', { title: '单次课程' , storeId: storeId, storeName: storeName});
-    return res.render('course/course', { title: '单次课程' });
+    // return res.render('course/course', { title: '常规课程' , storeId: storeId, storeName: storeName});
+    return res.render('course/course', { title: '常规课程' });
 });
 
 router.get('/course/course-detail.html', [user.checkLogin], (req, res, next) => {
