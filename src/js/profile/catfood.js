@@ -20,7 +20,7 @@
                 $(this).addClass("cur");
                 self.status = $(this).data("status");
                 self.pageNo = 1;
-                $(".single-class .pub-list ul").html("");
+                $(".single-class .pub-list ul").html('<li><i class="am-icon-dot-circle-o"></i><p class="pub_nodata">暂无猫粮记录！</p></li>');
                 self.getCatfood();
             });
             self.getCatfood();
@@ -44,7 +44,12 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    $(".single-class .pub-list ul").append(data);
+                    if(self.pageNo == 1){
+                        $(".single-class .pub-list ul").html(data);
+                    }
+                    else{
+                       $(".single-class .pub-list ul").append(data); 
+                    }  
                 }
             }).error(function(err) {});
         }

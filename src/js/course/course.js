@@ -48,7 +48,12 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    $(".pub-list ul").append(data);
+                    if(self.pageNo == 1){
+                        $(".pub-list ul").html(data);
+                    }
+                    else{
+                        $(".pub-list ul").append(data);
+                    }
                 }
             }).error(function(err) {});
         }

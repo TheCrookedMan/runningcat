@@ -28,7 +28,12 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    $(".till ul").append(data);
+                    if(self.pageNo == 1){
+                        $(".till ul").html(data);
+                    }
+                    else{
+                       $(".till ul").append(data); 
+                    }
                 }
                // console.log(data)
             }).error(function(err) {});

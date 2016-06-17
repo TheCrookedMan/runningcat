@@ -40,14 +40,14 @@
         var carouselFigure=res.carouselFigure;
 
         /*循环轮播*/
-        if(carouselFigure){
+        if(carouselFigure.length){
             for(var ele in carouselFigure){
                 var str="<li><img src='"+window.imageAddress+carouselFigure[ele].imgUrl+"'/></li>";
                 $('#carouselFigure').append(str);
             }
         }
         else{
-            var str="<li><img src='/img/shoptest.jpg'/></li>";
+            var str="<li><img src='/img/default.jpg'/></li>";
             $('#carouselFigure').append(str);
         }
 
