@@ -1,7 +1,8 @@
 (function() {
     var usrRechargeOrderRemainNum = 0;
     var needCourseNum = 0;
-    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1 }).success(function(data) {
+    var storeInfo = common.getStoreInfo();
+    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1,storeId:storeInfo.storeId }).success(function(data) {
         if (data.code == "0000" && data.success) {
             usrRechargeOrderRemainNum = data.data;
             $(".usrRechargeOrderRemainNum").text(data.data);

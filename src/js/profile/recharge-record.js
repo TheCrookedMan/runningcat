@@ -27,10 +27,9 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    if(self.pageNo == 1){
+                    if (self.pageNo == 1) {
                         $(".recharge-record ul").html(data);
-                    }
-                    else{
+                    } else {
                         $(".recharge-record ul").append(data);
                     }
                     countdownTimer.start();
@@ -41,7 +40,8 @@
     this.recharge = new recharge();
     this.recharge.init();
 
-    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1 }).success(function(data) {
+    var storeInfo = common.getStoreInfo();
+    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1, storeId: storeInfo.storeId }).success(function(data) {
         if (data.code == "0000" && data.success) {
             $(".single-class .pub-title .number").text(data.data);
         } else {
@@ -73,7 +73,7 @@
             var now = new Date().getTime();
             var end = end * 1;
             var difference = end - now;
-            if(difference <= 0){
+            if (difference <= 0) {
                 return "<div class='day'>已过期</div>";
             }
             var t = difference,
