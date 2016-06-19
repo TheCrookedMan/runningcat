@@ -29,11 +29,6 @@
     }
     init(now);
 
-    // $(".am-text-right").click(function(ev){
-    //     $(this).find("input").trigger("click");
-    //     ev.stopPropagation();
-    // })
-
     function queryUserHeartrate(date) {
         $.post('/member/getTrainTimes', { memberId: userInfo.memberId, month: date }).success(function(data) {
             if (data.code == "0000" && data.success) {

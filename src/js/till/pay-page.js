@@ -300,6 +300,7 @@
                     }
                 } else {
                     // modal.alert(data.msg);
+                    alert("支付失败！");
                 }
             })
         } else {
