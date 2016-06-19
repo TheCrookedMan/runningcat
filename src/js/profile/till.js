@@ -26,7 +26,7 @@
                 $(this).addClass("cur");
                 self.status = $(this).data("status");
                 self.pageNo = 1;
-                $(".single-class .class-list ul").html('<li><i class="am-icon-dot-circle-o"></i><p class="pub_nodata">暂无特训营记录！</p></li>');
+                $(".single-class .class-list ul").html('<p class="pub_nodata">暂无特训营记录！</p>');
                 self.getSingleClass();
             });
             self.getSingleClass();

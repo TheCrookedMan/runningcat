@@ -19,7 +19,7 @@
                         <th>送</th>
                     </tr>
                     {% for detail in data %} {% if detail.isUse == 1 %}
-                    <tr>
+                    <tr class="col-red">
                         <td class="col-red">{{detail.courseHourNum1}} - {{detail.courseHourNum}}课时</td>
                         {% if detail.normalRatio != 1 %}
                         <td class="col-red">{{(detail.normalRatio*10).toFixed(1)}}折</td>
