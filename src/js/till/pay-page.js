@@ -107,7 +107,8 @@
             memberId: userInfo.memberId,
             courseHourStatus: 1,
             needCourseNum: needCourseNum,
-            usrRechargeOrderRemainNum: usrRechargeOrderRemainNum
+            usrRechargeOrderRemainNum: usrRechargeOrderRemainNum,
+            storeId:storeInfo.storeId
         }).success(function(data) {
             data = data.replace(/(^\s+)|(\s+$)/g, "");
             $(".usrRechargeOrderList .rechargeList").html(data)
