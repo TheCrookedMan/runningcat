@@ -20,7 +20,7 @@
                 $(this).addClass("cur");
                 self.status = $(this).data("status");
                 self.pageNo = 1;
-                $(".single-class .pub-list ul").html('<li><i class="am-icon-dot-circle-o"></i><p class="pub_nodata">暂无猫粮记录！</p></li>');
+                $(".single-class .pub-list ul").html('<p class="pub_nodata">暂无猫粮记录！</p>');
                 self.getCatfood();
             });
             self.getCatfood();
