@@ -25,7 +25,7 @@
           <i class="am-icon-instagram"></i><span>所需课时：1课时</span>
         </li>
         <li>
-          <i class="am-icon-clock-o"></i><span><em id="courseDate"></em>　{{dayOfWeek}}　<em id="startTime"></em>~<em id="endTime"></em></span>
+          <i class="am-icon-clock-o"></i><span><em id="courseDate"></em>　<em id="dayOfWeek">{{dayOfWeek}}</em>　<em id="startTime"></em>~<em id="endTime"></em></span>
         </li>
         <li>
           <i class="am-icon-user"></i><span><em id="openCourseNum"></em>人，已约<em id="buyerNum"></em>人</span>
@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="pub-rbtn fixed">
-        <a href="/course/pay-page.html?courseId={{courseId}}" class="btn">立即预约</a>
+        <a href="/course/pay-page.html?courseId={{courseId}}&dayOfWeek={{dayOfWeek}}" class="btn">立即预约</a>
     </div>
 </section>
 {% include "../_partial/foot.html" %}

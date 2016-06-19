@@ -43,4 +43,29 @@
         $(".pub-rbtn .btn").addClass("end");
     }
     
+    var dayOfWeek=parseInt($("#dayOfWeek").text());
+        switch (dayOfWeek)
+        {
+        case 0:
+          $("#dayOfWeek").html("周一");
+          break;
+        case 1:
+          $("#dayOfWeek").html("周二");
+          break;
+        case 2:
+          $("#dayOfWeek").html("周三");
+          break;
+        case 3:
+          $("#dayOfWeek").html("周四");
+          break;
+        case 4:
+          $("#dayOfWeek").html("周五");
+          break;
+        case 5:
+          $("#dayOfWeek").html("周六");
+          break;
+        case 6:
+          $("#dayOfWeek").html("周日");
+          break;
+        }
 }).call(this);

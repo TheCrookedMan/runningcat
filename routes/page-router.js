@@ -260,7 +260,8 @@ router.get('/coach/coach.html', (req, res, next) => {
  */
 router.get('/course/pay-page.html', (req, res, next) => {
     let courseId = req.query.courseId;
-    return res.render('course/pay-page', { title: '常规课支付页面', courseId: courseId });
+    let dayOfWeek = req.query.dayOfWeek;
+    return res.render('course/pay-page', { title: '常规课支付页面', courseId: courseId, dayOfWeek: dayOfWeek });
 });
 router.get('/course/pay-success.html', (req, res, next) => {
     let courseId = req.query.courseId;
