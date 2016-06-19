@@ -8,9 +8,10 @@ $radar-margin-top:rem-calc($radar-margin-top-px);
     .time-panel {
         float: right;
         input {
-            background: transparent;
+            float: initial;
+            background-color: transparent;
             border: 0;
-            padding: 5px 0px;
+            line-height: 1.75rem;
             text-align: right;
         }
     }
@@ -18,8 +19,8 @@ $radar-margin-top:rem-calc($radar-margin-top-px);
         height: $radar-panel-height;
         width: 80%;
         margin: 0 auto;
-        canvas{
-            padding:10px 0px;
+        canvas {
+            padding: 10px 0px;
         }
     }
 }

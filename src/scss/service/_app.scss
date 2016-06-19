@@ -1683,7 +1683,7 @@ ul.other-login-way li img {
             border-left: #7d7d7d solid 1px;
         }
     }
-    .rechargeRange{
+    .rechargeRange {
         text-align: left;
         color: #990100 !important;
         padding: rem-calc(10px 23px 0px);
@@ -1712,8 +1712,8 @@ ul.other-login-way li img {
         color: #fff;
         padding: 0.2rem 2rem;
         font-size: 1.6rem;
-        &.end{
-            background:#c6c6c6 !important;
+        &.end {
+            background: #c6c6c6 !important;
         }
     }
 }
@@ -1746,10 +1746,10 @@ ul.other-login-way li img {
 table {
     width: 100%;
     font-size: 1.2rem;
-    tr{
-        &.col-red{
-            td{
-                background-color:#ddd;
+    tr {
+        &.col-red {
+            td {
+                background-color: #ddd;
             }
         }
     }
@@ -1930,7 +1930,11 @@ table {
     color: #999;
     text-align: center;
     padding: 1rem 0;
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+}
+
+.am-close {
+    opacity: 1!important;
 }
 
 @font-face {
