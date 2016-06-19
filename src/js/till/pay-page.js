@@ -36,7 +36,7 @@
                 payInfo.push("地址：" + record.storeAddress);
                 payInfo.push("</li>");
                 payInfo.push("<li>");
-                payInfo.push("价格：¥" + record.perPrice + "/人（需" + tnum + "课时）");
+                payInfo.push("价格：¥" + record.totalPrice + "/人（需" + tnum + "课时）");
                 payInfo.push("</li>");
                 payInfo.push("</ul>");
                 $(".pay-info").html(payInfo.join(""));
@@ -84,11 +84,9 @@
         var courseNum = $(".pub_peolist a.cur").data("courseNum");
         needCourseNum = courseNum;
         buyCopiesNumber = num;
-
-
         if (usrRechargeOrderRemainNum < needCourseNum) {
-            var href = $(".rechargePanel a").data('href');
-            $(".rechargePanel a").attr('href', href + "?needCourseNum=" + needCourseNum);
+            var href = $(".rechargePanel button").data('href');
+            $(".rechargePanel button").data('jmphref', href + "?needCourseNum=" + needCourseNum);
             $(".rechargePanel").show();
             $(".paymentPanel").hide();
         } else {
@@ -99,6 +97,10 @@
         gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum);
         setTotalPrice();
     }
+    $(".rechargePanel").on("click","button",function(ev){
+        var jmphref = $(this).data("jmphref");
+        window.location.href = jmphref;
+    })
     /*
         获取可用课时纪录列表
      */
@@ -139,8 +141,8 @@
 
     $("body").on("click", ".cashPayment", function(ev) {
         $(this).find(".info-body").show();
-        $(this).addClass("cur");
-        $(".classTimePayment").removeClass("cur");
+        $(this).parent("li").addClass("cur");
+        $(".classTimePayment").parent("li").removeClass("cur");
         $(".classTimePayment .usrRechargeOrderList").hide();
         $(".classTimePayment .list-icon").removeClass("am-icon-dot-circle-o");
         $(".classTimePayment .list-icon").addClass("am-icon-circle-o");
@@ -152,8 +154,8 @@
     $("body").on("click", ".classTimePayment", function(ev) {
         $(this).find(".list-icon").removeClass("am-icon-circle-o");
         $(this).find(".list-icon").addClass("am-icon-dot-circle-o");
-        $(this).addClass("cur");
-        $(".cashPayment").removeClass("cur");
+        $(this).parent("li").addClass("cur");
+        $(".cashPayment").parent("li").removeClass("cur");
         $(".cashPayment .list-icon").removeClass("am-icon-dot-circle-o");
         $(".cashPayment .list-icon").addClass("am-icon-circle-o");
         $(".cashPayment .info-body").hide();

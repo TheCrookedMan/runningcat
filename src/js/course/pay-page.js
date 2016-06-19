@@ -71,8 +71,8 @@
         needCourseNum = num * onceCourseHour;
 
         if (usrRechargeOrderRemainNum < needCourseNum) {
-            var href = $(".rechargePanel a").data('href');
-            $(".rechargePanel a").attr('href', href + "?needCourseNum=" + needCourseNum);
+            var href = $(".rechargePanel button").data('href');
+            $(".rechargePanel button").data('jmphref', href + "?needCourseNum=" + needCourseNum);
             $(".rechargePanel").show();
             $(".paymentPanel").hide();
         } else {
@@ -83,6 +83,10 @@
         gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum);
         setTotalPrice();
     }
+    $(".rechargePanel").on("click","button",function(ev){
+        var jmphref = $(this).data("jmphref");
+        window.location.href = jmphref;
+    })
     /*
         获取可用课时纪录列表
      */
@@ -123,8 +127,8 @@
 
     $("body").on("click", ".cashPayment", function(ev) {
         $(this).find(".info-body").show();
-        $(this).addClass("cur");
-        $(".classTimePayment").removeClass("cur");
+        $(this).parent("li").addClass("cur");
+        $(".classTimePayment").parent("li").removeClass("cur");
         $(".classTimePayment .usrRechargeOrderList").hide();
         $(".classTimePayment .list-icon").removeClass("am-icon-dot-circle-o");
         $(".classTimePayment .list-icon").addClass("am-icon-circle-o");
@@ -132,12 +136,11 @@
         $(this).find(".list-icon").addClass("am-icon-dot-circle-o");
         ev.stopPropagation();
     });
-
     $("body").on("click", ".classTimePayment", function(ev) {
         $(this).find(".list-icon").removeClass("am-icon-circle-o");
         $(this).find(".list-icon").addClass("am-icon-dot-circle-o");
-        $(this).addClass("cur");
-        $(".cashPayment").removeClass("cur");
+        $(this).parent("li").addClass("cur");
+        $(".cashPayment").parent("li").removeClass("cur");
         $(".cashPayment .list-icon").removeClass("am-icon-dot-circle-o");
         $(".cashPayment .list-icon").addClass("am-icon-circle-o");
         $(".cashPayment .info-body").hide();

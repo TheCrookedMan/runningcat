@@ -54,10 +54,10 @@ module.exports = (swig) => {
         len = parseInt(baseScope / 2);
         elen = baseScope % 2;
         for (let i = 0; i < len; i++) {
-            list.push('<i class="am-icon-star"></i>');
+            list.push('<a href="javascript:void(0);" class="am-icon-star"></a>');
         }
         for (let i = 0; i < 5 - len; i++) {
-            list.push('<i class="am-icon-star-o"></i>');
+            list.push('<a href="javascript:void(0);" class="am-icon-star-o"></a>');
         }
         // if (elen >= 1) {
         //     list.push('<i class="am-icon-star-half-full"></i>');

@@ -1,4 +1,5 @@
 (function() {
+    var storeInfo = common.getStoreInfo();
     var recharge = function() {
         this.pageNo = 1;
         this.pageSize = 10;
@@ -20,7 +21,8 @@
             $.get('/recharge-record.template', {
                 memberId: userInfo.memberId,
                 pageNo: self.pageNo,
-                pageSize: self.pageSize
+                pageSize: self.pageSize,
+                storeId: storeInfo.storeId
             }).success(function(data) {
                 data = data.replace(/(^\s+)|(\s+$)/g, "");
                 if ("" == data) {
@@ -40,7 +42,7 @@
     this.recharge = new recharge();
     this.recharge.init();
 
-    var storeInfo = common.getStoreInfo();
+    
     $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1, storeId: storeInfo.storeId }).success(function(data) {
         if (data.code == "0000" && data.success) {
             $(".single-class .pub-title .number").text(data.data);

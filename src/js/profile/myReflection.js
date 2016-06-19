@@ -183,10 +183,6 @@
             title: {
                 text: ''
             },
-            tooltip: {},
-            legend: {
-                data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
-            },
             radar: {
                 // shape: 'circle',
                 indicator: [
@@ -195,7 +191,7 @@
                     { name: '敏捷', max: 25000 },
                     { name: '耐力', max: 25000 },
                     { name: '心肺', max: 25000 },
-                    { name: '平测', max: 25000 },
+                    { name: '评测', max: 25000 },
                     { name: '精准', max: 25000 },
                     { name: '协调', max: 25000 },
                     { name: '速度', max: 25000 },

@@ -106,7 +106,7 @@
                     self.children('i').addClass("am-icon-heart");
                     self.data('status','1');
                 } else {
-                    // modal.alert(data.msg);
+                    modal.alert(data.msg);
                 }
             })
             ev.stopPropagation();
