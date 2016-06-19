@@ -26,7 +26,8 @@ var buyCopiesNumber = "{{buyCopies}}";
     </div>
     <div class="pub-list skin2">
         <ul>
-            <li class="classTimePayment cur">
+            <li class="cur">
+                <a href="javascript:void(0);" class="classTimePayment">
                 <i class="list-icon am-icon-dot-circle-o"></i>
                 <div class="list-info">
                     <div class="info">
@@ -55,14 +56,14 @@ var buyCopiesNumber = "{{buyCopies}}";
                                 <tr class="rechargePanel">
                                     <td colspan="3">
                                         <div class="pub-rbtn txt-c">
-                                            <a href="javascript:void(0);" data-href="/profile/recharge.html" class="btn">充值</a>
+                                            <button data-href="/profile/recharge.html" class="btn">充值</button>
                                         </div>
                                     </td>
                                 </tr>
                                 <tr class="paymentPanel">
                                     <td colspan="3">
                                         <div class="pub-rbtn txt-c">
-                                            <a href="javascript:void(0);" class="btn classTimePaymentButton">支付</a>
+                                            <button class="btn classTimePaymentButton">支付</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -70,8 +71,10 @@ var buyCopiesNumber = "{{buyCopies}}";
                         </table>
                     </div>
                 </div>
+                </a>
             </li>
-            <li class="cashPayment">
+            <li>
+                <a href="javascript:void(0);" class="cashPayment">
                 <i class="list-icon am-icon-circle-o"></i>
                 <div class="list-info">
                     <div class="info">
@@ -80,8 +83,8 @@ var buyCopiesNumber = "{{buyCopies}}";
                     <div class="info-body">
                         <div class="price">
                             <div class="tit">
-                                <a href="javascript: void(0)">折扣价<em>（￥<i class="discountPrice">0.00</i>）</em></a>
-                                <a href="javascript:void(0)" class="col-red" id="show-discount-detail">折扣详细</a>
+                                <span>折扣价<em>（￥<i class="discountPrice">0.00</i>）</em></span>
+                                <button class="col-red" id="show-discount-detail">折扣详细</button>
                             </div>
                             <div class="code">
                                 <i class="am-icon-check-square-o"></i>
@@ -97,13 +100,14 @@ var buyCopiesNumber = "{{buyCopies}}";
                             应付金额(元):<span class="col-red">￥<i class="actualPrice">0.00</i></span>
                         </div>
                         <div class="pub-rbtn txt-c">
-                            <a href="javascript:void(0)" class="btn wechatPayment">微信支付</a>
+                            <button class="btn wechatPayment">微信支付</button>
                         </div>
                         <!-- <div class="pub-rbtn txt-c">
                             <a href="javascript:void(0)" class="btn">支付宝支付</a>
                         </div> -->
                     </div>
                 </div>
+                </a>
             </li>
         </ul>
     </div>

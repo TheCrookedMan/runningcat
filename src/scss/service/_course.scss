@@ -165,6 +165,10 @@
             padding: 0.5rem 0px;
             text-align: center;
             display: inline-block;
+            border: 0;
+        }
+        .wechatPayment {
+            border: 0;
         }
     }
     .pay-info {
@@ -264,6 +268,13 @@
                 padding: 0.5rem 2rem;
             }
         }
+    }
+    #show-discount-detail {
+        background: transparent;
+        border: 0;
+    }
+    .info-body{
+        color: #717171;
     }
 }
 
