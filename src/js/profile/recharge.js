@@ -37,6 +37,8 @@
                         var catExchangePrice = record.catExchangePrice.toFixed(2);
                         var memberCatFood = record.memberCatFood;
                         var orderUnitPrice = record.orderUnitPrice.toFixed(2);
+                        var rechargeMin= record.rechargeMin;
+                        var rechargeMax= record.rechargeMax;
                         $(".totalPrice").text(totalPrice);
                         $(".actualPrice").text(actualPrice);
                         $(".discountPrice").text(discountPrice);
@@ -45,11 +47,18 @@
                         $(".memberCatFood").text(memberCatFood);
                         $(".orderUnitPrice").text(orderUnitPrice);
 
+                        $(".rechargeRange").text("*可购买课时为："+rechargeMin+" ～ "+rechargeMax);
+
                         self.discountInfo = {
                             totalNum: totalNum,
                             nmemberCatFood: nmemberCatFood
                         }
-                        self.gradePanelString = '<tr><td colspan="4" class="col-red txt-l">*当前为' + record.gradeName + '，可再享受' + (record.mlevemRatio * 10).toFixed(1) + '折优惠</td></tr>';
+                        self.gradePanelString = "";
+                        // if(record.gradeName){
+                        //     self.gradePanelString = '<tr><td colspan="4" class="col-red txt-l">*当前为' + record.gradeName + '，可再享受' + (record.mlevemRatio * 10).toFixed(1) + '折优惠</td></tr>';
+                        // } else {
+                        //     self.gradePanelString = "";
+                        // }
                     } else {
                         // modal.alert(data.msg);
                     }
@@ -62,6 +71,7 @@
                 $(".catExchangePrice").text("0.00");
                 $(".memberCatFood").text("0");
                 $(".orderUnitPrice").text("0.00");
+                $(".rechargeRange").text("");
                 self.gradePanelString = "";
                 self.discountInfo = {
                     totalNum: 0,
@@ -81,7 +91,7 @@
                     $("#detail-popup tbody").append(self.gradePanelString);
                 });
             } else {
-                modal.alert("请购买课时！");
+                modal.alert("请先输入需要购买的课时！");
             }
         }
     }
@@ -92,7 +102,7 @@
     $("body").on("click", ".pub-num .num .min", function(ev) {
         var buy_num = $(".pub-num .buy_num").val();
         buy_num = parseInt(buy_num);
-        if (buy_num > 0) {
+        if (buy_num > 1) {
             buy_num--;
             $(".pub-num .buy_num").val(buy_num);
         }
@@ -110,8 +120,8 @@
     $("body").on("change", ".pub-num .buy_num", function(ev) {
         var buy_num = $(this).val();
         buy_num = parseInt(buy_num);
-        if (buy_num < 0) {
-            $(this).val(0);
+        if (buy_num < 1) {
+            $(this).val(1);
         }
         buy_num = $(this).val();
         rechargeObj.selectDiscountInfo(buy_num);
@@ -130,7 +140,7 @@
         if (buy_num > 0) {
             $("#detail-popup").modal('open');
         } else {
-            modal.alert("请购买课时！");
+            modal.alert("请先输入需要购买的课时！");
         }
         ev.stopPropagation();
     });
@@ -166,6 +176,7 @@
                     }
                 } else {
                     // modal.alert(data.msg);
+                    modal.alert("支付失败！");
                 }
             })
         } else {

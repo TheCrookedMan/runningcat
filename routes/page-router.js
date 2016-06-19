@@ -214,7 +214,7 @@ router.get('/profile/ranking.html', (req, res, next) => {
 router.get('/profile/recharge.html', (req, res, next) => {
     let needCourseNum = req.query.needCourseNum;
     if (needCourseNum == undefined) {
-        needCourseNum = 0;
+        needCourseNum = 1;
     }
     return res.render('profile/recharge', { title: '充值', needCourseNum: needCourseNum });
 });

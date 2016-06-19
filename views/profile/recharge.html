@@ -1,55 +1,57 @@
 {% include "../_partial/head.html" %}
 <style type="text/css">
-    body{
-        background-color: #e6e6e6
-    }
+body {
+    background-color: #e6e6e6
+}
 </style>
 <section class="course">
-  <div class="pub-pinfo">
-      <div class="img"><img src="/img/app-icon72x72@2x.png" alt="跑步猫"></div>
-      <div class="info">
-        <h2 class="nickName"></h2>
-        <p class="mobileNo"></p>
-        <p class="grade">LV.2</p>
-      </div>
-  </div>
-  <div class="pub-price">
-    <div class="pub-num">
-        <span>课时购买：</span>
-        <div class="num">
-            <a class="min" href="javascript:;">-</a>
-            <input name="" value="{{needCourseNum}}" class="buy_num" type="text">
-            <a href="javascript:;" class="add">+</a>
+    <div class="pub-pinfo">
+        <div class="img"><img src="/img/app-icon72x72@2x.png" alt="跑步猫"></div>
+        <div class="info">
+            <h2 class="nickName"></h2>
+            <p class="mobileNo"></p>
+            <p class="grade">&nbsp;</p>
         </div>
-        <span>课时单价：¥<i class="orderUnitPrice">0.00</i></span>
     </div>
-    <div class="pub-num">
-        <span>订单金额：</span>
-        <span class="ml0 ">¥ <i class="totalPrice">0.00</i></span>
+    <div class="pub-price">
+        <div class="pub-num">
+            <span>课时购买：</span>
+            <div class="num">
+                <a class="min" href="javascript:;">-</a>
+                <input name="" value="{{needCourseNum}}" class="buy_num" type="text">
+                <a href="javascript:;" class="add">+</a>
+            </div>
+            <span>课时单价：¥<i class="orderUnitPrice">0.00</i></span>
+            <p class="rechargeRange"></p>
+        </div>
+        
+        <div class="pub-num">
+            <span>订单金额：</span>
+            <span class="ml0 ">¥ <i class="totalPrice">0.00</i></span>
+        </div>
     </div>
-  </div>
-  <div class="pub-list skin5">
+    <div class="pub-list skin5">
         <ul>
             <li>
                 <div class="list-info">
                     <div class="price">
-                      <div class="tit">
-                        <a href="javascript: void(0)">折扣价<em>（￥<i class="discountPrice">0.00</i>）</em></a>
-                        <a href="javascript:void(0)" class="col-red" id="show-discount-detail">折扣详细</a>
-                      </div>
-                      <div class="code">
-                        <i class="am-icon-check-square-o col-red"></i>
-                        <p>本次可使用猫粮<span class="nmemberCatFood">0</span>&nbsp;&nbsp;&nbsp;兑换：<span class="nmemberCatFood">0</span></p>
-                        <p class="col-red">*猫粮总数 <span class="memberCatFood">0</span>颗</p>
-                      </div>
-                      <!-- <div class="code">
+                        <div class="tit">
+                            <a href="javascript: void(0)">折扣价<em>（￥<i class="discountPrice">0.00</i>）</em></a>
+                            <a href="javascript:void(0)" class="col-red" id="show-discount-detail">折扣详细</a>
+                        </div>
+                        <div class="code">
+                            <i class="am-icon-check-square-o col-red"></i>
+                            <p>本次可使用猫粮<span class="nmemberCatFood">0</span>&nbsp;&nbsp;&nbsp;兑换：<span class="nmemberCatFood">0</span></p>
+                            <p class="col-red">*猫粮总数 <span class="memberCatFood">0</span>颗</p>
+                        </div>
+                        <!-- <div class="code">
                         <i class="am-icon-square-o"></i>
                         <p>优惠券</p>
                       </div> -->
                     </div>
                     <div class="pub-line"></div>
                     <div class="total txt-l">
-                      应付金额(元):<span class="col-red">￥<i class="actualPrice">0.00</i></span>
+                        应付金额(元):<span class="col-red">￥<i class="actualPrice">0.00</i></span>
                     </div>
                     <div class="pub-rbtn txt-c">
                         <a href="javascript:void(0)" class="btn wechatPay">微信支付</a>

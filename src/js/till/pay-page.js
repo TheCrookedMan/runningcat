@@ -199,7 +199,12 @@
                             totalNum: totalNum,
                             nmemberCatFood: nmemberCatFood
                         }
-                        self.gradePanelString = '<tr><td colspan="4" class="col-red txt-l">*当前为' + record.gradeName + '，可再享受' + (record.mlevemRatio * 10).toFixed(1) + '折优惠</td></tr>';
+                        self.gradePanelString = "";
+                        // if(record.gradeName){
+                        //     self.gradePanelString = '<tr><td colspan="4" class="col-red txt-l">*当前为' + record.gradeName + '，可再享受' + (record.mlevemRatio * 10).toFixed(1) + '折优惠</td></tr>';
+                        // } else {
+                        //     self.gradePanelString = "";
+                        // }
                     } else {
                         // modal.alert(data.msg);
                     }
@@ -231,7 +236,7 @@
                     $("#detail-popup tbody").append(self.gradePanelString);
                 });
             } else {
-                modal.alert("请购买课时！");
+                modal.alert("请先输入需要购买的课时！");
             }
         }
     }
@@ -241,7 +246,7 @@
         if (needCourseNum > 0) {
             $("#detail-popup").modal('open');
         } else {
-            modal.alert("请购买课时！");
+            modal.alert("请先输入需要购买的课时！");
         }
         ev.stopPropagation();
     });
