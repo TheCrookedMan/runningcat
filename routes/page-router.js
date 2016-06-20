@@ -13,7 +13,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
     let list = [];
 
     wechatAuth.accessToken(options.code, function(params) {
-        
+
         let data = JSON.parse(params);
         //没有errcode字段表示请求成功
         if (!data.errcode) {
@@ -176,7 +176,9 @@ router.get('/profile/class-recharge.html', (req, res, next) => {
     常规课评价
  */
 router.get('/profile/comment-class.html', (req, res, next) => {
-    return res.render('profile/comment-class', { title: '评价' });
+    let courseId = req.query.courseId,
+        onceId = req.query.onceId;
+    return res.render('profile/comment-class', { title: '评价', courseId: courseId, onceId: onceId });
 });
 /*
     特训营常规课评价
@@ -278,8 +280,8 @@ router.get('/course/course-detail.html', [user.checkLogin], (req, res, next) => 
     let courseId = req.query.courseId;
     let dayOfWeek = req.query.dayOfWeek;
     let imgUrl = req.query.imgUrl;
-    let isBuyFlag=req.query.isBuyFlag;
-    return res.render('course/course-detail', { title: '课程详情', courseId: courseId, dayOfWeek: dayOfWeek, imgUrl: imgUrl,isBuyFlag:isBuyFlag });
+    let isBuyFlag = req.query.isBuyFlag;
+    return res.render('course/course-detail', { title: '课程详情', courseId: courseId, dayOfWeek: dayOfWeek, imgUrl: imgUrl, isBuyFlag: isBuyFlag });
 });
 
 /*
@@ -310,7 +312,7 @@ router.get('/till/till-detail.html', [user.checkLogin], (req, res, next) => {
     let mm = req.query.mm;
     let day = req.query.day;
     let isBuyFlag = req.query.isBuyFlag;
-    return res.render('till/till-detail', { title: '特训营详情', specialId: specialId, year: year, mm: mm, day: day,isBuyFlag:isBuyFlag });
+    return res.render('till/till-detail', { title: '特训营详情', specialId: specialId, year: year, mm: mm, day: day, isBuyFlag: isBuyFlag });
 });
 
 // router.get('*.html', (req, res, next) => {
