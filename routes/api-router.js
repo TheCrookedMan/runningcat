@@ -25,6 +25,8 @@ router.post('/registeUser', user.registeUser);
 router.post('/sendSMS', user.sendSMS);
 router.post('/checkSmscode', user.checkSmscode);
 
+router.post('/user/getUsrInfoByUnionId',user.getUsrInfoByUnionId);
+
 router.post('/updateUserInfo', user.updateUserInfo);
 router.post('/memberInfo', user.memberInfo);
 // 获取用户信息

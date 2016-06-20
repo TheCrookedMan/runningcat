@@ -31,6 +31,9 @@ body {
     transform: rotate(180deg);
 }
 </style>
+<script type="text/javascript">
+    var type = "{{type}}";
+</script>
 <section class="profile-wrap">
     <div class="head-logo">
         <div class="am-form-group am-form-file">
@@ -42,7 +45,7 @@ body {
     </div>
     <form method="post" class="am-form" id="loginForm">
         <input type="hidden" name="password" value="{{password}}">
-        <input type="hidden" name="mobileNo" value="{{mobileNo}}">
+        <input type="hidden" name="mobileNo" value="{{mobileNo}}" id="mobileNo">
         <!-- <input type="hidden" name="storeId" value="{{storeId}}"> -->
         <input type="hidden" name="storeId" value="" id="storeId">
         <input type="hidden" name="refereeId" value="{{refereeId}}">

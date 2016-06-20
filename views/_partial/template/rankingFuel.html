@@ -1,9 +1,10 @@
-{% for ranking in data %}
-{% if ranking.rowNum == 1 %}
+{% for ranking in data %} {% if ranking.rowNum == 1 %}
 <tr>
     <td class="top"><img src="/img/top1.png" alt="跑步猫"></td>
     <td class="peo">
-        <img src="{{ranking.photoUrl}}" alt="跑步猫">
+        {% if ranking.photoUrl.indexOf('wx.qlogo.cn') != -1 %}
+        <img src="{{ranking.photoUrl}}" alt="跑步猫"> {% else %}
+        <img src="{{settings.imageAddress}}{{ranking.photoUrl}}" alt="跑步猫"> {% endif %}
         <span>{{ranking.nickName}}</span>
     </td>
     <td class="num">{{ranking.totalFuel}}</td>
@@ -24,7 +25,9 @@
 <tr>
     <td class="top"><img src="/img/top2.png" alt="跑步猫"></td>
     <td class="peo">
-        <img src="{{ranking.photoUrl}}" alt="跑步猫">
+        {% if ranking.photoUrl.indexOf('wx.qlogo.cn') != -1 %}
+        <img src="{{ranking.photoUrl}}" alt="跑步猫"> {% else %}
+        <img src="{{settings.imageAddress}}{{ranking.photoUrl}}" alt="跑步猫"> {% endif %}
         <span>{{ranking.nickName}}</span>
     </td>
     <td class="num">{{ranking.totalFuel}}</td>
@@ -45,7 +48,9 @@
 <tr>
     <td class="top"><img src="/img/top3.png" alt="跑步猫"></td>
     <td class="peo">
-        <img src="{{ranking.photoUrl}}" alt="跑步猫">
+        {% if ranking.photoUrl.indexOf('wx.qlogo.cn') != -1 %}
+        <img src="{{ranking.photoUrl}}" alt="跑步猫"> {% else %}
+        <img src="{{settings.imageAddress}}{{ranking.photoUrl}}" alt="跑步猫"> {% endif %}
         <span>{{ranking.nickName}}</span>
     </td>
     <td class="num">{{ranking.totalFuel}}</td>
@@ -66,7 +71,9 @@
 <tr>
     <td class="top"><em class="col-red">{{ranking.rowNum}}</em>th</td>
     <td class="peo">
-        <img src="{{ranking.photoUrl}}" alt="跑步猫">
+        {% if ranking.photoUrl.indexOf('wx.qlogo.cn') != -1 %}
+        <img src="{{ranking.photoUrl}}" alt="跑步猫"> {% else %}
+        <img src="{{settings.imageAddress}}{{ranking.photoUrl}}" alt="跑步猫"> {% endif %}
         <span>{{ranking.nickName}}</span>
     </td>
     <td class="num">{{ranking.totalFuel}}</td>
@@ -83,5 +90,4 @@
         </p>
     </td>
 </tr>
-{% endif %}
-{% endfor %}
+{% endif %} {% endfor %}

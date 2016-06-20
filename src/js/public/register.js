@@ -36,6 +36,7 @@
             }
         }, 1000);
     }
+    
     $('#loginForm').validator({
         submit: function(form) {
             if (this.isFormValid()) {

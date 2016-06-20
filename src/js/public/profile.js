@@ -4,13 +4,19 @@
         wechatUserInfo = {};
     }
     var store = common.getStoreInfo();
-    $("#userPic").attr("src", wechatUserInfo.headimgurl);
-    $("#nicknameText").text(wechatUserInfo.nickname);
-    $("#nickName").val(wechatUserInfo.nickname);
-    $("#photoUrl").val(wechatUserInfo.headimgurl);
+    
     $("#openId").val(wechatUserInfo.openid);
     $("#unionId").val(wechatUserInfo.unionid);
     $("#storeId").val(store.storeId);
+    if (type == "improve_and_perfect") {
+        getUsrInfoByUnionId(wechatUserInfo.unionid);
+        // getUsrInfoByUnionId("o85Fpt8L9Qze0864dKrVQ0i-HUx0");
+    } else {
+        $("#userPic").attr("src", wechatUserInfo.headimgurl);
+        $("#photoUrl").val(wechatUserInfo.headimgurl);
+        $("#nicknameText").text(wechatUserInfo.nickname);
+        $("#nickName").val(wechatUserInfo.nickname);
+    }
 
     var $tooltip = $('<div id="vld-tooltip">提示信息！</div>');
     $tooltip.appendTo(document.body);
@@ -82,5 +88,45 @@
         }).error(function(data) {
             modal.alert(data.responseJSON.msg);
         });
+    }
+    function getUsrInfoByUnionId(unionId) {
+        $.post('/user/getUsrInfoByUnionId', { unionId: unionId }).success(function(data) {
+            if ("0000" == data.code && data.success) {
+                var record = data.data;
+                $("#name").val(record.userName);
+                var mobileNo = $("#mobileNo").val();
+                if (!mobileNo) {
+                    $("#mobileNo").val(record.mobileNo);
+                }
+                $("input[name='sex']").each(function(i, I) {
+                    if (I.value == record.sex) {
+                        $(I).attr("checked", "checked");
+                    }
+                });
+                var photoUrl = record.photoUrl;
+                if (!photoUrl) {
+                    $("#photoUrl").val(wechatUserInfo.headimgurl);
+                    $("#userPic").attr("src", wechatUserInfo.headimgurl);
+                } else {
+                    $("#photoUrl").val(photoUrl);
+                    $("#userPic").attr("src", photoUrl);
+                }
+                var nickName = record.nickName;
+                if (!nickName) {
+                    $("#nicknameText").text(wechatUserInfo.nickname);
+                    $("#nickName").val(wechatUserInfo.nickname);
+                } else {
+                    $("#nicknameText").text(nickName);
+                    $("#nickName").val(nickName);
+                }
+                if(!!record.birthday){
+                    $("#borth").val(common.formatDate(record.birthday, 'yyyy-MM-dd'));
+                }
+                $("#wx").val(record.wechat);
+                $("#sid").val(record.idcard);
+                $("#weight").val(record.beforeWeight);
+                $("#height").val(record.height);
+            }
+        })
     }
 }).call(this);

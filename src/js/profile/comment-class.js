@@ -1,6 +1,6 @@
 (function() {
     $.get('/comment-class.template', {
-        courseId: courseId,
+        courseId: onceId,
         memberId: userInfo.memberId,
         onceId: onceId
     }).success(function(data) {

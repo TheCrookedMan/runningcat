@@ -41,8 +41,8 @@ router.get('/wechatAuth.html', (req, res, next) => {
                             /*
                                 code：10015 用户没有注册，如果返回没有注册就获取用户的微信信息并且把信息写入本地的cookie.然后重定向至按钮对应的页面
                              */
+                            res.cookie('runningcatUserInfo', "{}", { maxAge: 31536000, path: '/' });
                             if ("10015" == record.code) {
-                                res.cookie('runningcatUserInfo', "{}", { maxAge: 31536000, path: '/' });
                                 res.redirect(redirect_uri);
                             } else if ("0000" == record.code) {
                                 /*
@@ -68,6 +68,16 @@ router.get('/wechatAuth.html', (req, res, next) => {
                                         res.redirect("/public/shop.html");
                                     }
                                 }
+                            } else if ("100269" == record.code) {
+                                /*
+                                    信息不完善需要跳转至 完善信息页面。
+                                 */
+                                res.redirect("/public/profile.html?type=improve_and_perfect");
+                            }else if ("10026911" == record.code) {
+                                /*
+                                    信息不完善，没有手机号需要跳转至 注册页面。
+                                 */
+                                res.redirect("/public/register.html?type=improve_and_perfect");
                             } else {
                                 /*
                                     其他错误处理
@@ -100,12 +110,20 @@ router.get('/wechatAuth.html', (req, res, next) => {
 
 router.get('/public/register.html', (req, res, next) => {
     let refereeId = req.query.refereeId,
-        storeId = req.query.storeId;
-    return res.render('public/register', { title: '注册', refereeId: refereeId, storeId: storeId });
+        storeId = req.query.storeId,
+        type = "insert";
+    if (req.query.type != undefined) {
+        type = req.query.type;
+    }
+    return res.render('public/register', { title: '注册', refereeId: refereeId, storeId: storeId, type: type });
 });
 router.get('/public/profile.html', (req, res, next) => {
-    let params = req.query;
-    return res.render('public/profile', { title: '完善资料', password: params.password, mobileNo: params.mobileNo, refereeId: params.refereeId, storeId: params.storeId });
+    let params = req.query,
+        type = "insert";
+    if (req.query.type != undefined) {
+        type = req.query.type;
+    }
+    return res.render('public/profile', { title: '完善资料', password: params.password, mobileNo: params.mobileNo, refereeId: params.refereeId, storeId: params.storeId, type: type });
 });
 
 router.get('/public/shop.html', (req, res, next) => {
@@ -226,8 +244,8 @@ router.get('/profile/single-class.html', (req, res, next) => {
 });
 
 router.get('/profile/homework-class.html', (req, res, next) => {
-    let onceId = req.query.onceId;
-    return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId });
+    let onceId = req.query.onceId,courseId = req.query.courseId;
+    return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId ,courseId:courseId});
 });
 
 router.get('/profile/homework-till.html', (req, res, next) => {
