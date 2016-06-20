@@ -1,13 +1,13 @@
 (function() {
-    var onceId=$("#onceId").val();
-    var workId;
+    var onceId = $("#onceId").val();
+    // var workId;
 
     /*课程详情*/
     $.get('/pubclass.template', {
-        userId:userInfo.memberId,
-        courseId:onceId
+        userId: userInfo.memberId,
+        courseId: onceId
     }).success(function(data) {
-         $(".hr").before(data);
+        $(".hr").before(data);
     }).error(function(err) {});
 
     /*课程作业列表*/
@@ -24,7 +24,7 @@
         getHomeWork: function() {
             var self = this;
             $.get('/getCourseWorkInfo.template', {
-                memberId:userInfo.memberId,
+                memberId: userInfo.memberId,
                 onceId: onceId,
                 onceType: 1
             }).success(function(data) {
@@ -34,55 +34,57 @@
                 } else {
                     self.isEnd = false;
                     $(".pub-list ul").prepend(data);
-                    workId=$("#workId").val()
+                    // workId = $("#workId").val()
+                    findMyCourseWorkt();
                 }
-               // console.log(data)
+                // console.log(data)
             }).error(function(err) {});
         }
     }
     this.homeWork = new homeWork();
     this.homeWork.init();
 
+    function findMyCourseWorkt() {
+        /*查询我的课次作业*/
+        $.get('/submitclass.template', {
+            memberId: userInfo.memberId,
+            onceId: onceId,
+            workId: workId
+        }).success(function(data) {
+            $(".pub-list ul").append(data);
 
-    /*查询我的课次作业*/
-    $.get('/submitclass.template', {
-        memberId:userInfo.memberId,
-        onceId:onceId,
-        workId:workId
-    }).success(function(data) {
-         $(".pub-list ul").append(data);
+            var imglength = 0;
+            $(".uploadImage").uploadImage({
+                url: "/common/uploadImage",
+                callback: function(file, data, resp) {
+                    imglength++;
+                    var path = data.images[0].userFilePath;
+                    var arr = new Array(imglength);
+                    arr.push(path);
+                    var str = "<div class='task'><p><img src='" + window.imageAddress + arr[imglength] + "' class='imgUrl' data-url='" + arr[imglength] + "' /></p></div>"
+                    $(".uploadImage").parents(".img-list").prepend(str);
+                }
+            });
+        }).error(function(err) {});
 
-         var imglength=0;
-         $(".uploadImage").uploadImage({
-            url: "/common/uploadImage",
-            callback: function(file, data, resp) {
-                imglength++;
-                var path = data.images[0].userFilePath;
-                var arr=new Array(imglength);
-                arr.push(path);
-                var str="<div class='task'><p><img src='"+window.imageAddress+arr[imglength]+"' class='imgUrl' data-url='"+arr[imglength]+"' /></p></div>"
-                $(".uploadImage").parents(".img-list").prepend(str);
-            }
-        });
-    }).error(function(err) {});
-
+    }
 
     /*提交作业*/
-    $("body").on("submit",".doCourseWork",function() {
+    $("body").on("submit", ".doCourseWork", function() {
         var data = common.parseForm(".doCourseWork");
-        var workContent=$(".doCourseWork .leaveMsg").val();
-        var imglength=0;
-        var arr=new Array(imglength);
+        var workContent = $(".doCourseWork .leaveMsg").val();
+        var imglength = 0;
+        var arr = new Array(imglength);
         var imgObj = {};
-        $(".imgUrl").each(function(index){
-            var path=$(this).data("url");
+        $(".imgUrl").each(function(index) {
+            var path = $(this).data("url");
             imglength++;
-            imgObj['imgUrl'+imglength] =path;
+            imgObj['imgUrl' + imglength] = path;
         });
-        var params = {'memberId': userInfo.memberId,'onceId':onceId,'workId':workId,'workContent':workContent};
-        params = $.extend(params,imgObj);
-        $.post('/usr-class/doCourseWork',params).success(function(data){
-            if(data.code == "0000" && data.success){
+        var params = { 'memberId': userInfo.memberId, 'onceId': onceId, 'workId': workId, 'workContent': workContent };
+        params = $.extend(params, imgObj);
+        $.post('/usr-class/doCourseWork', params).success(function(data) {
+            if (data.code == "0000" && data.success) {
                 modal.alert("提交作业成功！");
             } else {
                 modal.alert("提交作业失败！");
@@ -92,21 +94,21 @@
     });
 
     /*修改作业*/
-    $("body").on("submit",".updateCourseWork",function() {
+    $("body").on("submit", ".updateCourseWork", function() {
         var data = common.parseForm(".updateCourseWork");
-        var workContent=$(".updateCourseWork .leaveMsg").val();
-        var imglength=0;
-        var arr=new Array(imglength);
+        var workContent = $(".updateCourseWork .leaveMsg").val();
+        var imglength = 0;
+        var arr = new Array(imglength);
         var imgObj = {};
-        $(".imgUrl").each(function(index){
-            var path=$(this).data("url");
+        $(".imgUrl").each(function(index) {
+            var path = $(this).data("url");
             imglength++;
-            imgObj['imgUrl'+imglength] =path;
+            imgObj['imgUrl' + imglength] = path;
         });
-        var params = {'memberId': userInfo.memberId,'memberWorkId':workId,'workContent':workContent};
-        params = $.extend(params,imgObj);
-        $.post('/usr-class/updateCourseWork',params).success(function(data){
-            if(data.code == "0000" && data.success){
+        var params = { 'memberId': userInfo.memberId, 'memberWorkId': workId, 'workContent': workContent };
+        params = $.extend(params, imgObj);
+        $.post('/usr-class/updateCourseWork', params).success(function(data) {
+            if (data.code == "0000" && data.success) {
                 modal.alert("修改作业成功！");
             } else {
                 modal.alert("修改作业失败！");
