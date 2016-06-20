@@ -265,7 +265,7 @@
                 if (data.code == "0000" && data.success) {
                     window.location.href = "/till/pay-success.html?specialId=" + specialId;
                 } else {
-                    // modal.alert(data.msg);
+                    modal.alert(data.msg);
                 }
             });
         } else {

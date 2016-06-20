@@ -9,17 +9,19 @@
             <p class="address">{{classInfo.storeName}}</p>
         </div>
         <div class="pub-btn">
-            <!-- 课次状态： 正常签到=1，旷课签到=2，已请假=3，未签到=4 -->
-            {% if classInfo.courseOnceStatus == 1 %}
-                <a href="/profile/comment-class.html?courseId={{classInfo.id}}&onceId={{classInfo.id}}" class="btn btn-red">评价</a>
-                <a href="/profile/homework-class.html?onceId={{classInfo.id}}" class="btn btn-red">作业</a>
+            <!-- 课次状态：1 未签到 2 忘签 3 失约未签到 4 已签到 5请假未签到 -->
+            {% if classInfo.courseOnceStatus == 4 %}
+                <a href="/profile/comment-class.html?courseId={{classInfo.id}}&onceId={{classInfo.onceId}}" class="btn btn-red">评价</a>
+                <a href="/profile/homework-class.html?onceId={{classInfo.onceId}}" class="btn btn-red">作业</a>
             {% elseif classInfo.courseOnceStatus == 2 %}
-                <a href="javascript:void(0)" class="btn btn-end">旷课</a>
+                <a href="javascript:void(0)" class="btn btn-end">忘签</a>
             {% elseif classInfo.courseOnceStatus == 3 %}
-                <a href="javascript:void(0)" class="btn btn-end">已请假</a>
-            {% elseif classInfo.courseOnceStatus == 4 %}
+                <a href="javascript:void(0)" class="btn btn-end">失约</a>
+            {% elseif classInfo.courseOnceStatus == 1 %}
                 <a href="javascript:void(0)" data-id="{{classInfo.id}}" data-signin-key="{{classInfo.signinKey}}" class="btn btn-red leave">请假</a>
                 <a href="javascript:void(0)" data-id="{{classInfo.id}}" class="btn btn-red signIn">签到</a>
+            {% elseif classInfo.courseOnceStatus == 5 %}
+                <a href="javascript:void(0)" class="btn btn-end">请假</a>
             {% endif %}
         </div>
     </div>

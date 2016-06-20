@@ -12,8 +12,8 @@
             <div class="pub-btn">
                 <!-- 课次状态： 正常签到=1，旷课签到=2，已请假=3，未签到=4 -->
                 {% if list.courseOnceStatus == 1 %}
-                    <a href="/profile/special-comment-class.html?onceId={{list.id}}&specialId={{list.id}}" class="btn btn-red">评价</a>
-                    <a href="/profile/homework-till.html?onceId={{list.id}}" class="btn btn-red">作业</a>
+                    <a href="/profile/special-comment-class.html?onceId={{list.onceId}}&specialId={{list.id}}" class="btn btn-red">评价</a>
+                    <a href="/profile/homework-till.html?onceId={{list.onceId}}" class="btn btn-red">作业</a>
                 {% elseif list.courseOnceStatus == 2 %}
                     <a href="javascript:void(0)" class="btn btn-end">旷课</a>
                 {% elseif list.courseOnceStatus == 3 %}
