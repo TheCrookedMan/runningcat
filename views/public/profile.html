@@ -44,15 +44,18 @@ body {
         <p id="nicknameText"></p>
     </div>
     <form method="post" class="am-form" id="loginForm">
-        <input type="hidden" name="password" value="{{password}}">
+        <!-- <input type="hidden" name="password" value="{{password}}"> -->
         <input type="hidden" name="mobileNo" value="{{mobileNo}}" id="mobileNo">
         <!-- <input type="hidden" name="storeId" value="{{storeId}}"> -->
         <input type="hidden" name="storeId" value="" id="storeId">
+        <!-- 根据推广链接进来的时候才有 refereeId -->
         <input type="hidden" name="refereeId" value="{{refereeId}}">
         <input type="hidden" name="nickName" id="nickName">
         <input type="hidden" name="photoUrl" id="photoUrl">
         <input type="hidden" name="openId" id="openId">
-        <input type="hidden" name="unionId" id="unionId">
+        <!-- <input type="hidden" name="unionId" id="unionId"> -->
+        <!-- 当 type 等于 improve_and_perfect 的时候 才需要  memberId -->
+        <input type="hidden" name="memberId" id="memberId">
         <ul>
             <li>
                 <div class="am-form-group">

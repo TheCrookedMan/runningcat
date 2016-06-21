@@ -56,7 +56,11 @@
                         <span>打赏教练：</span>
                         <div class="num">
                             <a class="min" href="javascript:;">-</a>
+                            {% if usrClassEvaluate.foodNum > 0 %}
+                            <input name="food" value="{{usrClassEvaluate.foodNum}}" class="buy_num" type="text">
+                            {% else %}
                             <input name="food" value="0" class="buy_num" type="text">
+                            {% endif %}
                             <a href="javascript:;" class="add">+</a>
                         </div>
                         <span>颗猫粮</span>
@@ -67,7 +71,7 @@
             <li>
                 <i class="am-icon-dot-circle-o"><em>留言</em></i>
                 <div class="list-info">
-                    <textarea name="leaveMsg" placeholder="别让互动的小船说翻就翻哈，，，， "></textarea>
+                    <textarea name="leaveMsg" placeholder="别让互动的小船说翻就翻哈，，，， ">{{usrClassEvaluate.leaveMsg}}</textarea>
                     <div class="pub-btn skin0">
                         <button class="btn">发表评论</button>
                     </div>

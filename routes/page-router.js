@@ -7,6 +7,103 @@ let router = express.Router();
 /*
     微信公众号验证是否注册登录流程（先验证）
  */
+// router.get('/wechatAuth.html', (req, res, next) => {
+//     let options = req.query,
+//         redirect_uri = options.state;
+//     let list = [];
+
+//     wechatAuth.accessToken(options.code, function(params) {
+
+//         let data = JSON.parse(params);
+//         //没有errcode字段表示请求成功
+//         if (!data.errcode) {
+//             if ("snsapi_userinfo" == data.scope) {
+
+//                 let access_token = data.access_token,
+//                     openid = data.openid;
+
+//                 res.cookie('openId', openid, { maxAge: 31536000, path: '/' });
+//                 wechatAuth.getUserInfo(access_token, openid, function(userinfo) {
+//                     let info = JSON.parse(userinfo);
+//                     if (!info.openid) {
+//                         /*
+//                             获取微信用户信息失败
+//                          */
+//                         next({
+//                             msg: "微信授权获取用户信息失败！"
+//                         });
+//                     } else {
+//                         /*
+//                             返回的userinfo信息里面有openid证明请求返回成功
+//                          */
+//                         res.cookie('wechatUserInfo', userinfo, { maxAge: 31536000, path: '/' });
+//                         user.loginByunionId(info.unionid, (record) => {
+//                             /*
+//                                 code：10015 用户没有注册，如果返回没有注册就获取用户的微信信息并且把信息写入本地的cookie.然后重定向至按钮对应的页面
+//                              */
+//                             res.cookie('runningcatUserInfo', "{}", { maxAge: 31536000, path: '/' });
+//                             if ("10015" == record.code) {
+//                                 res.redirect(redirect_uri);
+//                             } else if ("0000" == record.code) {
+//                                 /*
+//                                     使用用户openId登录成功
+//                                  */
+//                                 let runningcatUserInfo = JSON.stringify(record.record);
+//                                 /*
+//                                     把runningcat用户信息存入cookie中.
+//                                  */
+//                                 res.cookie('runningcatUserInfo', runningcatUserInfo, { maxAge: 31536000, path: '/' });
+
+//                                 // redirect_uri 如果为空的话，自动跳转至 /public/shop.html
+
+//                                 if (!redirect_uri) {
+//                                     res.redirect("/public/shop.html");
+//                                 } else {
+//                                     /*
+//                                         redirect_uri 跳转链接不能有登录、注册等页面跳转 因为已经登录成功了。如果 redirect_uri 含有下面的链接字符 那么自动跳转到 /public/shop.html
+//                                      */
+//                                     if (redirect_uri.indexOf('/public/register.html') == -1 && redirect_uri.indexOf('/public/profile.html') == -1 && redirect_uri.indexOf('/public/login.html') == -1) {
+//                                         res.redirect(redirect_uri);
+//                                     } else {
+//                                         res.redirect("/public/shop.html");
+//                                     }
+//                                 }
+//                             } else if ("100269" == record.code) {
+//                                 /*
+//                                     信息不完善需要跳转至 完善信息页面。
+//                                  */
+//                                 res.redirect("/public/profile.html?type=improve_and_perfect");
+//                             } else if ("100270" == record.code) {
+//                                 /*
+//                                     信息不完善，没有手机号需要跳转至 注册页面。
+//                                  */
+//                                 res.redirect("/public/register.html?type=improve_and_perfect");
+//                             } else {
+//                                 /*
+//                                     其他错误处理
+//                                  */
+//                                 next({
+//                                     msg: record.msg
+//                                 });
+//                             }
+//                         }, next);
+//                     }
+//                 });
+//             } else if ("snsapi_base" == data.scope) {}
+//         } else {
+//             //error
+//             next({
+//                 msg: "微信授权失败！"
+//             });
+//         }
+//     }, function(err) {
+//         //error
+//         next({
+//             msg: "微信授权失败！"
+//         });
+//     });
+// });
+
 router.get('/wechatAuth.html', (req, res, next) => {
     let options = req.query,
         redirect_uri = options.state;
@@ -18,7 +115,6 @@ router.get('/wechatAuth.html', (req, res, next) => {
         //没有errcode字段表示请求成功
         if (!data.errcode) {
             if ("snsapi_userinfo" == data.scope) {
-
                 let access_token = data.access_token,
                     openid = data.openid;
 
@@ -37,56 +133,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                             返回的userinfo信息里面有openid证明请求返回成功
                          */
                         res.cookie('wechatUserInfo', userinfo, { maxAge: 31536000, path: '/' });
-                        user.loginByunionId(info.unionid, (record) => {
-                            /*
-                                code：10015 用户没有注册，如果返回没有注册就获取用户的微信信息并且把信息写入本地的cookie.然后重定向至按钮对应的页面
-                             */
-                            res.cookie('runningcatUserInfo', "{}", { maxAge: 31536000, path: '/' });
-                            if ("10015" == record.code) {
-                                res.redirect(redirect_uri);
-                            } else if ("0000" == record.code) {
-                                /*
-                                    使用用户openId登录成功
-                                 */
-                                let runningcatUserInfo = JSON.stringify(record.record);
-                                /*
-                                    把runningcat用户信息存入cookie中.
-                                 */
-                                res.cookie('runningcatUserInfo', runningcatUserInfo, { maxAge: 31536000, path: '/' });
-                                /*
-                                    redirect_uri 如果为空的话，自动跳转至 /public/shop.html
-                                 */
-                                if (!redirect_uri) {
-                                    res.redirect("/public/shop.html");
-                                } else {
-                                    /*
-                                        redirect_uri 跳转链接不能有登录、注册等页面跳转 因为已经登录成功了。如果 redirect_uri 含有下面的链接字符 那么自动跳转到 /public/shop.html
-                                     */
-                                    if (redirect_uri.indexOf('/public/register.html') == -1 && redirect_uri.indexOf('/public/profile.html') == -1 && redirect_uri.indexOf('/public/login.html') == -1) {
-                                        res.redirect(redirect_uri);
-                                    } else {
-                                        res.redirect("/public/shop.html");
-                                    }
-                                }
-                            } else if ("100269" == record.code) {
-                                /*
-                                    信息不完善需要跳转至 完善信息页面。
-                                 */
-                                res.redirect("/public/profile.html?type=improve_and_perfect");
-                            }else if ("10026911" == record.code) {
-                                /*
-                                    信息不完善，没有手机号需要跳转至 注册页面。
-                                 */
-                                res.redirect("/public/register.html?type=improve_and_perfect");
-                            } else {
-                                /*
-                                    其他错误处理
-                                 */
-                                next({
-                                    msg: record.msg
-                                });
-                            }
-                        }, next);
+                        res.redirect("/public/shop.html");
                     }
                 });
             } else if ("snsapi_base" == data.scope) {}
@@ -123,7 +170,7 @@ router.get('/public/profile.html', (req, res, next) => {
     if (req.query.type != undefined) {
         type = req.query.type;
     }
-    return res.render('public/profile', { title: '完善资料', password: params.password, mobileNo: params.mobileNo, refereeId: params.refereeId, storeId: params.storeId, type: type });
+    return res.render('public/profile', { title: '完善资料', mobileNo: params.mobileNo, refereeId: params.refereeId, storeId: params.storeId, type: type });
 });
 
 router.get('/public/shop.html', (req, res, next) => {
@@ -244,8 +291,9 @@ router.get('/profile/single-class.html', (req, res, next) => {
 });
 
 router.get('/profile/homework-class.html', (req, res, next) => {
-    let onceId = req.query.onceId,courseId = req.query.courseId;
-    return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId ,courseId:courseId});
+    let onceId = req.query.onceId,
+        courseId = req.query.courseId;
+    return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId, courseId: courseId });
 });
 
 router.get('/profile/homework-till.html', (req, res, next) => {

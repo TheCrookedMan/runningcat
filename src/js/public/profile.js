@@ -4,13 +4,13 @@
         wechatUserInfo = {};
     }
     var store = common.getStoreInfo();
-    
+
     $("#openId").val(wechatUserInfo.openid);
     $("#unionId").val(wechatUserInfo.unionid);
     $("#storeId").val(store.storeId);
     if (type == "improve_and_perfect") {
-        getUsrInfoByUnionId(wechatUserInfo.unionid);
-        // getUsrInfoByUnionId("o85Fpt8L9Qze0864dKrVQ0i-HUx0");
+        // getUsrInfoByUnionId(wechatUserInfo.unionid);
+        getUsrInfoByUnionId("o85Fpt8L9Qze0864dKrVQ0i-HUx0");
     } else {
         $("#userPic").attr("src", wechatUserInfo.headimgurl);
         $("#photoUrl").val(wechatUserInfo.headimgurl);
@@ -52,7 +52,11 @@
                 //     modal.alert("身份证格式错误！");
                 //     return false;
                 // } 
-                register(data);
+                if (type == "improve_and_perfect") {
+                    updateUserInfo(data);
+                } else {
+                    register(data);
+                }
                 return false;
             }
             return false;
@@ -89,6 +93,21 @@
             modal.alert(data.responseJSON.msg);
         });
     }
+
+    function updateUserInfo(data) {
+        $.post('/updateUserInfo', data).success(function(data) {
+            if (data.success) {
+                var runningcatUserInfo = JSON.stringify(data.data);
+                $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, 365 * 24 * 60 * 60, '/');
+                window.location.href = "/public/shop.html";
+            } else {
+                modal.alert("完善信息失败！");
+            }
+        }).error(function(data) {
+            modal.alert(data.responseJSON.msg);
+        });
+    }
+
     function getUsrInfoByUnionId(unionId) {
         $.post('/user/getUsrInfoByUnionId', { unionId: unionId }).success(function(data) {
             if ("0000" == data.code && data.success) {
@@ -119,9 +138,10 @@
                     $("#nicknameText").text(nickName);
                     $("#nickName").val(nickName);
                 }
-                if(!!record.birthday){
+                if (!!record.birthday) {
                     $("#borth").val(common.formatDate(record.birthday, 'yyyy-MM-dd'));
                 }
+                $("#memberId").val(record.id);
                 $("#wx").val(record.wechat);
                 $("#sid").val(record.idcard);
                 $("#weight").val(record.beforeWeight);

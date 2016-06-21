@@ -70,7 +70,7 @@
     /*提交作业*/
     $("body").on("submit", ".doCourseWork", function() {
         var data = common.parseForm(".doCourseWork");
-        var workContent = $(".doCourseWork .leaveMsg").val();
+        var topicAnswer = $(".doCourseWork .leaveMsg").val();
         var imglength = 0;
         var arr = new Array(imglength);
         var imgObj = {};
@@ -79,7 +79,7 @@
             imglength++;
             imgObj['imgUrl' + imglength] = path;
         });
-        var params = { 'memberId': userInfo.memberId, 'onceId': onceId, 'workId': workId, 'workContent': workContent };
+        var params = { 'memberId': userInfo.memberId, 'onceId': onceId, 'workId': workId, 'topicAnswer': topicAnswer };
         params = $.extend(params, imgObj);
         $.post('/usr-class/doCourseWork', params).success(function(data) {
             if (data.code == "0000" && data.success) {
@@ -94,7 +94,7 @@
     /*修改作业*/
     $("body").on("submit", ".updateCourseWork", function() {
         var data = common.parseForm(".updateCourseWork");
-        var workContent = $(".updateCourseWork .leaveMsg").val();
+        var topicAnswer = $(".updateCourseWork .leaveMsg").val();
         var imglength = 0;
         var arr = new Array(imglength);
         var imgObj = {};
@@ -103,7 +103,7 @@
             imglength++;
             imgObj['imgUrl' + imglength] = path;
         });
-        var params = { 'memberId': userInfo.memberId, 'memberWorkId': workId, 'workContent': workContent };
+        var params = { 'memberId': userInfo.memberId, 'memberWorkId': workId, 'topicAnswer': topicAnswer };
         params = $.extend(params, imgObj);
         $.post('/usr-class/updateCourseWork', params).success(function(data) {
             if (data.code == "0000" && data.success) {

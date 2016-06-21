@@ -54,69 +54,19 @@ exports.loginByunionId = (unionId, success, next) => {
     }, next);
 }
 
-/* 约课、购买课时等前端验证 */
-
-exports.authLogin = (req, res, next) => {
-    let runningcatUserInfo = req.cookies.runningcatUserInfo,
-        userInfo;
-    if (runningcatUserInfo) {
-        userInfo = JSON.parse(runningcatUserInfo);
-    }
-    if (!runningcatUserInfo || !userInfo.cookieUserId) {
-        res.status(200).send({
-            'success': false,
-            'msg': '请先登录！',
-            'redirect': '/public/login.html'
-        });
-    } else {
-        runningcatUserInfo = JSON.parse(runningcatUserInfo);
-        let cookieUserId = runningcatUserInfo.cookieUserId;
-        new rest({
-            functionCode: 'member.checkLogin',
-            data: {
-                cookieMemberId: cookieUserId
-            }
-        }).normalRequest(function(data) {
-            /*
-                如果用户是登录的，直接 NEXT。否则重定向至登录页面。
-             */
-            let msg = data.msg;
-            let success = data.isSuccess;
-            let redirect = "/public/login.html";
-            if (success) {
-                redirect = "";
-            } else {
-                msg = "请先登录！";
-            }
-            res.status(200).send({
-                'success': success,
-                'msg': msg,
-                'redirect': redirect
-            });
-        }, next);
-    }
-}
-
-
 /*
     根据cookieUserId来验证用户是否登录
  */
 
 exports.checkLogin = (req, res, next) => {
     let runningcatUserInfo = req.cookies.runningcatUserInfo,
-        storeId = req.query.storeId,
         userInfo;
     if (runningcatUserInfo) {
         userInfo = JSON.parse(runningcatUserInfo);
     }
     if (!runningcatUserInfo || !userInfo.cookieUserId) {
         //没有runningcatUserInfo表示没有注册或者登录过，需要跳转到登录
-        //从店铺页面验证的授权，如果用户没有权限跳转登录页面的时候带上 storeId
-        if (!!storeId) {
-            res.redirect("/public/login.html?storeId=" + storeId);
-        } else {
-            res.redirect("/public/login.html");
-        }
+        res.redirect("/public/login.html");
     } else {
         runningcatUserInfo = JSON.parse(runningcatUserInfo);
         let cookieUserId = runningcatUserInfo.cookieUserId;
@@ -132,12 +82,7 @@ exports.checkLogin = (req, res, next) => {
             if (data.isSuccess) {
                 next();
             } else {
-                //从店铺页面验证的授权，如果用户没有权限跳转登录页面的时候带上 storeId
-                if (!!storeId) {
-                    res.redirect("/public/login.html?storeId=" + storeId);
-                } else {
-                    res.redirect("/public/login.html");
-                }
+                res.redirect("/public/login.html");
             }
         }, next);
     }
@@ -179,5 +124,14 @@ exports.getUsrInfoByUnionId = (req, res, next) => {
     // console.log("wechatUserInfo.unionid:::"+req.body.unionId);
     new rest({
         functionCode: 'member.getUsrInfoByUnionId',
+    }).post(req, res, next);
+}
+
+/*
+    根据手机号登录
+ */
+exports.loginByMobileNo = (req, res, next) => {
+    new rest({
+        functionCode: 'member.loginByMobileNo',
     }).post(req, res, next);
 }

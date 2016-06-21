@@ -1,8 +1,10 @@
 (function() {
+    var storeInfo = common.getStoreInfo();
     $.get('/special-comment-class.template', {
-        specialId: onceId,
+        specialId: specialId,
         memberId: userInfo.memberId,
-        onceId: onceId
+        onceId: onceId,
+        storeId: storeInfo.storeId
     }).success(function(data) {
         $(".submit-class").html(data);
     });
@@ -25,9 +27,9 @@
         var data = common.parseForm("form");
         // data.memberId = userInfo.memberId;
         
-        var score = $(".comment .score").find("i.am-icon-star");
+        var score = $(".comment .score").find("a.am-icon-star");
         score = score.length * 2;
-        var trainScore = $(".comment .trainScore").find("i.am-icon-star");
+        var trainScore = $(".comment .trainScore").find("a.am-icon-star");
         trainScore = trainScore.length * 2;
 
         data.memberId = userInfo.memberId;

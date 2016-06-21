@@ -41,8 +41,10 @@ router.get('/getUsrSpecialClass.template', [profile.getUsrSpecialClass], (req, r
 });
 
 router.get('/getUsrSpecialOnce.template', [profile.getUsrSpecialOnce], (req, res, next) => {
+    let specialId = req.body.specialId;
     return res.render('_partial/template/getUsrSpecialOnce', {
-        data: res.data['usrClasstimeOrder.getUsrSpecialOnce']['record']
+        data: res.data['usrClasstimeOrder.getUsrSpecialOnce']['record'],
+        specialId:specialId
     });
 });
 /*我的课程作业*/

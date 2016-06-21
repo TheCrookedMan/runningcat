@@ -1272,11 +1272,15 @@ ul.other-login-way li img {
             .img {
                 top: 0;
                 left: 0.2rem;
+                width: 2.5rem;
+                height: 2.5rem;
+                // max-width: 3rem;
             }
             .info {
-                padding-left: 6rem;
+                padding-left: 3.5rem;
                 p {
-                    margin-top: 1rem;
+                    // margin-top: 1rem;
+                    line-height: 2.5rem;
                 }
             }
         }

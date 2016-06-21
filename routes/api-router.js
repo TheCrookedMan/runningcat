@@ -24,6 +24,10 @@ router.post('/registeUser', user.registeUser);
 // router.post('/checkLogin',user.checkLogin);
 router.post('/sendSMS', user.sendSMS);
 router.post('/checkSmscode', user.checkSmscode);
+/*
+	根据手机号登录
+ */
+router.post('/loginByMobileNo',user.loginByMobileNo);
 
 router.post('/user/getUsrInfoByUnionId',user.getUsrInfoByUnionId);
 
@@ -31,7 +35,6 @@ router.post('/updateUserInfo', user.updateUserInfo);
 router.post('/memberInfo', user.memberInfo);
 // 获取用户信息
 router.post('/user/getUserInfo', user.getUserInfo);
-router.post('/authLogin', user.authLogin);
 
 //shop
 router.post('/queryOftenStore', shop.queryOftenStore);
