@@ -243,7 +243,8 @@ router.get('/profile/comment-class.html', (req, res, next) => {
     特训营常规课评价
  */
 router.get('/profile/special-comment-class.html', (req, res, next) => {
-    return res.render('profile/special-comment-class', { title: '评价' });
+    let onceId = req.query.onceId;
+    return res.render('profile/special-comment-class', { title: '评价',onceId: onceId });
 });
 
 router.get('/profile/done-class.html', (req, res, next) => {

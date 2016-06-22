@@ -112,7 +112,7 @@ router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getU
 /*
     特训营评价模板
  */
-router.get('/special-comment-class.template', [till.querySpecialClassInfo, usrClass.getUsrClassEvaluate_specialEvaluate, usrClass.getTrainFeel, usrClass.getMemberFoodNum], (req, res, next) => {
+router.get('/special-comment-class.template', [till.getUsrSpecialOnceInfo, usrClass.getUsrClassEvaluate_specialEvaluate, usrClass.getTrainFeel, usrClass.getMemberFoodNum], (req, res, next) => {
     return res.render('_partial/template/special-comment-class', {
         data: res.data
     });
@@ -141,9 +141,9 @@ router.get('/pubclass.template', [course.queryCoursePlanInfo], (req, res, next) 
 });
 
 /*公共查询头部特训营信息*/
-router.get('/pubtill.template', [till.querySpecialClassInfo], (req, res, next) => {
+router.get('/pubtill.template', [till.getUsrSpecialOnceInfo], (req, res, next) => {
     return res.render('_partial/template/pubtill', {
-        data: res.data['specialClass.querySpecialClassInfo']['record']
+        data: res.data['usrClasstimeOrder.getUsrSpecialOnceInfo']['record']
     });
 });
 

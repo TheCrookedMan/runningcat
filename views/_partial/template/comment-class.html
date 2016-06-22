@@ -3,12 +3,12 @@
 {% set trainFeel = data['classEvaluate.getTrainFeel']['record'] %}
 {% set user_food = data['classEvaluate.getMemberFoodNum']['record'] %}
 <div class="pub-pinfo">
-    <div class="img"><img src="/img/app-icon72x72@2x.png" alt="跑步猫"></div>
+    <div class="img"><img src="{{settings.imageAddress}}{{coursePlanInfo.imgUrl}}" alt="跑步猫"></div>
     <div class="info">
         <h2>{{coursePlanInfo.courseName}}</h2>
         <p class="address">{{coursePlanInfo.storeAddress}}</p>
         <p class="time">{{coursePlanInfo.courseDate|dateFormat('yyyy-MM-dd')}} {{coursePlanInfo.courseDate|toWeek()}} {{coursePlanInfo.startTime}}-{{coursePlanInfo.endTime}}</p>
-        <p class="teacher">教练：LIDA</p>
+        <p class="teacher">教练：{{coursePlanInfo.englishName}}</p>
     </div>
 </div>
 <script type="text/javascript">

@@ -1,14 +1,14 @@
-{% set specialClass = data['specialClass.querySpecialClassInfo']['record'] %} 
+{% set specialClass = data['usrClasstimeOrder.getUsrSpecialOnceInfo']['record'] %} 
 {% set usrClassEvaluate = data['specialEvaluate.getUsrClassEvaluate']['record'] %} 
 {% set trainFeel = data['classEvaluate.getTrainFeel']['record'] %}
 {% set user_food = data['classEvaluate.getMemberFoodNum']['record'] %}
 <div class="pub-pinfo">
-    <div class="img"><img src="/img/app-icon72x72@2x.png" alt="跑步猫"></div>
+    <div class="img"><img src="{{settings.imageAddress}}{{specialClass.imgUrl}}" alt="跑步猫"></div>
     <div class="info">
-        <h2>{{specialClass.className}}</h2>
-        <p class="time">{{specialClass.startDate|dateFormat('yyyy-MM-dd')}} {{startDate.courseDate|toWeek()}} </p>
+        <h2>{{specialClass.courseName}}</h2>
+        <p class="time">{{specialClass.courseDate|dateFormat('yyyy-MM-dd')}} {{specialClass.courseDate|toWeek()}} {{specialClass.startTime}}~{{specialClass.endTime}}</p>
         <p class="address">{{specialClass.storeAddress}}</p>
-        <p class="teacher">教练：{{specialClass.nickName}}</p>
+        <p class="teacher">教练：{{specialClass.englishName}}</p>
     </div>
 </div>
 <script type="text/javascript">

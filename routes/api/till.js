@@ -23,3 +23,9 @@ exports.querySpecialClassInfo = (req, res, next) => {
         functionCode: 'specialClass.querySpecialClassInfo',
     }).link(req, res, next);
 }
+
+exports.getUsrSpecialOnceInfo = (req, res, next) => {
+    new rest({
+        functionCode: 'usrClasstimeOrder.getUsrSpecialOnceInfo',
+    }).link(req, res, next);
+}

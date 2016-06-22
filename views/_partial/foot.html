@@ -26,5 +26,13 @@ $(document).ready(function() {
 
     }); 
 })
-$(".pub_nodata").parent("ul").addClass("bd0")
+$(".pub_nodata").parent("ul").addClass("bd0");
+$(".pub-tab ul li a").click(function(){
+    if($(".pub-list ul li").length){
+        $(".pub-list ul").addClass("bd0");
+    }
+    else{
+        $(".pub-list ul").removeClass("bd0");
+    }
+})
 </script>

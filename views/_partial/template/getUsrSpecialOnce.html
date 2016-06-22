@@ -2,7 +2,7 @@
 <li>
     <i class="am-icon-dot-circle-o"></i>
     <h3>第{{i}}周</h3>
-    <div class="list-info left">
+    <div class="list-info ">
         {% for list in till %}
         <div class="line">
             <div class="img"><img src="{{settings.imageAddress}}{{list.trainerPhotoUrl}}" alt="跑步猫"></div>
@@ -12,8 +12,8 @@
             <div class="pub-btn">
                 <!-- courseOnceStatus 课次状态：1 未签到 2 忘签 \3 失约未签到 4 已签到 5请假未签到 -->
                 {% if list.courseOnceStatus == 4 %}
-                    <a href="/profile/special-comment-class.html?onceId={{list.onceId}}&specialId={{specialId}}" class="btn btn-red">评价</a>
-                    <a href="/profile/homework-till.html?onceId={{list.onceId}}&specialId={{specialId}}" class="btn btn-red">作业</a>
+                    <a href="/profile/special-comment-class.html?onceId={{list.onceId}}&specialId={{list.id}}" class="btn btn-red">评价</a>
+                    <a href="/profile/homework-till.html?onceId={{list.onceId}}&specialId={{list.id}}" class="btn btn-red">作业</a>
                 {% elseif list.courseOnceStatus == 2 %}
                     <a href="javascript:void(0)" class="btn btn-end">忘签</a>
                 {% elseif list.courseOnceStatus == 3 %}

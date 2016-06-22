@@ -78,6 +78,7 @@ router.post('/queryCoursePlanTimeList', course.queryCoursePlanTimeList);
 router.post('/till', till.till);
 router.post('/specialClass/querySpecialClassInfo', till.tillDetail);
 router.post('/querySpecialClassInfo', till.querySpecialClassInfo);
+router.post('/usrClasstimeOrder/getUsrSpecialOnceInfo', till.getUsrSpecialOnceInfo);
 
 //usr-class
 router.post('/usr-class/doSignIn', usrClass.doSignIn);

@@ -3,9 +3,8 @@
     // var workId;
 
     /*课程详情*/
-    $.get('/pubclass.template', {
-        userId: userInfo.memberId,
-        courseId: onceId
+    $.get('/pubtill.template', {
+        onceId: onceId
     }).success(function(data) {
         $(".hr").before(data);
     }).error(function(err) {});

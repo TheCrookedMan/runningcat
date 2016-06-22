@@ -8,7 +8,7 @@
     }).success(function(data) {
         $(".submit-class").html(data);
     });
-    $("body").on("click", ".scal-line i", function(ev) {
+    $("body").on("click", ".scal-line a", function(ev) {
         var list = $(this).prevUntil("span");
         $(this).removeClass("am-icon-star-o");
         $(this).addClass("am-icon-star");
