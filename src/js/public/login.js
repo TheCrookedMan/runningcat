@@ -56,13 +56,10 @@
                 window.location.href = "/public/shop.html";
             } else {
                 if("10015" == data.code){
-                    var params = $(".am-form").serialize();
-                    params.type = "improve_and_perfect";
-                    window.location.href = "/public/profile.html?" + params;
+                    window.location.href = "/public/register.html";
                 } else {
                     modal.alert(data.msg);
                 }
-                
             }
         }).error(function(data) {
             modal.alert(data.responseJSON.msg);

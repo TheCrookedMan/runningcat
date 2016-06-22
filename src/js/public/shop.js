@@ -1,6 +1,5 @@
 (function() {
-    // $.AMUI.utils.cookie.set('city', $("#cityName").text(), 365 * 24 * 60 * 60, '/');
-
+    var tenantId = common.getTenantId();
     $("body").on("click", ".shop-detail a", function(ev) {
         var storeId = $(this).data("storeId");
         var storeName = $(this).data("storeName");
@@ -101,7 +100,8 @@
 
     /*常去店铺*/
     $.get('/oftenshop.template', {
-        memberId: userInfo.memberId
+        memberId: userInfo.memberId,
+        tenantId: tenantId
     }).success(function(data) {
         data = data.replace(/(^\s+)|(\s+$)/g, "");
         if ("" != data) {
@@ -160,10 +160,11 @@
             this.cityName = $("#cityName").text();
             var params = {
                 provinceName: self.cityName,
+                tenantId: tenantId,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }
-            if("" != keyword){
+            if ("" != keyword) {
                 params['searchKey'] = keyword
             }
             $.get('/shopSearch.template', params).success(function(data) {

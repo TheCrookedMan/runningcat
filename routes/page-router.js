@@ -106,8 +106,11 @@ let router = express.Router();
 
 router.get('/wechatAuth.html', (req, res, next) => {
     let options = req.query,
-        redirect_uri = options.state;
+        redirect_uri = options.state,
+        tenantId = options.tenantId;
     let list = [];
+
+    res.cookie('tenantId', tenantId, { maxAge: 31536000, path: '/' });
 
     wechatAuth.accessToken(options.code, function(params) {
 
@@ -156,21 +159,12 @@ router.get('/wechatAuth.html', (req, res, next) => {
  */
 
 router.get('/public/register.html', (req, res, next) => {
-    let refereeId = req.query.refereeId,
-        storeId = req.query.storeId,
-        type = "insert";
-    if (req.query.type != undefined) {
-        type = req.query.type;
-    }
-    return res.render('public/register', { title: '注册', refereeId: refereeId, storeId: storeId, type: type });
+    let refereeId = req.query.refereeId;
+    return res.render('public/register', { title: '注册', refereeId: refereeId });
 });
 router.get('/public/profile.html', (req, res, next) => {
-    let params = req.query,
-        type = "insert";
-    if (req.query.type != undefined) {
-        type = req.query.type;
-    }
-    return res.render('public/profile', { title: '完善资料', mobileNo: params.mobileNo, refereeId: params.refereeId, storeId: params.storeId, type: type });
+    let params = req.query;
+    return res.render('public/profile', { title: '完善资料', mobileNo: params.mobileNo, refereeId: params.refereeId});
 });
 
 router.get('/public/shop.html', (req, res, next) => {

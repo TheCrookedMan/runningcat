@@ -78,9 +78,21 @@ exports.checkLogin = (req, res, next) => {
         }).normalRequest(function(data) {
             /*
                 如果用户是登录的，直接 NEXT。否则重定向至登录页面。
+                如果用户是登录的把返回的用户信息写入cookie.
              */
-            if (data.isSuccess) {
+            if ("0000" == data.code && data.isSuccess) {
+                let newUserInfo = JSON.stringify(data.record);
+                /*
+                    把runningcat用户信息存入cookie中.
+                 */
+                res.cookie('runningcatUserInfo', newUserInfo, { maxAge: 31536000, path: '/' });
                 next();
+            } else if ("0001" == data.code) {
+                res.redirect("/public/login.html");
+            } else if ("100269" == data.code) {
+                res.redirect("/profile/edit-profile.html");
+            } else if ("100270" == data.code) {
+                res.redirect("/public/register.html");
             } else {
                 res.redirect("/public/login.html");
             }

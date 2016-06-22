@@ -89,6 +89,14 @@
             });
             return format;
         },
+        getTenantId:function(){
+            var tenantId = $.AMUI.utils.cookie.get("tenantId");
+            if(!!tenantId){
+                return tenantId;
+            } else {
+                return 0;
+            }
+        },
         getStoreInfo: function() {
             var store = $.AMUI.utils.cookie.get("store");
             if (!!store) {
