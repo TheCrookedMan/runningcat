@@ -164,7 +164,7 @@ router.get('/public/register.html', (req, res, next) => {
 });
 router.get('/public/profile.html', (req, res, next) => {
     let params = req.query;
-    return res.render('public/profile', { title: '完善资料', mobileNo: params.mobileNo, refereeId: params.refereeId});
+    return res.render('public/profile', { title: '完善资料', mobileNo: params.mobileNo, refereeId: params.refereeId });
 });
 
 router.get('/public/shop.html', (req, res, next) => {
@@ -244,7 +244,7 @@ router.get('/profile/comment-class.html', (req, res, next) => {
  */
 router.get('/profile/special-comment-class.html', (req, res, next) => {
     let onceId = req.query.onceId;
-    return res.render('profile/special-comment-class', { title: '评价',onceId: onceId });
+    return res.render('profile/special-comment-class', { title: '评价', onceId: onceId });
 });
 
 router.get('/profile/done-class.html', (req, res, next) => {
@@ -321,7 +321,7 @@ router.get('/coach/coach.html', (req, res, next) => {
 /*
     常规课
  */
-router.get('/course/pay-page.html', (req, res, next) => {
+router.get('/course/pay-page.html', [user.checkLogin], (req, res, next) => {
     let courseId = req.query.courseId;
     let dayOfWeek = req.query.dayOfWeek;
     return res.render('course/pay-page', { title: '常规课支付页面', courseId: courseId, dayOfWeek: dayOfWeek });
@@ -337,7 +337,7 @@ router.get('/course/course.html', (req, res, next) => {
     return res.render('course/course', { title: '常规课程' });
 });
 
-router.get('/course/course-detail.html', [user.checkLogin], (req, res, next) => {
+router.get('/course/course-detail.html', (req, res, next) => {
     let courseId = req.query.courseId;
     let dayOfWeek = req.query.dayOfWeek;
     let imgUrl = req.query.imgUrl;
@@ -350,7 +350,7 @@ router.get('/course/course-detail.html', [user.checkLogin], (req, res, next) => 
  */
 
 
-router.get('/till/pay-page.html', (req, res, next) => {
+router.get('/till/pay-page.html', [user.checkLogin], (req, res, next) => {
     let specialId = req.query.specialId;
     let buyCopies = req.query.buyCopies;
     return res.render('till/pay-page', { title: '特训营支付页面', specialId: specialId, buyCopies: buyCopies });
@@ -367,7 +367,7 @@ router.get('/till/till.html', (req, res, next) => {
     return res.render('till/till', { title: '特训营' });
 });
 
-router.get('/till/till-detail.html', [user.checkLogin], (req, res, next) => {
+router.get('/till/till-detail.html', (req, res, next) => {
     let specialId = req.query.specialId;
     let year = req.query.year;
     let mm = req.query.mm;
