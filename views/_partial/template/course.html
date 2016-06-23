@@ -11,10 +11,13 @@
           <div class="info">
              <h2>{{course.courseName}}</h2>
              <p class="tit">
-                 <span>高效燃脂</span>
-                 <span><em>.</em>HIIT</span>
-                 <span><em>.</em>初级</span>
-                 <span><em>.</em>体能</span>
+                 {% for tag in comTags %}
+                    {% if loop.first %}
+                    <span>{{tag.tagName}}</span>
+                    {% else %}
+                    <span><em>.</em>{{tag.tagName}}</span>
+                    {% endif %}
+                {% endfor %}
              </p>
              <p class="houre">
                  <i class="am-icon-instagram"></i><span class="text-muted">{{course.onceCourseHour}} 课时</span>
