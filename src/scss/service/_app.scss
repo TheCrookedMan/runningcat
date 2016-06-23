@@ -1153,17 +1153,23 @@ ul.other-login-way li img {
                     border: 0;
                     border-bottom: #c6c6c6 dotted 1px;
                     padding-top: 0;
-                    padding-bottom: 0;top:0;
+                    padding-bottom: 0;
+                    top: 0;
                     .info {
                         margin-bottom: -1rem;
                         h2 {
                             margin-top: 0.2rem;
                             margin-bottom: -0.3rem;
                         }
+                        .tit {
+                            height: rem-calc(70px);
+                            overflow: hidden;
+                        }
                         p {
                             color: #80858b;
                             font-size: 1.2rem;
                             margin-top: 0.2rem;
+                            max-width: 65%;
                             span {
                                 margin-right: 0.3rem;
                                 em {
@@ -1431,7 +1437,7 @@ ul.other-login-way li img {
                     position: absolute;
                     text-align: left;
                     left: 1.5rem;
-                    top: 1.7rem;
+                    top: 1rem;
                     img {
                         border-radius: 50%;
                         height: 100%;

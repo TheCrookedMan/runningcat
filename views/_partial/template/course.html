@@ -11,7 +11,7 @@
           <div class="info">
              <h2>{{course.courseName}}</h2>
              <p class="tit">
-                 {% for tag in comTags %}
+                 {% for tag in course.comTags %}
                     {% if loop.first %}
                     <span>{{tag.tagName}}</span>
                     {% else %}
