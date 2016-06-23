@@ -155,5 +155,7 @@
             }
         });
     }
-
+$(".tit").each(function(i){
+    alert("afssdafs")
+})
 }).call(this);

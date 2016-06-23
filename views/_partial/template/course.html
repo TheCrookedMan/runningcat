@@ -9,16 +9,20 @@
         <a href="/course/course-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}">
           <div class="img"><img src="{{settings.imageAddress}}{{course.imgUrl}}"></div>
           <div class="info">
+             {% if course.comTags.length %}
              <h2>{{course.courseName}}</h2>
-             <p class="tit">
-                 {% for tag in course.comTags %}
-                    {% if loop.first %}
-                    <span>{{tag.tagName}}</span>
-                    {% else %}
-                    <span><em>.</em>{{tag.tagName}}</span>
-                    {% endif %}
-                {% endfor %}
-             </p>
+                 <div class="tit">
+                     {% for tag in course.comTags %}
+                        {% if loop.first %}
+                        <span>{{tag.tagName}}</span>
+                        {% else %}
+                        <span><em>.</em>{{tag.tagName}}</span>
+                        {% endif %}
+                    {% endfor %}
+                 </div>
+            {% else %}
+            <h2 class="mt1">{{course.courseName}}</h2>
+             {% endif %}
              <p class="houre">
                  <i class="am-icon-instagram"></i><span class="text-muted">{{course.onceCourseHour}} 课时</span>
              </p>
