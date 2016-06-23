@@ -1,5 +1,6 @@
 (function() {
     var tenantId = common.getTenantId();
+    tenantId =1;
     $("body").on("click", ".shop-detail a", function(ev) {
         var storeId = $(this).data("storeId");
         var storeName = $(this).data("storeName");
