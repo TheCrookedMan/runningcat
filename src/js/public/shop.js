@@ -99,18 +99,18 @@
 
 
     /*常去店铺*/
-    $.get('/oftenshop.template', {
-        memberId: userInfo.memberId,
-        tenantId: tenantId
-    }).success(function(data) {
-        data = data.replace(/(^\s+)|(\s+$)/g, "");
-        if ("" != data) {
-            $(".often").after(data);
-            $(".often").show();
-        }
-    }).error(function(err) {});
-
-
+    if (!!userInfo.memberId) {
+        $.get('/oftenshop.template', {
+            memberId: userInfo.memberId,
+            tenantId: tenantId
+        }).success(function(data) {
+            data = data.replace(/(^\s+)|(\s+$)/g, "");
+            if ("" != data) {
+                $(".often").after(data);
+                $(".often").show();
+            }
+        }).error(function(err) {});
+    }
     var keyword = "";
     /*获取店铺*/
     var shop = function() {
