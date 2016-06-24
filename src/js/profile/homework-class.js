@@ -49,7 +49,8 @@
         $.get('/submitclass.template', {
             memberId: userInfo.memberId,
             onceId: onceId,
-            workId: workId
+            workId: workId,
+            onceType: 2
         }).success(function(data) {
             $(".pub-list ul").append(data);
 
@@ -81,7 +82,10 @@
             imglength++;
             imgObj['imgUrl' + imglength] = path;
         });
-        var params = { 'memberId': userInfo.memberId, 'onceId': onceId, 'workId': workId, 'topicAnswer': topicAnswer };
+        /*
+            onceType   单次课=1,特训营=2，私教课=3
+         */
+        var params = { 'memberId': userInfo.memberId, 'onceId': onceId, 'workId': workId, 'topicAnswer': topicAnswer, 'onceType': 1, classTimeId: classTimeId };
         params = $.extend(params, imgObj);
         $.post('/usr-class/doCourseWork', params).success(function(data) {
             if (data.code == "0000" && data.success) {

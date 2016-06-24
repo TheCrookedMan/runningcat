@@ -287,13 +287,15 @@ router.get('/profile/single-class.html', (req, res, next) => {
 
 router.get('/profile/homework-class.html', (req, res, next) => {
     let onceId = req.query.onceId,
-        courseId = req.query.courseId;
-    return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId, courseId: courseId });
+        courseId = req.query.courseId,
+        classTimeId = req.query.classTimeId;
+    return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId, courseId: courseId ,classTimeId:classTimeId});
 });
 
 router.get('/profile/homework-till.html', (req, res, next) => {
-    let onceId = req.query.onceId;
-    return res.render('profile/homework-till', { title: '特训营作业', onceId: onceId });
+    let onceId = req.query.onceId,
+    classTimeId = req.query.classTimeId;
+    return res.render('profile/homework-till', { title: '特训营作业', onceId: onceId ,classTimeId:classTimeId});
 });
 
 
