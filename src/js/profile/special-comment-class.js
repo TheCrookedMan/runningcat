@@ -1,7 +1,7 @@
 (function() {
     var storeInfo = common.getStoreInfo();
     $.get('/special-comment-class.template', {
-        specialId: specialId,
+        // specialId: specialId,
         memberId: userInfo.memberId,
         onceId: onceId,
         storeId: storeInfo.storeId

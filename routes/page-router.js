@@ -236,15 +236,17 @@ router.get('/profile/class-recharge.html', (req, res, next) => {
  */
 router.get('/profile/comment-class.html', (req, res, next) => {
     let courseId = req.query.courseId,
-        onceId = req.query.onceId;
-    return res.render('profile/comment-class', { title: '评价', courseId: courseId, onceId: onceId });
+        onceId = req.query.onceId,
+        classTimeId = req.query.classTimeId;
+    return res.render('profile/comment-class', { title: '评价', courseId: courseId, onceId: onceId, classTimeId: classTimeId });
 });
 /*
     特训营常规课评价
  */
 router.get('/profile/special-comment-class.html', (req, res, next) => {
-    let onceId = req.query.onceId;
-    return res.render('profile/special-comment-class', { title: '评价', onceId: onceId });
+    let onceId = req.query.onceId,
+        classTimeId = req.query.classTimeId;
+    return res.render('profile/special-comment-class', { title: '评价', onceId: onceId, classTimeId: classTimeId });
 });
 
 router.get('/profile/done-class.html', (req, res, next) => {
@@ -289,13 +291,13 @@ router.get('/profile/homework-class.html', (req, res, next) => {
     let onceId = req.query.onceId,
         courseId = req.query.courseId,
         classTimeId = req.query.classTimeId;
-    return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId, courseId: courseId ,classTimeId:classTimeId});
+    return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId, courseId: courseId, classTimeId: classTimeId });
 });
 
 router.get('/profile/homework-till.html', (req, res, next) => {
     let onceId = req.query.onceId,
-    classTimeId = req.query.classTimeId;
-    return res.render('profile/homework-till', { title: '特训营作业', onceId: onceId ,classTimeId:classTimeId});
+        classTimeId = req.query.classTimeId;
+    return res.render('profile/homework-till', { title: '特训营作业', onceId: onceId, classTimeId: classTimeId });
 });
 
 
