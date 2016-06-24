@@ -294,8 +294,10 @@
                     } else {
                         pay.go(data.data).then(function() {
                             // success
-                        }, function() {
+                            window.location.href = "/till/pay-success.html?specialId=" + specialId;
+                        }, function(pay_info) {
                             // error
+                            // modal.alert(pay_info);
                         });
                     }
                 } else {

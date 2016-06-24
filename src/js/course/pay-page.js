@@ -309,8 +309,10 @@
                     } else {
                         pay.go(data.data).then(function() {
                             // success
-                        }, function() {
+                            window.location.href = "/course/pay-success.html?courseId=" + courseId;
+                        }, function(pay_info) {
                             // error
+                            // modal.alert(pay_info);
                         });
                     }
                 } else {

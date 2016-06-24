@@ -28,7 +28,7 @@
                                 dtd.resolve();
                             } else {
                                 // 支付失败跳转到订单页面继续支付
-                                dtd.reject();
+                                dtd.reject(res.err_msg);
                                 // orderState=0&
                             }
                         }
@@ -46,7 +46,7 @@
                 }
             } else {
                 // alert("微信支付失败！");
-                dtd.reject();
+                dtd.reject("微信支付失败！");
             }
             return dtd.promise();
         }

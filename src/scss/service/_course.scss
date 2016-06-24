@@ -234,9 +234,13 @@
         padding-top: 5rem;
         padding-bottom: 4rem;
         .ico {
-            width: 30%;
+            // width: 30%;
+            max-width: 50%;
             display: inline-block;
             margin-bottom: 0.6rem;
+            img{
+                max-height: 8rem;
+            }
         }
         p {
             font-size: 1.4rem;

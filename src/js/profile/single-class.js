@@ -1,4 +1,5 @@
 (function() {
+    var storeInfo = common.getStoreInfo();
     var singleClass = function() {
         this.status = 0;
         this.pageNo = 1;
@@ -29,6 +30,7 @@
             $.get('/tmpl-single-class.template', {
                 memberId: userInfo.memberId,
                 status: self.status,
+                storeId: storeInfo.storeId,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }).success(function(data) {

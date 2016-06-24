@@ -1,5 +1,6 @@
 (function() {
     var time, count = 60;
+    var storeInfo = common.getStoreInfo();
     $(".am-form").on("click", ".sendSMS", function(ev) {
         var data = common.parseForm(".am-form");
 
@@ -11,7 +12,7 @@
     })
 
     function sendSMS(mobileNo) {
-        $.post('/sendSMS', { 'mobileNo': mobileNo }).success(function(data) {
+        $.post('/sendSMS', { 'mobileNo': mobileNo, sendType: 1, storeId: storeInfo.storeId }).success(function(data) {
             if (!data.success) {
                 modal.alert(data.msg);
             } else {
@@ -36,7 +37,7 @@
             }
         }, 1000);
     }
-    
+
     $('#loginForm').validator({
         submit: function(form) {
             if (this.isFormValid()) {

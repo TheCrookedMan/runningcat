@@ -1,5 +1,6 @@
 (function() {
     //userInfo.memberId
+    var storeInfo = common.getStoreInfo();
     var tillList = function() {
         this.pageNo = 1;
         this.pageSize = 10;
@@ -20,6 +21,7 @@
             var self = this;
             $.get('/getUsrSpecialClass.template', {
                 memberId: userInfo.memberId,
+                storeId: storeInfo.storeId,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }).success(function(data) {
@@ -28,14 +30,13 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    if(self.pageNo == 1){
+                    if (self.pageNo == 1) {
                         $(".till ul").html(data);
-                    }
-                    else{
-                       $(".till ul").append(data); 
+                    } else {
+                        $(".till ul").append(data);
                     }
                 }
-               // console.log(data)
+                // console.log(data)
             }).error(function(err) {});
         }
     }

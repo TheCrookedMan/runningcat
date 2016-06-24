@@ -12,7 +12,7 @@
     })
 
     function sendSMS(mobileNo) {
-        $.post('/sendSMS', { 'mobileNo': mobileNo }).success(function(data) {
+        $.post('/sendSMS', { 'mobileNo': mobileNo, sendType: 0, storeId: storeInfo.storeId }).success(function(data) {
             if (!data.success) {
                 modal.alert(data.msg);
             } else {
@@ -55,7 +55,7 @@
                 $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, 365 * 24 * 60 * 60, '/');
                 window.location.href = "/public/shop.html";
             } else {
-                if("10015" == data.code){
+                if ("10015" == data.code) {
                     window.location.href = "/public/register.html";
                 } else {
                     modal.alert(data.msg);

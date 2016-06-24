@@ -170,8 +170,10 @@
                     } else {
                         pay.go(data.data).then(function() {
                             // success
-                        }, function() {
+                            modal.alert("充值成功！");
+                        }, function(pay_info) {
                             // error
+                            // modal.alert(pay_info);
                         })
                     }
                 } else {
