@@ -36,6 +36,7 @@
         data.onceId = onceId;
         data.score = score;
         data.trainScore = trainScore;
+        data.classTimeId = classTimeId;
 
         $.post('/specialEvaluate/addUsrClassEvaluate',data).success(function(data){
             if(data.code == "0000" && data.success){
