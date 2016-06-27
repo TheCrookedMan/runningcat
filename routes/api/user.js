@@ -86,7 +86,7 @@ exports.checkLogin = (req, res, next) => {
                 /*
                     把runningcat用户信息存入cookie中.
                  */
-                // res.cookie('runningcatUserInfo', newUserInfo, { maxAge: maxAge, path: '/' });
+                res.cookie('runningcatUserInfo', newUserInfo, { maxAge: maxAge, path: '/' });
                 next();
             } else if ("0001" == data.code) {
                 res.redirect("/public/login.html?fromUrl="+fromUrl);
