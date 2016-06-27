@@ -53,7 +53,8 @@
         $.post('/loginByMobileNo', data).success(function(data) {
             if (data.success) {
                 var runningcatUserInfo = JSON.stringify(data.data);
-                $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, 365 * 24 * 60 * 60, '/');
+                // $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, common.maxAge, '/');
+                $.cookie('runningcatUserInfo', runningcatUserInfo, { expires: common.expires, path: '/' });
                 window.location.href = fromUrl;
             } else {
                 if ("10015" == data.code) {

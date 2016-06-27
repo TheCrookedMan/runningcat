@@ -84,7 +84,8 @@
         $.post('/registeUser', data).success(function(data) {
             if (data.success) {
                 var runningcatUserInfo = JSON.stringify(data.data);
-                $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, 365 * 24 * 60 * 60, '/');
+                // $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, common.maxAge, '/');
+                $.cookie('runningcatUserInfo', runningcatUserInfo, { expires: common.expires, path: '/' });
                 window.location.href = "/public/shop.html";
             } else {
                 modal.alert("注册失败！");
@@ -98,7 +99,8 @@
         $.post('/updateUserInfo', data).success(function(data) {
             if (data.success) {
                 var runningcatUserInfo = JSON.stringify(data.data);
-                $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, 365 * 24 * 60 * 60, '/');
+                // $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, common.maxAge, '/');
+                $.cookie('runningcatUserInfo', runningcatUserInfo, { expires: common.expires, path: '/' });
                 window.location.href = "/public/shop.html";
             } else {
                 modal.alert("完善信息失败！");

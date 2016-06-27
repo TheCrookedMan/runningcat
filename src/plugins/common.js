@@ -9,6 +9,10 @@
         this.reg_skip = /\s/;
         this.reg_beforeWeight = /^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
         this.reg_height = /^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
+        //单位：秒
+        // this.maxAge = 365 * 24 * 60 * 60;
+        // 单位：天
+        this.expires = 30;
     };
     common.prototype = {
         parseForm: function(selector) {
@@ -55,7 +59,8 @@
             }
         },
         getUserInfo: function() {
-            var runningcatUserInfo = $.AMUI.utils.cookie.get("runningcatUserInfo");
+            // var runningcatUserInfo = $.AMUI.utils.cookie.get("runningcatUserInfo");
+            var runningcatUserInfo = $.cookie("runningcatUserInfo");
             if (undefined == runningcatUserInfo) {
                 return {}
             }
@@ -90,7 +95,8 @@
             return format;
         },
         getTenantId: function() {
-            var tenantId = $.AMUI.utils.cookie.get("tenantId");
+            // var tenantId = $.AMUI.utils.cookie.get("tenantId");
+            var tenantId = $.cookie("tenantId");
             if (!!tenantId) {
                 return tenantId;
             } else {
@@ -98,7 +104,8 @@
             }
         },
         getStoreInfo: function() {
-            var store = $.AMUI.utils.cookie.get("store");
+            // var store = $.AMUI.utils.cookie.get("store");
+            var store = $.cookie("store");
             if (!!store) {
                 return JSON.parse(store);
             } else {
@@ -106,14 +113,17 @@
             }
         },
         getWechatInfo: function() {
-            var wechatUserInfo = $.AMUI.utils.cookie.get("wechatUserInfo");
+            // var wechatUserInfo = $.AMUI.utils.cookie.get("wechatUserInfo");
+            var wechatUserInfo = $.cookie("wechatUserInfo");
             return JSON.parse(wechatUserInfo);
         },
         getCityName: function() {
-            return $.AMUI.utils.cookie.get("city");
+            // return $.AMUI.utils.cookie.get("city");
+            return $.cookie("city");
         },
         getOpenId: function() {
-            return $.AMUI.utils.cookie.get("openId");
+            // return $.AMUI.utils.cookie.get("openId");
+            return $.cookie("openId");
         },
         toWeek: function(data) {
             var date = typeof data == 'string' ? data * 1 : data;

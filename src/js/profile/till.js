@@ -5,10 +5,10 @@
         //console.log(res);
         $("#className").html(res.className);
         $("#storeAddress").html(res.storeAddress);
-        $("#startDate").html(new Date(res.startDate).toLocaleDateString());
+        $("#startDate").html(common.formatDate(res.startDate,'yyyy/MM/dd'));
         $("#courseNum").html(res.courseNum);
         $("#imgUrl").attr("src",window.imageAddress+res.imgUrl);
-        $("#week").html(new Date(res.startDate).getDay())
+        $("#week").html(common.toWeek(res.startDate));
     }).error(function(data) {
        
     })

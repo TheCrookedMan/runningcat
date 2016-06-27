@@ -1,1 +1,1 @@
-export let maxAge = 365 * 24 * 60 * 60 * 1000;
+export let maxAge = 30 * 24 * 60 * 60 * 1000;
