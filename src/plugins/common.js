@@ -35,7 +35,7 @@
         regBeforeWeight: function(value) {
             return this.reg_beforeWeight.test(value);
         },
-        regHeight:function(value){
+        regHeight: function(value) {
             return this.reg_height.test(value);
         },
         regRealAge: function(date) {
@@ -43,15 +43,15 @@
             var now = new Date().getTime();
             var age = date.getTime();
             var difference = now - age;
-            if(difference < 0){
+            if (difference < 0) {
                 return false;
             } else {
-                 var d = Math.floor(difference / 1000 / 60 / 60 / 24 / 365);
-                 if(d >= 16 && d <= 60){
+                var d = Math.floor(difference / 1000 / 60 / 60 / 24 / 365);
+                if (d >= 16 && d <= 60) {
                     return true;
-                 } else {
+                } else {
                     return false;
-                 }
+                }
             }
         },
         getUserInfo: function() {
@@ -89,9 +89,9 @@
             });
             return format;
         },
-        getTenantId:function(){
+        getTenantId: function() {
             var tenantId = $.AMUI.utils.cookie.get("tenantId");
-            if(!!tenantId){
+            if (!!tenantId) {
                 return tenantId;
             } else {
                 return 0;
@@ -109,7 +109,7 @@
             var wechatUserInfo = $.AMUI.utils.cookie.get("wechatUserInfo");
             return JSON.parse(wechatUserInfo);
         },
-        getCityName:function(){
+        getCityName: function() {
             return $.AMUI.utils.cookie.get("city");
         },
         getOpenId: function() {
@@ -128,6 +128,25 @@
                 "0": "周日",
             }
             return map[date.getDay().toString()];
+        },
+        getQueryString: function(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        },
+        getRequest: function() {
+            //获取url中"?"符后的字串 
+            var url = location.search;
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
         }
     };
     this.common = new common();

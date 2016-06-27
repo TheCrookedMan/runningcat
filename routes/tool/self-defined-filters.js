@@ -71,21 +71,32 @@ module.exports = (swig) => {
 
         let aY, bY, aM, bM, aD, bD;
         aY = theTime.getFullYear();
-        aM = theTime.getMonth()+1;
+        aM = theTime.getMonth() + 1;
         aD = theTime.getDate();
 
         bY = now.getFullYear();
-        bM = now.getMonth()+1;
+        bM = now.getMonth() + 1;
         bD = now.getDate();
 
-        if(aY == bY && aM == bM && aD == bD){
+        if (aY == bY && aM == bM && aD == bD) {
             return true;
         } else {
             return false;
         }
     }
+    let toPercent = (O, T) => {
+        let sum = parseInt(T),
+            num = parseInt(O);
+        let per = (sum - num) / sum;
+        console.log("per:::"+per);
+        per = per.toFixed(2);
+        per = per * 100;
+
+        return per + "%";
+    }
     swig.setFilter("dateFormat", dateFormat);
     swig.setFilter("toWeek", toWeek);
     swig.setFilter("scopeFilter", scopeFilter);
     swig.setFilter("compareDate", compareDate);
+    swig.setFilter("toPercent", toPercent);
 }

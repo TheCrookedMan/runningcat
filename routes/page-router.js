@@ -2,6 +2,7 @@ import express from 'express';
 import user from './api/user';
 import common from './tool/common';
 import wechatAuth from './api/wechat';
+import { maxAge } from './constants';
 
 let router = express.Router();
 /*
@@ -110,7 +111,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
         tenantId = options.tenantId;
     let list = [];
 
-    res.cookie('tenantId', tenantId, { maxAge: 31536000, path: '/' });
+    res.cookie('tenantId', tenantId, { maxAge: maxAge, path: '/' });
 
     wechatAuth.accessToken(options.code, function(params) {
 
@@ -121,7 +122,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                 let access_token = data.access_token,
                     openid = data.openid;
 
-                res.cookie('openId', openid, { maxAge: 31536000, path: '/' });
+                res.cookie('openId', openid, { maxAge: maxAge, path: '/' });
                 wechatAuth.getUserInfo(access_token, openid, function(userinfo) {
                     let info = JSON.parse(userinfo);
                     if (!info.openid) {
@@ -135,7 +136,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
                         /*
                             返回的userinfo信息里面有openid证明请求返回成功
                          */
-                        res.cookie('wechatUserInfo', userinfo, { maxAge: 31536000, path: '/' });
+                        res.cookie('wechatUserInfo', userinfo, { maxAge: maxAge, path: '/' });
                         res.redirect("/public/shop.html");
                     }
                 });

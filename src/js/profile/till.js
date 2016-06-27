@@ -53,6 +53,7 @@
                     self.isEnd = false;
                     if(self.pageNo == 1){
                         $(".single-class .class-list ul").html(data);
+                        $(".pub-list ul").removeClass("bd0");
                     }
                     else{
                         $(".single-class .class-list ul").append(data);

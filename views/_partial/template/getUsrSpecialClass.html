@@ -1,26 +1,27 @@
 {% for till in data %}
 <li class="mb0">
     <div class="status">
-      <div class="line">
-        <span style="width:50%"><em><i>{{till.finishNum}}</i>/<i>{{till.totalNum}}</i></em></span>
-      </div>
-  </div>
+        <em><i>{{till.finishNum}}</i>/<i>{{till.totalNum}}</i></em>
+        <div class="line">
+            <span style="width:{{ till.finishNum|toPercent(till.totalNum) }}"></span>
+        </div>
+    </div>
 </li>
 <li>
-  <div class="pic">
-    <img src="{{settings.imageAddress}}{{till.imgUrl}}" />
-    <!-- <img src="/img/app-icon72x72@2x.png" alt="跑步猫" class="peo"> -->
-  </div>
-  <div class="info">
-    <div class="tit">
-      <p>{{till.className}}</p>
-      <p>{{till.startDate|dateFormat('MM/dd')}}~{{till.endDate|dateFormat('MM/dd')}}  </p>
-      <p>{{till.classTime}}</p>
-      <p>共{{till.totalNum}}次课</p>
+    <div class="pic">
+        <img src="{{settings.imageAddress}}{{till.imgUrl}}" />
+        <!-- <img src="/img/app-icon72x72@2x.png" alt="跑步猫" class="peo"> -->
     </div>
-    <div class="pub-btn skin0 mt0">
-        <a href="/profile/till.html?specialId={{till.id}}" class="btn btn-red">课表</a>
+    <div class="info">
+        <div class="tit">
+            <p>{{till.className}}</p>
+            <p>{{till.startDate|dateFormat('MM/dd')}}~{{till.endDate|dateFormat('MM/dd')}} </p>
+            <p>{{till.classTime}}</p>
+            <p>共{{till.totalNum}}次课</p>
+        </div>
+        <div class="pub-btn skin0 mt0">
+            <a href="/profile/till.html?specialId={{till.id}}" class="btn btn-red">课表</a>
+        </div>
     </div>
-  </div>
 </li>
 {% endfor %}

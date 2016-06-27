@@ -1,4 +1,5 @@
 import rest from '../rest/_util';
+import { maxAge } from '../constants';
 /*
     会员登录
  */
@@ -60,13 +61,13 @@ exports.loginByunionId = (unionId, success, next) => {
 
 exports.checkLogin = (req, res, next) => {
     let runningcatUserInfo = req.cookies.runningcatUserInfo,
-        userInfo;
+        userInfo, fromUrl = req.url;
     if (runningcatUserInfo) {
         userInfo = JSON.parse(runningcatUserInfo);
     }
     if (!runningcatUserInfo || !userInfo.cookieUserId) {
         //没有runningcatUserInfo表示没有注册或者登录过，需要跳转到登录
-        res.redirect("/public/login.html");
+        res.redirect("/public/login.html?fromUrl="+fromUrl);
     } else {
         runningcatUserInfo = JSON.parse(runningcatUserInfo);
         let cookieUserId = runningcatUserInfo.cookieUserId;
@@ -85,16 +86,16 @@ exports.checkLogin = (req, res, next) => {
                 /*
                     把runningcat用户信息存入cookie中.
                  */
-                res.cookie('runningcatUserInfo', newUserInfo, { maxAge: 31536000, path: '/' });
+                res.cookie('runningcatUserInfo', newUserInfo, { maxAge: maxAge, path: '/' });
                 next();
             } else if ("0001" == data.code) {
-                res.redirect("/public/login.html");
+                res.redirect("/public/login.html?fromUrl="+fromUrl);
             } else if ("100269" == data.code) {
                 res.redirect("/profile/edit-profile.html");
             } else if ("100270" == data.code) {
                 res.redirect("/public/register.html");
             } else {
-                res.redirect("/public/login.html");
+                res.redirect("/public/login.html?fromUrl="+fromUrl);
             }
         }, next);
     }

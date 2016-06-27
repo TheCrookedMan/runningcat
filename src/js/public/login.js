@@ -1,4 +1,5 @@
 (function() {
+    var fromUrl = window.location.search.substr(1).replace("fromUrl=", "");
     var time, count = 60;
     var storeInfo = common.getStoreInfo();
     $(".am-form").on("click", ".sendSMS", function(ev) {
@@ -53,7 +54,7 @@
             if (data.success) {
                 var runningcatUserInfo = JSON.stringify(data.data);
                 $.AMUI.utils.cookie.set('runningcatUserInfo', runningcatUserInfo, 365 * 24 * 60 * 60, '/');
-                window.location.href = "/public/shop.html";
+                window.location.href = fromUrl;
             } else {
                 if ("10015" == data.code) {
                     window.location.href = "/public/register.html";

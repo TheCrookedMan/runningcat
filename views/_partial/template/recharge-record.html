@@ -6,7 +6,7 @@
         <div class="info left pl0">
             <div class="status">
                 <div class="line">
-                    <span style="width:{{(record.remainNum/record.classNum)*100}}%"><em></em></span>
+                    <span style="width:{{record.classNum|toPercent(record.remainNum) }}"><em></em></span>
                 </div>
                 <div class="scale">{{record.classNum}}/{{record.remainNum}}</div>
             </div>
