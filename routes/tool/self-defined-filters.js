@@ -88,7 +88,7 @@ module.exports = (swig) => {
         let sum = parseInt(T),
             num = parseInt(O);
         let per = (sum - num) / sum;
-        console.log("per:::"+per);
+        // console.log("per:::"+per);
         per = per.toFixed(2);
         per = per * 100;
 

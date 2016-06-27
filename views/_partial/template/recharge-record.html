@@ -6,9 +6,9 @@
         <div class="info left pl0">
             <div class="status">
                 <div class="line">
-                    <span style="width:{{record.classNum|toPercent(record.remainNum) }}"><em></em></span>
+                    <span style="width:{{record.remainNum|toPercent(record.classNum)}}"><em></em></span>
                 </div>
-                <div class="scale">{{record.classNum}}/{{record.remainNum}}</div>
+                <div class="scale">{{record.remainNum}}/{{record.classNum}}</div>
             </div>
             <div class="countdown" data-order-end-date="{{record.orderEndDate}}"></div>
         </div>
