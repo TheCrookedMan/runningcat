@@ -1,10 +1,11 @@
 (function() {
+    var storeInfo = common.getStoreInfo();
     //查询剩余猫粮
-    $.post('/usrMemberCatfood/selectUsrSurplusAmount', {'memberId':userInfo.memberId}).success(function(data) {
-        var res=data.data;
+    $.post('/usrMemberCatfood/selectUsrSurplusAmount', { 'memberId': userInfo.memberId, storeId: storeInfo.storeId }).success(function(data) {
+        var res = data.data;
         $("#surplus em").html(res.surplusAmount)
     }).error(function(data) {
-       
+
     })
     var catfood = function() {
         this.status = 1;
@@ -44,13 +45,12 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    if(self.pageNo == 1){
+                    if (self.pageNo == 1) {
                         $(".single-class .pub-list ul").html(data);
                         $(".pub-list ul").removeClass("bd0");
+                    } else {
+                        $(".single-class .pub-list ul").append(data);
                     }
-                    else{
-                       $(".single-class .pub-list ul").append(data); 
-                    }  
                 }
             }).error(function(err) {});
         }

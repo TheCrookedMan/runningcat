@@ -30,7 +30,7 @@
                 payInfo.push("<li>");
                 payInfo.push("所需课时：" + record.onceCourseHour + "课时");
                 payInfo.push("</li>");
-                payInfo.push("<li>");
+                payInfo.push("<li class='address-span'>");
                 payInfo.push("地址：" + record.storeAddress);
                 payInfo.push("</li>");
                 payInfo.push("</ul>");

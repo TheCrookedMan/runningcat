@@ -88,6 +88,12 @@
                     padding-bottom: 0.2rem;
                     z-index: 9;
                 }
+                .address-span {
+                    padding-right: 4.4rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
                 &:last-child {
                     padding-bottom: 0;
                     span {
@@ -189,6 +195,11 @@
                 font-size: 1.4rem;
                 color: #717171;
             }
+            .address-span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
         }
     }
     .pay-spec {
@@ -238,7 +249,7 @@
             max-width: 50%;
             display: inline-block;
             margin-bottom: 0.6rem;
-            img{
+            img {
                 max-height: 8rem;
             }
         }

@@ -1,7 +1,4 @@
-{% set specialClass = data['usrClasstimeOrder.getUsrSpecialOnceInfo']['record'] %} 
-{% set usrClassEvaluate = data['specialEvaluate.getUsrClassEvaluate']['record'] %} 
-{% set trainFeel = data['classEvaluate.getTrainFeel']['record'] %}
-{% set user_food = data['classEvaluate.getMemberFoodNum']['record'] %}
+{% set specialClass = data['usrClasstimeOrder.getUsrSpecialOnceInfo']['record'] %} {% set usrClassEvaluate = data['specialEvaluate.getUsrClassEvaluate']['record'] %} {% set trainFeel = data['classEvaluate.getTrainFeel']['record'] %} {% set user_food = data['classEvaluate.getMemberFoodNum']['record'] %}
 <div class="pub-pinfo">
     <div class="img"><img src="{{settings.imageAddress}}{{specialClass.imgUrl}}" alt="跑步猫"></div>
     <div class="info">
@@ -12,8 +9,8 @@
     </div>
 </div>
 <script type="text/javascript">
-    var useful_food = "{{user_food}}";
-    useful_food = parseInt(useful_food);
+var useful_food = "{{user_food}}";
+useful_food = parseInt(useful_food);
 </script>
 <hr class="hr">
 <div class="pub-list skin0">
@@ -55,12 +52,9 @@
                     <div class="pub-num fl">
                         <span>打赏教练：</span>
                         <div class="num">
-                            <a class="min" href="javascript:;">-</a>
-                            {% if usrClassEvaluate.foodNum > 0 %}
-                            <input name="food" value="{{usrClassEvaluate.foodNum}}" class="buy_num" type="text">
-                            {% else %}
-                            <input name="food" value="0" class="buy_num" type="text">
-                            {% endif %}
+                            <a class="min" href="javascript:;">-</a> {% if usrClassEvaluate.foodNum > 0 %}
+                            <input name="food" value="{{usrClassEvaluate.foodNum}}" class="buy_num" type="text"> {% else %}
+                            <input name="food" value="0" class="buy_num" type="text"> {% endif %}
                             <a href="javascript:;" class="add">+</a>
                         </div>
                         <span>颗猫粮</span>
@@ -72,9 +66,11 @@
                 <i class="am-icon-dot-circle-o"><em>留言</em></i>
                 <div class="list-info">
                     <textarea name="leaveMsg" placeholder="别让互动的小船说翻就翻哈，，，， ">{{usrClassEvaluate.leaveMsg}}</textarea>
+                    {% if usrClassEvaluate.id == undefined %}
                     <div class="pub-btn skin0">
                         <button class="btn">发表评论</button>
                     </div>
+                    {% endif %}
                 </div>
             </li>
         </ul>

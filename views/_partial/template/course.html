@@ -1,3 +1,5 @@
+{% if data.length > 0 %}
+
 {% for course in data %}
 <li>
     {% if course.courseMaxNum && course.buyerNum %}
@@ -41,3 +43,7 @@
     </div>
 </li>
 {% endfor %}
+
+{% else %}
+<li><p class='pub_nodata'>喵~，今天没有排课，休息一下！</p></li>
+{% endif %}

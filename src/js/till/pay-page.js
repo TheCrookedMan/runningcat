@@ -32,7 +32,7 @@
                 payInfo.push("<li>");
                 payInfo.push("课次：共" + record.courseNum + "次课");
                 payInfo.push("</li>");
-                payInfo.push("<li>");
+                payInfo.push("<li class='address-span'>");
                 payInfo.push("地址：" + record.storeAddress);
                 payInfo.push("</li>");
                 payInfo.push("<li>");

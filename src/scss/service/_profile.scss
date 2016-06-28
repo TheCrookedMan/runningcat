@@ -377,6 +377,11 @@
     display: inline-block;
     padding-bottom: 5rem;
     padding-top: 0;
+    .rank-list {
+        td.num {
+            font-size: 2.8rem;
+        }
+    }
 }
 
 .myrank .am-icon-heart-o:before {
