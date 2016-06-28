@@ -106,7 +106,7 @@
             imglength++;
             imgObj['imgUrl' + imglength] = path;
         });
-        var params = { 'memberId': userInfo.memberId, 'memberWorkId': workId, 'topicAnswer': topicAnswer };
+        var params = { 'memberId': userInfo.memberId, 'memberWorkId': memberWorkId, 'topicAnswer': topicAnswer };
         params = $.extend(params, imgObj);
         $.post('/usr-class/updateCourseWork', params).success(function(data) {
             if (data.code == "0000" && data.success) {

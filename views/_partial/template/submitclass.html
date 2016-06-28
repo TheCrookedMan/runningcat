@@ -1,4 +1,7 @@
 {% if data.workStatus == 2 %}
+<script type="text/javascript">
+    var memberWorkId = "{{data.id}}";
+</script>
 <li>
     <i class="am-icon-dot-circle-o"><em>提交作业</em></i>
     <form class="updateCourseWork">
@@ -52,9 +55,6 @@
                 </div>
             </div>
             <textarea class="leaveMsg">{{data.topicAnswer}}</textarea>
-            <div class="pub-btn skin0">
-                <input type="submit" class="btn"  value="提交">
-            </div>
         </div>
     </form>
 </li>

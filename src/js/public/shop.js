@@ -1,6 +1,6 @@
 (function() {
     var tenantId = common.getTenantId();
-    tenantId =1;
+    tenantId = 1;
     $("body").on("click", ".shop-detail a", function(ev) {
         var storeId = $(this).data("storeId");
         var storeName = $(this).data("storeName");
@@ -12,7 +12,9 @@
             address: address,
             contactPhone: contactPhone
         }
+
         // $.AMUI.utils.cookie.set('store', JSON.stringify(store), common.maxAge, '/');
+
         $.cookie('store', JSON.stringify(store), { expires: common.expires, path: '/' });
     });
 
