@@ -3,7 +3,7 @@
     //查询剩余猫粮
     $.post('/usrMemberCatfood/selectUsrSurplusAmount', { 'memberId': userInfo.memberId, storeId: storeInfo.storeId }).success(function(data) {
         var res = data.data;
-        $("#surplus em").html(res.surplusAmount)
+        $("#surplus em").html(res)
     }).error(function(data) {
 
     })

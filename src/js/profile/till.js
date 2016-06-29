@@ -81,7 +81,8 @@
                     signinKey: signinKey
                 }).success(function(data) {
                     if (data.code == "0000" && data.success) {
-                        thisPanel.remove();
+                        // thisPanel.remove();
+                        window.location.reload();
                     } else {
                         modal.alert(data.msg);
                     }
@@ -101,7 +102,8 @@
             classtimeId: classtimeId
         }).success(function(data) {
             if (data.code == "0000" && data.success) {
-                thisPanel.remove();
+                // thisPanel.remove();
+                window.location.reload();
             } else {
                 modal.alert(data.msg);
             }

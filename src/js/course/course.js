@@ -46,6 +46,9 @@
                 data = data.replace(/(^\s+)|(\s+$)/g, "");
                 if ("" == data) {
                     self.isEnd = true;
+                    if(self.pageNo == 1){
+                        $(".pub-list ul").html("<li><p class='pub_nodata'>喵~，今天没有排课，休息一下！</p></li>");
+                    }
                 } else {
                     self.isEnd = false;
                     if(self.pageNo == 1){
