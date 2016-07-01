@@ -110,7 +110,6 @@ router.get('/wechatAuth.html', (req, res, next) => {
         redirect_uri = options.state,
         tenantId = options.tenantId;
     let list = [];
-
     res.cookie('tenantId', tenantId, { maxAge: maxAge, path: '/' });
 
     wechatAuth.accessToken(options.code, function(params) {

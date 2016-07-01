@@ -10,7 +10,7 @@
     "gulp-build": "gulp build",
     "build": "npm run gulp-build && npm run compile",
     "dev": "forever start ./bin/www dev",
-    "server": "forever start -a -l forever.log -o out.log -e err.log app.js"
+    "server": "forever start -a -l forever.log -o out.log -e err.log ./bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
