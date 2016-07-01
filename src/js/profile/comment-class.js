@@ -67,6 +67,9 @@
     });
     $("body").on("change",".pub-num .buy_num",function(ev){
         var buy_num = $(this).val();
+        if(isNaN(buy_num)){
+            buy_num = 1;
+        }
         buy_num = parseInt(buy_num);
         if(buy_num > useful_food){
             $(this).val(useful_food);
@@ -75,11 +78,17 @@
         }
         ev.stopPropagation();
     });
+
+    var old_num = 0;
     $("body").on("keydown", ".pub-num .buy_num", function(ev) {
-        var buy_num = $(this).val();
-        if((event.keyCode < 48 || event.keyCode >57) && event.keyCode != 8){
+        old_num = $(this).val();
+        ev.stopPropagation();
+    });
+    $("body").on("keyup", ".pub-num .buy_num", function(ev) {
+        var new_num = $(this).val();
+        if(isNaN(new_num)){
             modal.alert("请输入数字！");
-            return false;
+            $(this).val(old_num);
         }
         ev.stopPropagation();
     });

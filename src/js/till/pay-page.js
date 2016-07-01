@@ -301,8 +301,8 @@
                         });
                     }
                 } else {
-                    // modal.alert(data.msg);
-                    alert("支付失败！");
+                    modal.alert(data.msg);
+                    // alert("支付失败！");
                 }
             })
         } else {

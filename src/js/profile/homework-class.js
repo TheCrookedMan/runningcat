@@ -50,7 +50,7 @@
             memberId: userInfo.memberId,
             onceId: onceId,
             workId: workId,
-            onceType: 2
+            onceType: 1
         }).success(function(data) {
             $(".pub-list ul").append(data);
 
@@ -109,7 +109,7 @@
             imglength++;
             imgObj['imgUrl' + imglength] = path;
         });
-        var params = { 'memberId': userInfo.memberId, 'memberWorkId': workId, 'topicAnswer': topicAnswer };
+        var params = { 'memberId': userInfo.memberId, 'memberWorkId': memberWorkId, 'topicAnswer': topicAnswer };
         params = $.extend(params, imgObj);
         $.post('/usr-class/updateCourseWork', params).success(function(data) {
             if (data.code == "0000" && data.success) {

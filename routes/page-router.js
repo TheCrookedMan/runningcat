@@ -264,8 +264,16 @@ router.get('/profile/edit-profile.html', (req, res, next) => {
 
 router.get('/profile/invite.html', (req, res, next) => {
     let runningcatUserInfo = JSON.parse(req.cookies.runningcatUserInfo);
-    let memberId = runningcatUserInfo.memberId;
-    return res.render('profile/invite', { title: 'RunningCat', memberId: memberId });
+    let memberId = runningcatUserInfo.memberId,
+        store = req.cookies.store,
+        storeId = 0;
+
+    if (!!store) {
+        store = JSON.parse(store);
+        storeId = store.storeId;
+    }
+
+    return res.render('profile/invite', { title: 'RunningCat', memberId: memberId, storeId: storeId });
 });
 
 router.get('/profile/message.html', (req, res, next) => {

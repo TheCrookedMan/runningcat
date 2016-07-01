@@ -37,8 +37,8 @@
                         var catExchangePrice = record.catExchangePrice.toFixed(2);
                         var memberCatFood = record.memberCatFood;
                         var orderUnitPrice = record.orderUnitPrice.toFixed(2);
-                        var rechargeMin= record.rechargeMin;
-                        var rechargeMax= record.rechargeMax;
+                        var rechargeMin = record.rechargeMin;
+                        var rechargeMax = record.rechargeMax;
                         $(".totalPrice").text(totalPrice);
                         $(".actualPrice").text(actualPrice);
                         $(".discountPrice").text(discountPrice);
@@ -47,7 +47,7 @@
                         $(".memberCatFood").text(memberCatFood);
                         $(".orderUnitPrice").text(orderUnitPrice);
 
-                        $(".rechargeRange").text("*可购买课时为："+rechargeMin+" ～ "+rechargeMax);
+                        $(".rechargeRange").text("*可购买课时为：" + rechargeMin + " ～ " + rechargeMax);
 
                         self.discountInfo = {
                             totalNum: totalNum,
@@ -117,8 +117,12 @@
         rechargeObj.selectDiscountInfo(buy_num);
         ev.stopPropagation();
     });
+
     $("body").on("change", ".pub-num .buy_num", function(ev) {
         var buy_num = $(this).val();
+        if(isNaN(buy_num)){
+            buy_num = 1;
+        }
         buy_num = parseInt(buy_num);
         if (buy_num < 1) {
             $(this).val(1);
@@ -127,14 +131,26 @@
         rechargeObj.selectDiscountInfo(buy_num);
         ev.stopPropagation();
     });
+
+    var old_num = 0;
     $("body").on("keydown", ".pub-num .buy_num", function(ev) {
-        var buy_num = $(this).val();
-        if ((event.keyCode < 48 || event.keyCode > 57) && event.keyCode != 8) {
+        old_num = $(this).val();
+        // if ((ev.keyCode < 48 || ev.keyCode > 57) && ev.keyCode != 8) {
+        //     modal.alert("请输入数字！");
+        //     return false;
+        // }
+        ev.stopPropagation();
+    });
+
+    $("body").on("keyup", ".pub-num .buy_num", function(ev) {
+        var new_num = $(this).val();
+        if(isNaN(new_num)){
             modal.alert("请输入数字！");
-            return false;
+            $(this).val(old_num);
         }
         ev.stopPropagation();
     });
+    
     $("body").on("click", "#show-discount-detail", function(ev) {
         var buy_num = $(".pub-num .buy_num").val();
         if (buy_num > 0) {
