@@ -308,11 +308,11 @@
                         modal.alert(data.data.error);
                     } else {
                         pay.go(data.data).then(function() {
-                            // success
+                            /* success */
                             window.location.href = "/course/pay-success.html?courseId=" + courseId;
                         }, function(pay_info) {
-                            // error
-                            // modal.alert(pay_info);
+                            /* error */
+                            /* modal.alert(pay_info); */
                         });
                     }
                 } else {

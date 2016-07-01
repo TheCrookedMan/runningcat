@@ -33,6 +33,10 @@
             $(".pub_peolist a:first").addClass('cur');
         }
 
+        if(buyCopies.length > 0){
+            $("li.peo").show();
+        }
+
         var start=new Date(res.startDate).toLocaleDateString();
         var end=new Date(res.endDate).toLocaleDateString();
         var datastr="训练周期："+start+"~"+end+"，"+res.weekNum+" 周共"+res.courseNum+"次课";

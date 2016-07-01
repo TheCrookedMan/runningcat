@@ -64,6 +64,11 @@
                     $(".pub_peolist").append(pricestr);
                     // $(".pub_peolist a:first").addClass('cur');
                 }
+                if("" != pricestr){
+                    $(".peo-li-panel").show();
+                } else {
+                    $(".pub_peolist").append("<a href='javascript:void(0)' class='cur' data-per-price='" + perPrice + "' data-course-num='" + tnum*1 + "' data-num='" +1 + "'><p>" + 1 + "人</p><p>" + tnum * 1 + "课时</p></a>");
+                }
                 totalPrice();
             }
         }).error(function(data) {
@@ -293,11 +298,11 @@
                         modal.alert(data.data.error);
                     } else {
                         pay.go(data.data).then(function() {
-                            // success
+                            /* success */
                             window.location.href = "/till/pay-success.html?specialId=" + specialId;
                         }, function(pay_info) {
-                            // error
-                            // modal.alert(pay_info);
+                            /* error */
+                            /* modal.alert(pay_info); */
                         });
                     }
                 } else {

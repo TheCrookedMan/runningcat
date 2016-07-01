@@ -3,14 +3,13 @@
     wechatPay.prototype = {
         go: function(data) {
             var dtd = $.Deferred();
-            if ("0" == data.retcode) {
+            if ("0" === data.retcode) {
                 var $$appId = data.appid;
                 var $$timeStamp = data.timestamp;
                 var $$nonceStr = data.noncestr;
                 var $$package = data.package;
                 var $$signType = data.signType;
                 var $$paySign = data.sign;
-
                 function onBridgeReady() {
                     WeixinJSBridge.invoke(
                         'getBrandWCPayRequest', {
@@ -52,4 +51,4 @@
         }
     }
     this.pay = new wechatPay();
-}).call(this)
+}).call(this);

@@ -1,10 +1,12 @@
 
 {% for till in data %}
 <li>
+  <a href="/till/till-detail.html?specialId={{till.id}}&isBuyFlag={{till.isBuyFlag}}&year={{till.startDate|dateFormat('yyyy')}}&mm={{till.startDate|dateFormat('MM')}}&day={{till.startDate|dateFormat('dd')}}">
   <div class="pic">
-      <a href="/till/till-detail.html?specialId={{till.id}}&isBuyFlag={{till.isBuyFlag}}&year={{till.startDate|dateFormat('yyyy')}}&mm={{till.startDate|dateFormat('MM')}}&day={{till.startDate|dateFormat('dd')}}"><img src="{{settings.imageAddress}}{{till.imgUrl}}" /></a>
+      <img src="{{settings.imageAddress}}{{till.imgUrl}}" />
     <p>{{till.className}}</p>
   </div>
+  </a>
   <div class="info">
     <div class="tit">
       <p><em>￥<em>{{till.totalPrice}}</em>/人</em> {{till.weekNum}}周 {{till.courseNum}}次课</p>
