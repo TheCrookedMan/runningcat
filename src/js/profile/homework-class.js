@@ -87,6 +87,17 @@
          */
         var params = { 'memberId': userInfo.memberId, 'onceId': onceId, 'workId': workId, 'topicAnswer': topicAnswer, 'onceType': 1, classTimeId: classTimeId };
         params = $.extend(params, imgObj);
+
+        if ($.isEmptyObject(imgObj)) {
+            modal.alert("作业图片不能为空！");
+            return false;
+        }
+
+        if ("" == params.topicAnswer) {
+            modal.alert("受虐感言不能为空！");
+            return false;
+        }
+
         $.post('/usr-class/doCourseWork', params).success(function(data) {
             if (data.code == "0000" && data.success) {
                 modal.alert("提交作业成功！");
@@ -111,6 +122,17 @@
         });
         var params = { 'memberId': userInfo.memberId, 'memberWorkId': memberWorkId, 'topicAnswer': topicAnswer };
         params = $.extend(params, imgObj);
+
+        if ($.isEmptyObject(imgObj)) {
+            modal.alert("作业图片不能为空！");
+            return false;
+        }
+
+        if ("" == params.topicAnswer) {
+            modal.alert("受虐感言不能为空！");
+            return false;
+        }
+
         $.post('/usr-class/updateCourseWork', params).success(function(data) {
             if (data.code == "0000" && data.success) {
                 modal.alert("修改作业成功！");

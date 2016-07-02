@@ -5,8 +5,11 @@
 
 ### 启动
 在跟目录下面执行
-	
-	npm run test
+
+	本地测试环境
+	$ npm run test
+	如果是服务器发布环境
+	$ npm run build & npm run server
 	
 ### 目录结构
 
