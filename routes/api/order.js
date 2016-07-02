@@ -10,6 +10,15 @@ exports.selectDiscountInfo = (req, res, next) => {
 }
 
 /*
+  查询特训营优惠的金额信息和优惠的猫粮信息
+*/
+exports.selectCopSpecialDiscountPolicyInfo = (req, res, next) => {
+    new rest({
+        functionCode: 'order.selectCopSpecialDiscountPolicyInfo',
+    }).post(req, res, next);
+}
+
+/*
 	课时充值接口
  */
 exports.classRecharge = (req, res, next) => {
@@ -42,6 +51,15 @@ exports.classTimePayOrder = (req, res, next) => {
 exports.selectCopSalePolicy = (req, res, next) => {
     new rest({
         functionCode: 'order.selectCopSalePolicy',
+    }).link(req, res, next);
+}
+
+/*
+    查询特训营优惠政策详细信息
+ */
+exports.selectCopSpecialDiscountPolicy = (req, res, next) => {
+    new rest({
+        functionCode: 'order.selectCopSpecialDiscountPolicy',
     }).link(req, res, next);
 }
 

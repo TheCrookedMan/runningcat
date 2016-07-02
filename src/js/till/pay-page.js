@@ -2,7 +2,7 @@
     var usrRechargeOrderRemainNum = 0;
     var needCourseNum = 0;
     var storeInfo = common.getStoreInfo();
-    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1,storeId:storeInfo.storeId }).success(function(data) {
+    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1, storeId: storeInfo.storeId }).success(function(data) {
         if (data.code == "0000" && data.success) {
             usrRechargeOrderRemainNum = data.data;
             $(".usrRechargeOrderRemainNum").text(data.data);
@@ -64,10 +64,10 @@
                     $(".pub_peolist").append(pricestr);
                     // $(".pub_peolist a:first").addClass('cur');
                 }
-                if("" != pricestr){
+                if ("" != pricestr) {
                     $(".peo-li-panel").show();
                 } else {
-                    $(".pub_peolist").append("<a href='javascript:void(0)' class='cur' data-per-price='" + perPrice + "' data-course-num='" + tnum*1 + "' data-num='" +1 + "'><p>" + 1 + "人</p><p>" + tnum * 1 + "课时</p></a>");
+                    $(".pub_peolist").append("<a href='javascript:void(0)' class='cur' data-per-price='" + perPrice + "' data-course-num='" + tnum * 1 + "' data-num='" + 1 + "'><p>" + 1 + "人</p><p>" + tnum * 1 + "课时</p></a>");
                 }
                 totalPrice();
             }
@@ -98,24 +98,26 @@
             $(".rechargePanel").hide();
             $(".paymentPanel").show();
         }
-        rechargeObj.selectDiscountInfo(needCourseNum);
+        rechargeObj.selectDiscountInfo(buyCopiesNumber);
         gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum);
         setTotalPrice();
     }
-    $(".rechargePanel").on("click","button",function(ev){
+    $(".rechargePanel").on("click", "button", function(ev) {
         var jmphref = $(this).data("jmphref");
         window.location.href = jmphref;
     })
+
     /*
         获取可用课时纪录列表
      */
+
     function gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum) {
         $.get('/timeMoneyPayment_rechargelist.template', {
             memberId: userInfo.memberId,
             courseHourStatus: 1,
             needCourseNum: needCourseNum,
             usrRechargeOrderRemainNum: usrRechargeOrderRemainNum,
-            storeId:storeInfo.storeId
+            storeId: storeInfo.storeId
         }).success(function(data) {
             data = data.replace(/(^\s+)|(\s+$)/g, "");
             $(".usrRechargeOrderList .rechargeList").html(data)
@@ -175,13 +177,14 @@
         this.gradePanelString = "";
     }
     recharge.prototype = {
-        selectDiscountInfo: function(totalNum) {
+        selectDiscountInfo: function(buyCopies) {
             var self = this;
-            if (totalNum > 0) {
-                $.post('/order/selectDiscountInfo', {
+            if (buyCopies > 0) {
+                $.post('/order/selectCopSpecialDiscountPolicyInfo', {
                     memberId: userInfo.memberId,
-                    totalNum: totalNum,
-                    storeId: self.storeId
+                    groupId: specialId,
+                    storeId: rechargeObj.storeId,
+                    buyCopies: buyCopies
                 }).success(function(data) {
                     if (data.code == "0000" && data.success) {
                         var record = data.data;
@@ -201,7 +204,7 @@
                         $(".orderUnitPrice").text(orderUnitPrice);
 
                         self.discountInfo = {
-                            totalNum: totalNum,
+                            // totalNum: totalNum,
                             nmemberCatFood: nmemberCatFood
                         }
                         self.gradePanelString = "";
@@ -224,18 +227,19 @@
                 $(".orderUnitPrice").text("0.00");
                 self.gradePanelString = "";
                 self.discountInfo = {
-                    totalNum: 0,
+                    // totalNum: 0,
                     nmemberCatFood: 0
                 }
             }
         },
-        selectCopSalePolicy: function(totalNum) {
+        selectCopSalePolicy: function(buyCopies) {
             var self = this;
-            if (totalNum > 0) {
-                $.get('/copSalePolicyDetail.template', {
+            if (buyCopies > 0) {
+                $.get('/selectCopSpecialDiscountPolicy.template', {
                     memberId: userInfo.memberId,
-                    totalNum: totalNum,
-                    storeId: self.storeId
+                    groupId: specialId,
+                    storeId: rechargeObj.storeId,
+                    buyCopies: buyCopies
                 }).success(function(data) {
                     $("#detail-popup").html(data);
                     $("#detail-popup tbody").append(self.gradePanelString);
@@ -256,7 +260,7 @@
         ev.stopPropagation();
     });
     $("#detail-popup").on('open.modal.amui', function() {
-        rechargeObj.selectCopSalePolicy(needCourseNum);
+        rechargeObj.selectCopSalePolicy(buyCopiesNumber);
     });
 
     $("body").on("click", ".classTimePaymentButton", function(ev) {
@@ -283,7 +287,7 @@
         if (needCourseNum > 0) {
             $.post('/order/specialClassMoneyPayment', {
                 memberId: userInfo.memberId,
-                totalNum: rechargeObj.discountInfo.totalNum,
+                // totalNum: rechargeObj.discountInfo.totalNum,
                 storeId: rechargeObj.storeId,
                 hourSouce: 1,
                 payType: 2,

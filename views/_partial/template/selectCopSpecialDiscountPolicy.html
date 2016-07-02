@@ -1,0 +1,77 @@
+<div class="am-popup-inner content-dialog">
+    <div class="am-popup-hd">
+        <span data-am-modal-close class="am-close">&times;</span>
+    </div>
+    <div class="am-popup-bd">
+        <div class="table bd0">
+            <table class="skin1">
+                <colgroup>
+                    <col style="width:30%">
+                    <col style="width:30%">
+                    <col style="width:20%">
+                    <col style="width:20%">
+                </colgroup>
+                <tbody>
+                    
+                    {% for detail in data %}
+                    {% if !!detail.buyCopies %}
+                        {% if loop.first %}
+                            <tr>
+                                <th>份数</th>
+                                <th>折扣信息</th>
+                            </tr>
+                        {% endif %}
+
+                        {% if detail.isUse == 1 %}
+                        <tr class="col-red">
+                            <td class="col-red">{{detail.buyCopies}}</td>
+                            {% if detail.normalRatio != 1 %}
+                            <td class="col-red">{{(detail.normalRatio*10).toFixed(1)}}折</td>
+                            {% else %}
+                            <td class="col-red">无折扣</td>
+                            {% endif %}
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td>{{detail.buyCopies}}</td>
+                            {% if detail.normalRatio != 1 %}
+                            <td>{{(detail.normalRatio*10).toFixed(1)}}折</td>
+                            {% else %}
+                            <td>无折扣</td>
+                            {% endif %}
+                        </tr>
+                        {% endif %}
+                    {% else %}
+                        {% if loop.first %}
+                            <tr>
+                                <th>截止时间</th>
+                                <th>折扣信息</th>
+                            </tr>
+                        {% endif %}
+                        {% if detail.isUse == 1 %}
+                        <tr class="col-red">
+                            <td class="col-red">{{detail.policyName}}</td>
+                            {% if detail.normalRatio != 1 %}
+                            <td class="col-red">{{(detail.normalRatio*10).toFixed(1)}}折</td>
+                            {% else %}
+                            <td class="col-red">无折扣</td>
+                            {% endif %}
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td>{{detail.policyName}}</td>
+                            {% if detail.normalRatio != 1 %}
+                            <td>{{(detail.normalRatio*10).toFixed(1)}}折</td>
+                            {% else %}
+                            <td>无折扣</td>
+                            {% endif %}
+                        </tr>
+                        {% endif %}
+
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -103,6 +103,10 @@ router.post('/specialEvaluate/addUsrClassEvaluate', usrClass.addUsrClassEvaluate
  */
 router.post('/order/selectDiscountInfo', order.selectDiscountInfo);
 /*
+	查询出特训营优惠的金额信息和优惠的猫粮信息
+ */
+router.post('/order/selectCopSpecialDiscountPolicyInfo', order.selectCopSpecialDiscountPolicyInfo);
+/*
 	课时充值接口
  */
 router.post('/order/classRecharge', order.classRecharge);

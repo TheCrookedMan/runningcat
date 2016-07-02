@@ -161,6 +161,13 @@ router.get('/copSalePolicyDetail.template', [order.selectCopSalePolicy], (req, r
     });
 });
 
+/*特训营 充值 查询优惠政策详细信息*/
+router.get('/selectCopSpecialDiscountPolicy.template', [order.selectCopSpecialDiscountPolicy], (req, res, next) => {
+    return res.render('_partial/template/selectCopSpecialDiscountPolicy', {
+        data: res.data['order.selectCopSpecialDiscountPolicy']['record']
+    });
+});
+
 /* 课时支付模板 */
 router.get('/timeMoneyPayment_rechargelist.template', [order.selectUsrRechargeOrderList], (req, res, next) => {
     let needCourseNum = req.query.needCourseNum;
