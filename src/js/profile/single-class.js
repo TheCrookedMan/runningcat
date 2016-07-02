@@ -71,7 +71,8 @@
                     if (data.code == "0000" && data.success) {
                         thisPanel.remove();
                     } else {
-                        modal.alert("请假失败！");
+                        // modal.alert("请假失败！");
+                        modal.alert(data.msg);
                     }
                 })
             }
@@ -91,7 +92,8 @@
             if (data.code == "0000" && data.success) {
                 thisPanel.remove();
             } else {
-                modal.alert("签到失败！");
+                // modal.alert("签到失败！");
+                modal.alert(data.msg);
             }
         })
         ev.stopPropagation();
