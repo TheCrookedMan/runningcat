@@ -20,6 +20,8 @@
 	|
 	|--- dist 资源输出目录
 	|
+	|--- lib node.js 后台服务文件编译输入目录
+	|
 	|--- node_modules nodejs模块文件
 	|
 	|--- routes 里面所放的 全部都是runningcat 后台运行的js文件、包括REST接口调用、URL请求路径处理

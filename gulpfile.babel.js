@@ -274,6 +274,7 @@ gulp.task('plugin:build', () => {
 
     return gulp.src(plugins_src.inputfile_css)
         .pipe(concat('plugins.min.css'))
+        .pipe(minifycss())
         .pipe(gulp.dest(plugins_src.outputfile));
 });
 
