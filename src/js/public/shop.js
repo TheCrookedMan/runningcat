@@ -14,7 +14,6 @@
         }
 
         // $.AMUI.utils.cookie.set('store', JSON.stringify(store), common.maxAge, '/');
-
         $.cookie('store', JSON.stringify(store), { expires: common.expires, path: '/' });
     });
 
@@ -191,6 +190,20 @@
     this.shopList = new shop();
     //测试
     shopList.search();
+
+    $("body").on("click", ".shop-detail a", function(ev) {
+        var sid = $(this).data("storeId");
+        var url = $(this).data("href");
+        $.post('/shop/selectComPayAccount', { storeId: sid, tenantId: tenantId }).success(function(data) {
+            if (data.code == "0000" && data.success) {
+                var record = data.data;
+                var publicAccount = { appid: record.accountAppid, appsecret: record.accountKey };
+                $.cookie('wechatPublicNumber', JSON.stringify(publicAccount), { expires: common.expires, path: '/' });
+                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + record.accountAppid + "&redirect_uri=http%3a%2f%2fwechat.runningcat.club%2fwechatAuth.html&response_type=code&scope=snsapi_userinfo&state=/public/course.html&connect_redirect=1#wechat_redirect"
+            }
+        })
+        ev.stopPropagation();
+    })
 
     /*搜索店铺**/
     $(".am-input-group").on("click", "a", function(ev) {

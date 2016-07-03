@@ -157,6 +157,23 @@
                 }
             }
             return theRequest;
+        },
+        getWechatPublicNumberInfo: function() {
+            var wechatPublicNumber = $.cookie("wechatPublicNumber");
+            if (!wechatPublicNumber) {
+                return {
+                    appid: "",
+                    appsecret: ""
+                };
+            } else {
+                return JSON.parse(wechatPublicNumber);
+            }
+        },
+        getCourseCurrentDate:function(){
+            return $.cookie("courseCurrentDate");
+        },
+        setCourseCurrentDate:function(courseCurrentDate){
+            return $.cookie('courseCurrentDate', courseCurrentDate, { expires: common.expires, path: '/' });
         }
     };
     this.common = new common();

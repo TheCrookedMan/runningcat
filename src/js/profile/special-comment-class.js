@@ -39,9 +39,16 @@
         data.trainScore = trainScore;
         data.classTimeId = classTimeId;
 
+        if(!data.leaveMsg){
+            modal.alert("留言信息不能为空！");
+            return false;
+        }
+
         $.post('/specialEvaluate/addUsrClassEvaluate', data).success(function(data) {
             if (data.code == "0000" && data.success) {
-                modal.alert("评论成功！");
+                modal.alert("评论成功！",undefined,function(){
+                    window.history.go(-1);
+                });
             } else {
                 // modal.alert("评论失败！");
                 modal.alert(data.msg);

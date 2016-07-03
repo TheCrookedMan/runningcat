@@ -1,7 +1,7 @@
 (function() {
     var storeInfo = common.getStoreInfo();
     var singleClass = function() {
-        this.status = 0;
+        this.status = 1;
         this.pageNo = 1;
         this.pageSize = 10;
         this.isEnd = false;
@@ -60,8 +60,7 @@
                     signinKey: signinKey
                 }).success(function(data) {
                     if (data.code == "0000" && data.success) {
-                        // thisPanel.remove();
-                        window.location.reload();
+                        thisPanel.remove();
                     } else {
                         // modal.alert("请假失败！");
                         modal.alert(data.msg);
@@ -82,10 +81,22 @@
             classtimeId: classtimeId
         }).success(function(data) {
             if (data.code == "0000" && data.success) {
-                // thisPanel.remove();
-                window.location.reload();
+                thisPanel.remove();
             } else {
                 // modal.alert("签到失败！");
+                modal.alert(data.msg);
+            }
+        })
+        ev.stopPropagation();
+    });
+
+    $("body").on("click","a.evaluate",function(ev){
+        var link = $(this).data('href');
+        var onceId = $(this).data('onceId');
+        $.post('/classEvaluate/checkStatus',{onceId:onceId}).success(function(data){
+            if (data.code == "0000" && data.success) {
+                window.location.href = link;
+            } else {
                 modal.alert(data.msg);
             }
         })

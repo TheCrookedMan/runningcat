@@ -3,7 +3,8 @@
     var needCourseNum = 0;
     var storeInfo = common.getStoreInfo();
     var memberLevelSalePolicyInfo = "";
-    var isUsedCatFood = true;
+    /* isUseCatfood 1:使用，0：不使用 */
+    var isUseCatfood = 1;
     $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1, storeId: storeInfo.storeId }).success(function(data) {
         if (data.code == "0000" && data.success) {
             usrRechargeOrderRemainNum = data.data;
@@ -186,7 +187,8 @@
                     memberId: userInfo.memberId,
                     groupId: specialId,
                     storeId: rechargeObj.storeId,
-                    buyCopies: buyCopies
+                    buyCopies: buyCopies,
+                    isUseCatfood: isUseCatfood
                 }).success(function(data) {
                     if (data.code == "0000" && data.success) {
                         var record = data.data;
@@ -302,10 +304,10 @@
         ev.stopPropagation();
     });
     $("body").on("click", ".wechatPayment", function(ev) {
-        var catfood = 0;
-        if(isUsedCatFood){
-            catfood = rechargeObj.discountInfo.nmemberCatFood;
-        }
+        // var catfood = 0;
+        // if (isUsedCatFood) {
+        //     catfood = rechargeObj.discountInfo.nmemberCatFood;
+        // }
         if (needCourseNum > 0) {
             $.post('/order/specialClassMoneyPayment', {
                 memberId: userInfo.memberId,
@@ -314,7 +316,8 @@
                 hourSouce: 1,
                 payType: 2,
                 type: 1,
-                catfood: catfood,
+                // catfood: catfood,
+                isUseCatfood: isUseCatfood,
                 groupId: specialId,
                 openId: common.getOpenId(),
                 buyCopies: buyCopiesNumber
@@ -354,14 +357,15 @@
         })
     }
 
-    $("body").on("click",".list-info .code",function(ev){
+    $("body").on("click", ".list-info .isUsedCatFod", function(ev) {
         var checkIcon = $(this).find("i.am-icon-check-square-o");
-        if(checkIcon.length > 0){
-            isUsedCatFood = false;
+        if (checkIcon.length > 0) {
+            isUseCatfood = 0;
             $(this).find("i.am-icon-check-square-o").addClass("am-icon-square-o").removeClass("am-icon-check-square-o");
         } else {
-            isUsedCatFood = true;
+            isUseCatfood = 1;
             $(this).find("i.am-icon-square-o").addClass("am-icon-check-square-o").removeClass("am-icon-square-o");
         }
+        rechargeObj.selectDiscountInfo(buyCopiesNumber);
     });
 }).call(this)

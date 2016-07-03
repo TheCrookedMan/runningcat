@@ -13,7 +13,7 @@
             relatedTarget: this,
             onConfirm: function(options) {
                 var value = this.$dialog.find("input").val();
-                if (!regCardId.test(value)) {
+                if ("" != value && !regCardId.test(value)) {
                     modal.alert("身份证格式错误！");
                     return false;
                 } else {
@@ -205,7 +205,11 @@
                     validity.valid = true;
                 }
             } else if (validity.field.name == "idcard") {
-                validity.valid = regCardId.test(validity.field.value);
+                if(validity.field.value == "" || regCardId.test(validity.field.value)){
+                    validity.valid = true;
+                } else {
+                    validity.valid = false;
+                }
             } else if (validity.field.name == "birthday") {
                 if (validity.field.value == "" || !common.regRealAge(validity.field.value)) {
                     validity.valid = false;
@@ -217,8 +221,26 @@
         submit: function(form) {
             if (this.isFormValid()) {
                 var data = common.parseForm("form");
+                if(!data.idcard){
+                    data.idcard = "NULL";
+                }
+
+                if(!data.maritalStatus){
+                    data.maritalStatus = "NULL";
+                }
+
+                if(!data.bloodtype){
+                    data.bloodtype = "NULL";
+                }
+
+                if(!data.profession){
+                    data.profession = "NULL";
+                }
+
                 $.post('/updateUserInfo', data).success(function(data) {
-                    modal.alert(data.msg);
+                    modal.alert(data.msg, undefined, function() {
+                        window.history.go(-1);
+                    });
                 });
             }
             return false;

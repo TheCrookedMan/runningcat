@@ -20,3 +20,10 @@ exports.queryIndexStoreList = (req, res, next) => {
         functionCode: 'store.queryIndexStoreList',
     }).link(req, res, next);
 }
+
+/* 根据租户ID获取 */
+exports.selectComPayAccount = (req,res,next) =>{
+	new rest({
+        functionCode: 'comPayAccount.selectComPayAccount',
+    }).post(req, res, next);
+}

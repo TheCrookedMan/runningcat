@@ -181,7 +181,7 @@ gulp.task('js:build', () => {
 });
 
 const plugins_src = {
-    inputfile_js: [src_plugins_dir + "/jquery.min.js", src_plugins_dir + "/jquery.cookie.js", src_plugins_dir + "/amazeui/amazeui.min.js", src_plugins_dir + "/common.js", src_plugins_dir + "/upload.js"],
+    inputfile_js: [src_plugins_dir + "/jquery.min.js", src_plugins_dir + "/jquery.cookie.js", src_plugins_dir + "/common.js", src_plugins_dir + "/upload.js"],
     inputfile_css: src_plugins_dir + "/**/*.css",
     outputfile: plugins_dir
 }

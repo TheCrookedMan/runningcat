@@ -7,7 +7,7 @@
             $(".classTime").text(record.classTime);
             $(".contactPhone").text(record.contactPhone);
             $(".storeAddress").text(record.storeAddress);
-            $(".classDesc").text(record.classDesc);
+            $(".classDesc").html(record.classDesc);
         }
     }).error(function(data) {
     });

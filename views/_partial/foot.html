@@ -7,12 +7,15 @@
 <script src="dist/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <script src="/plugins/plugins.min.js"></script>
+<script src="http://cdn.amazeui.org/amazeui/2.7.0/js/amazeui.min.js"></script>
 {% include "./modal.html" %}
 </body>
 
 </html>
 <script>
 var userInfo = common.getUserInfo();
+var wechatPublicNumberInfo = common.getWechatPublicNumberInfo();
+
 $(document).ready(function() {
     $(".navbar-footer a").each(function(i, I) {
         var pageUrl = window.location.pathname;
@@ -23,7 +26,6 @@ $(document).ready(function() {
                 $(I).addClass("active");
             }
         });
-
     }); 
 })
 $(".pub_nodata").parent("ul").addClass("bd0");

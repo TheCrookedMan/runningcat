@@ -1,7 +1,8 @@
 (function() {
 
     var memberLevelSalePolicyInfo = "";
-    var isUsedCatFood = true;
+    /* isUseCatfood 1:使用，0：不使用 */
+    var isUseCatfood = 1;
     $.post('/user/getUserInfo', { memberId: userInfo.memberId }).success(function(data) {
         if (data.code == "0000" && data.success) {
             var record = data.data;
@@ -28,7 +29,8 @@
                 $.post('/order/selectDiscountInfo', {
                     memberId: userInfo.memberId,
                     totalNum: totalNum,
-                    storeId: self.storeId
+                    storeId: self.storeId,
+                    isUseCatfood: isUseCatfood
                 }).success(function(data) {
                     if (data.code == "0000" && data.success) {
                         var record = data.data;
@@ -183,10 +185,10 @@
     });
 
     function classRecharge() {
-        var catfood = 0;
-        if(isUsedCatFood){
-            catfood = rechargeObj.discountInfo.nmemberCatFood;
-        }
+        // var catfood = 0;
+        // if(isUsedCatFood){
+        //     catfood = rechargeObj.discountInfo.nmemberCatFood;
+        // }
         if (rechargeObj.discountInfo.totalNum > 0) {
             $.post('/order/classRecharge', {
                 memberId: userInfo.memberId,
@@ -198,7 +200,8 @@
                 payType: 2,
                 /* 1=会员，2=员工 */
                 type: 1,
-                catfood: catfood,
+                // catfood: catfood,
+                isUseCatfood: isUseCatfood,
                 openId: common.getOpenId()
             }).success(function(data) {
                 if (data.code == "0000" && data.success) {
@@ -207,7 +210,9 @@
                     } else {
                         pay.go(data.data).then(function() {
                             // success
-                            modal.alert("充值成功！");
+                            modal.alert("充值成功！",undefined,function(){
+                                window.history.go(-1);
+                            });
                         }, function(pay_info) {
                             // error
                             // modal.alert(pay_info);
@@ -231,14 +236,16 @@
         rechargeObj.selectDiscountInfo(courseNum);
     }
 
-    $("body").on("click",".list-info .code",function(ev){
+    $("body").on("click", ".list-info .isUsedCatFod", function(ev) {
         var checkIcon = $(this).find("i.am-icon-check-square-o");
-        if(checkIcon.length > 0){
-            isUsedCatFood = false;
+        if (checkIcon.length > 0) {
+            isUseCatfood = 0;
             $(this).find("i.am-icon-check-square-o").addClass("am-icon-square-o").removeClass("am-icon-check-square-o");
         } else {
-            isUsedCatFood = true;
+            isUseCatfood = 1;
             $(this).find("i.am-icon-square-o").addClass("am-icon-check-square-o").removeClass("am-icon-square-o");
         }
+        var courseNum = $(".pub-num .buy_num").val();
+        rechargeObj.selectDiscountInfo(courseNum);
     });
 }).call(this);

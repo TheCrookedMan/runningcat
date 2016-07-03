@@ -10,7 +10,7 @@
     var catfood = function() {
         this.status = 1;
         this.pageNo = 1;
-        this.pageSize = 10;
+        this.pageSize = 20;
         this.isEnd = false;
     }
     catfood.prototype = {

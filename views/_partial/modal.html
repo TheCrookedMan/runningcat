@@ -34,18 +34,22 @@
 (function() {
     var modal = function() {}
     modal.prototype = {
-        alert: function(text, title) {
+        alert: function(text, title, callback) {
             $("#alert-modal .am-modal-bd").text(text);
             if (!!title) {
                 $("#alert-modal .am-modal-hd").text(title);
             }
             $("#alert-modal").modal();
+            $('#alert-modal').off('closed.modal.amui');
+            if(!!callback){
+                $('#alert-modal').on('closed.modal.amui', callback);
+            }
         },
         confirm: function(params) {
-            if(!!params.title){
+            if (!!params.title) {
                 $('#my-confirm .am-modal-hd').text(params.title);
             }
-            if(!!params.msg){
+            if (!!params.msg) {
                 $('#my-confirm .am-modal-bd').text(params.msg);
             }
             $('#my-confirm').modal({
@@ -54,7 +58,7 @@
                 onCancel: params.onCancel
             });
         },
-        loading:function(string){
+        loading: function(string) {
             $("#loading-modal").modal(string);
         }
     }

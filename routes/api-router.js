@@ -40,6 +40,8 @@ router.post('/user/getUserInfo', user.getUserInfo);
 router.post('/queryOftenStore', shop.queryOftenStore);
 router.post('/queryCopStoreList', shop.queryCopStoreList);
 router.post('/queryIndexStoreList', shop.queryIndexStoreList);
+/* 根据租户ID和店铺ID获取appId和appsecret */
+router.post('/shop/selectComPayAccount', shop.selectComPayAccount);
 
 //profile
 /*猫粮*/
@@ -96,6 +98,10 @@ router.post('/userCenter/queryUserCaLone', profile.queryUserCaLone);
 router.post('/classEvaluate/addUsrClassEvaluate', usrClass.addUsrClassEvaluate_classEvaluate);
 //特训营单次课添加评价
 router.post('/specialEvaluate/addUsrClassEvaluate', usrClass.addUsrClassEvaluate_specialEvaluate);
+/* 检查特训营单次课评价状态 */
+router.post('/specialEvaluate/checkStatus',usrClass.specialEvaluate_checkStatus);
+/* 单次课检查是否已过评价时间 */
+router.post('/classEvaluate/checkStatus',usrClass.classEvaluate_checkStatus);
 
 // order
 /*

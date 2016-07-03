@@ -13,17 +13,19 @@
             {% if classInfo.courseOnceStatus == 4 %}
                 <!-- evaluateStatus     评价状态            0未评价 1 已评价 -->
                 {% if classInfo.evaluateStatus == 1 %}
-                <a href="/profile/comment-class.html?courseId={{classInfo.onceId}}&onceId={{classInfo.onceId}}&classTimeId={{classInfo.id}}" class="btn btn-red">查看评价</a>
+                <a href="javascript:void(0);" data-once-id="{{classInfo.onceId}}" data-href="/profile/comment-class.html?courseId={{classInfo.onceId}}&onceId={{classInfo.onceId}}&classTimeId={{classInfo.id}}" class="btn btn-red evaluate">查看评价</a>
                 {% else %}
-                <a href="/profile/comment-class.html?courseId={{classInfo.onceId}}&onceId={{classInfo.onceId}}&classTimeId={{classInfo.id}}" class="btn btn-red">评价</a>
+                <a href="javascript:void(0);" data-once-id="{{classInfo.onceId}}" data-href="/profile/comment-class.html?courseId={{classInfo.onceId}}&onceId={{classInfo.onceId}}&classTimeId={{classInfo.id}}" class="btn btn-red evaluate">评价</a>
                 {% endif %}
 
                 <!-- workstatus     提交作业状态          0未提交 1 已提交-->
+                <!--
                 {% if classInfo.workStatus == 0 %}
                 <a href="/profile/homework-class.html?courseId={{classInfo.onceId}}&onceId={{classInfo.onceId}}&classTimeId={{classInfo.id}}" class="btn btn-red">提交作业</a>
                 {% elseif classInfo.workStatus == 1 %}
                 <a href="/profile/homework-class.html?courseId={{classInfo.onceId}}&onceId={{classInfo.onceId}}&classTimeId={{classInfo.id}}" class="btn btn-red">修改作业</a>
                 {% endif %}
+                -->
                 
             {% elseif classInfo.courseOnceStatus == 2 %}
                 <a href="javascript:void(0)" class="btn btn-end">忘签</a>

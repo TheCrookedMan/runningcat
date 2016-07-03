@@ -58,7 +58,9 @@
                 window.location.href = fromUrl;
             } else {
                 if ("10015" == data.code) {
-                    window.location.href = "/public/register.html";
+                    // window.location.href = "/public/register.html";
+                    var params = $(".am-form").serialize();
+                    window.location.href = "/public/profile.html?" + params;
                 } else {
                     modal.alert(data.msg);
                 }

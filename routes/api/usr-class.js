@@ -112,3 +112,16 @@ exports.getUsrClassEvaluate_specialEvaluate = (req, res, next) => {
         functionCode: 'specialEvaluate.getUsrClassEvaluate',
     }).link(req, res, next);
 }
+/* 检查特训营单次课评价状态 */
+exports.specialEvaluate_checkStatus = (req,res,next) => {
+    new rest({
+        functionCode: 'specialEvaluate.checkStatus',
+    }).post(req, res, next);
+}
+
+/* 单次课检查是否已过评价时间 */
+exports.classEvaluate_checkStatus = (req,res,next) => {
+    new rest({
+        functionCode: 'classEvaluate.checkStatus',
+    }).post(req, res, next);
+}

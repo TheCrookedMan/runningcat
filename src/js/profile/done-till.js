@@ -1,14 +1,27 @@
 (function() {
-    var storeInfo = common.getStoreInfo();
-    var singleClass = function() {
-        this.status = 0;
+    var specialId = $("#specialId").val();
+    $.post('/specialClass/querySpecialClassInfo', { 'userId': userInfo.memberId, specialId: specialId }).success(function(data) {
+        var res = data.data;
+        //console.log(res);
+        $("#className").html(res.className);
+        $("#storeAddress").html(res.storeAddress);
+        $("#startDate").html(common.formatDate(res.startDate, 'yyyy/MM/dd'));
+        $("#courseNum").html(res.courseNum);
+        $("#imgUrl").attr("src", window.imageAddress + res.imgUrl);
+        $("#week").html(common.toWeek(res.startDate));
+    }).error(function(data) {
+
+    })
+    var getUsrSpecialOnce = function() {
+        this.status = 1;
         this.pageNo = 1;
         this.pageSize = 10;
         this.isEnd = false;
     }
-    singleClass.prototype = {
+    getUsrSpecialOnce.prototype = {
         init: function() {
             var self = this;
+
             self.getSingleClass();
             scroll.on(function() {
                 if (!self.isEnd) {
@@ -19,10 +32,10 @@
         },
         getSingleClass: function() {
             var self = this;
-            $.get('/tmpl-single-class.template', {
+            $.get('/getUsrSpecialOnce.template', {
                 memberId: userInfo.memberId,
                 status: self.status,
-                storeId: storeInfo.storeId,
+                specialId: specialId,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }).success(function(data) {
@@ -33,6 +46,7 @@
                     self.isEnd = false;
                     if (self.pageNo == 1) {
                         $(".single-class .class-list ul").html(data);
+                        $(".pub-list ul").removeClass("bd0");
                     } else {
                         $(".single-class .class-list ul").append(data);
                     }
@@ -40,13 +54,12 @@
             }).error(function(err) {});
         }
     }
-    this.singleClass = new singleClass();
-    this.singleClass.init();
-
+    this.getUsrSpecialOnce = new getUsrSpecialOnce();
+    this.getUsrSpecialOnce.init();
     /*
         请假
      */
-    $(".single-class").on("click", "a.leave", function(ev) {
+    $(".till-class").on("click", "a.leave", function(ev) {
         modal.confirm({
             relatedTarget: this,
             msg: "您确认请假吗？",
@@ -54,7 +67,7 @@
                 var classtimeId = $(this.relatedTarget).data("id");
                 var thisPanel = $(this.relatedTarget).parents("li");
                 var signinKey = $(this.relatedTarget).data("signinKey");
-                $.post("/usr-class/doLeave", {
+                $.post("/doLeave", {
                     memberId: userInfo.memberId,
                     classtimeId: classtimeId,
                     signinKey: signinKey
@@ -63,7 +76,6 @@
                         // thisPanel.remove();
                         window.location.reload();
                     } else {
-                        // modal.alert("请假失败！");
                         modal.alert(data.msg);
                     }
                 })
@@ -74,10 +86,10 @@
     /*
         签到
      */
-    $(".single-class").on("click", "a.signIn", function(ev) {
+    $(".till-class").on("click", "a.signIn", function(ev) {
         var classtimeId = $(this).data("id");
         var thisPanel = $(this).parents("li");
-        $.post("/usr-class/doSignIn", {
+        $.post("/doSignIn", {
             memberId: userInfo.memberId,
             classtimeId: classtimeId
         }).success(function(data) {
@@ -85,7 +97,19 @@
                 // thisPanel.remove();
                 window.location.reload();
             } else {
-                // modal.alert("签到失败！");
+                modal.alert(data.msg);
+            }
+        })
+        ev.stopPropagation();
+    });
+
+    $("body").on("click","a.evaluate", function(ev) {
+        var link = $(this).data('href');
+        var onceId = $(this).data('onceId');
+        $.post('/specialEvaluate/checkStatus', { onceId: onceId }).success(function(data) {
+            if (data.code == "0000" && data.success) {
+                window.location.href = link;
+            } else {
                 modal.alert(data.msg);
             }
         })
@@ -97,7 +121,7 @@
     //     $(this).addClass("cur");
     //     self.status = $(this).data("status");
     //     self.pageNo = 1;
-    //     $(".single-class .class-list ul").html('<li class="pub_nodata">暂无课程记录！</li>');
+    //     $(".single-class .class-list ul").html('<p class="pub_nodata">暂无特训营记录！</p>');
     //     self.getSingleClass();
     // });
-}).call(this)
+}).call(this);

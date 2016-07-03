@@ -6,7 +6,7 @@
     </colgroup>
     <tbody>
         {% for record in usrRechargeOrderList %} 
-        {% if record.remainNum > 0 %}
+        {% if record.remainNum > 0 && !record.orderEndDate|isExpired %}
         <tr class="content">
             <td>{{record.orderEndDate|dateFormat('yyyy-MM-dd')}}</td>
             <td>{{record.remainNum}}</td>

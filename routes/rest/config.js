@@ -2,8 +2,8 @@ let argv = process.argv.slice(2);
 
 if ("test" == argv || "dev" == argv) {
     exports.wechat = {
-        'appId': 'wx1dbdd8143174c693',
-        'appsecret': 'd1959bc2399a333ea9b8effea2688dfe',
+        // 'appId': 'wx1dbdd8143174c693',
+        // 'appsecret': 'd1959bc2399a333ea9b8effea2688dfe',
         /* REST 接口 服务器地址 */
         'host':'115.159.62.18',
         /* REST 接口 服务器端口 */
@@ -21,8 +21,8 @@ if ("test" == argv || "dev" == argv) {
     }
 } else {
     exports.wechat = {
-        'appId': 'wx1dbdd8143174c693',
-        'appsecret': 'd1959bc2399a333ea9b8effea2688dfe',
+        // 'appId': 'wx1dbdd8143174c693',
+        // 'appsecret': 'd1959bc2399a333ea9b8effea2688dfe',
         /* REST 接口 服务器地址 */
         'host':'115.159.62.18',
         /* REST 接口 服务器端口 */

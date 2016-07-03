@@ -10,7 +10,7 @@
         this.nonceStr = this.generateMixed(32);
         this.timestamp = new Date().getTime();
         this.url = window.location.href;
-        this.appId = wechat_appId;
+        this.appId = wechatPublicNumberInfo.appid;
         this.debug = false;
         // 所有要调用的 API 都要加到这个列表中
         this.jsApiList = [

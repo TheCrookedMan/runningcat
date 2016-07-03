@@ -32,7 +32,11 @@
                     validity.valid = true;
                 }
             } else if (validity.field.name == "idcard") {
-                validity.valid = regCardId.test(validity.field.value);
+                if(validity.field.value == "" || regCardId.test(validity.field.value)){
+                    validity.valid = true;
+                } else {
+                    validity.valid = false;
+                }
             } else if (validity.field.name == "birthday") {
                 if (validity.field.value == "" || !common.regRealAge(validity.field.value)) {
                     validity.valid = false;

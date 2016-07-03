@@ -46,15 +46,14 @@
                 data = data.replace(/(^\s+)|(\s+$)/g, "");
                 if ("" == data) {
                     self.isEnd = true;
-                    if(self.pageNo == 1){
-                        $(".pub-list ul").html("<li><p class='pub_nodata'>喵~，今天没有排课，休息一下！</p></li>");
+                    if (self.pageNo == 1) {
+                        $(".pub-list ul").html("<li style='margin:5rem 0;'><p class='pub_nodata'>喵~，今天没有排课，休息一下！</p></li>");
                     }
                 } else {
                     self.isEnd = false;
-                    if(self.pageNo == 1){
+                    if (self.pageNo == 1) {
                         $(".pub-list ul").html(data);
-                    }
-                    else{
+                    } else {
                         $(".pub-list ul").append(data);
                     }
                 }
@@ -148,17 +147,23 @@
         $(".data-list").swiper({
             onClick: function(selector) {
                 var date = selector.data("date");
+                var dateTime = selector.data("time");
                 date = new Date(date).getTime();
+                common.setCourseCurrentDate(dateTime);
                 courseListObj.init(date);
             },
             onComplete: function(selector) {
-                var date = selector.data("date");
-                date = new Date(date).getTime();
-                courseListObj.init(date);
+                var courseCurrentDate = common.getCourseCurrentDate();
+                if (!!courseCurrentDate) {
+                    $(".swiper .wrapper .cur").removeClass('cur');
+                    $(".swiper .wrapper ."+courseCurrentDate).addClass('cur');
+                    courseListObj.init(courseCurrentDate);
+                } else {
+                    var date = selector.data("date");
+                    date = new Date(date).getTime();
+                    courseListObj.init(date);
+                }
             }
         });
     }
-$(".tit").each(function(i){
-    alert("afssdafs")
-})
 }).call(this);

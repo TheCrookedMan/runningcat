@@ -94,9 +94,20 @@ module.exports = (swig) => {
 
         return per + "%";
     }
+
+    let isExpired = (time) =>{
+        let endTime = time*1;
+        let currentTime = new Date().getTime();
+        if(endTime < currentTime ){
+            return true;
+        } else {
+            return false;
+        }
+    }
     swig.setFilter("dateFormat", dateFormat);
     swig.setFilter("toWeek", toWeek);
     swig.setFilter("scopeFilter", scopeFilter);
     swig.setFilter("compareDate", compareDate);
     swig.setFilter("toPercent", toPercent);
+    swig.setFilter("isExpired",isExpired);
 }
