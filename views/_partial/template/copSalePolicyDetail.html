@@ -26,6 +26,7 @@
                         {% else %}
                         <td class="col-red">无折扣</td>
                         {% endif %}
+                        
                         <td class="col-red">{{detail.subtractMoney.toFixed(2)}}</td>
 
                         {% if detail.giveCourseHour == 0 %}
@@ -33,7 +34,6 @@
                         {% else %}
                         <td class="col-red">{{detail.giveCourseHour}}课时</td>
                         {% endif %}
-                        
                     </tr>
                     {% else %}
                     <tr>
@@ -54,6 +54,9 @@
                     {% endif %} {% endfor %}
                 </tbody>
             </table>
+            {% if !!memberLevelSalePolicyInfo %}
+                <div class="memberLevelInfo col-red">{{memberLevelSalePolicyInfo}}</div>
+            {% endif %}
         </div>
     </div>
 </div>

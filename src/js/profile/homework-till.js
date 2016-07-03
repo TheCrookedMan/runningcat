@@ -62,6 +62,11 @@
                     arr.push(path);
                     var str = "<div class='task'><p><img src='" + window.imageAddress + arr[imglength] + "' class='imgUrl' data-url='" + arr[imglength] + "' /></p></div>"
                     $(".uploadImage").parents(".img-list").prepend(str);
+
+                    var task = $(".img-list.upload .task");
+                    if(task.length > 5){
+                        $(".uploadTaskPanel").hide();
+                    }
                 }
             });
         }).error(function(err) {});
@@ -99,7 +104,8 @@
             if (data.code == "0000" && data.success) {
                 modal.alert("提交作业成功！");
             } else {
-                modal.alert("提交作业失败！");
+                // modal.alert("提交作业失败！");
+                modal.alert(data.msg);
             }
         })
         return false;
@@ -134,7 +140,8 @@
             if (data.code == "0000" && data.success) {
                 modal.alert("修改作业成功！");
             } else {
-                modal.alert("修改作业失败！");
+                // modal.alert("修改作业失败！");
+                modal.alert(data.msg);
             }
         })
         return false;

@@ -4,7 +4,8 @@
         courseId: onceId,
         memberId: userInfo.memberId,
         onceId: onceId,
-        storeId: storeInfo.storeId
+        storeId: storeInfo.storeId,
+        classTimeId: classTimeId
     }).success(function(data) {
         $(".submit-class").html(data);
     });

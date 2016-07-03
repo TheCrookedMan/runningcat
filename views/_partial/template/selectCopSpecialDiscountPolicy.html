@@ -19,6 +19,8 @@
                             <tr>
                                 <th>份数</th>
                                 <th>折扣信息</th>
+                                <th>减</th>
+                                <th>送</th>
                             </tr>
                         {% endif %}
 
@@ -30,6 +32,14 @@
                             {% else %}
                             <td class="col-red">无折扣</td>
                             {% endif %}
+
+                            <td class="col-red">{{detail.subtractMoney.toFixed(2)}}</td>
+
+                            {% if detail.giveCourseHour == 0 %}
+                            <td class="col-red">{{detail.giveCourseHour}}</td>
+                            {% else %}
+                            <td class="col-red">{{detail.giveCourseHour}}课时</td>
+                            {% endif %}
                         </tr>
                         {% else %}
                         <tr>
@@ -39,6 +49,14 @@
                             {% else %}
                             <td>无折扣</td>
                             {% endif %}
+
+                            <td>{{detail.subtractMoney.toFixed(2)}}</td>
+
+                            {% if detail.giveCourseHour == 0 %}
+                            <td>{{detail.giveCourseHour}}</td>
+                            {% else %}
+                            <td>{{detail.giveCourseHour}}课时</td>
+                            {% endif %}
                         </tr>
                         {% endif %}
                     {% else %}
@@ -46,6 +64,8 @@
                             <tr>
                                 <th>截止时间</th>
                                 <th>折扣信息</th>
+                                <th>减</th>
+                                <th>送</th>
                             </tr>
                         {% endif %}
                         {% if detail.isUse == 1 %}
@@ -56,6 +76,15 @@
                             {% else %}
                             <td class="col-red">无折扣</td>
                             {% endif %}
+
+                            <td class="col-red">{{detail.subtractMoney.toFixed(2)}}</td>
+
+                            {% if detail.giveCourseHour == 0 %}
+                            <td class="col-red">{{detail.giveCourseHour}}</td>
+                            {% else %}
+                            <td class="col-red">{{detail.giveCourseHour}}课时</td>
+                            {% endif %}
+
                         </tr>
                         {% else %}
                         <tr>
@@ -65,6 +94,14 @@
                             {% else %}
                             <td>无折扣</td>
                             {% endif %}
+
+                            <td>{{detail.subtractMoney.toFixed(2)}}</td>
+
+                            {% if detail.giveCourseHour == 0 %}
+                            <td>{{detail.giveCourseHour}}</td>
+                            {% else %}
+                            <td>{{detail.giveCourseHour}}课时</td>
+                            {% endif %}
                         </tr>
                         {% endif %}
 
@@ -72,6 +109,9 @@
                     {% endfor %}
                 </tbody>
             </table>
+            {% if !!memberLevelSalePolicyInfo %}
+                <div class="memberLevelInfo col-red">{{memberLevelSalePolicyInfo}}</div>
+            {% endif %}
         </div>
     </div>
 </div>

@@ -4,7 +4,8 @@
         // specialId: specialId,
         memberId: userInfo.memberId,
         onceId: onceId,
-        storeId: storeInfo.storeId
+        storeId: storeInfo.storeId,
+        classTimeId: classTimeId
     }).success(function(data) {
         $(".submit-class").html(data);
     });
@@ -23,10 +24,10 @@
         });
         ev.stopPropagation();
     });
-    $("body").on("submit",".usrClassEvaluate",function() {
+    $("body").on("submit", ".usrClassEvaluate", function() {
         var data = common.parseForm("form");
         // data.memberId = userInfo.memberId;
-        
+
         var score = $(".comment .score").find("a.am-icon-star");
         score = score.length * 2;
         var trainScore = $(".comment .trainScore").find("a.am-icon-star");
@@ -38,42 +39,43 @@
         data.trainScore = trainScore;
         data.classTimeId = classTimeId;
 
-        $.post('/specialEvaluate/addUsrClassEvaluate',data).success(function(data){
-            if(data.code == "0000" && data.success){
+        $.post('/specialEvaluate/addUsrClassEvaluate', data).success(function(data) {
+            if (data.code == "0000" && data.success) {
                 modal.alert("评论成功！");
             } else {
-                modal.alert("评论失败！");
+                // modal.alert("评论失败！");
+                modal.alert(data.msg);
             }
         })
         return false;
     });
-    $("body").on("click",".pub-num .num .min",function(ev){
+    $("body").on("click", ".pub-num .num .min", function(ev) {
         var buy_num = $(".pub-num .buy_num").val();
         buy_num = parseInt(buy_num);
-        if(buy_num > 0){
-            buy_num --;
-            $(".pub-num .buy_num").val(buy_num);
-        } 
-        ev.stopPropagation();
-    });
-    $("body").on("click",".pub-num .num .add",function(ev){
-        var buy_num = $(".pub-num .buy_num").val();
-        buy_num = parseInt(buy_num);
-        if(buy_num < useful_food){
-            buy_num ++;
+        if (buy_num > 0) {
+            buy_num--;
             $(".pub-num .buy_num").val(buy_num);
         }
         ev.stopPropagation();
     });
-    $("body").on("change",".pub-num .buy_num",function(ev){
+    $("body").on("click", ".pub-num .num .add", function(ev) {
+        var buy_num = $(".pub-num .buy_num").val();
+        buy_num = parseInt(buy_num);
+        if (buy_num < useful_food) {
+            buy_num++;
+            $(".pub-num .buy_num").val(buy_num);
+        }
+        ev.stopPropagation();
+    });
+    $("body").on("change", ".pub-num .buy_num", function(ev) {
         var buy_num = $(this).val();
-        if(isNaN(buy_num)){
+        if (isNaN(buy_num)) {
             buy_num = 1;
         }
         buy_num = parseInt(buy_num);
-        if(buy_num > useful_food){
+        if (buy_num > useful_food) {
             $(this).val(useful_food);
-        } else if(buy_num < 0){
+        } else if (buy_num < 0) {
             $(this).val(0);
         }
         ev.stopPropagation();
@@ -86,7 +88,7 @@
     });
     $("body").on("keyup", ".pub-num .buy_num", function(ev) {
         var new_num = $(this).val();
-        if(isNaN(new_num)){
+        if (isNaN(new_num)) {
             modal.alert("请输入数字！");
             $(this).val(old_num);
         }

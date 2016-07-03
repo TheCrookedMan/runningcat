@@ -3,7 +3,9 @@
     var needCourseNum = 0;
     var buyCopiesNumber = 1;
     var storeInfo = common.getStoreInfo();
-    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1,storeId:storeInfo.storeId }).success(function(data) {
+    var memberLevelSalePolicyInfo = "";
+    var isUsedCatFood = true;
+    $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1, storeId: storeInfo.storeId }).success(function(data) {
         if (data.code == "0000" && data.success) {
             usrRechargeOrderRemainNum = data.data;
             $(".usrRechargeOrderRemainNum").text(data.data);
@@ -35,31 +37,30 @@
                 payInfo.push("</li>");
                 payInfo.push("</ul>");
                 $(".pay-info").html(payInfo.join(""));
-                var dayOfWeek=parseInt($("#week").val());
-                    switch (dayOfWeek)
-                    {
+                var dayOfWeek = parseInt($("#week").val());
+                switch (dayOfWeek) {
                     case 0:
-                      $("#dayOfWeek").html("周一");
-                      break;
+                        $("#dayOfWeek").html("周一");
+                        break;
                     case 1:
-                      $("#dayOfWeek").html("周二");
-                      break;
+                        $("#dayOfWeek").html("周二");
+                        break;
                     case 2:
-                      $("#dayOfWeek").html("周三");
-                      break;
+                        $("#dayOfWeek").html("周三");
+                        break;
                     case 3:
-                      $("#dayOfWeek").html("周四");
-                      break;
+                        $("#dayOfWeek").html("周四");
+                        break;
                     case 4:
-                      $("#dayOfWeek").html("周五");
-                      break;
+                        $("#dayOfWeek").html("周五");
+                        break;
                     case 5:
-                      $("#dayOfWeek").html("周六");
-                      break;
+                        $("#dayOfWeek").html("周六");
+                        break;
                     case 6:
-                      $("#dayOfWeek").html("周日");
-                      break;
-                    }
+                        $("#dayOfWeek").html("周日");
+                        break;
+                }
                 var oncePrice = record.oncePrice == undefined ? 0 : record.oncePrice;
                 var peolist = [];
                 for (var i = 1; i < 5; i++) {
@@ -108,20 +109,20 @@
         gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum);
         setTotalPrice();
     }
-    $(".rechargePanel").on("click","button",function(ev){
-        var jmphref = $(this).data("jmphref");
-        window.location.href = jmphref;
-    })
-    /*
-        获取可用课时纪录列表
-     */
+    $(".rechargePanel").on("click", "button", function(ev) {
+            var jmphref = $(this).data("jmphref");
+            window.location.href = jmphref;
+        })
+        /*
+            获取可用课时纪录列表
+         */
     function gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum) {
         $.get('/timeMoneyPayment_rechargelist.template', {
             memberId: userInfo.memberId,
             courseHourStatus: 1,
             needCourseNum: needCourseNum,
             usrRechargeOrderRemainNum: usrRechargeOrderRemainNum,
-            storeId:storeInfo.storeId
+            storeId: storeInfo.storeId
         }).success(function(data) {
             data = data.replace(/(^\s+)|(\s+$)/g, "");
             $(".usrRechargeOrderList .rechargeList").html(data)
@@ -205,6 +206,18 @@
                         $(".memberCatFood").text(memberCatFood);
                         $(".orderUnitPrice").text(orderUnitPrice);
 
+                        var mlevemRatio = record.mlevemRatio;
+                        var gradeName = record.gradeName;
+
+                        if (!!gradeName) {
+                            if (mlevemRatio < 1) {
+                                memberLevelSalePolicyInfo = "＊当前为" + gradeName + "，可再享受" + mlevemRatio * 10 + "折优惠";
+                            } else {
+                                memberLevelSalePolicyInfo = "＊当前为" + gradeName + "，没有可再享受的优惠！"
+                            }
+                        } else {
+                            memberLevelSalePolicyInfo = "";
+                        }
                         self.discountInfo = {
                             totalNum: totalNum,
                             nmemberCatFood: nmemberCatFood
@@ -228,6 +241,7 @@
                 $(".memberCatFood").text("0");
                 $(".orderUnitPrice").text("0.00");
                 self.gradePanelString = "";
+                memberLevelSalePolicyInfo = "";
                 self.discountInfo = {
                     totalNum: 0,
                     nmemberCatFood: 0
@@ -240,7 +254,8 @@
                 $.get('/copSalePolicyDetail.template', {
                     memberId: userInfo.memberId,
                     totalNum: totalNum,
-                    storeId: self.storeId
+                    storeId: self.storeId,
+                    memberLevelSalePolicyInfo: memberLevelSalePolicyInfo
                 }).success(function(data) {
                     $("#detail-popup").html(data);
                     $("#detail-popup tbody").append(self.gradePanelString);
@@ -290,6 +305,10 @@
         单次课现金支付
      */
     $("body").on("click", ".wechatPayment", function(ev) {
+        var catfood = 0;
+        if(isUsedCatFood){
+            catfood = rechargeObj.discountInfo.nmemberCatFood;
+        }
         if (needCourseNum > 0) {
             $.post('/order/classTimeMoneyPayment', {
                 memberId: userInfo.memberId,
@@ -298,7 +317,7 @@
                 hourSouce: 1,
                 payType: 2,
                 type: 1,
-                catfood: rechargeObj.discountInfo.nmemberCatFood,
+                catfood: catfood,
                 onceId: courseId,
                 openId: common.getOpenId(),
                 buyCopies: buyCopiesNumber
@@ -341,6 +360,17 @@
                 $(".totalPrice").text(string);
             }
         })
-    }
+    };
+
+    $("body").on("click",".list-info .code",function(ev){
+        var checkIcon = $(this).find("i.am-icon-check-square-o");
+        if(checkIcon.length > 0){
+            isUsedCatFood = false;
+            $(this).find("i.am-icon-check-square-o").addClass("am-icon-square-o").removeClass("am-icon-check-square-o");
+        } else {
+            isUsedCatFood = true;
+            $(this).find("i.am-icon-square-o").addClass("am-icon-check-square-o").removeClass("am-icon-square-o");
+        }
+    });
 
 }).call(this)

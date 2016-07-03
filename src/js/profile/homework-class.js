@@ -64,6 +64,11 @@
                     arr.push(path);
                     var str = "<div class='task'><p><img src='" + window.imageAddress + arr[imglength] + "' class='imgUrl' data-url='" + arr[imglength] + "' /></p></div>"
                     $(".uploadImage").parents(".img-list").prepend(str);
+
+                    var task = $(".img-list.upload .task");
+                    if(task.length > 5){
+                        $(".uploadTaskPanel").hide();
+                    }
                 }
             });
         }).error(function(err) {});

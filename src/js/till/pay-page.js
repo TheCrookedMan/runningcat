@@ -2,6 +2,8 @@
     var usrRechargeOrderRemainNum = 0;
     var needCourseNum = 0;
     var storeInfo = common.getStoreInfo();
+    var memberLevelSalePolicyInfo = "";
+    var isUsedCatFood = true;
     $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1, storeId: storeInfo.storeId }).success(function(data) {
         if (data.code == "0000" && data.success) {
             usrRechargeOrderRemainNum = data.data;
@@ -203,6 +205,20 @@
                         $(".memberCatFood").text(memberCatFood);
                         $(".orderUnitPrice").text(orderUnitPrice);
 
+                        var mlevemRatio = record.mlevemRatio;
+                        var gradeName = record.gradeName;
+
+                        if (!!gradeName) {
+                            if (mlevemRatio < 1) {
+                                memberLevelSalePolicyInfo = "＊当前为" + gradeName + "，可再享受" + mlevemRatio * 10 + "折优惠";
+                            } else {
+                                memberLevelSalePolicyInfo = "＊当前为" + gradeName + "，没有可再享受的优惠！"
+                            }
+                        } else {
+                            memberLevelSalePolicyInfo = "";
+                        }
+
+
                         self.discountInfo = {
                             // totalNum: totalNum,
                             nmemberCatFood: nmemberCatFood
@@ -226,6 +242,7 @@
                 $(".memberCatFood").text("0");
                 $(".orderUnitPrice").text("0.00");
                 self.gradePanelString = "";
+                memberLevelSalePolicyInfo = "";
                 self.discountInfo = {
                     // totalNum: 0,
                     nmemberCatFood: 0
@@ -239,7 +256,8 @@
                     memberId: userInfo.memberId,
                     groupId: specialId,
                     storeId: rechargeObj.storeId,
-                    buyCopies: buyCopies
+                    buyCopies: buyCopies,
+                    memberLevelSalePolicyInfo: memberLevelSalePolicyInfo
                 }).success(function(data) {
                     $("#detail-popup").html(data);
                     $("#detail-popup tbody").append(self.gradePanelString);
@@ -284,6 +302,10 @@
         ev.stopPropagation();
     });
     $("body").on("click", ".wechatPayment", function(ev) {
+        var catfood = 0;
+        if(isUsedCatFood){
+            catfood = rechargeObj.discountInfo.nmemberCatFood;
+        }
         if (needCourseNum > 0) {
             $.post('/order/specialClassMoneyPayment', {
                 memberId: userInfo.memberId,
@@ -292,7 +314,7 @@
                 hourSouce: 1,
                 payType: 2,
                 type: 1,
-                catfood: rechargeObj.discountInfo.nmemberCatFood,
+                catfood: catfood,
                 groupId: specialId,
                 openId: common.getOpenId(),
                 buyCopies: buyCopiesNumber
@@ -331,4 +353,15 @@
             }
         })
     }
+
+    $("body").on("click",".list-info .code",function(ev){
+        var checkIcon = $(this).find("i.am-icon-check-square-o");
+        if(checkIcon.length > 0){
+            isUsedCatFood = false;
+            $(this).find("i.am-icon-check-square-o").addClass("am-icon-square-o").removeClass("am-icon-check-square-o");
+        } else {
+            isUsedCatFood = true;
+            $(this).find("i.am-icon-square-o").addClass("am-icon-check-square-o").removeClass("am-icon-square-o");
+        }
+    });
 }).call(this)

@@ -1037,34 +1037,35 @@ ul.other-login-way li img {
                                 width: 20%;
                                 margin-left: 2%;
                                 text-align: center;
+                                margin-bottom: .5rem;
                                 p {
                                     margin: 0;
                                     padding: 0;
                                     width: 100%;
                                     height: 100%;
                                 }
-                                &:last-child {
-                                    background: #c8c8c8;
-                                    position: relative;
-                                    margin-top: 0.2rem;
-                                    .am-form-group {
-                                        position: absolute;
-                                        left: 0;
-                                        top: 0;
-                                        width: 100%;
-                                        height: 100%;
-                                        a {
-                                            color: #7d7d7d;
-                                            font-size: 2rem;
-                                            .am-icon-plus {
-                                                position: relative;
-                                                top: 0.7rem;
-                                            }
+                            }
+                            .uploadTaskPanel {
+                                background: #c8c8c8;
+                                position: relative;
+                                margin-top: 0.2rem;
+                                .am-form-group {
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    width: 100%;
+                                    height: 100%;
+                                    a {
+                                        color: #7d7d7d;
+                                        font-size: 2rem;
+                                        .am-icon-plus {
+                                            position: relative;
+                                            top: 0.7rem;
                                         }
                                     }
-                                    img {
-                                        opacity: 0;
-                                    }
+                                }
+                                img {
+                                    opacity: 0;
                                 }
                             }
                         }
@@ -1771,6 +1772,10 @@ ul.other-login-way li img {
     width: 100%;
     display: inline-block;
     border: #898989 solid 1px;
+    .memberLevelInfo {
+        width: 90%;
+        margin: 1rem auto 0;
+    }
 }
 
 table {
@@ -1887,7 +1892,7 @@ table {
         }
     }
     .am-icon-clock-o {
-        font-size: 1.4rem !important;
+        font-size: 1.8rem !important;
     }
     .am-badge {
         padding: .15em .125em;

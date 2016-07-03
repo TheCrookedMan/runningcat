@@ -108,6 +108,7 @@
                 }
                 a {
                     color: #000;
+                    display: block;
                     span {
                         font-size: 1.6rem;
                         position: relative;
@@ -139,12 +140,14 @@
             li {
                 border-right: #d2d2d2 solid 1px;
                 border-bottom: #d2d2d2 solid 1px;
-                padding: 1.2rem 0;
+                // padding: 1.2rem 0;
                 &:nth-of-type(2n) {
                     border-right: 0;
                 }
                 a {
                     color: #000;
+                    padding: 1.2rem 0;
+                    display: block;
                     span {
                         font-size: 1.4rem;
                         position: relative;

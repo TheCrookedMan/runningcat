@@ -44,7 +44,7 @@ router.get('/getUsrSpecialOnce.template', [profile.getUsrSpecialOnce], (req, res
     let specialId = req.body.specialId;
     return res.render('_partial/template/getUsrSpecialOnce', {
         data: res.data['usrClasstimeOrder.getUsrSpecialOnce']['record'],
-        specialId:specialId
+        specialId: specialId
     });
 });
 /*我的课程作业*/
@@ -156,15 +156,19 @@ router.get('/submitclass.template', [usrClass.findMyCourseWorkt], (req, res, nex
 
 /*充值 查询优惠政策详细信息*/
 router.get('/copSalePolicyDetail.template', [order.selectCopSalePolicy], (req, res, next) => {
+    let memberLevelSalePolicyInfo = req.query.memberLevelSalePolicyInfo;
     return res.render('_partial/template/copSalePolicyDetail', {
-        data: res.data['order.selectCopSalePolicy']['record']
+        data: res.data['order.selectCopSalePolicy']['record'],
+        memberLevelSalePolicyInfo: memberLevelSalePolicyInfo
     });
 });
 
 /*特训营 充值 查询优惠政策详细信息*/
 router.get('/selectCopSpecialDiscountPolicy.template', [order.selectCopSpecialDiscountPolicy], (req, res, next) => {
+    let memberLevelSalePolicyInfo = req.query.memberLevelSalePolicyInfo;
     return res.render('_partial/template/selectCopSpecialDiscountPolicy', {
-        data: res.data['order.selectCopSpecialDiscountPolicy']['record']
+        data: res.data['order.selectCopSpecialDiscountPolicy']['record'],
+        memberLevelSalePolicyInfo: memberLevelSalePolicyInfo
     });
 });
 
