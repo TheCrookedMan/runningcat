@@ -83,7 +83,8 @@
                 $(this).find(".t_m").text(minute);
                 $(this).find(".t_s").text(second);
             } else {
-                clearInterval(timer);
+                // clearInterval(timer);
+                $(this).addClass("end").removeClass("start");
                 $(this).parent().siblings().find(".btn").removeAttr("href").addClass('btn-end').removeClass("btn-red")
             }
         });
