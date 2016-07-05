@@ -367,5 +367,6 @@
             $(this).find("i.am-icon-square-o").addClass("am-icon-check-square-o").removeClass("am-icon-square-o");
         }
         rechargeObj.selectDiscountInfo(buyCopiesNumber);
+        ev.stopPropagation();
     });
 }).call(this)

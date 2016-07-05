@@ -110,6 +110,9 @@ router.get('/wechatAuth.html', (req, res, next) => {
         redirect_uri = options.state,
         wechatPublicNumber = req.cookies.wechatPublicNumber;
     wechatPublicNumber = JSON.parse(wechatPublicNumber);
+
+    redirect_uri = redirect_uri.replace(/_8_8_/g,'&');
+
     let appid = wechatPublicNumber.appid,
         appsecret = wechatPublicNumber.appsecret;
 
@@ -117,11 +120,11 @@ router.get('/wechatAuth.html', (req, res, next) => {
         let data = JSON.parse(params);
         //没有errcode字段表示请求成功
         if (!data.errcode) {
-            if ("snsapi_userinfo" == data.scope) {
-                let access_token = data.access_token,
-                    openid = data.openid;
+            let access_token = data.access_token,
+                openid = data.openid;
 
-                res.cookie('openId', openid, { maxAge: maxAge, path: '/' });
+            res.cookie('openId', openid, { maxAge: maxAge, path: '/' });
+            if ("snsapi_userinfo" == data.scope) {
                 wechatAuth.getUserInfo(access_token, openid, function(userinfo) {
                     let info = JSON.parse(userinfo);
                     if (!info.openid) {
@@ -136,10 +139,12 @@ router.get('/wechatAuth.html', (req, res, next) => {
                             返回的userinfo信息里面有openid证明请求返回成功
                          */
                         res.cookie('wechatUserInfo', userinfo, { maxAge: maxAge, path: '/' });
-                        res.redirect("/course/course.html");
+                        res.redirect(redirect_uri);
                     }
                 });
-            } else if ("snsapi_base" == data.scope) {}
+            } else if ("snsapi_base" == data.scope) {
+                res.redirect(redirect_uri);
+            }
         } else {
             //error
             next({

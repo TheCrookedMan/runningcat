@@ -1,7 +1,9 @@
 ### 初始化
 在项目根目录下面执行命令
-	
+	# 安装所有依赖，包括 devDependencies
 	npm install
+	# 只安装 dependencies 依赖
+	npm install --production
 
 ### 启动
 在跟目录下面执行

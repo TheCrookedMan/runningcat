@@ -134,7 +134,6 @@ exports.getUserInfo = (req, res, next) => {
     根据unionId获取用户信息
  */
 exports.getUsrInfoByUnionId = (req, res, next) => {
-    // console.log("wechatUserInfo.unionid:::"+req.body.unionId);
     new rest({
         functionCode: 'member.getUsrInfoByUnionId',
     }).post(req, res, next);

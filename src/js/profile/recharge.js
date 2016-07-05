@@ -247,5 +247,6 @@
         }
         var courseNum = $(".pub-num .buy_num").val();
         rechargeObj.selectDiscountInfo(courseNum);
+        ev.stopPropagation();
     });
 }).call(this);

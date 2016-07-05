@@ -44,11 +44,15 @@
                 var data = common.parseForm(".am-form");
                 if (common.regMobileNo(data.mobileNo)) {
                     $.post('/checkSmscode', { 'mobileNo': data.mobileNo, 'smsCode': data.smsCode }).success(function(data) {
+                        // var params = $(".am-form").serialize();
+                        // window.location.href = "/public/profile.html?" + params;
                         var params = $(".am-form").serialize();
-                        window.location.href = "/public/profile.html?" + params;
+                        params = params.replace(/&/g, '_8_8_');
+                        var redirect_uri = "/public/profile.html?" + params;
+                        window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatPublicNumberInfo.appid + "&redirect_uri=http%3a%2f%2fwechat.runningcat.club%2fwechatAuth.html&response_type=code&scope=snsapi_userinfo&state=" + redirect_uri + "&connect_redirect=1#wechat_redirect"
                     }).error(function(data) {
                         modal.alert(data.responseJSON.msg);
-                    })
+                    });
                 } else {
                     modal.alert("情确认手机号是否输入正确！");
                 }

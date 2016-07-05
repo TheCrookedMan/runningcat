@@ -58,9 +58,10 @@
                 window.location.href = fromUrl;
             } else {
                 if ("10015" == data.code) {
-                    // window.location.href = "/public/register.html";
                     var params = $(".am-form").serialize();
-                    window.location.href = "/public/profile.html?" + params;
+                    params = params.replace(/&/g, '_8_8_');
+                    var redirect_uri = "/public/profile.html?" + params;
+                    window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatPublicNumberInfo.appid + "&redirect_uri=http%3a%2f%2fwechat.runningcat.club%2fwechatAuth.html&response_type=code&scope=snsapi_userinfo&state=" + redirect_uri + "&connect_redirect=1#wechat_redirect"
                 } else {
                     modal.alert(data.msg);
                 }
