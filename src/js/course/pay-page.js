@@ -365,7 +365,7 @@
         })
     };
 
-    $("body").on("click", ".list-info .isUsedCatFod", function(ev) {
+    $("body").on("touchend", ".list-info .isUsedCatFod", function(ev) {
         var checkIcon = $(this).find("i.am-icon-check-square-o");
         if (checkIcon.length > 0) {
             isUseCatfood = 0;
