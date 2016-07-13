@@ -97,6 +97,12 @@
         var onceCourseHour = $(".pub_peolist a.cur").data("onceCourseHour");
         needCourseNum = num * onceCourseHour;
 
+        if(needCourseNum <= 0){
+            $(".cashPayment").parent("li").hide();
+        } else {
+            $(".cashPayment").parent("li").show();
+        }
+
         if (usrRechargeOrderRemainNum < needCourseNum) {
             var href = $(".rechargePanel button").data('href');
             $(".rechargePanel button").data('jmphref', href + "?needCourseNum=" + needCourseNum);
@@ -284,22 +290,22 @@
     单次课课时支付
      */
     $("body").on("click", ".classTimePaymentButton", function(ev) {
-        if (needCourseNum > 0) {
-            $.post('/order/classTimePayOrder', {
-                memberId: userInfo.memberId,
-                onceId: courseId,
-                storeId: rechargeObj.storeId,
-                buyCopies: buyCopiesNumber
-            }).success(function(data) {
-                if (data.code == "0000" && data.success) {
-                    window.location.href = "/course/pay-success.html?courseId=" + courseId;
-                } else {
-                    modal.alert(data.msg);
-                }
-            });
-        } else {
-            modal.alert("请输入需要购买课程所需的课时！");
-        }
+        // if (needCourseNum > 0) {
+        $.post('/order/classTimePayOrder', {
+            memberId: userInfo.memberId,
+            onceId: courseId,
+            storeId: rechargeObj.storeId,
+            buyCopies: buyCopiesNumber
+        }).success(function(data) {
+            if (data.code == "0000" && data.success) {
+                window.location.href = "/course/pay-success.html?courseId=" + courseId;
+            } else {
+                modal.alert(data.msg);
+            }
+        });
+        // } else {
+        //     modal.alert("请输入需要购买课程所需的课时！");
+        // }
 
         ev.stopPropagation();
     });

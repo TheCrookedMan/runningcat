@@ -9,7 +9,6 @@
         	}
         	$(".profile .info .nickName").text(record.nickName);
         	$(".profile .info .mobileNo").text(record.mobileNo);
-        	
         }
     })
 }).call(this)

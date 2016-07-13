@@ -18,6 +18,7 @@ exports.accessToken = (appid, appsecret, code, callback) => {
 
 let get = (host, post, url, callback) => {
     let optionspost, postheaders, reqPost;
+    // let Iconv  = require('iconv').Iconv;
     postheaders = {
         'Content-Type': 'application/x-www-form-urlencoded'
     }
@@ -35,6 +36,8 @@ let get = (host, post, url, callback) => {
             dataStr += d;
         });
         res.on('end', function() {
+            // let wechatString = new Iconv(dataStr, 'utf-8');
+            // callback(wechatString);
             callback(dataStr);
         });
     });

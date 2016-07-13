@@ -32,7 +32,7 @@
                     validity.valid = true;
                 }
             } else if (validity.field.name == "idcard") {
-                if(validity.field.value == "" || regCardId.test(validity.field.value)){
+                if (validity.field.value == "" || regCardId.test(validity.field.value)) {
                     validity.valid = true;
                 } else {
                     validity.valid = false;
