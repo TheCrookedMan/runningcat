@@ -91,6 +91,12 @@ exports.checkLogin = (req, res, next) => {
             } else if ("0001" == data.code) {
                 res.redirect("/public/login.html?fromUrl="+fromUrl);
             } else if ("100269" == data.code) {
+                let newUserInfo = JSON.stringify(data.record);
+                /*
+                    把runningcat用户信息存入cookie中.
+                 */
+                console.log("newUserInfo:::"+newUserInfo);
+                res.cookie('runningcatUserInfo', newUserInfo, { maxAge: maxAge, path: '/' });
                 res.redirect("/profile/edit-profile.html");
             } else if ("100270" == data.code) {
                 res.redirect("/public/register.html");

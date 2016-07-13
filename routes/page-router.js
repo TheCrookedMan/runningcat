@@ -210,7 +210,12 @@ router.get('/market/productDetail.html', (req, res, next) => {
     return res.render('market/productDetail', { title: '商品详情' });
 });
 
-
+/*
+    完善信息页面单独拎出来，不需要检查是否登录
+ */
+router.get('/profile/edit-profile.html', (req, res, next) => {
+    return res.render('profile/edit-profile', { title: '完善信息' });
+});
 /*
     个人中心 profile 相关的页面，首先需要验证
  */
@@ -264,10 +269,6 @@ router.get('/profile/done-class.html', (req, res, next) => {
 router.get('/profile/done-till.html', (req, res, next) => {
     let specialId = req.query.specialId;
     return res.render('profile/done-till', { title: '我的特训营', specialId: specialId });
-});
-
-router.get('/profile/edit-profile.html', (req, res, next) => {
-    return res.render('profile/edit-profile', { title: '完善信息' });
 });
 
 router.get('/profile/invite.html', (req, res, next) => {
