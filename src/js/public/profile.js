@@ -98,7 +98,7 @@
             modal.alert(data.responseJSON.msg);
         });
     }
-
+    
     function updateUserInfo(data) {
         $.post('/updateUserInfo', data).success(function(data) {
             if (data.success) {
