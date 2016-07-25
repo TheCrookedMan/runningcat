@@ -1,7 +1,7 @@
 {% for course in data %}
 <li>
     {% if course.courseMaxNum && course.buyerNum %}
-      {% if course.courseMaxNum-course.buyerNum <=course.ticketShortage %}
+      {% if course.courseMaxNum-course.buyerNum > 0 && course.courseMaxNum-course.buyerNum <= course.ticketShortage && course.isBuyFlag == 0 %}
         <img src="/img/ico-shop.png" class="ico">
       {% endif %}
     {% endif %}
@@ -32,11 +32,20 @@
           </div>
         </a>
         <div class="pub-btn">
-            {% if course.isBuyFlag == 0 %}
+            {% if course.courseMaxNum-course.buyerNum > 0 %}
+                {% if course.isBuyFlag == 0 %}
+                <a href="/course/course-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}" class="btn btn-red">预约</a>
+                {% elseif course.isBuyFlag == 1 %}
+                <a  class="btn btn-end">已结束</a>
+                {% endif %}
+            {% else %}
+                <a  class="btn btn-end">已结束</a>
+            {% endif %}
+            <!-- {% if course.isBuyFlag == 0 %}
             <a href="/course/course-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}" class="btn btn-red">预约</a>
             {% elseif course.isBuyFlag == 1 %}
             <a  class="btn btn-end">已结束</a>
-            {% endif %}
+            {% endif %} -->
         </div>
     </div>
 </li>
