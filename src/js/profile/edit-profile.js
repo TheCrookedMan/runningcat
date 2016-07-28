@@ -199,13 +199,16 @@
         validate: function(validity) {
             $tooltip.hide();
             if (validity.field.name == "wechat") {
+
                 if (validity.field.value == "" || common.regSkip(validity.field.value)) {
+                    validity.valid = false;
+                } else if (common.regChinese(validity.field.value)) {
                     validity.valid = false;
                 } else {
                     validity.valid = true;
                 }
             } else if (validity.field.name == "idcard") {
-                if(validity.field.value == "" || regCardId.test(validity.field.value)){
+                if (validity.field.value == "" || regCardId.test(validity.field.value)) {
                     validity.valid = true;
                 } else {
                     validity.valid = false;
@@ -221,19 +224,19 @@
         submit: function(form) {
             if (this.isFormValid()) {
                 var data = common.parseForm("form");
-                if(!data.idcard){
+                if (!data.idcard) {
                     data.idcard = "NULL";
                 }
 
-                if(!data.maritalStatus){
+                if (!data.maritalStatus) {
                     data.maritalStatus = "NULL";
                 }
 
-                if(!data.bloodtype){
+                if (!data.bloodtype) {
                     data.bloodtype = "NULL";
                 }
 
-                if(!data.profession){
+                if (!data.profession) {
                     data.profession = "NULL";
                 }
 

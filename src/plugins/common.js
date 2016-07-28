@@ -9,6 +9,7 @@
         this.reg_skip = /\s/;
         this.reg_beforeWeight = /^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
         this.reg_height = /^(([0-9]+\.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*\.[0-9]+)|([0-9]*[1-9][0-9]*))$/;
+        this.reg_chinese = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
         //单位：秒
         // this.maxAge = 365 * 24 * 60 * 60;
         // 单位：天
@@ -35,6 +36,9 @@
         },
         regSkip: function(str) {
             return this.reg_skip.test(str);
+        },
+        regChinese:function(str){
+            return this.reg_chinese.test(str);
         },
         regBeforeWeight: function(value) {
             return this.reg_beforeWeight.test(value);

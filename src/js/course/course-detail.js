@@ -19,7 +19,6 @@
             res.buyerNum = 0;
         }
 
-
         $("#buyerNum").html(res.buyerNum);
         var carouselFigure = res.carouselFigure;
         var playTimePictures = res.playTimePictures;
@@ -39,7 +38,7 @@
             var str = "<p><img src='" + window.imageAddress + playTimePictures[ele].imgUrl + "'/></p>";
             $('#playTimePictures').append(str);
         }
-        
+
         if (res.buyerNum == res.courseMaxNum) {
             $(".pub-rbtn .btn").removeAttr("href");
             $(".pub-rbtn .btn").addClass("end");

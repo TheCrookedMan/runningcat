@@ -28,6 +28,8 @@
             if (validity.field.name == "wechat") {
                 if (validity.field.value == "" || common.regSkip(validity.field.value)) {
                     validity.valid = false;
+                } else if (common.regChinese(validity.field.value)) {
+                    validity.valid = false;
                 } else {
                     validity.valid = true;
                 }
@@ -98,7 +100,7 @@
             modal.alert(data.responseJSON.msg);
         });
     }
-    
+
     function updateUserInfo(data) {
         $.post('/updateUserInfo', data).success(function(data) {
             if (data.success) {
