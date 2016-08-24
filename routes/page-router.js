@@ -333,12 +333,6 @@ router.get('/profile/heartrate.html', (req, res, next) => {
     return res.render('profile/heartrate', { title: '心率' });
 });
 
-/*
-    私教课
- */
-router.get('/coach/coach.html', (req, res, next) => {
-    return res.render('coach/coach', { title: 'RUNNINGCAT BOX' });
-});
 
 /*
     常规课
@@ -395,6 +389,70 @@ router.get('/till/till-detail.html', (req, res, next) => {
     let isBuyFlag = req.query.isBuyFlag;
     return res.render('till/till-detail', { title: '特训营详情', specialId: specialId, year: year, mm: mm, day: day, isBuyFlag: isBuyFlag });
 });
+
+/*
+    私教课
+ */
+
+
+router.get('/coach/pay-page.html', [user.checkLogin], (req, res, next) => {
+    let specialId = req.query.specialId;
+    let buyCopies = req.query.buyCopies;
+    return res.render('coach/pay-page', { title: '私教课支付页面', specialId: specialId, buyCopies: buyCopies });
+});
+
+router.get('/coach/pay-success.html', (req, res, next) => {
+    let specialId = req.query.specialId;
+    return res.render('coach/pay-success', { title: '约课成功', specialId: specialId });
+});
+
+router.get('/coach/coach.html', (req, res, next) => {
+    // let storeId = req.query.storeId;
+    // let storeName = req.query.storeName;
+    return res.render('coach/coach', { title: '私教课' });
+});
+
+router.get('/coach/coach-detail.html', (req, res, next) => {
+    let specialId = req.query.specialId;
+    let year = req.query.year;
+    let mm = req.query.mm;
+    let day = req.query.day;
+    let isBuyFlag = req.query.isBuyFlag;
+    return res.render('coach/coach-detail', { title: '私教课详情', specialId: specialId, year: year, mm: mm, day: day, isBuyFlag: isBuyFlag });
+});
+
+
+/*
+    自助训练
+ */
+
+
+router.get('/training/pay-page.html', [user.checkLogin], (req, res, next) => {
+    let specialId = req.query.specialId;
+    let buyCopies = req.query.buyCopies;
+    return res.render('training/pay-page', { title: '自助训练支付页面', specialId: specialId, buyCopies: buyCopies });
+});
+
+router.get('/training/pay-success.html', (req, res, next) => {
+    let specialId = req.query.specialId;
+    return res.render('training/pay-success', { title: '约课成功', specialId: specialId });
+});
+
+router.get('/training/training.html', (req, res, next) => {
+    // let storeId = req.query.storeId;
+    // let storeName = req.query.storeName;
+    return res.render('training/training', { title: '自助训练' });
+});
+
+router.get('/training/training-detail.html', (req, res, next) => {
+    let specialId = req.query.specialId;
+    let year = req.query.year;
+    let mm = req.query.mm;
+    let day = req.query.day;
+    let isBuyFlag = req.query.isBuyFlag;
+    return res.render('training/training-detail', { title: '自助训练详情', specialId: specialId, year: year, mm: mm, day: day, isBuyFlag: isBuyFlag });
+});
+
 
 // router.get('*.html', (req, res, next) => {
 //     var url = req.url;
