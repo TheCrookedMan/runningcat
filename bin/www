@@ -7,12 +7,16 @@
 var app = require('../app');
 var debug = require('debug')('runningcat:server');
 var http = require('http');
+var argv = process.argv.slice(2);
 
 /**
  * Get port from environment and store in Express.
  */
-
-var port = normalizePort(process.env.PORT || '9527');
+var port = 9527;
+if ("test" == argv || "dev" == argv) {
+  port = 9888;
+}
+var port = normalizePort(process.env.PORT || port);
 app.set('port', port);
 
 /**

@@ -11,12 +11,18 @@
             $(".single-class .pub-tab").on("click", "a", function(ev) {
                 $(".single-class .pub-tab .cur").removeClass("cur");
                 $(this).addClass("cur");
+
+                var text = $(this).text();
+                $("head title").text(title);
+
                 self.status = $(this).data("id");
                 self.pageNo = 1;
                 $(".myrank").html("");
                 $(".rank-list").html("");
                 self.getRanking();
                 self.getMyranking();
+
+
             });
             self.getRanking();
             self.getMyranking();

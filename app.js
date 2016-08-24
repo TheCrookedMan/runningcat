@@ -47,6 +47,7 @@ app.set('views', path.join(__dirname, 'views'));
 // app.set('wechat_appId', config.wechat.appId);
 app.set('imageAddress', config.wechat.imageAddress);
 app.set('shareQRCodeAddress', config.wechat.shareQRCodeAddress);
+app.set('redirect_uri',config.wechat.redirect_uri);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

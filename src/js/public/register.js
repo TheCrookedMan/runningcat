@@ -49,7 +49,7 @@
                         var params = $(".am-form").serialize();
                         params = params.replace(/&/g, '_8_8_');
                         var redirect_uri = "/public/profile.html?" + params;
-                        window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatPublicNumberInfo.appid + "&redirect_uri=http%3a%2f%2fwechat.runningcat.club%2fwechatAuth.html&response_type=code&scope=snsapi_userinfo&state=" + redirect_uri + "&connect_redirect=1#wechat_redirect"
+                        window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + wechatPublicNumberInfo.appid + "&redirect_uri="+window.redirect_uri+"&response_type=code&scope=snsapi_userinfo&state=" + redirect_uri + "&connect_redirect=1#wechat_redirect"
                     }).error(function(data) {
                         modal.alert(data.responseJSON.msg);
                     });
