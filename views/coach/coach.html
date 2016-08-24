@@ -8,45 +8,55 @@
     <div class="pub-tab skin1">
         <ul>
             <li>
-                <a href="./profile/single-calss.html">私教课</a>
+                <a href="/coach/coach.html"  class="cur">私教课</a>
             </li>
             <li>
-                <a href="../profile/done-calss.html" class="cur">自助训练</a>
+                <a href="/training/training.html">自助训练</a>
             </li>
         </ul>
         <div class="data-list">
-          <a href="javascript:void(0)" class="btn pre"><i class="am-icon-chevron-left"></i></a>
-          <a href="javascript:void(0)" class="btn next"><i class="am-icon-chevron-right"></i></a>
-          <div class="list">
-            <a href="javascript:void(0)">
-              <p>周一</p>
-              <p>4/1</p>
-            </a>
-            <a href="javascript:void(0)">
-              <p>周二</p>
-              <p>4/2</p>
-            </a>
-            <a href="javascript:void(0)">
-              <p>周三</p>
-              <p>4/3</p>
-            </a>
-            <a href="javascript:void(0)">
-              <p>周四</p>
-              <p>4/4</p>
-            </a>
-            <a href="javascript:void(0)">
-              <p>周五</p>
-              <p>4/5</p>
-            </a>
-            <a href="javascript:void(0)">
-              <p>周六</p>
-              <p>4/6</p>
-            </a>
-            <a href="javascript:void(0)" class="cur">
-              <p>周日</p>
-              <p>4/7</p>
-            </a>
-          </div>
+          <a href="javascript:void(0)" class="btn slider-pre"><i class="am-icon-chevron-left"></i></a>
+            <a href="javascript:void(0)" class="btn slider-next"><i class="am-icon-chevron-right"></i></a>
+            <div class="list swiper">
+                <div class="wrapper">
+                    <!-- <a href="javascript:void(0);" class="slider" data-date="2016-06-02">
+                        <p>周四</p>
+                        <p>6/2</p>
+                    </a>
+                    <a href="javascript:void(0);" class="slider" data-date="2016-06-03">
+                        <p>周五</p>
+                        <p>6/3</p>
+                    </a>
+                    <a href="javascript:void(0);" class="slider" data-date="2016-06-04">
+                        <p>周六</p>
+                        <p>6/4</p>
+                    </a>
+                    <a href="javascript:void(0);" class="slider" data-date="2016-06-05">
+                        <p>周日</p>
+                        <p>6/5</p>
+                    </a>
+                    <a href="javascript:void(0);" class="slider" data-date="2016-06-06">
+                        <p>周一</p>
+                        <p>6/6</p>
+                    </a>
+                    <a href="javascript:void(0);" class="slider" data-date="2016-06-07">
+                        <p>周二</p>
+                        <p>6/7</p>
+                    </a>
+                    <a href="javascript:void(0);" class="slider" data-date="2016-06-08">
+                        <p>周三</p>
+                        <p>6/8</p>
+                    </a>
+                    <a href="javascript:void(0);" class="slider" data-date="2016-06-09">
+                        <p>周四</p>
+                        <p>6/9</p>
+                    </a>
+                    <a href="javascript:void(0);" class="slider " data-date="2016-06-10">
+                        <p>周五</p>
+                        <p>6/10</p>
+                    </a> -->
+                </div>
+            </div>
         </div>
     </div>
     <div class="pub-location">
@@ -59,6 +69,7 @@
       <ul>
         <li>
           <img src="/img/shoptest.jpg" />
+          <div class="line"></div>
           <div class="info">
             <div class="name">zuozuo</div>
             <div class="label">
@@ -72,6 +83,7 @@
         </li>
         <li>
           <img src="/img/shoptest.jpg" />
+          <div class="line"></div>
           <div class="info">
             <div class="name">zuozuo</div>
             <div class="label">
@@ -89,3 +101,8 @@
 
 {% include "../_partial/footer.html" %}
 {% include "../_partial/foot.html" %}
+<script src="/js/coach/coach.js"></script>
+<script src="http://map.qq.com/api/js?v=2.exp"></script>
+<script src="/plugins/wechat.min.js"></script>
+<script src="/js/map/tencent.js"></script>
+

@@ -4,8 +4,40 @@
         margin:0;padding:0;width:100%;display:inline-block;
         li{
             width:100%;display:inline-block;position:relative;margin-bottom:0.3rem;
+            .line{
+                width:60%;height: 1px;border-bottom: #fff solid 2px;position: absolute;
+                bottom:1rem;left: 1rem;
+            }
             .info{
-                position:absolute;right:1.5rem;width:90%;text-align:right;top:1.5rem;
+                position:absolute;right:1.5rem;width:90%;text-align:right;top:2rem;
+                .time{
+                    width: 100%;text-align: left;
+                    p{
+                        background-color: #fff;width: 5rem;height: 5rem;border-radius: 100%;
+                        text-align: center;
+                        span{
+                            display: inline-block;position: relative;
+                            &:first-child{
+                                bottom:-0.6rem;
+                            }
+                            &:last-child{
+                               bottom:0.4rem;
+                            }
+                        }
+                    }
+                }
+                .peo{
+                    font-size:2.4rem;color:#fff;margin-top: -4rem;margin-bottom: 2rem;
+                    text-transform: uppercase;
+                }
+                .num{
+                    color: #fff;margin-bottom: 0.5rem;font-size: 1rem;
+                    em{
+                        display: inline-block;border: #fff solid 1px;border-radius: 100%;
+                        width: 1.5rem;height: 1.5rem;text-align: center;margin-right: 0.2rem;
+                        font-weight: normal;font-size: 0.8rem;
+                    }
+                }
                 .name{
                     font-size:2rem;color:#fff;margin-bottom:1.8rem;
                     text-transform: uppercase;
