@@ -40,25 +40,25 @@
                 $(".pay-info").html(payInfo.join(""));
                 var dayOfWeek = parseInt($("#week").val());
                 switch (dayOfWeek) {
-                    case 0:
+                    case 1:
                         $("#dayOfWeek").html("周一");
                         break;
-                    case 1:
+                    case 2:
                         $("#dayOfWeek").html("周二");
                         break;
-                    case 2:
+                    case 3:
                         $("#dayOfWeek").html("周三");
                         break;
-                    case 3:
+                    case 4:
                         $("#dayOfWeek").html("周四");
                         break;
-                    case 4:
+                    case 5:
                         $("#dayOfWeek").html("周五");
                         break;
-                    case 5:
+                    case 6:
                         $("#dayOfWeek").html("周六");
                         break;
-                    case 6:
+                    case 0:
                         $("#dayOfWeek").html("周日");
                         break;
                 }
