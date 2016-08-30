@@ -19,6 +19,8 @@
             res.buyerNum = 0;
         }
 
+        $(".am-icon-instagram span").text(res.onceCourseHour);
+
         $("#buyerNum").html(res.buyerNum);
         var carouselFigure = res.carouselFigure;
         var playTimePictures = res.playTimePictures;
