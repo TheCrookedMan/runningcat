@@ -5,6 +5,8 @@ import course from './api/course';
 import usrClass from './api/usr-class';
 import user from './api/user';
 import till from './api/till';
+import coach from './api/coach';
+import training from './api/training';
 import order from './api/order';
 let router = express.Router();
 
@@ -190,4 +192,33 @@ router.get('/courseDate.template', [course.queryCoursePlanTimeList], (req, res, 
         data: res.data['coursePlan.queryCoursePlanTimeList']['record']
     });
 });
+
+/*查询私教课时间列表*/
+router.get('/coachDate.template', [coach.queryPrivatePlanTimeList], (req, res, next) => {
+    return res.render('_partial/template/coachDate', {
+        data: res.data['privateCourse.queryPrivatePlanTimeList']['record']
+    });
+});
+
+/*查询自助训练时间列表*/
+router.get('/trainDate.template', [training.querySelfPlanTimeList], (req, res, next) => {
+    return res.render('_partial/template/trainDate', {
+        data: res.data['selfCourse.querySelfPlanTimeList']['record']
+    });
+});
+
+/*私教课*/
+router.get('/coach.template', [coach.coach], (req, res, next) => {
+    return res.render('_partial/template/coach', {
+        data: res.data['privateCourse.queryPrivateCourseList']['record']
+    });
+});
+
+/*自助训练营*/
+router.get('/training.template', [training.training], (req, res, next) => {
+    return res.render('_partial/template/training', {
+        data: res.data['selfCourse.querySelfCourseList']['record']
+    });
+});
+
 module.exports = router;

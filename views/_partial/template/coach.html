@@ -1,0 +1,16 @@
+{% for course in data %}
+<li>
+  <img src="/img/shoptest.jpg" />
+  <div class="line"></div>
+  <div class="info">
+    <div class="name">zuozuo</div>
+    <div class="label">
+      <p><span class="am-badge am-badge-danger">高效燃脂</span></p>
+      <p><span class="am-badge am-badge-danger">NTC</span><span class="am-badge am-badge-danger"> 冠军</span></p>
+    </div>
+    <div class="pub-wbtn">
+        <a href="/coach/coach-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}" class="btn">预约</a>
+    </div>
+  </div>
+</li>
+{% endfor %}
