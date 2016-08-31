@@ -67,6 +67,7 @@ router.get('/rankingTrain.template', [profile.queryUserTrainList], (req, res, ne
 });
 /*常规课*/
 router.get('/course.template', [course.course], (req, res, next) => {
+    // console.log("::::"+JSON.stringify(res.data['coursePlan.queryCoursePlanList']['record']));
     return res.render('_partial/template/course', {
         data: res.data['coursePlan.queryCoursePlanList']['record']
     });

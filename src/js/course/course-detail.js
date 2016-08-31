@@ -19,7 +19,7 @@
             res.buyerNum = 0;
         }
 
-        $(".am-icon-instagram span").text(res.onceCourseHour);
+        $(".onceCourseHour").text("所需课时：" + res.onceCourseHour + "课时");
 
         $("#buyerNum").html(res.buyerNum);
         var carouselFigure = res.carouselFigure;

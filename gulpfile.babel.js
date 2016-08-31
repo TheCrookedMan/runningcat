@@ -55,7 +55,8 @@ const gulp = require('gulp'),
      */
     del = require('del');
 
-const url = "http://localhost:9527",
+//测试环境的端口是9888，正式环境是9527.但是基于browserSync来代理调试的端口必定是测试环境9888;
+const url = "http://localhost:9888",
     dist_dir = "./dist/",
     css_dir = dist_dir + "./css/",
     js_dir = dist_dir + "./js/",
