@@ -1,0 +1,113 @@
+{% include "../_partial/head.html" %}
+<style type="text/css">
+body {
+    background-color: #e6e6e6
+}
+</style>
+<script>
+var courseId = "{{courseId}}";
+</script>
+<input type="hidden" value="{{dayOfWeek}}" id="week">
+<section class="course">
+    <div class="pay-info">
+    </div>
+    <div class="pay-spec bg-e6">
+        <ul>
+            <li>
+                <span class="peo">人数：</span>
+                <div class="pub_peolist">
+                </div>
+            </li>
+            <li>
+                <span>金额：</span>
+                <em class="totalPrice"></em>
+            </li>
+        </ul>
+    </div>
+    <div class="pub-list skin2">
+        <ul>
+            <li class="cur">
+                <a href="javascript:void(0);" class="classTimePayment">
+                    <i class="list-icon am-icon-dot-circle-o"></i>
+                    <div class="list-info">
+                        <div class="info">
+                            <h2>课时支付（可用课时:<span class="usrRechargeOrderRemainNum"></span>）</h2>
+                        </div>
+                        <div class="table usrRechargeOrderList">
+                            <table class="skin0">
+                                <colgroup>
+                                    <col style="width:33%">
+                                    <col style="width:33%">
+                                    <col style="width:33%">
+                                </colgroup>
+                                <tbody>
+                                    <tr class="content">
+                                        <th>截止时间</th>
+                                        <th>剩余课时</th>
+                                        <th>使用</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3" class="rechargeList">
+                                        </td>
+                                    </tr>
+                                    <tr class="rechargePanel">
+                                        <td colspan="3" class="col-red">课时不足需要充值！</td>
+                                    </tr>
+                                    <tr class="rechargePanel">
+                                        <td colspan="3">
+                                            <div class="pub-rbtn txt-c">
+                                                <button data-href="/profile/recharge.html" class="btn">充值</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="paymentPanel">
+                                        <td colspan="3">
+                                            <div class="pub-rbtn txt-c">
+                                                <button class="btn classTimePaymentButton">支付</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" class="cashPayment">
+                    <i class="list-icon am-icon-circle-o"></i>
+                    <div class="list-info">
+                        <div class="info">
+                            <h2>现金支付</h2>
+                        </div>
+                        <div class="info-body">
+                            <div class="price">
+                                <div class="tit">
+                                    <span>折扣价<em>（￥<i class="discountPrice">0.00</i>）</em></span>
+                                    <button class="col-red" id="show-discount-detail">折扣详情</button>
+                                </div>
+                                <div class="code isUsedCatFod">
+                                    <i class="am-icon-check-square-o col-red"></i>
+                                    <p>本次可使用猫粮<span class="nmemberCatFood">0</span>&nbsp;&nbsp;&nbsp;兑换：<span class="nmemberCatFood">0</span></p>
+                                    <p class="col-red">*猫粮总数 <span class="memberCatFood">0</span>颗</p>
+                                </div>
+                            </div>
+                            <div class="total txt-l">
+                                应付金额(元):<span class="col-red">￥<i class="actualPrice">0.00</i></span>
+                            </div>
+                            <div class="pub-rbtn txt-c">
+                                <button class="btn wechatPayment">微信支付</button>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- 折扣详情 -->
+<div class="am-popup" id="detail-popup">
+</div>
+{% include "../_partial/foot.html" %}
+<script src="/plugins/wechat.min.js"></script>
+<script src="/js/training/pay-page.js"></script>

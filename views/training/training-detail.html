@@ -1,0 +1,75 @@
+{% include "../_partial/head.html" %}
+<style type="text/css">
+body {
+    /*background-color: #cacaca;*/
+    background-color: #e6e6e6;
+}
+</style>
+<script type="text/javascript">
+var courseId = "{{courseId}}";
+</script>
+<input type="hidden" value="{{isBuyFlag}}" id='isBuyFlag'>
+<section class="course">
+    <div class="pic">
+        <div class="am-slider am-slider-default" data-am-flexslider>
+            <ul class="am-slides" id="carouselFigure">
+            </ul>
+        </div>
+        <div class="title">
+            <span id="courseName"></span>
+            <img src="{{settings.imageAddress}}{{imgUrl}}" alt="跑步猫">
+        </div>
+    </div>
+    <div class="info-list bg-e6">
+        <ul>
+            <li>
+                <i class="am-icon-instagram"></i><span class="onceCourseHour">所需课时：0课时</span>
+            </li>
+            <li>
+                <i class="am-icon-clock-o"></i><span><em id="courseDate"></em>　<em id="dayOfWeek">{{dayOfWeek}}</em>　<em id="startTime"></em>~<em id="endTime"></em></span>
+            </li>
+            <li>
+                <i class="am-icon-user"></i><span><em id="openCourseNum"></em>人，已约<em id="buyerNum"></em>人</span>
+            </li>
+            <li>
+                <i class="am-icon-map-marker"></i><span id="storeAddress" class="address-span">&nbsp;</span>
+            </li>
+            <li>
+                <i class="am-icon-phone"></i><span id="contactPhone">&nbsp;</span>
+            </li>
+        </ul>
+    </div>
+    <div class="course-con">
+        <div class="tit">课程简介</div>
+        <div class="con" id="courseDesc">
+        </div>
+    </div>
+    <div class="course-con">
+        <div class="tit">课间照片</div>
+        <div class="con" id="playTimePictures">
+        </div>
+    </div>
+    <div class="course-con">
+        <div class="tit">学员福利</div>
+        <div class="con">
+            RUNNING CAT提供免费超速wifi、超酷的RUNNING CAT咖啡厅休息区、饮用水、同时提供训练后个人训练美照，记录你时刻的美。
+        </div>
+    </div>
+    <div class="course-con">
+        <div class="tit">温馨提示</div>
+        <div class="con" id="courseTip">
+            
+        </div>
+    </div>
+    <div class="course-con">
+        <div class="tit">健身流程</div>
+        <div class="con txt-c" id="courseFlow">
+            <img src="/img/flow.png" alt="跑步猫" class="flow">
+        </div>
+    </div>
+    <div class="pub-rbtn fixed">
+        <a href="/course/pay-page.html?courseId={{courseId}}&dayOfWeek={{dayOfWeek}}" class="btn">立即预约</a>
+    </div>
+</section>
+{% include "../_partial/foot.html" %}
+<script src="/js/training/training-detail.js"></script>

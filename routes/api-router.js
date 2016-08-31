@@ -4,6 +4,8 @@ import profile from './api/profile';
 import shop from './api/shop';
 import course from './api/course';
 import till from './api/till';
+import coach from './api/coach';
+import training from './api/training';
 import usrClass from './api/usr-class';
 import common from './api/common';
 import wechat from './api/wechat';
@@ -147,5 +149,27 @@ router.post('/order/classTimeMoneyPaymentData',order.classTimeMoneyPaymentData);
 /* 特训营支付页面数据获取 */
 router.post('/order/specialClassMoneyPaymentData',order.specialClassMoneyPaymentData);
 
+
+/*coach*/
+router.post('/coach', coach.coach);
+router.post('/coachDetail', coach.coachDetail);
+router.post('/coachInfo', coach.coachInfo);
+router.post('/queryPrivatePlanTimeList', coach.queryPrivatePlanTimeList);
+
+/*coach-member*/
+router.post('/getUsrPrivateClass', profile.getUsrPrivateClass);
+router.post('/PrivateClassDoSignIn', profile.PrivateClassDoSignIn);
+router.post('/PrivateClassDoLeave', profile.PrivateClassDoLeave);
+
+/*trainning*/
+router.post('/training', training.training);
+router.post('/trainingDetail', training.trainingDetail);
+router.post('/trainingInfo', training.trainingInfo);
+router.post('/querySelfPlanTimeList', training.querySelfPlanTimeList);
+
+/*trainning-member*/
+router.post('/getUsrSelfClass', profile.getUsrSelfClass);
+router.post('/selfClassDoSignIn', profile.selfClassDoSignIn);
+router.post('/selfClassDoLeave', profile.selfClassDoLeave);
 
 module.exports = router;

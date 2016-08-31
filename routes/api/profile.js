@@ -159,3 +159,45 @@ exports.queryUserFuel = (req, res, next) => {
 }
 
 
+/*会员私教课列表查询*/
+exports.getUsrPrivateClass = (req, res, next) => {
+    new rest({
+        functionCode: 'usrPrivateClasstime.getUsrPrivateClass',
+    }).link(req, res, next);
+}
+
+/*会员私教课签到*/
+exports.PrivateClassDoSignIn = (req, res, next) => {
+    new rest({
+        functionCode: 'usrPrivateClasstime.doSignIn',
+    }).post(req, res, next);
+}
+
+/*会员私教课请假*/
+exports.PrivateClassDoLeave = (req, res, next) => {
+    new rest({
+        functionCode: 'usrPrivateClasstime.doLeave',
+    }).post(req, res, next);
+}
+
+
+/*会员自助训练列表查询*/
+exports.getUsrSelfClass = (req, res, next) => {
+    new rest({
+        functionCode: 'selfClasstime.getSelfClasstimes',
+    }).link(req, res, next);
+}
+
+/*会员自助训练签到*/
+exports.selfClassDoSignIn = (req, res, next) => {
+    new rest({
+        functionCode: 'selfClasstime.doSignIn',
+    }).post(req, res, next);
+}
+
+/*会员自助训练请假*/
+exports.selfClassDoLeave = (req, res, next) => {
+    new rest({
+        functionCode: 'selfClasstime.doLeave',
+    }).post(req, res, next);
+}

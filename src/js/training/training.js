@@ -1,7 +1,7 @@
 (function() {
     /*排课时间*/
     var store = common.getStoreInfo();
-    $.get('/courseDate.template', {
+    $.get('/trainDate.template', {
         userId: userInfo.memberId,
         storeId: store.storeId,
     }).success(function(data) {
@@ -24,7 +24,7 @@
             self.pageSize = 10;
             self.isEnd = false;
             self.date = date;
-            $(".pub-list ul").html("");
+            $(".coach ul").html("");
             self.getCourse();
             scroll.off();
             scroll.on(function() {
@@ -36,25 +36,30 @@
         },
         getCourse: function() {
             var self = this;
-            $.get('/course.template', {
-                userId: userInfo.memberId,
-                storeId: self.storeId,
-                queryDate: self.date,
+            $.get('/training.template', {
+                userId: 1,
+                storeId: 1,
+                queryDate: 1469939400000,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
+                // userId: userInfo.memberId,
+                // storeId: self.storeId,
+                // queryDate: self.date,
+                // pageNo: self.pageNo,
+                // pageSize: self.pageSize
             }).success(function(data) {
                 data = data.replace(/(^\s+)|(\s+$)/g, "");
                 if ("" == data) {
                     self.isEnd = true;
                     if (self.pageNo == 1) {
-                        $(".pub-list ul").html("<li style='margin:5rem 0;'><p class='pub_nodata'>喵~，今天没有排课，休息一下！</p></li>");
+                        $(".coach ul").html("<li style='margin:5rem 0;'><p class='pub_nodata'>喵~，今天没有排课，休息一下！</p></li>");
                     }
                 } else {
                     self.isEnd = false;
                     if (self.pageNo == 1) {
-                        $(".pub-list ul").html(data);
+                        $(".coach ul").html(data);
                     } else {
-                        $(".pub-list ul").append(data);
+                        $(".coach ul").append(data);
                     }
                 }
             }).error(function(err) {});
