@@ -1,6 +1,8 @@
 (function() {
     var tenantId = common.getTenantId();
-    // tenantId = 1;
+    if ("test" === environment || "dev" === environment) {
+        tenantId = !tenantId ? 1 : tenantId;
+    }
     $("body").on("click", ".shop-detail a", function(ev) {
         var storeId = $(this).data("storeId");
         var storeName = $(this).data("storeName");
@@ -200,8 +202,8 @@
                 var publicAccount = { appid: record.accountAppid, appsecret: record.accountKey };
                 // var publicAccount = { appid: 'wx16cd0f3f1f4ee12a', appsecret: 'defcd1c0a12f0e6e383cfde5aff6d30e' };
                 $.cookie('wechatPublicNumber', JSON.stringify(publicAccount), { expires: common.expires, path: '/' });
-                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + record.accountAppid + "&redirect_uri="+window.redirect_uri+"&response_type=code&scope=snsapi_base&state=/course/course.html&connect_redirect=1#wechat_redirect"
-                // window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx16cd0f3f1f4ee12a&redirect_uri=http%3a%2f%2f120.26.231.199%3a9529%2fwechatAuth.html&response_type=code&scope=snsapi_base&state=/course/course.html&connect_redirect=1#wechat_redirect"
+                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + record.accountAppid + "&redirect_uri=" + window.redirect_uri + "&response_type=code&scope=snsapi_base&state=/course/course.html&connect_redirect=1#wechat_redirect"
+                    // window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx16cd0f3f1f4ee12a&redirect_uri=http%3a%2f%2f120.26.231.199%3a9529%2fwechatAuth.html&response_type=code&scope=snsapi_base&state=/course/course.html&connect_redirect=1#wechat_redirect"
             }
         })
         ev.stopPropagation();

@@ -111,7 +111,7 @@ router.get('/wechatAuth.html', (req, res, next) => {
         wechatPublicNumber = req.cookies.wechatPublicNumber;
     wechatPublicNumber = JSON.parse(wechatPublicNumber);
 
-    redirect_uri = redirect_uri.replace(/_8_8_/g,'&');
+    redirect_uri = redirect_uri.replace(/_8_8_/g, '&');
 
     let appid = wechatPublicNumber.appid,
         appsecret = wechatPublicNumber.appsecret;
@@ -251,7 +251,7 @@ router.get('/profile/comment-class.html', (req, res, next) => {
     let courseId = req.query.courseId,
         onceId = req.query.onceId,
         classTimeId = req.query.classTimeId;
-    return res.render('profile/comment-class', { title: '评价', courseId: courseId, onceId: onceId, classTimeId: classTimeId });
+    return res.render('profile/comment-class', { title: '常规课评价', courseId: courseId, onceId: onceId, classTimeId: classTimeId });
 });
 /*
     特训营常规课评价
@@ -259,7 +259,23 @@ router.get('/profile/comment-class.html', (req, res, next) => {
 router.get('/profile/special-comment-class.html', (req, res, next) => {
     let onceId = req.query.onceId,
         classTimeId = req.query.classTimeId;
-    return res.render('profile/special-comment-class', { title: '评价', onceId: onceId, classTimeId: classTimeId });
+    return res.render('profile/special-comment-class', { title: '特训营评价', onceId: onceId, classTimeId: classTimeId });
+});
+
+/* 私教课评价 */
+router.get('/profile/private-coach-evaluate.html', (req, res, next) => {
+    let courseId = req.query.courseId,
+        onceId = req.query.onceId,
+        classTimeId = req.query.classTimeId;
+    return res.render('profile/private-coach-evaluate', { title: '私教课评价', courseId: courseId, onceId: onceId, classTimeId: classTimeId });
+});
+
+/* 自助训练营评价 */
+router.get('/profile/training-evaluate.html', (req, res, next) => {
+    let courseId = req.query.courseId,
+        onceId = req.query.onceId,
+        classTimeId = req.query.classTimeId;
+    return res.render('profile/training-evaluate', { title: '自助训练营评价', courseId: courseId, onceId: onceId, classTimeId: classTimeId });
 });
 
 router.get('/profile/done-class.html', (req, res, next) => {
@@ -304,7 +320,33 @@ router.get('/profile/recharge.html', (req, res, next) => {
 router.get('/profile/single-class.html', (req, res, next) => {
     return res.render('profile/single-class', { title: '我的常规课' });
 });
+/*
+    个人中心－私教课－未完成
+ */
+router.get('/profile/private-coach.html', (req, res, next) => {
+    return res.render('profile/private-coach', { title: '私教课' });
+});
 
+/*
+    个人中心 － 自助训练营 － 未完成
+ */
+router.get('/profile/training.html', (req, res, next) => {
+    return res.render('profile/training', { title: '自助训练营' });
+});
+/*
+    个人中心 － 自助训练营 － 完成
+ */
+router.get('/profile/done-training.html', (req, res, next) => {
+    return res.render('profile/done-training', { title: '自助训练营' });
+});
+/*
+    个人中心－私教课－完成
+ */
+router.get('/profile/done-private-coach.html', (req, res, next) => {
+    return res.render('profile/done-private-coach', { title: '私教课' });
+});
+
+/* 单次课提交作业 */
 router.get('/profile/homework-class.html', (req, res, next) => {
     let onceId = req.query.onceId,
         courseId = req.query.courseId,
@@ -312,12 +354,20 @@ router.get('/profile/homework-class.html', (req, res, next) => {
     return res.render('profile/homework-class', { title: '常规课程作业', onceId: onceId, courseId: courseId, classTimeId: classTimeId });
 });
 
+/* 特训营提交作业 */
 router.get('/profile/homework-till.html', (req, res, next) => {
     let onceId = req.query.onceId,
         classTimeId = req.query.classTimeId;
     return res.render('profile/homework-till', { title: '特训营作业', onceId: onceId, classTimeId: classTimeId });
 });
 
+/* 私教课提交作业 */
+router.get('/profile/homework-coach.html', (req, res, next) => {
+    let onceId = req.query.onceId,
+        courseId = req.query.courseId,
+        classTimeId = req.query.classTimeId;
+    return res.render('profile/homework-coach', { title: '常规课程作业', onceId: onceId, courseId: courseId, classTimeId: classTimeId });
+});
 
 router.get('/profile/till-list.html', (req, res, next) => {
     let specialId = req.query.specialId;

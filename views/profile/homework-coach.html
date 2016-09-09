@@ -1,0 +1,23 @@
+{% include "../_partial/head.html" %}
+<style type="text/css">
+    body{
+        background-color: #e6e6e6
+    }
+</style>
+<input type="hidden" value="{{onceId}}" id="onceId">
+<script type="text/javascript">
+    var courseId = "{{courseId}}";
+    var classTimeId = "{{classTimeId}}";
+</script>
+<section class="submit-class">
+    <hr class="hr">
+    <div class="pub-list skin0">
+        <hr>
+        <ul>
+        </ul>
+    </div>
+</section>
+
+{% include "../_partial/footer.html" %}
+{% include "../_partial/foot.html" %}
+<script src="/js/profile/homework-coach.js"></script>

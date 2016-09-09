@@ -156,7 +156,7 @@
                 var courseCurrentDate = common.getCourseCurrentDate();
                 if (!!courseCurrentDate) {
                     $(".swiper .wrapper .cur").removeClass('cur');
-                    $(".swiper .wrapper ."+courseCurrentDate).addClass('cur');
+                    $(".swiper .wrapper ." + courseCurrentDate).addClass('cur');
                     courseListObj.init(courseCurrentDate);
                 } else {
                     var date = selector.data("date");

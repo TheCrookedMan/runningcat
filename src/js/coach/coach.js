@@ -1,4 +1,9 @@
 (function() {
+    (function() {
+        var scrollPanel = $('.courses'),
+            scrollWidth = scrollPanel[0].scrollWidth;
+        scrollPanel.scrollLeft(scrollWidth * 0.5);
+    })();
     /*排课时间*/
     var store = common.getStoreInfo();
     $.get('/coachDate.template', {
@@ -42,11 +47,11 @@
                 queryDate: 1469939400000,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
-                // userId: userInfo.memberId,
-                // storeId: self.storeId,
-                // queryDate: self.date,
-                // pageNo: self.pageNo,
-                // pageSize: self.pageSize
+                    // userId: userInfo.memberId,
+                    // storeId: self.storeId,
+                    // queryDate: self.date,
+                    // pageNo: self.pageNo,
+                    // pageSize: self.pageSize
             }).success(function(data) {
                 data = data.replace(/(^\s+)|(\s+$)/g, "");
                 if ("" == data) {
@@ -161,7 +166,7 @@
                 var courseCurrentDate = common.getCourseCurrentDate();
                 if (!!courseCurrentDate) {
                     $(".swiper .wrapper .cur").removeClass('cur');
-                    $(".swiper .wrapper ."+courseCurrentDate).addClass('cur');
+                    $(".swiper .wrapper ." + courseCurrentDate).addClass('cur');
                     courseListObj.init(courseCurrentDate);
                 } else {
                     var date = selector.data("date");

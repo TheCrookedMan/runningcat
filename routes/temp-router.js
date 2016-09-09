@@ -91,6 +91,24 @@ router.get('/tmpl-single-class.template', [profile.getUsrClasstimeOrder], (req, 
 });
 
 /*
+    我的私教课模板
+ */
+router.get('/tmpl-private-coach.template', [profile.getUsrPrivateClass], (req, res, next) => {
+    return res.render('_partial/template/tmpl-private-coach', {
+        data: res.data['usrPrivateClasstime.getUsrPrivateClass']['record']
+    });
+});
+
+/**
+ * 我的自助训练列表模板
+ */
+router.get('/tmpl-training-list.template', [profile.getUsrSelfClass], (req, res, next) => {
+    return res.render('_partial/template/tmpl-training-list', {
+        data: res.data['selfClasstime.getSelfClasstimes']['record']
+    });
+});
+
+/*
     用户系统消息模板
  */
 router.get('/message.template', [profile.getMemberMessages], (req, res, next) => {
@@ -100,12 +118,36 @@ router.get('/message.template', [profile.getMemberMessages], (req, res, next) =>
 });
 
 /*
-    评价模板
+    单次课评价模板
  */
 router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getUsrClassEvaluate_classEvaluate, usrClass.getTrainFeel, usrClass.getMemberFoodNum], (req, res, next) => {
     let courseId = req.query.courseId,
         onceId = req.query.onceId;
     return res.render('_partial/template/comment-class', {
+        data: res.data,
+        courseId: courseId,
+        onceId: onceId
+    });
+});
+
+/*
+    私教课评价模板
+ */
+router.get('/private-coach-evaluate.template', [course.queryCoursePlanInfo, usrClass.usrPrivateClassEvaluate_getUsrClassEvaluate, usrClass.getTrainFeel, usrClass.getMemberFoodNum], (req, res, next) => {
+    let courseId = req.query.courseId,
+        onceId = req.query.onceId;
+    return res.render('_partial/template/private-coach-evaluate', {
+        data: res.data,
+        courseId: courseId,
+        onceId: onceId
+    });
+});
+
+/* 自助训练营模板 */
+router.get('/training-evaluate.template',[course.queryCoursePlanInfo, usrClass.usrSelfClassEvaluate_getEvaluate], (req, res, next) => {
+    let courseId = req.query.courseId,
+        onceId = req.query.onceId;
+    return res.render('_partial/template/training-evaluate', {
         data: res.data,
         courseId: courseId,
         onceId: onceId
@@ -184,7 +226,7 @@ router.get('/timeMoneyPayment_rechargelist.template', [order.selectUsrRechargeOr
         needCourseNum: needCourseNum,
         usrRechargeOrderRemainNum: usrRechargeOrderRemainNum
     });
-})
+});
 
 /*查询排课时间*/
 router.get('/courseDate.template', [course.queryCoursePlanTimeList], (req, res, next) => {

@@ -112,16 +112,63 @@ exports.getUsrClassEvaluate_specialEvaluate = (req, res, next) => {
         functionCode: 'specialEvaluate.getUsrClassEvaluate',
     }).link(req, res, next);
 }
+
 /* 检查特训营单次课评价状态 */
-exports.specialEvaluate_checkStatus = (req,res,next) => {
+
+exports.specialEvaluate_checkStatus = (req, res, next) => {
     new rest({
         functionCode: 'specialEvaluate.checkStatus',
     }).post(req, res, next);
 }
 
 /* 单次课检查是否已过评价时间 */
-exports.classEvaluate_checkStatus = (req,res,next) => {
+exports.classEvaluate_checkStatus = (req, res, next) => {
     new rest({
         functionCode: 'classEvaluate.checkStatus',
+    }).post(req, res, next);
+}
+
+/* 会员校验是否可以提交课次作业 */
+exports.usrCoursetimeWork_checkStatus = (req, res, next) => {
+    new rest({
+        functionCode: 'usrCoursetimeWork.checkStatus',
+    }).post(req, res, next);
+}
+
+/* 会员校验课程是否可以评价 */
+
+exports.usrPrivateClassEvaluate_checkStatus = (req, res, next) => {
+    new rest({
+        functionCode: 'usrPrivateClassEvaluate.checkStatus',
+    }).post(req, res, next);
+}
+
+/* 私教课查询评价 */
+exports.usrPrivateClassEvaluate_getUsrClassEvaluate = (req,res,next)=>{
+    new rest({
+        functionCode: 'usrPrivateClassEvaluate.getUsrClassEvaluate',
+    }).post(req, res, next);
+}
+
+/* 私教课添加评价 */
+exports.usrPrivateClassEvaluate_addUsrClassEvaluate = (req, res, next) => {
+    new rest({
+        functionCode: 'usrPrivateClassEvaluate.addUsrClassEvaluate',
+    }).post(req, res, next);
+}
+
+/* 自助训练营提交评价 */
+
+exports.usrSelfClassEvaluate_addEvaluate = (req, res, next) => {
+    new rest({
+        functionCode: 'usrSelfClassEvaluate.addEvaluate',
+    }).post(req, res, next);
+}
+
+/* 自助训练营查找评价 */
+
+exports.usrSelfClassEvaluate_getEvaluate = (req, res, next) => {
+    new rest({
+        functionCode: 'usrSelfClassEvaluate.getEvaluate',
     }).post(req, res, next);
 }

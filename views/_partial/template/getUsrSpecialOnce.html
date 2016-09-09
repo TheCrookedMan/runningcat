@@ -20,13 +20,11 @@
                     <a href="javascript:void(0);" data-once-id="{{list.onceId}}" data-href="/profile/special-comment-class.html?onceId={{list.onceId}}&classTimeId={{list.id}}" class="btn btn-red evaluate">评价</a>
                     {% endif %}
                     
-                    <!--
                     {% if list.workStatus == 0 %}
                     <a href="/profile/homework-till.html?onceId={{list.onceId}}&classTimeId={{list.id}}" class="btn btn-red">提交作业</a>
                     {% elseif list.workStatus == 1 %}
                     <a href="/profile/homework-till.html?onceId={{list.onceId}}&classTimeId={{list.id}}" class="btn btn-red">修改作业</a>
                     {% endif %}
-                    -->
                     
                 {% elseif list.courseOnceStatus == 2 %}
                     <a href="javascript:void(0)" class="btn btn-end">忘签</a>

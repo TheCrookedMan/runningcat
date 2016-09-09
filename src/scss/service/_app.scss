@@ -513,7 +513,7 @@ ul.other-login-way li img {
 
 .shop .am-icon-search {
     position: absolute;
-    right: -3rem;
+    right: -32px;
     top: -0.3rem;
     color: #e0e0e0;
     z-index: 99;
@@ -742,6 +742,14 @@ ul.other-login-way li img {
 .pub-tab {
     width: 100%;
     display: inline-block;
+    .courses {
+        width: 100%;
+        overflow-x: scroll;
+        ul {
+            width: 200%;
+            display: inline-flex;
+        }
+    }
     ul {
         margin: 0;
         padding: 0;
@@ -829,7 +837,7 @@ ul.other-login-way li img {
     display: inline-block;
     position: relative;
     text-align: center;
-    float: left;
+    // float: left;
     .btn {
         position: absolute;
         // top: 1.2rem;
@@ -1384,7 +1392,7 @@ ul.other-login-way li img {
             }
             .am-icon-dot-circle-o {
                 position: absolute;
-                left: -3rem;
+                left: -32px;
                 top: 0rem;
                 // color: #990100;
                 font-size: 1.6rem;
@@ -1395,7 +1403,7 @@ ul.other-login-way li img {
             }
             .am-icon-circle-o {
                 position: absolute;
-                left: -3rem;
+                left: -32px;
                 top: 0rem;
                 color: #717171;
                 font-size: 1.6rem;

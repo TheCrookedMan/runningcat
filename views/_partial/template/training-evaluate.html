@@ -1,0 +1,38 @@
+{% set coursePlanInfo = data['coursePlan.queryCoursePlanInfo']['record'] %} 
+{% set usrClassEvaluate = data['usrSelfClassEvaluate.getEvaluate']['record'] %} 
+<div class="pub-pinfo">
+    <div class="img"><img src="{{settings.imageAddress}}{{coursePlanInfo.imgUrl}}" alt="跑步猫"></div>
+    <div class="info">
+        <h2>{{coursePlanInfo.courseName}}</h2>
+        <p class="address">{{coursePlanInfo.storeAddress}}</p>
+        <p class="time">{{coursePlanInfo.courseDate|dateFormat('yyyy-MM-dd')}} {{coursePlanInfo.courseDate|toWeek()}} {{coursePlanInfo.startTime}}-{{coursePlanInfo.endTime}}</p>
+        <p class="teacher">教练：{{coursePlanInfo.englishName}}</p>
+    </div>
+</div>
+<hr class="hr">
+<div class="pub-list skin0">
+    <hr>
+    <form class="usrClassEvaluate">
+        <ul class="comment">
+            <li class="scal-line">
+                <i class="am-icon-dot-circle-o"><em>评分</em></i>
+                <div class="list-info">
+                    <div class="scal score">
+                        <span>综合评分</span> {% autoescape false %}{{usrClassEvaluate.score|scopeFilter()}}{% endautoescape %}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <i class="am-icon-dot-circle-o"><em>留言</em></i>
+                <div class="list-info">
+                    <textarea name="leaveMsg" placeholder="说点什么吧。。。">{{usrClassEvaluate.leaveMsg}}</textarea>
+                    {% if usrClassEvaluate.id == undefined %}
+                    <div class="pub-btn skin0">
+                        <button class="btn">发表评论</button>
+                    </div>
+                    {% endif %}
+                </div>
+            </li>
+        </ul>
+    </form>
+</div>

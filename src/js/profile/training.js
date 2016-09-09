@@ -1,25 +1,25 @@
 (function() {
     var storeInfo = common.getStoreInfo();
-    var singleClass = function() {
-        this.status = 1;
+    var training = function() {
+        this.status = 0;
         this.pageNo = 1;
         this.pageSize = 10;
         this.isEnd = false;
     }
-    singleClass.prototype = {
+    training.prototype = {
         init: function() {
             var self = this;
-            self.getSingleClass();
+            self.getTraining();
             scroll.on(function() {
                 if (!self.isEnd) {
                     self.pageNo++;
-                    self.getSingleClass();
+                    self.getTraining();
                 }
             }, function() {});
         },
-        getSingleClass: function() {
+        getTraining: function() {
             var self = this;
-            $.get('/tmpl-single-class.template', {
+            $.get('/tmpl-training-list.template', {
                 memberId: userInfo.memberId,
                 status: self.status,
                 storeId: storeInfo.storeId,
@@ -41,8 +41,8 @@
             }).error(function(err) {});
         }
     }
-    this.singleClass = new singleClass();
-    this.singleClass.init();
+    this.training = new training();
+    this.training.init();
 
     /*
         请假
@@ -55,13 +55,14 @@
                 var classtimeId = $(this.relatedTarget).data("id");
                 var thisPanel = $(this.relatedTarget).parents("li");
                 var signinKey = $(this.relatedTarget).data("signinKey");
-                $.post("/usr-class/doLeave", {
+                $.post("/selfClassDoLeave", {
                     memberId: userInfo.memberId,
                     classtimeId: classtimeId,
                     signinKey: signinKey
                 }).success(function(data) {
                     if (data.code == "0000" && data.success) {
-                        thisPanel.remove();
+                        // thisPanel.remove();
+                        window.location.reload();
                     } else {
                         // modal.alert("请假失败！");
                         modal.alert(data.msg);
@@ -77,12 +78,13 @@
     $(".single-class").on("click", "a.signIn", function(ev) {
         var classtimeId = $(this).data("id");
         var thisPanel = $(this).parents("li");
-        $.post("/usr-class/doSignIn", {
+        $.post("/selfClassDoSignIn", {
             memberId: userInfo.memberId,
             classtimeId: classtimeId
         }).success(function(data) {
             if (data.code == "0000" && data.success) {
-                thisPanel.remove();
+                // thisPanel.remove();
+                window.location.reload();
             } else {
                 // modal.alert("签到失败！");
                 modal.alert(data.msg);
@@ -91,25 +93,4 @@
         ev.stopPropagation();
     });
 
-    $("body").on("click","a.evaluate",function(ev){
-        var link = $(this).data('href');
-        var onceId = $(this).data('onceId');
-        $.post('/classEvaluate/checkStatus',{onceId:onceId}).success(function(data){
-            if (data.code == "0000" && data.success) {
-                window.location.href = link;
-            } else {
-                modal.alert(data.msg);
-            }
-        })
-        ev.stopPropagation();
-    });
-
-    // $(".single-class .pub-tab").on("click", "a", function(ev) {
-    //     $(".single-class .pub-tab .cur").removeClass("cur");
-    //     $(this).addClass("cur");
-    //     self.status = $(this).data("status");
-    //     self.pageNo = 1;
-    //     $(".single-class .class-list ul").html('<li class="pub_nodata">暂无课程记录！</li>');
-    //     self.getSingleClass();
-    // });
 }).call(this)

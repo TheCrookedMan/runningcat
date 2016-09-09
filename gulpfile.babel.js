@@ -54,6 +54,9 @@ const gulp = require('gulp'),
      * 删除文件和文件夹
      */
     del = require('del');
+    /**
+     * html replace
+     */
 
 //测试环境的端口是9888，正式环境是9527.但是基于browserSync来代理调试的端口必定是测试环境9888;
 const url = "http://localhost:9888",

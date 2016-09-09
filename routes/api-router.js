@@ -98,14 +98,20 @@ router.post('/userCenter/queryUserCaLone', profile.queryUserCaLone);
 
 //单次课评价
 router.post('/classEvaluate/addUsrClassEvaluate', usrClass.addUsrClassEvaluate_classEvaluate);
+//私教课评价
+router.post('/usrPrivateClassEvaluate/addUsrClassEvaluate', usrClass.usrPrivateClassEvaluate_addUsrClassEvaluate);
+
 //特训营单次课添加评价
 router.post('/specialEvaluate/addUsrClassEvaluate', usrClass.addUsrClassEvaluate_specialEvaluate);
 /* 检查特训营单次课评价状态 */
 router.post('/specialEvaluate/checkStatus',usrClass.specialEvaluate_checkStatus);
 /* 单次课检查是否已过评价时间 */
 router.post('/classEvaluate/checkStatus',usrClass.classEvaluate_checkStatus);
+/* 私教课检查是否已过评价时间 */
+router.post('/usrPrivateClassEvaluate/checkStatus',usrClass.usrPrivateClassEvaluate_checkStatus);
+/* 自助训练营提交评价 */
+router.post('/usrSelfClassEvaluate/addEvaluate',usrClass.usrSelfClassEvaluate_addEvaluate);
 
-// order
 /*
 	查询出优惠的金额信息和优惠的猫粮信息
  */
@@ -148,7 +154,6 @@ router.post('/order/classTimeMoneyPaymentData',order.classTimeMoneyPaymentData);
 
 /* 特训营支付页面数据获取 */
 router.post('/order/specialClassMoneyPaymentData',order.specialClassMoneyPaymentData);
-
 
 /*coach*/
 router.post('/coach', coach.coach);
