@@ -1,6 +1,11 @@
 {% for course in data %}
+<a href="/training/training-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}">
 <li>
-  <img src="/img/shoptest.jpg" />
+  {% for img in course.carouselFigure %}
+      {% if loop.first %}
+      <img src="{{settings.imageAddress}}{{img.imgUrl}}" />
+      {% endif %}
+  {% endfor %}
   <div class="line"></div>
   <div class="info">
     <div class="time">
@@ -13,4 +18,5 @@
     </div>
   </div>
 </li>
+</a>
 {% endfor %}

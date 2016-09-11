@@ -9,6 +9,7 @@
         $("#courseName").html(res.courseName);
         $("#courseRemark").html(res.courseRemark);
         $("#courseTarget").html(res.courseTarget);
+        $("#englishName").html(res.englishName);
         $("#courseTip").html(res.courseTip);
         $("#storeAddress").html(res.storeAddress);
         $("#startTime").html(res.startTime);

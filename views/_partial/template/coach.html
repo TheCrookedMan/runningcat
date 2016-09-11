@@ -1,16 +1,27 @@
 {% for course in data %}
+<a href="/coach/coach-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}">
 <li>
-  <img src="/img/shoptest.jpg" />
+  {% for img in course.carouselFigure %}
+      {% if loop.first %}
+      <img src="{{settings.imageAddress}}{{img.imgUrl}}" />
+      {% endif %}
+  {% endfor %}
   <div class="line"></div>
   <div class="info">
-    <div class="name">zuozuo</div>
+    <div class="name">{{course.englishName}}</div>
     <div class="label">
-      <p><span class="am-badge am-badge-danger">高效燃脂</span></p>
-      <p><span class="am-badge am-badge-danger">NTC</span><span class="am-badge am-badge-danger"> 冠军</span></p>
+      {% for tag in course.comTags %}
+          {% if loop.first %}
+          <p><span class="am-badge am-badge-danger">{{tag.tagName}}</span></p>
+          {% else %}
+          <span class="am-badge am-badge-danger">{{tag.tagName}}</span>
+          {% endif %}
+      {% endfor %}
     </div>
     <div class="pub-wbtn">
         <a href="/coach/coach-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}" class="btn">预约</a>
     </div>
   </div>
 </li>
+</a>
 {% endfor %}

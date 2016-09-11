@@ -498,8 +498,9 @@ router.get('/training/training-detail.html', (req, res, next) => {
     let year = req.query.year;
     let mm = req.query.mm;
     let day = req.query.day;
+    let imgUrl = req.query.imgUrl;
     let isBuyFlag = req.query.isBuyFlag;
-    return res.render('training/training-detail', { title: '自助训练详情', courseId: courseId, year: year, mm: mm, day: day, isBuyFlag: isBuyFlag });
+    return res.render('training/training-detail', { title: '自助训练详情', courseId: courseId, year: year, mm: mm, day: day, isBuyFlag: isBuyFlag, imgUrl: imgUrl });
 });
 
 

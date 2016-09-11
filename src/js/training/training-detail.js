@@ -2,6 +2,7 @@
     var isBuyFlag = $("#isBuyFlag").val();
     $.post('/trainingDetail', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
         var res = data.data;
+        console.log(res);
         $("#contactPhone").html(res.contactPhone);
         $("#courseDate").html(common.formatDate(res.courseDate, 'yyyy-MM-dd'));
         $("#courseDesc").html(res.courseDesc);
@@ -22,18 +23,18 @@
         $(".onceCourseHour").text("所需课时：" + res.onceCourseHour + "课时");
 
         $("#buyerNum").html(res.buyerNum);
-        var carouselFigure = res.carouselFigure;
+        //var carouselFigure = res.carouselFigure;
         var playTimePictures = res.playTimePictures;
         //console.log(carouselFigure)
-        if (carouselFigure.length) {
-            for (var ele in carouselFigure) {
-                var str = "<li><img src='" + window.imageAddress + carouselFigure[ele].imgUrl + "'/></li>";
-                $('#carouselFigure').append(str);
-            }
-        } else {
-            var str = "<li><img src='/img/default.jpg'/></li>";
-            $('#carouselFigure').append(str);
-        }
+        // if (carouselFigure.length) {
+        //     for (var ele in carouselFigure) {
+        //         var str = "<li><img src='" + window.imageAddress + carouselFigure[ele].imgUrl + "'/></li>";
+        //         $('#carouselFigure').append(str);
+        //     }
+        // } else {
+        //     var str = "<li><img src='/img/default.jpg'/></li>";
+        //     $('#carouselFigure').append(str);
+        // }
 
         $('.am-slider').flexslider();
         for (var ele in playTimePictures) {
