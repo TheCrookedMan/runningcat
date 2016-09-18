@@ -155,6 +155,12 @@ router.post('/order/classTimeMoneyPaymentData',order.classTimeMoneyPaymentData);
 /* 特训营支付页面数据获取 */
 router.post('/order/specialClassMoneyPaymentData',order.specialClassMoneyPaymentData);
 
+/* 获取私教课支付数据 */
+router.post('/order/privateCoursePaymentData',order.privateCoursePaymentData);
+
+/* 获取自助训练支付数据 */
+router.post('/order/selfCoursePaymentData',order.selfCoursePaymentData);
+
 /*coach*/
 router.post('/coach', coach.coach);
 router.post('/coachDetail', coach.coachDetail);

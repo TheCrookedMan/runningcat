@@ -19,7 +19,7 @@ exports.selectCopSpecialDiscountPolicyInfo = (req, res, next) => {
 }
 
 /*
-	课时充值接口
+    课时充值接口
  */
 exports.classRecharge = (req, res, next) => {
     new rest({
@@ -28,7 +28,7 @@ exports.classRecharge = (req, res, next) => {
 }
 
 /*
-	单次课现金支付课时功能
+    单次课现金支付课时功能
  */
 exports.classTimeMoneyPayment = (req, res, next) => {
     new rest({
@@ -37,7 +37,7 @@ exports.classTimeMoneyPayment = (req, res, next) => {
 }
 
 /*
-	单次课课时支付预约课程
+    单次课课时支付预约课程
  */
 exports.classTimePayOrder = (req, res, next) => {
     new rest({
@@ -46,7 +46,7 @@ exports.classTimePayOrder = (req, res, next) => {
 }
 
 /*
-	查询优惠政策详细信息
+    查询优惠政策详细信息
  */
 exports.selectCopSalePolicy = (req, res, next) => {
     new rest({
@@ -64,7 +64,7 @@ exports.selectCopSpecialDiscountPolicy = (req, res, next) => {
 }
 
 /*
-	特训营现金支付课时功能
+    特训营现金支付课时功能
  */
 exports.specialClassMoneyPayment = (req, res, next) => {
     new rest({
@@ -73,7 +73,7 @@ exports.specialClassMoneyPayment = (req, res, next) => {
 }
 
 /*
-	特训营课时支付预约课程
+    特训营课时支付预约课程
  */
 exports.specialClassPayOrder = (req, res, next) => {
     new rest({
@@ -82,7 +82,7 @@ exports.specialClassPayOrder = (req, res, next) => {
 }
 
 /*
-	充值订单列表
+    充值订单列表
  */
 exports.selectUsrRechargeOrderList = (req, res, next) => {
     new rest({
@@ -91,7 +91,7 @@ exports.selectUsrRechargeOrderList = (req, res, next) => {
 }
 
 /*
-	查询剩余课时总数
+    查询剩余课时总数
  */
 exports.selectUsrRechargeOrderRemainNum = (req, res, next) => {
     new rest({
@@ -100,15 +100,29 @@ exports.selectUsrRechargeOrderRemainNum = (req, res, next) => {
 }
 
 /* 单次课支付页面数据获取 */
-exports.classTimeMoneyPaymentData = (req, res, next)=>{
+exports.classTimeMoneyPaymentData = (req, res, next) => {
     new rest({
         functionCode: 'order.classTimeMoneyPaymentData',
     }).post(req, res, next);
 }
 
 /* 特训营支付页面数据获取 */
-exports.specialClassMoneyPaymentData = (req, res, next)=>{
+exports.specialClassMoneyPaymentData = (req, res, next) => {
     new rest({
         functionCode: 'order.specialClassMoneyPaymentData',
+    }).post(req, res, next);
+}
+
+/* 获取私教课支付数据 */
+exports.privateCoursePaymentData = (req, res, next) => {
+    new rest({
+        functionCode: 'courseOrder.privateCoursePaymentData'
+    }).post(req, res, next);
+}
+
+/* 获取自助训练支付数据 */
+exports.selfCoursePaymentData = (req, res, next) => {
+    new rest({
+        functionCode: 'courseOrder.selfCoursePaymentData'
     }).post(req, res, next);
 }
