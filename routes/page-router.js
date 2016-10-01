@@ -515,6 +515,12 @@ router.get('/training/training-detail.html', (req, res, next) => {
 
 /* GET home page. */
 
+// router.get('/test.html', (req, res, next) => {
+//     return res.render('test', { title: '测试返回' });
+// });
+
+
+
 router.get('*', (req, res, next) => {
     return res.render('public/shop', { title: '店铺' });
 });

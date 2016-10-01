@@ -29,13 +29,14 @@ exports.queryUserFuelList = (req, res, next) => {
 
 /*查询用户训练时间排名*/
 exports.queryUserTrainList = (req, res, next) => {
-        new rest({
-            functionCode: 'member.queryUserTrainList',
-        }).link(req, res, next);
-    }
-    /*
-        点赞
-     */
+    new rest({
+        functionCode: 'member.queryUserTrainList',
+    }).link(req, res, next);
+}
+
+/*
+    点赞
+ */
 exports.bePraise = (req, res, next) => {
     new rest({
         functionCode: 'member.bePraise',

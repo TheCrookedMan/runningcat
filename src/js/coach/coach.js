@@ -42,16 +42,11 @@
         getCourse: function() {
             var self = this;
             $.get('/coach.template', {
-                userId: 1,
-                storeId: 1,
-                queryDate: 1469939400000,
+                userId: userInfo.memberId,
+                storeId: self.storeId,
+                queryDate: self.date,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
-                    // userId: userInfo.memberId,
-                    // storeId: self.storeId,
-                    // queryDate: self.date,
-                    // pageNo: self.pageNo,
-                    // pageSize: self.pageSize
             }).success(function(data) {
                 data = data.replace(/(^\s+)|(\s+$)/g, "");
                 if ("" == data) {
