@@ -812,7 +812,10 @@ ul.other-login-way li img {
         }
         ul {
             li {
-                width: 50%;
+                width: 50%;border-right:#444 solid 1px;
+                &:last-child{
+                border:0;
+                }
                 a {
                     color: #b3b3b3;
                     display: inline-block;
