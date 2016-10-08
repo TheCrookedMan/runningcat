@@ -13,18 +13,20 @@ var courseId = "{{courseId}}";
     </div>
     <div class="pay-spec bg-e6">
         <ul>
-            <li>
+            <li style="border-bottom:0;">
                 <span class="peo">人数：</span>
                 <div class="pub_peolist">
                 </div>
             </li>
-            <li>
+            <!-- 这个“display: none”添加是因为 暂时去掉课时支付和现金支付。如果恢复请把 “display: none” 去掉即可 -->
+            <li style="display:none">
                 <span>金额：</span>
                 <em class="totalPrice"></em>
             </li>
         </ul>
     </div>
-    <div class="pub-list skin2">
+    <!-- 这个“display: none”添加是因为 暂时去掉课时支付和现金支付。如果恢复请把 “display: none” 去掉即可 -->
+    <div class="pub-list skin2" style="display: none">
         <ul>
             <li class="cur">
                 <a href="javascript:void(0);" class="classTimePayment">
@@ -103,6 +105,13 @@ var courseId = "{{courseId}}";
                 </a>
             </li>
         </ul>
+    </div>
+    <div class="promoCode">
+        <label>优惠码：</label>
+        <input type="text" placeholder="请输入优惠码！" id="couponCode" style="padding: 10px 0px">
+    </div>
+    <div class="pub-rbtn txt-c">
+        <button class="btn promoCodeSubmit">提交</button>
     </div>
 </section>
 <!-- 折扣详情 -->

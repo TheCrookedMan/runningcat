@@ -45,9 +45,10 @@
                 font-size: 1.6rem;
                 color: #707070;
             }
-            .ename{
-                margin-left:1rem;
-                color:#990100;font-size: 1.6rem;
+            .ename {
+                margin-left: 1rem;
+                color: #990100;
+                font-size: 1.6rem;
             }
             img {
                 width: 5.5rem;
@@ -202,7 +203,6 @@
                 font-size: 1.4rem;
                 color: #717171;
             }
-
             .address-span {
                 white-space: nowrap;
                 overflow: hidden;
@@ -323,11 +323,21 @@
         font-size: 1.4rem;
         color: #707070;
         padding: 0.8rem 0 0;
-        img{
-            margin-bottom:10px;
+        img {
+            margin-bottom: 10px;
         }
         .flow {
             width: 60%;
         }
+    }
+}
+
+.promoCode {
+    margin: 20px auto;
+    padding-left: 15px;
+    color: #717171;
+    input {
+        width: 70%;
+        text-indent: 10px;
     }
 }

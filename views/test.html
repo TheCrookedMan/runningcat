@@ -1,0 +1,12 @@
+{% include "./_partial/head.html" %}
+<body style="    background: white;">
+    <h1>测试返回</h1>
+</body>
+{% include "./_partial/foot.html" %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("h1").on('click',function(){
+            history.go(-1);
+        })
+    })
+</script>

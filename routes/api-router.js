@@ -161,6 +161,19 @@ router.post('/order/privateCoursePaymentData',order.privateCoursePaymentData);
 /* 获取自助训练支付数据 */
 router.post('/order/selfCoursePaymentData',order.selfCoursePaymentData);
 
+
+
+/* 常规课优惠吗付款接口 */
+router.post('/order/classTimeCouponCodePayOrder',order.classTimeCouponCodePayOrder);
+/* 私教课课时支付预约课程 */
+router.post('/order/privateCoursePayOrder',order.privateCoursePayOrder);
+/* 自助训练课时支付 */
+router.post('/order/selfCoursePayOrder',order.selfCoursePayOrder);
+/* 自助训练现金支付 */
+router.post('/order/selfCourseMoneyPayOrder',order.selfCourseMoneyPayOrder);
+/* 私教课现金支付 */
+router.post('/order/privateCourseMoneyPayOrder',order.privateCourseMoneyPayOrder);
+
 /*coach*/
 router.post('/coach', coach.coach);
 router.post('/coachDetail', coach.coachDetail);

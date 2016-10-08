@@ -16,6 +16,9 @@
         getPayPageInfo();
     });
 
+
+
+
     function getPayPageInfo() {
         $.post('/coursePlan/queryCoursePlanInfo', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
             if (data.code == "0000" && data.success) {
@@ -39,7 +42,7 @@
                 payInfo.push("</ul>");
                 $(".pay-info").html(payInfo.join(""));
                 // var dayOfWeek = parseInt($("#week").val());
-                 $("#dayOfWeek").html(common.toWeek(record.courseDate));
+                $("#dayOfWeek").html(common.toWeek(record.courseDate));
                 // switch (dayOfWeek) {
                 //     case 1:
                 //         $("#dayOfWeek").html("周日");
@@ -98,6 +101,9 @@
         var onceCourseHour = $(".pub_peolist a.cur").data("onceCourseHour");
         needCourseNum = num * onceCourseHour;
 
+        /* 这个return false添加是因为 暂时去掉课时支付和现金支付。如果恢复请把 “return false” 注释即可 */
+        return false;
+        
         if (needCourseNum <= 0) {
             $(".cashPayment").parent("li").hide();
         } else {
@@ -125,6 +131,8 @@
             获取可用课时纪录列表
          */
     function gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum) {
+        /* 这个return false添加是因为 暂时去掉课时支付和现金支付。如果恢复请把 “return false” 注释即可 */
+        return false;
         $.get('/timeMoneyPayment_rechargelist.template', {
             memberId: userInfo.memberId,
             courseHourStatus: 1,
@@ -382,6 +390,35 @@
             $(this).find("i.am-icon-square-o").addClass("am-icon-check-square-o").removeClass("am-icon-square-o");
         }
         rechargeObj.selectDiscountInfo(needCourseNum);
+        ev.stopPropagation();
+    });
+
+    $("body").on("touchend", ".promoCodeSubmit", function(ev) {
+        var couponCode = $("#couponCode").val();
+
+        if ("" == couponCode) {
+            modal.alert("请输入优惠码！");
+            return
+        }
+        if (needCourseNum > 0) {
+            $.post('/order/classTimeCouponCodePayOrder', {
+                memberId: userInfo.memberId,
+                couponCode: couponCode,
+                storeId: rechargeObj.storeId,
+                onceId: courseId,
+                buyCopies: buyCopiesNumber
+            }).success(function(data) {
+                if (data.code == "0000" && data.success) {
+                    modal.alert("优惠码使用成功！");
+                    window.location.href = "/course/pay-success.html?courseId=" + courseId;
+                } else {
+                    modal.alert(data.msg);
+                    // modal.alert("支付失败！");
+                }
+            });
+        } else {
+            modal.alert("请输入需要购买课程所需的课时！");
+        }
         ev.stopPropagation();
     });
 

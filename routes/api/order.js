@@ -126,3 +126,38 @@ exports.selfCoursePaymentData = (req, res, next) => {
         functionCode: 'courseOrder.selfCoursePaymentData'
     }).post(req, res, next);
 }
+
+/* 常规课优惠码付款接口 */
+exports.classTimeCouponCodePayOrder = (req, res, next) => {
+    new rest({
+        functionCode: 'order.classTimeCouponCodePayOrder'
+    }).post(req, res, next);
+}
+
+/* 私教课课时支付预约课程 */
+exports.privateCoursePayOrder = (req, res, next) => {
+    new rest({
+        functionCode: 'courseOrder.privateCoursePayOrder'
+    }).post(req, res, next);
+}
+
+/* 自助训练课时支付 */
+exports.selfCoursePayOrder = () => {
+    new rest({
+        functionCode: 'courseOrder.selfCoursePayOrder'
+    }).post(req, res, next);
+}
+
+/* 自助训练现金支付 */
+exports.selfCourseMoneyPayOrder = () => {
+    new rest({
+        functionCode: 'courseOrder.selfCourseMoneyPayOrder'
+    }).post(req, res, next);
+}
+
+/* 私教课现金支付 */
+exports.privateCourseMoneyPayOrder = () => {
+    new rest({
+        functionCode: 'courseOrder.privateCourseMoneyPayOrder'
+    }).post(req, res, next);
+}

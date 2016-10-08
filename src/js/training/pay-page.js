@@ -39,7 +39,7 @@
                 payInfo.push("</ul>");
                 $(".pay-info").html(payInfo.join(""));
                 // var dayOfWeek = parseInt($("#week").val());
-                 $("#dayOfWeek").html(common.toWeek(record.courseDate));
+                $("#dayOfWeek").html(common.toWeek(record.courseDate));
                 // switch (dayOfWeek) {
                 //     case 1:
                 //         $("#dayOfWeek").html("周日");
@@ -288,18 +288,18 @@
         rechargeObj.selectCopSalePolicy(needCourseNum);
     });
     /*
-    单次课课时支付
+    自助训练课时支付
      */
     $("body").on("click", ".classTimePaymentButton", function(ev) {
         // if (needCourseNum > 0) {
-        $.post('/order/classTimePayOrder', {
+        $.post('/order/selfCoursePayOrder', {
             memberId: userInfo.memberId,
-            onceId: courseId,
+            courseId: courseId,
             storeId: rechargeObj.storeId,
             buyCopies: buyCopiesNumber
         }).success(function(data) {
             if (data.code == "0000" && data.success) {
-                window.location.href = "/course/pay-success.html?courseId=" + courseId;
+                window.location.href = "/training/pay-success.html?courseId=" + courseId;
             } else {
                 modal.alert(data.msg);
             }
@@ -311,7 +311,7 @@
         ev.stopPropagation();
     });
     /*
-        单次课现金支付
+        自助训练现金支付
      */
     $("body").on("click", ".wechatPayment", function(ev) {
         // var catfood = 0;
@@ -319,7 +319,7 @@
         //     catfood = rechargeObj.discountInfo.nmemberCatFood;
         // }
         if (needCourseNum > 0) {
-            $.post('/order/classTimeMoneyPayment', {
+            $.post('/order/selfCourseMoneyPayOrder', {
                 memberId: userInfo.memberId,
                 totalNum: rechargeObj.discountInfo.totalNum,
                 storeId: rechargeObj.storeId,
@@ -328,7 +328,7 @@
                 type: 1,
                 // catfood: catfood,
                 isUseCatfood: isUseCatfood,
-                onceId: courseId,
+                courseId: courseId,
                 openId: common.getOpenId(),
                 buyCopies: buyCopiesNumber
             }).success(function(data) {
@@ -338,7 +338,7 @@
                     } else {
                         pay.go(data.data).then(function() {
                             /* success */
-                            window.location.href = "/course/pay-success.html?courseId=" + courseId;
+                            window.location.href = "/training/pay-success.html?courseId=" + courseId;
                         }, function(pay_info) {
                             /* error */
                             /* modal.alert(pay_info); */
