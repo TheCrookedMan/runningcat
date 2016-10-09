@@ -4,9 +4,19 @@ body {
     /*background-color: #cacaca;*/
     background-color: #e6e6e6;
 }
+.course .pic{position: relative;}
 .course .pic .title img{
-    top: 58%
+    
 }
+.course .pic  .tpic {
+    width: 5.5rem;
+    height: 5.5rem;
+    position: absolute;
+    right: 1.6rem;
+    bottom: 9.5rem;
+    border-radius: 50%;
+}
+#trainerDesc{margin-left: 1rem;margin-right: 1rem;display: block;}
 </style>
 <script type="text/javascript">
 var courseId = "{{courseId}}";
@@ -19,28 +29,44 @@ var courseId = "{{courseId}}";
             </ul>
         </div>
         <div class="title">
-            <div id="englishName" class="ename">aafa</div>
-            <span id="courseName"></span>
-            <img src="{{settings.imageAddress}}{{imgUrl}}" alt="跑步猫">
+            <div id="englishName" class="ename"></div>
+            <span id="trainerDesc"></span>
+           
         </div>
+         <img src="{{settings.imageAddress}}{{imgUrl}}" alt="跑步猫" class="tpic">
     </div>
     <div class="info-list bg-e6">
         <ul>
             <!-- <li>
                 <i class="am-icon-instagram"></i><span class="onceCourseHour">所需课时：0课时</span>
             </li> -->
-            <li>
+            <!-- <li>
                 <i class="am-icon-user"></i><span>预约人数：<em id="courseDate"></em>　<em id="dayOfWeek">{{dayOfWeek}}</em>　<em id="startTime"></em>~<em id="endTime"></em></span>
+            </li> -->
+            <li class="peo" style="display:block;height:auto">
+              <i class="am-icon-clock-o" style="top:1rem;"></i>
+              <span style="padding-bottom:0.6rem;">预约时间：</span>
+              <div class="pub_peolist ytime" style="margin-left:8.5rem">
+                
+              </div>
+            </li>
+            <li class="peo" style="display:block;height:auto">
+              <i class="am-icon-users" style="top:1rem;"></i>
+              <span style="padding-bottom:0.6rem;">预约人数：</span>
+              <div class="pub_peolist ypeo" style="margin-left:8.5rem">
+                
+              </div>
             </li>
             <li>
                 <i class="am-icon-clock-o"></i><span>所需课时：<em id="openCourseNum"></em>课时，限<em id="buyerNum"></em>人</span>
             </li>
             <li>
-                <i class="am-icon-map-marker"></i><span id="storeAddress" class="address-span">&nbsp;</span>
+                <i class="am-icon-map-marker"></i><span id="storeAddress" class="address-span">&nbsp;</span><a href="javascript:void(0);" class="col-red view-map">查看地图</a>
             </li>
             <li>
                 <i class="am-icon-phone"></i><span id="contactPhone">&nbsp;</span>
             </li>
+
         </ul>
     </div>
     <div class="course-con">
@@ -54,9 +80,9 @@ var courseId = "{{courseId}}";
         </div>
     </div>
     <div class="course-con">
-        <div class="tit">学员福利</div>
-        <div class="con">
-            RUNNING CAT提供免费超速wifi、超酷的RUNNING CAT咖啡厅休息区、饮用水、同时提供训练后个人训练美照，记录你时刻的美。
+        <div class="tit">适用人群</div>
+        <div class="con" id="courseTarget">
+           
         </div>
     </div>
     <div class="course-con">

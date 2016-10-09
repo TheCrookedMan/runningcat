@@ -11,11 +11,37 @@
         $("#courseRemark").html(res.courseRemark);
         $("#courseTarget").html(res.courseTarget);
         $("#courseTip").html(res.courseTip);
+        $("#courseTarget").html(res.courseTarget);
         $("#storeAddress").html(res.storeAddress);
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
-        $("#openCourseNum").html(res.courseMaxNum);
-
+        $("#buyerNum").html(res.courseMaxNum);
+        $("#openCourseNum").html(res.onceCourseHour);
+         $("#dayOfWeek").html(res.dayOfWeek);
+            var dayOfWeek = parseInt($("#dayOfWeek").html());
+            switch (dayOfWeek) {
+                case 1:
+                    $("#dayOfWeek").html("周日");
+                    break;
+                case 2:
+                    $("#dayOfWeek").html("周一");
+                    break;
+                case 3:
+                    $("#dayOfWeek").html("周二");
+                    break;
+                case 4:
+                    $("#dayOfWeek").html("周三");
+                    break;
+                case 5:
+                    $("#dayOfWeek").html("周四");
+                    break;
+                case 6:
+                    $("#dayOfWeek").html("周五");
+                    break;
+                case 7:
+                    $("#dayOfWeek").html("周六");
+                    break;
+            }
         if (!res.buyerNum) {
             res.buyerNum = 0;
         }
@@ -25,16 +51,13 @@
         $("#buyerNum").html(res.buyerNum);
         //var carouselFigure = res.carouselFigure;
         var playTimePictures = res.playTimePictures;
-        //console.log(carouselFigure)
-        // if (carouselFigure.length) {
-        //     for (var ele in carouselFigure) {
-        //         var str = "<li><img src='" + window.imageAddress + carouselFigure[ele].imgUrl + "'/></li>";
-        //         $('#carouselFigure').append(str);
-        //     }
-        // } else {
-        //     var str = "<li><img src='/img/default.jpg'/></li>";
-        //     $('#carouselFigure').append(str);
-        // }
+
+        /*循环人数*/
+        for(i=1;i<=4;i++){
+            var pricestr="<a href='javascript:void(0);' data-href='/training/pay-page.html?courseId="+courseId+"&buyCopies="+i+"'><p>"+i+"人</p><p>"+i+"课时</p></a>";
+            $(".pub_peolist").append(pricestr);
+            $(".pub_peolist a:first").addClass('cur');
+        }
 
         $('.am-slider').flexslider();
         for (var ele in playTimePictures) {
@@ -51,33 +74,16 @@
 
     });
 
+    $(".pub_peolist").on("click","a",function(ev){
+        var url = $(this).data("href");
+        $(this).siblings(".cur").removeClass("cur");
+        $(this).addClass("cur");
+        window.location.href = url;
+    })
+
     if (isBuyFlag == 1) {
         $(".pub-rbtn .btn").removeAttr("href");
         $(".pub-rbtn .btn").addClass("end");
     }
 
-    var dayOfWeek = parseInt($("#dayOfWeek").text());
-    switch (dayOfWeek) {
-        case 1:
-            $("#dayOfWeek").html("周日");
-            break;
-        case 2:
-            $("#dayOfWeek").html("周一");
-            break;
-        case 3:
-            $("#dayOfWeek").html("周二");
-            break;
-        case 4:
-            $("#dayOfWeek").html("周三");
-            break;
-        case 5:
-            $("#dayOfWeek").html("周四");
-            break;
-        case 6:
-            $("#dayOfWeek").html("周五");
-            break;
-        case 7:
-            $("#dayOfWeek").html("周六");
-            break;
-    }
 }).call(this);

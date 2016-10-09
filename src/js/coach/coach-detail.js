@@ -6,7 +6,7 @@
         $("#courseDate").html(common.formatDate(res.courseDate, 'yyyy-MM-dd'));
         $("#courseDesc").html(res.courseDesc);
         $("#courseFlow").html(res.courseFlow);
-        $("#courseName").html(res.courseName);
+        $("#trainerDesc").html(res.trainerDesc);
         $("#courseRemark").html(res.courseRemark);
         $("#courseTarget").html(res.courseTarget);
         $("#englishName").html(res.englishName);
@@ -15,10 +15,16 @@
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
         $("#openCourseNum").html(res.courseMaxNum);
+        
+         $("#courseTarget").html(res.courseTarget);
 
         if (!res.buyerNum) {
             res.buyerNum = 0;
         }
+
+        var startTimes=res.startTimes;
+
+        
 
         $(".onceCourseHour").text("所需课时：" + res.onceCourseHour + "课时");
 
@@ -35,6 +41,39 @@
             var str = "<li><img src='/img/default.jpg'/></li>";
             $('#carouselFigure').append(str);
         }
+
+        /*循环人数*/
+        for(i=1;i<=3;i++){
+            var pricestr="<a href='javascript:void(0);'><p data-id="+i+">"+i+"V"+i+"</p></a>";
+            $(".ypeo").append(pricestr);
+            $(".ypeo a:first").addClass('cur');
+        }
+
+        var buyCopies=$(".ypeo a.cur p").data("id");
+
+       
+
+        $(".ypeo").on("click","a",function(ev){
+            var url = $(this).data("href");
+            $(this).siblings(".cur").removeClass("cur");
+            $(this).addClass("cur");
+            buyCopies=$(this).find("p").data("id");
+            //console.log(buyCopies)
+        })
+
+         /*循环时间*/
+        for(var i in startTimes){
+            var pricestr="<a href='javascript:void(0);' data-href='/coach/pay-page.html?courseId="+startTimes[i].courseId+"'><p>"+startTimes[i].startTime+"</p></a>";
+            $(".ytime").append(pricestr);
+            $(".ytime a:first").addClass('cur');
+        }
+
+        $(".ytime").on("click","a",function(ev){
+            var url = $(this).data("href");
+            $(this).siblings(".cur").removeClass("cur");
+            $(this).addClass("cur");
+            window.location.href = url+"&buyCopies="+buyCopies;
+        })
 
         $('.am-slider').flexslider();
         for (var ele in playTimePictures) {

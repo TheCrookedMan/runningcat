@@ -9,6 +9,7 @@ body {
 var courseId = "{{courseId}}";
 </script>
 <input type="hidden" value="{{isBuyFlag}}" id='isBuyFlag'>
+<input type="hidden" value="{{dayOfWeek}}" id='dayOfWeek0'>
 <section class="course">
     <div class="pic">
         <div class="am-slider am-slider-default" data-am-flexslider>
@@ -22,22 +23,19 @@ var courseId = "{{courseId}}";
     </div>
     <div class="info-list bg-e6">
         <ul>
-            <!-- <li>
-                <i class="am-icon-instagram"></i><span class="onceCourseHour">所需课时：0课时</span>
-            </li> -->
             <li>
-                <i class="am-icon-clock-o"></i><span><em id="courseDate"></em>　<em id="dayOfWeek">{{dayOfWeek}}</em>　<em id="startTime"></em>~<em id="endTime"></em></span>
+                <i class="am-icon-clock-o"></i><span><em id="courseDate"></em>　<em id="dayOfWeek"></em>　<em id="startTime"></em>~<em id="endTime"></em></span>
             </li>
             <li>
-                <i class="am-icon-user"></i><span><em id="openCourseNum"></em>人，已约<em id="buyerNum"></em>人</span>
+                <i class="am-icon-user"></i><span>所需课时：<em id="openCourseNum"></em>课时，限<em id="buyerNum"></em>人</span>
             </li>
             <li>
-                <i class="am-icon-map-marker"></i><span id="storeAddress" class="address-span">&nbsp;</span>
+                <i class="am-icon-map-marker"></i><span id="storeAddress" class="address-span">&nbsp;</span><a href="javascript:void(0);" class="col-red view-map">查看地图</a>
             </li>
             <li>
                 <i class="am-icon-phone"></i><span id="contactPhone">&nbsp;</span>
             </li>
-            <li class="peo">
+            <li class="peo" style="display:block">
               <i class="am-icon-user"></i>
               <span>人数：</span>
               <div class="pub_peolist">
@@ -47,7 +45,7 @@ var courseId = "{{courseId}}";
         </ul>
     </div>
     <div class="course-con">
-        <div class="tit">课程简介</div>
+        <div class="tit">场馆简介</div>
         <div class="con" id="courseDesc">
         </div>
     </div>
@@ -65,6 +63,13 @@ var courseId = "{{courseId}}";
     <div class="course-con">
         <div class="tit">温馨提示</div>
         <div class="con" id="courseTip">
+            
+        </div>
+    </div>
+
+    <div class="course-con">
+        <div class="tit">适用人群</div>
+        <div class="con" id="courseTarget">
             
         </div>
     </div>
