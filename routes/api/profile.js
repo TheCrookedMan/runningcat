@@ -202,3 +202,11 @@ exports.selfClassDoLeave = (req, res, next) => {
         functionCode: 'selfClasstime.doLeave',
     }).post(req, res, next);
 }
+
+/*特训营转让*/
+exports.transferSpecial = (req, res, next) => {
+    new rest({
+        functionCode: 'usrClasstimeOrder.transferSpecial',
+    }).post(req, res, next);
+}
+

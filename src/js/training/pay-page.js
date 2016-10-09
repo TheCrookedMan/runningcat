@@ -17,7 +17,7 @@
     });
 
     function getPayPageInfo() {
-        $.post('/coursePlan/queryCoursePlanInfo', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
+        $.post('/trainingDetail', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
             if (data.code == "0000" && data.success) {
                 var record = data.data,
                     payInfo = [];

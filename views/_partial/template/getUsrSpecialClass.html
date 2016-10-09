@@ -21,6 +21,11 @@
         </div>
         <div class="pub-btn skin0 mt0">
             <a href="/profile/till.html?specialId={{till.id}}" class="btn btn-red">课表</a>
+            {% if till.checkStatus==1 %}
+            <a href="javascript:void(0)" class="btn btn-red">已转让</a>
+            {% elseif till.checkStatus==3 %}
+            <a href="javascript:void(0)" class="btn btn-red zhuanrang" data-am-modal="{target: '.doc-modal-1', closeViaDimmer: 0, width: 400, height: 225}" data-id="{{till.className}}"  data-id1="{{till.totalNum}}" data-id3="{{till.totalPrice}}" data-id4="{{till.appointmentTotalNum}}" data-id2="{{till.id}}">转让</a>
+            {% endif %}
         </div>
     </div>
 </li>

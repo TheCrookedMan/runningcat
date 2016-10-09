@@ -181,7 +181,7 @@ router.get('/recharge-record.template', [order.selectUsrRechargeOrderList], (req
 /*公共查询头部课程信息*/
 router.get('/pubclass.template', [course.queryCoursePlanInfo], (req, res, next) => {
     return res.render('_partial/template/pubclass', {
-        data: res.data['coursePlan.queryCoursePlanInfo']['record']
+        data: res.data['selfCourse.querySelfCourseInfo']['record']
     });
 });
 

@@ -187,6 +187,8 @@ router.post('/getUsrPrivateClass', profile.getUsrPrivateClass);
 router.post('/PrivateClassDoSignIn', profile.PrivateClassDoSignIn);
 router.post('/PrivateClassDoLeave', profile.PrivateClassDoLeave);
 
+router.post('/transferSpecial', profile.transferSpecial);
+
 /*trainning*/
 router.post('/training', training.training);
 router.post('/trainingDetail', training.trainingDetail);

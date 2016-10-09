@@ -13,14 +13,14 @@ exports.course = (req, res, next) => {
 /*课程详情*/
 exports.courseDetail = (req, res, next) => {
     new rest({
-        functionCode: 'coursePlan.queryCoursePlanInfo',
+        functionCode: 'privateCourse.queryPrivateCourseInfo',
     }).post(req, res, next);
 }
 
 /*课程详情 link*/
 exports.queryCoursePlanInfo = (req, res, next) => {
     new rest({
-        functionCode: 'coursePlan.queryCoursePlanInfo',
+        functionCode: 'privateCourse.queryPrivateCourseInfo',
     }).link(req, res, next);
 }
 

@@ -17,7 +17,7 @@
     });
 
     function getPayPageInfo() {
-        $.post('/coursePlan/queryCoursePlanInfo', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
+        $.post('/coachDetail', {  'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
             if (data.code == "0000" && data.success) {
                 var record = data.data,
                     payInfo = [];
@@ -73,7 +73,7 @@
                     }
 
                     peolist.push('<p>' + i + '人</p>');
-                    peolist.push('<p>' + i * record.onceCourseHour + '课时</p>');
+                    //peolist.push('<p>' + i * record.onceCourseHour + '课时</p>');
                     peolist.push('</a>');
                 }
                 $(".pub_peolist").html(peolist.join(""));
