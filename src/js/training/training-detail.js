@@ -2,7 +2,7 @@
     var isBuyFlag = $("#isBuyFlag").val();
     $.post('/trainingDetail', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
         var res = data.data;
-        console.log(res);
+        //console.log(res);
         $("#contactPhone").html(res.contactPhone);
         $("#courseDate").html(common.formatDate(res.courseDate, 'yyyy-MM-dd'));
         $("#courseDesc").html(res.courseDesc);
@@ -70,20 +70,26 @@
             $(".pub-rbtn .btn").addClass("end");
         }
 
+        $(".pub_peolist").on("click","a",function(ev){
+            var url = $(this).data("href");
+            $(this).siblings(".cur").removeClass("cur");
+            $(this).addClass("cur");
+            window.location.href = url;
+        })
+
+        if (isBuyFlag == 1) {
+            $(".pub-rbtn .btn").removeAttr("href");
+            $(".pub-rbtn .btn").addClass("end");
+            $(".pub-rbtn .btn").removeClass("can");
+        }
+
+        $(".pub-rbtn .can").on("click",function(){
+             window.location.href = $(".pub_peolist a.cur").data("href");
+        })
+
     }).error(function(data) {
 
     });
 
-    $(".pub_peolist").on("click","a",function(ev){
-        var url = $(this).data("href");
-        $(this).siblings(".cur").removeClass("cur");
-        $(this).addClass("cur");
-        window.location.href = url;
-    })
-
-    if (isBuyFlag == 1) {
-        $(".pub-rbtn .btn").removeAttr("href");
-        $(".pub-rbtn .btn").addClass("end");
-    }
 
 }).call(this);

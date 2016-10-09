@@ -86,14 +86,21 @@
             $(".pub-rbtn .btn").addClass("end");
         }
 
+        if (isBuyFlag == 1) {
+            $(".pub-rbtn .btn").removeAttr("href");
+            $(".pub-rbtn .btn").addClass("end");
+            $(".pub-rbtn .btn").removeClass("can");
+        }
+
+        $(".pub-rbtn .can").on("click",function(){
+             window.location.href = $(".ytime a.cur").data("href")+"&buyCopies="+buyCopies;
+        })
+
     }).error(function(data) {
 
     });
 
-    if (isBuyFlag == 1) {
-        $(".pub-rbtn .btn").removeAttr("href");
-        $(".pub-rbtn .btn").addClass("end");
-    }
+    
 
     var dayOfWeek = parseInt($("#dayOfWeek").text());
     switch (dayOfWeek) {
