@@ -142,21 +142,21 @@ exports.privateCoursePayOrder = (req, res, next) => {
 }
 
 /* 自助训练课时支付 */
-exports.selfCoursePayOrder = () => {
+exports.selfCoursePayOrder = (req, res, next) => {
     new rest({
         functionCode: 'courseOrder.selfCoursePayOrder'
     }).post(req, res, next);
 }
 
 /* 自助训练现金支付 */
-exports.selfCourseMoneyPayOrder = () => {
+exports.selfCourseMoneyPayOrder = (req, res, next) => {
     new rest({
         functionCode: 'courseOrder.selfCourseMoneyPayOrder'
     }).post(req, res, next);
 }
 
 /* 私教课现金支付 */
-exports.privateCourseMoneyPayOrder = () => {
+exports.privateCourseMoneyPayOrder = (req, res, next) => {
     new rest({
         functionCode: 'courseOrder.privateCourseMoneyPayOrder'
     }).post(req, res, next);

@@ -65,14 +65,14 @@
                 // }
                 var oncePrice = record.oncePrice == undefined ? 0 : record.oncePrice;
                 var peolist = [];
-                for (var i = 1; i < 5; i++) {
+                for (var i = 1; i < 4; i++) {
                     if (i == 1) {
                         peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-once-price="' + oncePrice + '" data-once-course-hour="' + record.onceCourseHour + '" class="cur">');
                     } else {
                         peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-once-price="' + oncePrice + '" data-once-course-hour="' + record.onceCourseHour + '">');
                     }
 
-                    peolist.push('<p>' + i + '人</p>');
+                    peolist.push('<p>1v' + i + '</p>');
                     //peolist.push('<p>' + i * record.onceCourseHour + '课时</p>');
                     peolist.push('</a>');
                 }
@@ -318,6 +318,7 @@
         // if (isUsedCatFood) {
         //     catfood = rechargeObj.discountInfo.nmemberCatFood;
         // }
+        
         if (needCourseNum > 0) {
             $.post('/order/privateCourseMoneyPayOrder', {
                 memberId: userInfo.memberId,
@@ -358,7 +359,7 @@
     function setTotalPrice() {
         $.post('/order/privateCoursePaymentData', {
             memberId: userInfo.memberId,
-            onceId: courseId,
+            courseId: courseId,
             storeId: rechargeObj.storeId,
             buyCopies: buyCopiesNumber
         }).success(function(data) {

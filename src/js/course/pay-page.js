@@ -17,8 +17,6 @@
     });
 
 
-
-
     function getPayPageInfo() {
         $.post('/coursePlan/queryCoursePlanInfo', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
             if (data.code == "0000" && data.success) {
@@ -101,9 +99,6 @@
         var onceCourseHour = $(".pub_peolist a.cur").data("onceCourseHour");
         needCourseNum = num * onceCourseHour;
 
-        /* 这个return false添加是因为 暂时去掉课时支付和现金支付。如果恢复请把 “return false” 注释即可 */
-        return false;
-        
         if (needCourseNum <= 0) {
             $(".cashPayment").parent("li").hide();
         } else {
@@ -131,8 +126,6 @@
             获取可用课时纪录列表
          */
     function gettimeMoneyPaymentList(needCourseNum, usrRechargeOrderRemainNum) {
-        /* 这个return false添加是因为 暂时去掉课时支付和现金支付。如果恢复请把 “return false” 注释即可 */
-        return false;
         $.get('/timeMoneyPayment_rechargelist.template', {
             memberId: userInfo.memberId,
             courseHourStatus: 1,
@@ -372,6 +365,28 @@
         }).success(function(data) {
             if (data.code == "0000" && data.success) {
                 var record = data.data;
+                if ("1" == record.memberLevelId) {
+                    $(".promoCodeLi").show();
+                    $(".classTimeMoney").show();
+                    $(".classTimePaymentLi").show();
+                    $(".cashPaymentLi").show();
+                } else if ("2" == record.memberLevelId) {
+                    $(".showOrHidePromoCode").hide();
+                    $(".classTimeMoney").show();
+                    $(".classTimePaymentLi").show();
+                    $(".cashPaymentLi").hide();
+                } else if ("3" == record.memberLevelId) {
+                    $(".showOrHidePromoCode").hide();
+                    $(".classTimeMoney").show();
+                    $(".classTimePaymentLi").hide();
+                    $(".cashPaymentLi").show();
+                    $(".cashPayment").trigger('click');
+                } else if ("4" == record.memberLevelId) {
+                    $(".showOrHidePromoCode").show();
+                    $(".classTimeMoney").hide();
+                    $(".classTimePaymentLi").hide();
+                    $(".cashPaymentLi").hide();
+                }
                 var string = "¥ ";
                 string += record.totalPrice.toFixed(2);
                 string += "（需" + record.totalNum + "课时）";
@@ -395,10 +410,13 @@
 
     $("body").on("touchend", ".promoCodeSubmit", function(ev) {
         var couponCode = $("#couponCode").val();
-
         if ("" == couponCode) {
             modal.alert("请输入优惠码！");
-            return
+            return;
+        }
+        if(buyCopiesNumber > 1){
+            modal.alert("使用优惠码，只能选择一个人！");
+            return;
         }
         if (needCourseNum > 0) {
             $.post('/order/classTimeCouponCodePayOrder', {

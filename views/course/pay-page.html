@@ -18,17 +18,22 @@ var courseId = "{{courseId}}";
                 <div class="pub_peolist">
                 </div>
             </li>
-            <!-- 这个“display: none”添加是因为 暂时去掉课时支付和现金支付。如果恢复请把 “display: none” 去掉即可 -->
-            <li style="display:none">
+            <li class="classTimeMoney">
                 <span>金额：</span>
                 <em class="totalPrice"></em>
             </li>
         </ul>
     </div>
-    <!-- 这个“display: none”添加是因为 暂时去掉课时支付和现金支付。如果恢复请把 “display: none” 去掉即可 -->
-    <div class="pub-list skin2" style="display: none">
+    <div class="promoCode showOrHidePromoCode">
+        <label>优惠码：</label>
+        <input type="text" placeholder="请输入优惠码！" id="couponCode" style="padding: 10px 0px">
+    </div>
+    <div class="pub-rbtn txt-c showOrHidePromoCode">
+        <button class="btn promoCodeSubmit">提交</button>
+    </div>
+    <div class="pub-list skin2">
         <ul>
-            <li class="cur">
+            <li class="cur classTimePaymentLi" style="display: none">
                 <a href="javascript:void(0);" class="classTimePayment">
                     <i class="list-icon am-icon-dot-circle-o"></i>
                     <div class="list-info">
@@ -75,7 +80,7 @@ var courseId = "{{courseId}}";
                     </div>
                 </a>
             </li>
-            <li>
+            <li class="cashPaymentLi" style="display: none">
                 <a href="javascript:;" class="cashPayment">
                     <i class="list-icon am-icon-circle-o"></i>
                     <div class="list-info">
@@ -105,13 +110,6 @@ var courseId = "{{courseId}}";
                 </a>
             </li>
         </ul>
-    </div>
-    <div class="promoCode">
-        <label>优惠码：</label>
-        <input type="text" placeholder="请输入优惠码！" id="couponCode" style="padding: 10px 0px">
-    </div>
-    <div class="pub-rbtn txt-c">
-        <button class="btn promoCodeSubmit">提交</button>
     </div>
 </section>
 <!-- 折扣详情 -->
