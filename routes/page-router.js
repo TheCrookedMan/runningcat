@@ -493,6 +493,10 @@ router.get('/training/training.html', (req, res, next) => {
     return res.render('training/training', { title: '自助训练' });
 });
 
+router.get('/profile/view_recordDetail.html', (req, res, next) => {
+    return res.render('profile/view_recordDetail', { title: '查看明细' });
+});
+
 router.get('/training/training-detail.html', (req, res, next) => {
     let courseId = req.query.courseId;
     let year = req.query.year;

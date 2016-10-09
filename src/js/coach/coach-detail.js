@@ -14,7 +14,7 @@
         $("#storeAddress").html(res.storeAddress);
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
-        $("#openCourseNum").html(res.courseMaxNum);
+        $("#openCourseNum").html(res.onceCourseHour);
         
          $("#courseTarget").html(res.courseTarget);
 
