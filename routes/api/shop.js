@@ -22,8 +22,16 @@ exports.queryIndexStoreList = (req, res, next) => {
 }
 
 /* 根据租户ID获取 */
-exports.selectComPayAccount = (req,res,next) =>{
-	new rest({
+exports.selectComPayAccount = (req, res, next) => {
+    new rest({
         functionCode: 'comPayAccount.selectComPayAccount',
     }).post(req, res, next);
+}
+
+/* 查询店铺入学协议、店铺制度 */
+exports.getInfo = (req, res, next) => {
+    new rest({
+        functionCode: 'copAdditionalInfo.getInfo',
+    }).post(req, res, next);
+
 }

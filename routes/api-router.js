@@ -44,6 +44,8 @@ router.post('/queryCopStoreList', shop.queryCopStoreList);
 router.post('/queryIndexStoreList', shop.queryIndexStoreList);
 /* 根据租户ID和店铺ID获取appId和appsecret */
 router.post('/shop/selectComPayAccount', shop.selectComPayAccount);
+/*查询课程制度*/
+router.post('/shop/getInfo',shop.getInfo);
 
 //profile
 /*猫粮*/

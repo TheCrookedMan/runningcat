@@ -103,7 +103,7 @@
         ev.stopPropagation();
     });
 
-    $("body").on("click","a.evaluate", function(ev) {
+    $("body").on("click", "a.evaluate", function(ev) {
         var link = $(this).data('href');
         var onceId = $(this).data('onceId');
         $.post('/specialEvaluate/checkStatus', { onceId: onceId }).success(function(data) {
@@ -114,6 +114,14 @@
             }
         })
         ev.stopPropagation();
+    });
+
+    $.post('/shop/getInfo', {
+        storeId: storeInfo.storeId
+    }).success(function(data) {
+        if (data.code == "0000" && data.success) {
+            $("#rule-popup .am-popup-bd").html(data.record.classPolicyDesc);
+        }
     });
 
     // $(".single-class .pub-tab").on("click", "a", function(ev) {

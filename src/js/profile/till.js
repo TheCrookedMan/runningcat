@@ -102,6 +102,14 @@
         ev.stopPropagation();
     });
 
+    $.post('/shop/getInfo', {
+        storeId: storeInfo.storeId
+    }).success(function(data) {
+        if (data.code == "0000" && data.success) {
+            $("#rule-popup .am-popup-bd").html(data.record.classPolicyDesc);
+        }
+    });
+
     // $(".single-class .pub-tab").on("click", "a", function(ev) {
     //     $(".single-class .pub-tab .cur").removeClass("cur");
     //     $(this).addClass("cur");
