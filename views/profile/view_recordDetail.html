@@ -1,0 +1,26 @@
+{% include "../_partial/head.html" %}
+<style type="text/css">
+    body{
+        background-color: #e6e6e6
+    }
+    .pub-list ul li dl dd{width: 100%}
+</style>
+<section class="single-class">
+    <div class="pub-list skin4 mt-05rem">
+        <hr>
+        <ul>
+            <li class="{{catfood.modifyTime|date('Y-m')}}">
+                <i class="am-icon-dot-circle-o"></i>
+                <dl>
+                    <dd>订单号：<span>2313</span></dd>
+                    <dd>课时数量：<span>2313</span></dd>
+                    <dd>备注：<span>2313</span></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+{% include "../_partial/foot.html" %}
+<script src="/js/profile/view_recordDetail.js"></script>
