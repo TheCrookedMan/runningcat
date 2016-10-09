@@ -19,7 +19,11 @@
       {% endfor %}
     </div>
     <div class="pub-wbtn">
+        {% if course.isBuyFlag==0 %}
         <a href="/coach/coach-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}" class="btn">预约</a>
+        {% else  %}
+        <a  class="btn">已结束</a>
+        {% endif %}
     </div>
   </div>
 </li>

@@ -14,7 +14,15 @@
     <div class="peo">仅剩{{course.courseMaxNum - course.actualNum}}人</div>
     <div class="pub-wbtn">
         <div class="num"><em>$</em><span>{{course.onceCourseHour}} 课时</span></div>
+
+        {% if course.isBuyFlag==0 %}
         <p><a href="/training/training-detail.html?courseId={{course.courseId}}&isBuyFlag={{course.isBuyFlag}}&dayOfWeek={{course.dayOfWeek}}&imgUrl={{course.imgUrl}}" class="btn">预约</a></p>
+        {% else  %}
+       <p><a  class="btn">已结束</a></p>
+        {% endif %}
+        
+
+
     </div>
   </div>
 </li>
