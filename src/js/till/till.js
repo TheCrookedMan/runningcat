@@ -1,4 +1,25 @@
 (function() {
+    var store = common.getStoreInfo();
+    //头部课程类型列表
+    $.post('/common/queryCourseTypeList', { 'userId': userInfo.memberId, 'storeId': store.storeId }).success(function(data) {
+        var res=data.data;
+        for(i in res){
+            var str;
+            if(res[i].courseType==1){
+                str='<li><a href="/course/course.html">'+res[i].courseTypeName+'</a></li>'
+            }
+            else if(res[i].courseType==2){
+                str='<li><a href="/till/till.html" class="cur">'+res[i].courseTypeName+'</a></li>'
+            }
+            else if(res[i].courseType==3){
+                str='<li><a href="/coach/coach.html" >'+res[i].courseTypeName+'</a></li>' 
+            }
+            else if(res[i].courseType==4){
+               str='<li><a href="/training/training.html">'+res[i].courseTypeName+'</a></li>' 
+            }
+            $("#clist").append(str)
+        }
+    })
     var tillList = function() {
         this.pageNo = 1;
         this.pageSize = 10;

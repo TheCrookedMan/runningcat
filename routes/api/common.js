@@ -18,3 +18,11 @@ exports.getSysDictionary = (req, res, next) => {
 exports.uploadImage = (req, res, next) => {
     new upload(req, res, next);
 }
+
+/*查询店铺课程类型列表——store.queryCourseTypeList*/
+exports.queryCourseTypeList = (req, res, next) => {
+    new rest({
+        functionCode: 'store.queryCourseTypeList',
+    }).post(req, res, next);
+}
+

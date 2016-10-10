@@ -17,6 +17,8 @@ router.post('/common/getSysDictionary', common.getSysDictionary);
 router.post('/common/getAreaList', common.getAreaList);
 router.post('/common/uploadImage', common.uploadImage);
 
+router.post('/common/queryCourseTypeList', common.queryCourseTypeList);
+
 //wechat
 router.post('/wechat/getJSApiTicket', wechat.getJSApiTicket);
 

@@ -1,9 +1,30 @@
 (function() {
-    (function() {
-        var scrollPanel = $('.courses'),
-            scrollWidth = scrollPanel[0].scrollWidth;
-        scrollPanel.scrollLeft(scrollWidth * 0.5);
-    })();
+    var store = common.getStoreInfo();
+    //头部课程类型列表
+    $.post('/common/queryCourseTypeList', { 'userId': userInfo.memberId, 'storeId': store.storeId }).success(function(data) {
+        var res=data.data;
+        for(i in res){
+            var str;
+            if(res[i].courseType==1){
+                str='<li><a href="/course/course.html">'+res[i].courseTypeName+'</a></li>'
+            }
+            else if(res[i].courseType==2){
+                str='<li><a href="/till/till.html">'+res[i].courseTypeName+'</a></li>'
+            }
+            else if(res[i].courseType==3){
+                str='<li><a href="/coach/coach.html" class="cur">'+res[i].courseTypeName+'</a></li>' 
+            }
+            else if(res[i].courseType==4){
+               str='<li><a href="/training/training.html">'+res[i].courseTypeName+'</a></li>' 
+            }
+            $("#clist").append(str)
+        }
+    })
+    // (function() {
+    //     var scrollPanel = $('.courses'),
+    //         scrollWidth = scrollPanel[0].scrollWidth;
+    //     scrollPanel.scrollLeft(scrollWidth * 0.5);
+    // })();
     /*排课时间*/
     var store = common.getStoreInfo();
     $.get('/coachDate.template', {
