@@ -365,6 +365,7 @@
         }).success(function(data) {
             if (data.code == "0000" && data.success) {
                 var record = data.data;
+                //record.memberLevelId=1;
                 if ("1" == record.memberLevelId) {
                     $(".promoCodeLi").show();
                     $(".classTimeMoney").show();
@@ -375,7 +376,7 @@
                     $(".classTimeMoney").show();
                     $(".classTimePaymentLi").show();
                     $(".cashPaymentLi").hide();
-                } else if ("3" == record.memberLevelId) {
+                } else if ("3" == record.memberevelId) {
                     $(".showOrHidePromoCode").hide();
                     $(".classTimeMoney").show();
                     $(".classTimePaymentLi").hide();
