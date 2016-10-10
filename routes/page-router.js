@@ -387,7 +387,7 @@ router.get('/profile/heartrate.html', (req, res, next) => {
 /*
     常规课
  */
-router.get('/course/pay-page.html', [user.checkLogin], (req, res, next) => {
+router.get('/pay/course/pay-page.html', [user.checkLogin], (req, res, next) => {
     let courseId = req.query.courseId;
     let dayOfWeek = req.query.dayOfWeek;
     return res.render('course/pay-page', { title: '常规课支付页面', courseId: courseId, dayOfWeek: dayOfWeek });
@@ -414,7 +414,7 @@ router.get('/course/course-detail.html', (req, res, next) => {
  */
 
 
-router.get('/till/pay-page.html', [user.checkLogin], (req, res, next) => {
+router.get('/pay/till/pay-page.html', [user.checkLogin], (req, res, next) => {
     let specialId = req.query.specialId;
     let buyCopies = req.query.buyCopies;
     return res.render('till/pay-page', { title: '特训营支付页面', specialId: specialId, buyCopies: buyCopies });
@@ -445,7 +445,7 @@ router.get('/till/till-detail.html', (req, res, next) => {
  */
 
 
-router.get('/coach/pay-page.html', [user.checkLogin], (req, res, next) => {
+router.get('/pay/coach/pay-page.html', [user.checkLogin], (req, res, next) => {
     let courseId = req.query.courseId;
     let buyCopies = req.query.buyCopies;
     return res.render('coach/pay-page', { title: '私教课支付页面', courseId: courseId, buyCopies: buyCopies });
@@ -476,7 +476,7 @@ router.get('/coach/coach-detail.html', (req, res, next) => {
  */
 
 
-router.get('/training/pay-page.html', [user.checkLogin], (req, res, next) => {
+router.get('/pay/training/pay-page.html', [user.checkLogin], (req, res, next) => {
     let courseId = req.query.courseId;
     let buyCopies = req.query.buyCopies;
     return res.render('training/pay-page', { title: '自助训练支付页面', courseId: courseId, buyCopies: buyCopies });

@@ -28,7 +28,7 @@
 
         /*循环人数*/
         for(var i in buyCopies){
-            var pricestr="<a href='javascript:void(0);' data-href='/till/pay-page.html?specialId="+specialId+"&buyCopies="+buyCopies[i].buyCopies+"'><p>"+buyCopies[i].buyCopies+"人</p><p>"+num*buyCopies[i].buyCopies+"课时</p></a>";
+            var pricestr="<a href='javascript:void(0);' data-href='/pay/till/pay-page.html?specialId="+specialId+"&buyCopies="+buyCopies[i].buyCopies+"'><p>"+buyCopies[i].buyCopies+"人</p><p>"+num*buyCopies[i].buyCopies+"课时</p></a>";
             $(".pub_peolist").append(pricestr);
             $(".pub_peolist a:first").addClass('cur');
         }
