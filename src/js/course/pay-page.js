@@ -167,6 +167,12 @@
         $(".classTimePayment .usrRechargeOrderList").hide();
         $(".classTimePayment .list-icon").removeClass("am-icon-dot-circle-o");
         $(".classTimePayment .list-icon").addClass("am-icon-circle-o");
+
+        $(".promoCodePayment").parent("li").removeClass("cur");
+        $(".promoCodePayment .list-icon").removeClass("am-icon-dot-circle-o");
+        $(".promoCodePayment .list-icon").addClass("am-icon-circle-o");
+        $(".promoCodePayment .info-body").hide();
+
         $(this).find(".list-icon").removeClass("am-icon-circle-o");
         $(this).find(".list-icon").addClass("am-icon-dot-circle-o");
         ev.stopPropagation();
@@ -175,11 +181,37 @@
         $(this).find(".list-icon").removeClass("am-icon-circle-o");
         $(this).find(".list-icon").addClass("am-icon-dot-circle-o");
         $(this).parent("li").addClass("cur");
+
         $(".cashPayment").parent("li").removeClass("cur");
         $(".cashPayment .list-icon").removeClass("am-icon-dot-circle-o");
         $(".cashPayment .list-icon").addClass("am-icon-circle-o");
         $(".cashPayment .info-body").hide();
+
+        $(".promoCodePayment").parent("li").removeClass("cur");
+        $(".promoCodePayment .list-icon").removeClass("am-icon-dot-circle-o");
+        $(".promoCodePayment .list-icon").addClass("am-icon-circle-o");
+        $(".promoCodePayment .info-body").hide();
+
         $(this).find(".usrRechargeOrderList").show();
+        ev.stopPropagation();
+    });
+
+    $("body").on("click", ".promoCodePayment", function(ev) {
+        $(this).find(".list-icon").removeClass("am-icon-circle-o");
+        $(this).find(".list-icon").addClass("am-icon-dot-circle-o");
+        $(this).parent("li").addClass("cur");
+
+        $(".cashPayment").parent("li").removeClass("cur");
+        $(".cashPayment .list-icon").removeClass("am-icon-dot-circle-o");
+        $(".cashPayment .list-icon").addClass("am-icon-circle-o");
+        $(".cashPayment .info-body").hide();
+
+        $(".classTimePayment").parent("li").removeClass("cur");
+        $(".classTimePayment .list-icon").removeClass("am-icon-dot-circle-o");
+        $(".classTimePayment .list-icon").addClass("am-icon-circle-o");
+        $(".classTimePayment .info-body").hide();
+
+        $(this).find(".info-body").show();
         ev.stopPropagation();
     });
 
@@ -367,6 +399,7 @@
                 var record = data.data;
                 //record.memberLevelId=1;
                 if ("1" == record.memberLevelId) {
+                    $(".showOrHidePromoCode").show();
                     $(".promoCodeLi").show();
                     $(".classTimeMoney").show();
                     $(".classTimePaymentLi").show();
