@@ -54,7 +54,7 @@
 
         /*循环人数*/
         for(i=1;i<=4;i++){
-            var pricestr="<a href='javascript:void(0);' data-href='/pay/training/pay-page.html?courseId="+courseId+"&buyCopies="+i+"'><p>"+i+"人</p><p>"+i+"课时</p></a>";
+            var pricestr="<a href='javascript:void(0);' data-href='/pay/training-pay-page.html?courseId="+courseId+"&buyCopies="+i+"'><p>"+i+"人</p><p>"+i+"课时</p></a>";
             $(".pub_peolist").append(pricestr);
             $(".pub_peolist a:first").addClass('cur');
         }
