@@ -123,6 +123,7 @@ router.get('/message.template', [profile.getMemberMessages], (req, res, next) =>
 router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getUsrClassEvaluate_classEvaluate, usrClass.getTrainFeel, usrClass.getMemberFoodNum], (req, res, next) => {
     let courseId = req.query.courseId,
         onceId = req.query.onceId;
+
     return res.render('_partial/template/comment-class', {
         data: res.data,
         courseId: courseId,
@@ -133,7 +134,7 @@ router.get('/comment-class.template', [course.queryCoursePlanInfo, usrClass.getU
 /*
     私教课评价模板
  */
-router.get('/private-coach-evaluate.template', [course.queryCoursePlanInfo, usrClass.usrPrivateClassEvaluate_getUsrClassEvaluate, usrClass.getTrainFeel, usrClass.getMemberFoodNum], (req, res, next) => {
+router.get('/private-coach-evaluate.template', [coach.coachDetail_link, coach.getClasstimeSummary, usrClass.usrPrivateClassEvaluate_getUsrClassEvaluate, usrClass.getTrainFeel, usrClass.getMemberFoodNum], (req, res, next) => {
     let courseId = req.query.courseId,
         onceId = req.query.onceId;
     return res.render('_partial/template/private-coach-evaluate', {
@@ -143,8 +144,17 @@ router.get('/private-coach-evaluate.template', [course.queryCoursePlanInfo, usrC
     });
 });
 
+/*
+    私教课头部模板
+ */
+router.get('/private-coach-detail-header.template', [coach.coachDetail_link], (req, res, next) => {
+    return res.render('_partial/template/private-coach-detail-header', {
+        data: res.data['privateCourse.queryPrivateCourseInfo']['record']
+    });
+})
+
 /* 自助训练营模板 */
-router.get('/training-evaluate.template',[course.queryCoursePlanInfo, usrClass.usrSelfClassEvaluate_getEvaluate], (req, res, next) => {
+router.get('/training-evaluate.template', [training.trainingInfo, usrClass.usrSelfClassEvaluate_getEvaluate_link], (req, res, next) => {
     let courseId = req.query.courseId,
         onceId = req.query.onceId;
     return res.render('_partial/template/training-evaluate', {

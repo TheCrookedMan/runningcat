@@ -2,20 +2,19 @@
     var store = common.getStoreInfo();
     //头部课程类型列表
     $.post('/common/queryCourseTypeList', { 'userId': userInfo.memberId, 'storeId': store.storeId }).success(function(data) {
-        var res=data.data;
-        for(i in res){
+        var res = data.data;
+        var length = res.length;
+        var width = parseFloat(100 / length);
+        for (i in res) {
             var str;
-            if(res[i].courseType==1){
-                str='<li><a href="/course/course.html">'+res[i].courseTypeName+'</a></li>'
-            }
-            else if(res[i].courseType==2){
-                str='<li><a href="/till/till.html" class="cur">'+res[i].courseTypeName+'</a></li>'
-            }
-            else if(res[i].courseType==3){
-                str='<li><a href="/coach/coach.html" >'+res[i].courseTypeName+'</a></li>' 
-            }
-            else if(res[i].courseType==4){
-               str='<li><a href="/training/training.html">'+res[i].courseTypeName+'</a></li>' 
+            if (res[i].courseType == 1) {
+                str = '<li style="width:' + width + '%!important;"><a href="/course/course.html">' + res[i].courseTypeName + '</a></li>'
+            } else if (res[i].courseType == 2) {
+                str = '<li style="width:' + width + '%!important;"><a href="/till/till.html" class="cur">' + res[i].courseTypeName + '</a></li>'
+            } else if (res[i].courseType == 3) {
+                str = '<li style="width:' + width + '%!important;"><a href="/coach/coach.html" >' + res[i].courseTypeName + '</a></li>'
+            } else if (res[i].courseType == 4) {
+                str = '<li style="width:' + width + '%!important;"><a href="/training/training.html">' + res[i].courseTypeName + '</a></li>'
             }
             $("#clist").append(str)
         }
@@ -34,7 +33,7 @@
         init: function() {
             var self = this;
             self.getTill();
-            scroll.on(function(){
+            scroll.on(function() {
                 if (!self.isEnd) {
                     self.pageNo++;
                     self.getTill();
@@ -45,7 +44,7 @@
             var self = this;
             $.get('/till.template', {
                 userId: userInfo.memberId,
-                storeId:self.storeId,
+                storeId: self.storeId,
                 pageNo: self.pageNo,
                 pageSize: self.pageSize
             }).success(function(data) {
@@ -54,10 +53,9 @@
                     self.isEnd = true;
                 } else {
                     self.isEnd = false;
-                    if(self.pageNo == 1){
+                    if (self.pageNo == 1) {
                         $(".till ul").html(data);
-                    }
-                    else{
+                    } else {
                         $(".till ul").append(data);
                     }
                 }
@@ -68,34 +66,33 @@
     this.tillList.init();
 
     // 倒计时
-    var timer = window.setInterval(function(){
-        $(".start").each(function(i){
-            var year=$(this).data("year");
-            var month=$(this).data("mm");
-            var day=$(this).data("day");
+    var timer = window.setInterval(function() {
+        $(".start").each(function(i) {
+            var year = $(this).data("year");
+            var month = $(this).data("mm");
+            var day = $(this).data("day");
 
             var now = new Date();
-            var endDate = new Date(year, month-1, day); 
-            var leftTime=endDate.getTime()-now.getTime(); 
-            var leftsecond = parseInt(leftTime/1000); 
+            var endDate = new Date(year, month - 1, day);
+            var leftTime = endDate.getTime() - now.getTime();
+            var leftsecond = parseInt(leftTime / 1000);
 
-            var day1=Math.floor(leftsecond/(60*60*24)); 
-            var hour=Math.floor((leftsecond-day1*24*60*60)/3600); 
-            var minute=Math.floor((leftsecond-day1*24*60*60-hour*3600)/60); 
-            var second=Math.floor(leftsecond-day1*24*60*60-hour*3600-minute*60);
+            var day1 = Math.floor(leftsecond / (60 * 60 * 24));
+            var hour = Math.floor((leftsecond - day1 * 24 * 60 * 60) / 3600);
+            var minute = Math.floor((leftsecond - day1 * 24 * 60 * 60 - hour * 3600) / 60);
+            var second = Math.floor(leftsecond - day1 * 24 * 60 * 60 - hour * 3600 - minute * 60);
 
-            if (day1<10)
-            {
-                day1="0"+day1.toString();
+            if (day1 < 10) {
+                day1 = "0" + day1.toString();
             }
-            if(hour<10){
-                hour="0"+hour.toString();
+            if (hour < 10) {
+                hour = "0" + hour.toString();
             }
-            if(minute<10){
-                minute="0"+minute.toString(); 
+            if (minute < 10) {
+                minute = "0" + minute.toString();
             }
-            if(second<10){
-                second="0"+second.toString();
+            if (second < 10) {
+                second = "0" + second.toString();
             }
 
             if (leftsecond > 1) {

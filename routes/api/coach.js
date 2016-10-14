@@ -1,6 +1,6 @@
 import rest from '../rest/_util';
 /*
-	私教
+    私教
  */
 
 /*私教列表*/
@@ -17,6 +17,13 @@ exports.coachDetail = (req, res, next) => {
     }).post(req, res, next);
 }
 
+exports.coachDetail_link = (req, res, next) => {
+    new rest({
+        functionCode: 'privateCourse.queryPrivateCourseInfo',
+    }).link(req, res, next);
+}
+
+
 /*私教详情 link*/
 exports.coachInfo = (req, res, next) => {
     new rest({
@@ -31,4 +38,9 @@ exports.queryPrivatePlanTimeList = (req, res, next) => {
     }).link(req, res, next);
 }
 
-
+/*会员私教课评价页面课程总结*/
+exports.getClasstimeSummary = (req, res, next) => {
+    new rest({
+        functionCode: 'usrPrivateClassEvaluate.getClasstimeSummary',
+    }).link(req, res, next);
+}

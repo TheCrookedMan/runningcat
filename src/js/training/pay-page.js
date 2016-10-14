@@ -356,9 +356,9 @@
     });
 
     function setTotalPrice() {
-        $.post('/order/classTimeMoneyPaymentData', {
+        $.post('/order/selfCoursePaymentData', {
             memberId: userInfo.memberId,
-            onceId: courseId,
+            courseId: courseId,
             storeId: rechargeObj.storeId,
             buyCopies: buyCopiesNumber
         }).success(function(data) {

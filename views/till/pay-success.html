@@ -1,0 +1,27 @@
+{% include "../_partial/head.html" %}
+<style type="text/css">
+body {
+    background-color: #e6e6e6
+}
+</style>
+<script type="text/javascript">
+var specialId = "{{specialId}}";
+</script>
+<section class="course">
+    <div class="sucess">
+        <div class="ico"><img src="/img/sucess.png" alt="跑步猫" class=""></div>
+        <p class="dateRange"></p>
+        <p class="classTime">11:00~12:00 </p>
+        <p class="storeAddress"></p>
+        <p class="contactPhone"></p>
+        <p class="classDesc">RunningCat，带你装X，带你飞─=≡Σ</p>
+        <p class="tips">恭喜您~约课成功！</p>
+        <div class="btn">
+            <a href="/profile/till-list.html">查看课表</a>
+            <a href="/till/till.html">继续约课</a>
+        </div>
+        <p class="bottom">欢迎加入running cat 快乐运动大家庭</p>
+    </div>
+</section>
+{% include "../_partial/foot.html" %}
+<script src="/js/till/pay-success.js"></script>

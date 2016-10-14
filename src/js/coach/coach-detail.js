@@ -63,7 +63,7 @@
 
          /*循环时间*/
         for(var i in startTimes){
-            var pricestr="<a href='javascript:void(0);' data-href='/pay/coach-pay-page.html?courseId="+courseId+"'><p>"+startTimes[i].startTime+"</p></a>";
+            var pricestr="<a href='javascript:void(0);' data-href='/pay/coach-pay-page.html?coachStartTimeIndex="+i+"&courseId="+courseId+"'><p>"+startTimes[i].startTime+"</p></a>";
             $(".ytime").append(pricestr);
             $(".ytime a:first").addClass('cur');
         }

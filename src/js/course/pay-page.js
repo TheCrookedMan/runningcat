@@ -201,6 +201,7 @@
         $(this).find(".list-icon").addClass("am-icon-dot-circle-o");
         $(this).parent("li").addClass("cur");
 
+
         $(".cashPayment").parent("li").removeClass("cur");
         $(".cashPayment .list-icon").removeClass("am-icon-dot-circle-o");
         $(".cashPayment .list-icon").addClass("am-icon-circle-o");
@@ -209,7 +210,7 @@
         $(".classTimePayment").parent("li").removeClass("cur");
         $(".classTimePayment .list-icon").removeClass("am-icon-dot-circle-o");
         $(".classTimePayment .list-icon").addClass("am-icon-circle-o");
-        $(".classTimePayment .info-body").hide();
+        $(".classTimePayment .usrRechargeOrderList").hide();
 
         $(this).find(".info-body").show();
         ev.stopPropagation();
@@ -397,9 +398,10 @@
         }).success(function(data) {
             if (data.code == "0000" && data.success) {
                 var record = data.data;
-                //record.memberLevelId=1;
+                // record.memberLevelId = 5;
                 if ("1" == record.memberLevelId) {
-                    $(".showOrHidePromoCode").show();
+                    $(".showOrHidePromoCode").show().find(".info-body").hide();
+
                     $(".promoCodeLi").show();
                     $(".classTimeMoney").show();
                     $(".classTimePaymentLi").show();
@@ -420,6 +422,12 @@
                     $(".classTimeMoney").hide();
                     $(".classTimePaymentLi").hide();
                     $(".cashPaymentLi").hide();
+                } else if ("5" == record.memberLevelId) {
+                    $(".showOrHidePromoCode").show();
+                    $(".classTimeMoney").hide();
+                    $(".classTimePaymentLi").hide();
+                    $(".cashPaymentLi").show();
+                    $(".cashPayment").trigger('click');
                 }
                 var string = "¥ ";
                 string += record.totalPrice.toFixed(2);
@@ -448,7 +456,7 @@
             modal.alert("请输入优惠码！");
             return;
         }
-        if(buyCopiesNumber > 1){
+        if (buyCopiesNumber > 1) {
             modal.alert("使用优惠码，只能选择一个人！");
             return;
         }

@@ -3,7 +3,7 @@
     // var workId;
 
     /*课程详情*/
-    $.get('/pubclass.template', {
+    $.get('/private-coach-detail-header.template', {
         userId: userInfo.memberId,
         courseId: onceId
     }).success(function(data) {

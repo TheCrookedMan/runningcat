@@ -147,7 +147,7 @@ exports.usrPrivateClassEvaluate_checkStatus = (req, res, next) => {
 exports.usrPrivateClassEvaluate_getUsrClassEvaluate = (req,res,next)=>{
     new rest({
         functionCode: 'usrPrivateClassEvaluate.getUsrClassEvaluate',
-    }).post(req, res, next);
+    }).link(req, res, next);
 }
 
 /* 私教课添加评价 */
@@ -171,4 +171,12 @@ exports.usrSelfClassEvaluate_getEvaluate = (req, res, next) => {
     new rest({
         functionCode: 'usrSelfClassEvaluate.getEvaluate',
     }).post(req, res, next);
+}
+
+/* 自助训练营查找评价 */
+
+exports.usrSelfClassEvaluate_getEvaluate_link = (req, res, next) => {
+    new rest({
+        functionCode: 'usrSelfClassEvaluate.getEvaluate',
+    }).link(req, res, next);
 }

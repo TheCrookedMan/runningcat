@@ -1,9 +1,10 @@
 (function() {
     var usrRechargeOrderRemainNum = 0;
     var needCourseNum = 0;
-    var buyCopiesNumber = 1;
+    var buyCopiesNumber = !!common.getQueryString("buyCopies") ? common.getQueryString("buyCopies") : 1;
     var storeInfo = common.getStoreInfo();
     var memberLevelSalePolicyInfo = "";
+    var coachStartTimeIndex = common.getQueryString("coachStartTimeIndex");
     /* isUseCatfood 1:使用，0：不使用 */
     var isUseCatfood = 1;
     $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1, storeId: storeInfo.storeId }).success(function(data) {
@@ -17,7 +18,7 @@
     });
 
     function getPayPageInfo() {
-        $.post('/coachDetail', {  'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
+        $.post('/coachDetail', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
             if (data.code == "0000" && data.success) {
                 var record = data.data,
                     payInfo = [];
@@ -26,9 +27,13 @@
                 payInfo.push("时间：");
                 payInfo.push(common.formatDate(record.courseDate, 'yyyy/MM/dd'));
                 payInfo.push(" <em id='dayOfWeek'></em> ");
-                payInfo.push(record.startTime);
+
+                payInfo.push(record.startTimes[coachStartTimeIndex].startTime);
+                
                 payInfo.push(" ～");
-                payInfo.push(record.endTime);
+                
+                payInfo.push(record.startTimes[coachStartTimeIndex].endTime);
+                
                 payInfo.push(" </li>");
                 payInfo.push("<li>");
                 payInfo.push("所需课时：" + record.onceCourseHour + "课时");
@@ -66,7 +71,7 @@
                 var oncePrice = record.oncePrice == undefined ? 0 : record.oncePrice;
                 var peolist = [];
                 for (var i = 1; i < 4; i++) {
-                    if (i == 1) {
+                    if (i == buyCopiesNumber) {
                         peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-once-price="' + oncePrice + '" data-once-course-hour="' + record.onceCourseHour + '" class="cur">');
                     } else {
                         peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-once-price="' + oncePrice + '" data-once-course-hour="' + record.onceCourseHour + '">');
@@ -318,7 +323,7 @@
         // if (isUsedCatFood) {
         //     catfood = rechargeObj.discountInfo.nmemberCatFood;
         // }
-        
+
         if (needCourseNum > 0) {
             $.post('/order/privateCourseMoneyPayOrder', {
                 memberId: userInfo.memberId,

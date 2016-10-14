@@ -41,7 +41,6 @@
     }
     this.recharge = new recharge();
     this.recharge.init();
-
     
     $.post('/order/selectUsrRechargeOrderRemainNum', { memberId: userInfo.memberId, courseHourStatus: 1, storeId: storeInfo.storeId }).success(function(data) {
         if (data.code == "0000" && data.success) {

@@ -25,6 +25,7 @@
             'method': 'POST',
             'headers': postheaders
         };
+        console.log("optionspost::::"+JSON.stringify(optionspost));
         /*
           do the POST call
          */
@@ -35,6 +36,7 @@
             res.on('data', function(d) {
                 // console.log("rest d:::" + d);
                 dataStr += d;
+                console.log("dataStr::::"+dataStr);
             });
             res.on('end', function(ev) {
                 /**
