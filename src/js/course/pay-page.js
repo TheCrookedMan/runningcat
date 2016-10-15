@@ -398,7 +398,7 @@
         }).success(function(data) {
             if (data.code == "0000" && data.success) {
                 var record = data.data;
-                // record.memberLevelId = 5;
+                record.memberLevelId = 5;
                 if ("1" == record.memberLevelId) {
                     $(".showOrHidePromoCode").show().find(".info-body").hide();
 
@@ -423,11 +423,11 @@
                     $(".classTimePaymentLi").hide();
                     $(".cashPaymentLi").hide();
                 } else if ("5" == record.memberLevelId) {
-                    $(".showOrHidePromoCode").show();
-                    $(".classTimeMoney").hide();
-                    $(".classTimePaymentLi").hide();
+                    $(".showOrHidePromoCode").hide();
+                    $(".classTimeMoney").show();
+                    $(".classTimePaymentLi").show();
                     $(".cashPaymentLi").show();
-                    $(".cashPayment").trigger('click');
+                    $(".classTimeMoney").trigger('click');
                 }
                 var string = "¥ ";
                 string += record.totalPrice.toFixed(2);
