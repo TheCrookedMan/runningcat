@@ -398,7 +398,7 @@
         }).success(function(data) {
             if (data.code == "0000" && data.success) {
                 var record = data.data;
-                record.memberLevelId = 5;
+                // record.memberLevelId = 5;
                 if ("1" == record.memberLevelId) {
                     $(".showOrHidePromoCode").show().find(".info-body").hide();
 
