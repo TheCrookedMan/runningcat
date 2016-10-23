@@ -14,6 +14,7 @@
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
         $("#openCourseNum").html(res.courseMaxNum);
+        $(".courseTarget .con").html(res.courseTarget);
 
         if (!res.buyerNum) {
             res.buyerNum = 0;

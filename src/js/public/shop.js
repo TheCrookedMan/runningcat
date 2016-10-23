@@ -8,11 +8,13 @@
         var storeName = $(this).data("storeName");
         var address = $(this).data("storeAddress");
         var contactPhone = $(this).data("storePhone");
+        var storeShortName = $(this).data("storeShortName");
         var store = {
             storeId: storeId,
             storeName: storeName,
             address: address,
-            contactPhone: contactPhone
+            contactPhone: contactPhone,
+            storeShortName: storeShortName
         }
 
         // $.AMUI.utils.cookie.set('store', JSON.stringify(store), common.maxAge, '/');

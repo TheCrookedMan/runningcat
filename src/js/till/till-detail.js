@@ -19,6 +19,7 @@
         $("#classTime").html(res.classTime);
         $("#totalPrice").html(res.totalPrice);
         $("#classNum").html(num);
+        $(".courseTarget .con").html(res.courseTarget);
 
         /*循环教练*/
         for(var p in trainers){

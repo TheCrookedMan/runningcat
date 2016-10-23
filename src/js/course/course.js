@@ -1,5 +1,6 @@
 (function() {
     var store = common.getStoreInfo();
+    $(".storeShortName").text(store.storeShortName);
     //头部课程类型列表
     $.post('/common/queryCourseTypeList', { 'userId': userInfo.memberId, 'storeId': store.storeId }).success(function(data) {
         var res = data.data;

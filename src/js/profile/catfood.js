@@ -38,7 +38,8 @@
                 memberId: userInfo.memberId,
                 isUsed: self.status,
                 pageNo: self.pageNo,
-                pageSize: self.pageSize
+                pageSize: self.pageSize,
+                storeId: storeInfo.storeId
             }).success(function(data) {
                 data = data.replace(/(^\s+)|(\s+$)/g, "");
                 if ("" == data) {

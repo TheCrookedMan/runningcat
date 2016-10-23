@@ -16,6 +16,7 @@
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
         $("#buyerNum").html(res.courseMaxNum);
+        $(".courseTarget .con").html(res.courseTarget);
         $("#openCourseNum").html(res.onceCourseHour);
          $("#dayOfWeek").html(res.dayOfWeek);
             var dayOfWeek = parseInt($("#dayOfWeek").html());
