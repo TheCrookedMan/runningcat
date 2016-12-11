@@ -24,8 +24,6 @@
 
         var startTimes=res.startTimes;
 
-        
-
         $(".onceCourseHour").text("所需课时：" + res.onceCourseHour + "课时");
 
         $("#buyerNum").html(res.buyerNum);
