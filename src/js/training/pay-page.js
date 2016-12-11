@@ -1,7 +1,7 @@
 (function() {
     var usrRechargeOrderRemainNum = 0;
     var needCourseNum = 0;
-    var buyCopiesNumber = 1;
+    // var buyCopiesNumber = 1;
     var storeInfo = common.getStoreInfo();
     var memberLevelSalePolicyInfo = "";
     /* isUseCatfood 1:使用，0：不使用 */
@@ -66,14 +66,14 @@
                 var oncePrice = record.oncePrice == undefined ? 0 : record.oncePrice;
                 var peolist = [];
                 for (var i = 1; i < 5; i++) {
-                    if (i == 1) {
+                    if (i == buyCopiesNumber) {
                         peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-once-price="' + oncePrice + '" data-once-course-hour="' + record.onceCourseHour + '" class="cur">');
                     } else {
                         peolist.push('<a href="javascript:void(0)" data-num="' + i + '" data-once-price="' + oncePrice + '" data-once-course-hour="' + record.onceCourseHour + '">');
                     }
 
                     peolist.push('<p>' + i + '人</p>');
-                    peolist.push('<p>' + i * record.onceCourseHour + '课时</p>');
+                    peolist.push('<p>' + (i * record.onceCourseHour).toFixed(1) + '课时</p>');
                     peolist.push('</a>');
                 }
                 $(".pub_peolist").html(peolist.join(""));
@@ -366,7 +366,7 @@
                 var record = data.data;
                 var string = "¥ ";
                 string += record.totalPrice.toFixed(2);
-                string += "（需" + record.totalNum + "课时）";
+                string += "（需" + (record.totalNum * 1).toFixed(1) + "课时）";
                 $(".totalPrice").text(string);
             }
         })

@@ -13,7 +13,7 @@
                 $(this).addClass("cur");
 
                 var text = $(this).text();
-                $("head title").text(title);
+                $("head title").text(text);
 
                 self.status = $(this).data("id");
                 self.pageNo = 1;

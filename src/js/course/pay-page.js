@@ -74,7 +74,7 @@
                     }
 
                     peolist.push('<p>' + i + '人</p>');
-                    peolist.push('<p>' + i * record.onceCourseHour + '课时</p>');
+                    peolist.push('<p>' + (i * record.onceCourseHour).toFixed(1) + '课时</p>');
                     peolist.push('</a>');
                 }
                 $(".pub_peolist").html(peolist.join(""));
@@ -431,7 +431,7 @@
                 }
                 var string = "¥ ";
                 string += record.totalPrice.toFixed(2);
-                string += "（需" + record.totalNum + "课时）";
+                string += "（需" + (record.totalNum * 1).toFixed(1) + "课时）";
                 $(".totalPrice").text(string);
             }
         })

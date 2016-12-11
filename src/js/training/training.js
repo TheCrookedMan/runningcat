@@ -181,11 +181,12 @@
                 var date = selector.data("date");
                 var dateTime = selector.data("time");
                 date = new Date(date).getTime();
-                common.setCourseCurrentDate(dateTime);
-                courseListObj.init(date);
+                // common.setTrainingCurrentDate(dateTime);
+                courseListObj.init(dateTime);
             },
             onComplete: function(selector) {
-                var courseCurrentDate = common.getCourseCurrentDate();
+                // var courseCurrentDate = common.getTrainingCurrentDate();
+                var courseCurrentDate = "";
                 if (!!courseCurrentDate) {
                     $(".swiper .wrapper .cur").removeClass('cur');
                     $(".swiper .wrapper ." + courseCurrentDate).addClass('cur');

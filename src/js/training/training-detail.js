@@ -18,44 +18,47 @@
         $("#buyerNum").html(res.courseMaxNum);
         $(".courseTarget .con").html(res.courseTarget);
         $("#openCourseNum").html(res.onceCourseHour);
-         $("#dayOfWeek").html(res.dayOfWeek);
-            var dayOfWeek = parseInt($("#dayOfWeek").html());
-            switch (dayOfWeek) {
-                case 1:
-                    $("#dayOfWeek").html("周日");
-                    break;
-                case 2:
-                    $("#dayOfWeek").html("周一");
-                    break;
-                case 3:
-                    $("#dayOfWeek").html("周二");
-                    break;
-                case 4:
-                    $("#dayOfWeek").html("周三");
-                    break;
-                case 5:
-                    $("#dayOfWeek").html("周四");
-                    break;
-                case 6:
-                    $("#dayOfWeek").html("周五");
-                    break;
-                case 7:
-                    $("#dayOfWeek").html("周六");
-                    break;
-            }
+        $("#dayOfWeek").html(res.dayOfWeek);
+        var dayOfWeek = parseInt($("#dayOfWeek").html());
+        switch (dayOfWeek) {
+            case 1:
+                $("#dayOfWeek").html("周日");
+                break;
+            case 2:
+                $("#dayOfWeek").html("周一");
+                break;
+            case 3:
+                $("#dayOfWeek").html("周二");
+                break;
+            case 4:
+                $("#dayOfWeek").html("周三");
+                break;
+            case 5:
+                $("#dayOfWeek").html("周四");
+                break;
+            case 6:
+                $("#dayOfWeek").html("周五");
+                break;
+            case 7:
+                $("#dayOfWeek").html("周六");
+                break;
+        }
         if (!res.buyerNum) {
             res.buyerNum = 0;
         }
 
         $(".onceCourseHour").text("所需课时：" + res.onceCourseHour + "课时");
 
+        if (res.buyerNum <= 0) {
+            isBuyFlag = 1;
+        }
         $("#buyerNum").html(res.buyerNum);
         //var carouselFigure = res.carouselFigure;
         var playTimePictures = res.playTimePictures;
 
         /*循环人数*/
-        for(i=1;i<=4;i++){
-            var pricestr="<a href='javascript:void(0);' data-href='/pay/training-pay-page.html?courseId="+courseId+"&buyCopies="+i+"'><p>"+i+"人</p><p>"+i+"课时</p></a>";
+        for (i = 1; i <= 4; i++) {
+            var pricestr = "<a href='javascript:void(0);' data-href='/pay/training-pay-page.html?courseId=" + courseId + "&buyCopies=" + i + "'><p>" + i + "人</p><p>" + (i * res.onceCourseHour).toFixed(1) + "课时</p></a>";
             $(".pub_peolist").append(pricestr);
             $(".pub_peolist a:first").addClass('cur');
         }
@@ -71,11 +74,13 @@
             $(".pub-rbtn .btn").addClass("end");
         }
 
-        $(".pub_peolist").on("click","a",function(ev){
+        $(".pub_peolist").on("click", "a", function(ev) {
             var url = $(this).data("href");
             $(this).siblings(".cur").removeClass("cur");
             $(this).addClass("cur");
-            window.location.href = url;
+            if (isBuyFlag != 1) {
+                window.location.href = url;
+            }
         })
 
         if (isBuyFlag == 1) {
@@ -84,8 +89,8 @@
             $(".pub-rbtn .btn").removeClass("can");
         }
 
-        $(".pub-rbtn .can").on("click",function(){
-             window.location.href = $(".pub_peolist a.cur").data("href");
+        $(".pub-rbtn .can").on("click", function() {
+            window.location.href = $(".pub_peolist a.cur").data("href");
         })
 
     }).error(function(data) {

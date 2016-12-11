@@ -397,7 +397,7 @@ router.get('/course/pay-success.html', (req, res, next) => {
     return res.render('course/pay-success', { title: '约课成功', courseId: courseId });
 });
 router.get('/course/course.html', (req, res, next) => {
-    res.cookie('courseCurrentDate', "", { maxAge: maxAge, path: '/' });
+    // res.cookie('courseCurrentDate', "", { maxAge: maxAge, path: '/' });
     return res.render('course/course', { title: '常规课程' });
 });
 

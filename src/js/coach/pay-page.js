@@ -29,11 +29,11 @@
                 payInfo.push(" <em id='dayOfWeek'></em> ");
 
                 payInfo.push(record.startTimes[coachStartTimeIndex].startTime);
-                
+
                 payInfo.push(" ～");
-                
+
                 payInfo.push(record.startTimes[coachStartTimeIndex].endTime);
-                
+
                 payInfo.push(" </li>");
                 payInfo.push("<li>");
                 payInfo.push("所需课时：" + record.onceCourseHour + "课时");
@@ -372,7 +372,7 @@
                 var record = data.data;
                 var string = "¥ ";
                 string += record.totalPrice.toFixed(2);
-                string += "（需" + record.totalNum + "课时）";
+                string += "（需" + (record.totalNum * 1).toFixed(1) + "课时）";
                 $(".totalPrice").text(string);
             }
         })

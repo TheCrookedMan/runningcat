@@ -13,6 +13,10 @@
         $("#storeAddress").html(res.storeAddress);
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
+
+        if (res.courseMaxNum <= 0) {
+            isBuyFlag = 0;
+        }
         $("#openCourseNum").html(res.courseMaxNum);
         $(".courseTarget .con").html(res.courseTarget);
 

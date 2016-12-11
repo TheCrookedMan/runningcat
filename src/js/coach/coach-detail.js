@@ -15,17 +15,20 @@
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
         $("#openCourseNum").html(res.onceCourseHour);
-        
-         $("#courseTarget").html(res.courseTarget);
+
+        $("#courseTarget").html(res.courseTarget);
 
         if (!res.buyerNum) {
             res.buyerNum = 0;
         }
 
-        var startTimes=res.startTimes;
+        var startTimes = res.startTimes;
 
         $(".onceCourseHour").text("所需课时：" + res.onceCourseHour + "课时");
 
+        if (res.buyerNum <= 0) {
+            isBuyFlag = 1;
+        }
         $("#buyerNum").html(res.buyerNum);
         var carouselFigure = res.carouselFigure;
         var playTimePictures = res.playTimePictures;
@@ -41,36 +44,39 @@
         }
 
         /*循环人数*/
-        for(i=1;i<=3;i++){
-            var pricestr="<a href='javascript:void(0);'><p data-id="+i+">"+i+"V"+i+"</p></a>";
+        for (i = 1; i <= 3; i++) {
+            var pricestr = "<a href='javascript:void(0);'><p data-id=" + i + ">" + i + "V" + i + "</p></a>";
             $(".ypeo").append(pricestr);
             $(".ypeo a:first").addClass('cur');
         }
 
-        var buyCopies=$(".ypeo a.cur p").data("id");
+        var buyCopies = $(".ypeo a.cur p").data("id");
 
-       
 
-        $(".ypeo").on("click","a",function(ev){
+
+        $(".ypeo").on("click", "a", function(ev) {
             var url = $(this).data("href");
             $(this).siblings(".cur").removeClass("cur");
             $(this).addClass("cur");
-            buyCopies=$(this).find("p").data("id");
+            buyCopies = $(this).find("p").data("id");
             //console.log(buyCopies)
         })
 
-         /*循环时间*/
-        for(var i in startTimes){
-            var pricestr="<a href='javascript:void(0);' data-href='/pay/coach-pay-page.html?coachStartTimeIndex="+i+"&courseId="+courseId+"'><p>"+startTimes[i].startTime+"</p></a>";
+        /*循环时间*/
+        for (var i in startTimes) {
+            var pricestr = "<a href='javascript:void(0);' data-href='/pay/coach-pay-page.html?coachStartTimeIndex=" + i + "&courseId=" + courseId + "'><p>" + startTimes[i].startTime + "</p></a>";
             $(".ytime").append(pricestr);
             $(".ytime a:first").addClass('cur');
         }
 
-        $(".ytime").on("click","a",function(ev){
+        $(".ytime").on("click", "a", function(ev) {
             var url = $(this).data("href");
             $(this).siblings(".cur").removeClass("cur");
             $(this).addClass("cur");
-            window.location.href = url+"&buyCopies="+buyCopies;
+            if (isBuyFlag != 1) {
+                window.location.href = url + "&buyCopies=" + buyCopies;
+            }
+
         })
 
         $('.am-slider').flexslider();
@@ -90,15 +96,15 @@
             $(".pub-rbtn .btn").removeClass("can");
         }
 
-        $(".pub-rbtn .can").on("click",function(){
-             window.location.href = $(".ytime a.cur").data("href")+"&buyCopies="+buyCopies;
+        $(".pub-rbtn .can").on("click", function() {
+            window.location.href = $(".ytime a.cur").data("href") + "&buyCopies=" + buyCopies;
         })
 
     }).error(function(data) {
 
     });
 
-    
+
 
     var dayOfWeek = parseInt($("#dayOfWeek").text());
     switch (dayOfWeek) {

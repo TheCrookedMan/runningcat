@@ -37,7 +37,7 @@
         regSkip: function(str) {
             return this.reg_skip.test(str);
         },
-        regChinese:function(str){
+        regChinese: function(str) {
             return this.reg_chinese.test(str);
         },
         regBeforeWeight: function(value) {
@@ -173,11 +173,23 @@
                 return JSON.parse(wechatPublicNumber);
             }
         },
-        getCourseCurrentDate:function(){
+        getCourseCurrentDate: function() {
             return $.cookie("courseCurrentDate");
         },
-        setCourseCurrentDate:function(courseCurrentDate){
+        setCourseCurrentDate: function(courseCurrentDate) {
             return $.cookie('courseCurrentDate', courseCurrentDate, { expires: common.expires, path: '/' });
+        },
+        getCoachCurrentDate: function() {
+            return $.cookie("coachCurrentDate");
+        },
+        setCoachCurrentDate: function(coachCurrentDate) {
+            return $.cookie('coachCurrentDate', coachCurrentDate, { expires: common.expires, path: '/' });
+        },
+        getTrainingCurrentDate: function() {
+            return $.cookie('trainingCurrentDate');
+        },
+        setTrainingCurrentDate: function(trainingCurrentDate) {
+            return $.cookie('trainingCurrentDate', trainingCurrentDate, { expires: common.expires, path: '/' });
         }
     };
     this.common = new common();

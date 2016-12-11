@@ -1,14 +1,18 @@
 (function() {
     var specialId = $("#specialId").val();
+    var storeInfo = common.getStoreInfo();
     $.post('/specialClass/querySpecialClassInfo', { 'userId': userInfo.memberId, specialId: specialId }).success(function(data) {
         var res = data.data;
         //console.log(res);
         $("#className").html(res.className);
         $("#storeAddress").html(res.storeAddress);
-        $("#startDate").html(common.formatDate(res.startDate, 'yyyy/MM/dd'));
+        $(".till-class .pub-pinfo #startDate").html(common.formatDate(res.startDate, 'yyyy/MM/dd'));
+        $(".till-class .pub-pinfo #endDate").html(common.formatDate(res.endDate, 'yyyy/MM/dd'));
         $("#courseNum").html(res.courseNum);
         $("#imgUrl").attr("src", window.imageAddress + res.imgUrl);
-        $("#week").html(common.toWeek(res.startDate));
+        // $("#week").html(common.toWeek(res.startDate));
+        $(".till-class .pub-pinfo .classTime").text(res.classTime);
+        
     }).error(function(data) {
 
     })
@@ -106,7 +110,7 @@
         storeId: storeInfo.storeId
     }).success(function(data) {
         if (data.code == "0000" && data.success) {
-            $("#rule-popup .am-popup-bd").html(data.record.classPolicyDesc);
+            $("#rule-popup .am-popup-bd").html(data.data.classPolicyDesc);
         }
     });
 

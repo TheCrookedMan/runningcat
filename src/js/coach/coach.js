@@ -176,11 +176,12 @@
                 var date = selector.data("date");
                 var dateTime = selector.data("time");
                 date = new Date(date).getTime();
-                common.setCourseCurrentDate(dateTime);
-                courseListObj.init(date);
+                // common.setCoachCurrentDate(dateTime);
+                courseListObj.init(dateTime);
             },
             onComplete: function(selector) {
-                var courseCurrentDate = common.getCourseCurrentDate();
+                // var courseCurrentDate = common.getCoachCurrentDate();
+                var courseCurrentDate = "";
                 if (!!courseCurrentDate) {
                     $(".swiper .wrapper .cur").removeClass('cur');
                     $(".swiper .wrapper ." + courseCurrentDate).addClass('cur');

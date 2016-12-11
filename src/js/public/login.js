@@ -75,7 +75,7 @@
         storeId: storeInfo.storeId
     }).success(function(data) {
         if (data.code == "0000" && data.success) {
-            $("#my-popup .am-popup-bd").html(data.record.memberContractDesc);
+            $("#my-popup .am-popup-bd").html(data.data.memberContractDesc);
         }
     });
 }).call(this)

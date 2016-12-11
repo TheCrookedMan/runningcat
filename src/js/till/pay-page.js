@@ -60,9 +60,9 @@
                 for (var i in buyCopies) {
                     var k = parseInt(i) + 1;
                     if (k == buyCopiesNumber) {
-                        pricestr = "<a href='javascript:void(0)' class='cur' data-per-price='" + perPrice + "' data-course-num='" + tnum * buyCopies[i].buyCopies + "' data-num='" + buyCopies[i].buyCopies + "'><p>" + buyCopies[i].buyCopies + "人</p><p>" + tnum * buyCopies[i].buyCopies + "课时</p></a>";
+                        pricestr = "<a href='javascript:void(0)' class='cur' data-per-price='" + perPrice + "' data-course-num='" + tnum * buyCopies[i].buyCopies + "' data-num='" + buyCopies[i].buyCopies + "'><p>" + buyCopies[i].buyCopies + "人</p><p>" + (tnum * buyCopies[i].buyCopies).toFixed(1) + "课时</p></a>";
                     } else {
-                        pricestr = "<a href='javascript:void(0)' data-per-price='" + perPrice + "' data-course-num='" + tnum * buyCopies[i].buyCopies + "' data-num='" + buyCopies[i].buyCopies + "'><p>" + buyCopies[i].buyCopies + "人</p><p>" + tnum * buyCopies[i].buyCopies + "课时</p></a>";
+                        pricestr = "<a href='javascript:void(0)' data-per-price='" + perPrice + "' data-course-num='" + tnum * buyCopies[i].buyCopies + "' data-num='" + buyCopies[i].buyCopies + "'><p>" + buyCopies[i].buyCopies + "人</p><p>" + (tnum * buyCopies[i].buyCopies).toFixed(1) + "课时</p></a>";
                     }
                     $(".pub_peolist").append(pricestr);
                     // $(".pub_peolist a:first").addClass('cur');
@@ -70,7 +70,7 @@
                 if ("" != pricestr) {
                     $(".peo-li-panel").show();
                 } else {
-                    $(".pub_peolist").append("<a href='javascript:void(0)' class='cur' data-per-price='" + perPrice + "' data-course-num='" + tnum * 1 + "' data-num='" + 1 + "'><p>" + 1 + "人</p><p>" + tnum * 1 + "课时</p></a>");
+                    $(".pub_peolist").append("<a href='javascript:void(0)' class='cur' data-per-price='" + perPrice + "' data-course-num='" + tnum * 1 + "' data-num='" + 1 + "'><p>" + 1 + "人</p><p>" + (tnum * 1).toFixed(1) + "课时</p></a>");
                 }
                 totalPrice();
             }
@@ -351,7 +351,7 @@
                 var record = data.data;
                 var string = "¥ ";
                 string += record.totalPrice.toFixed(2);
-                string += "（需" + record.totalNum + "课时）";
+                string += "（需" + (record.totalNum * 1).toFixed(1) + "课时）";
                 $(".totalPrice").text(string);
             }
         })
