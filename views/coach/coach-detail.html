@@ -21,7 +21,7 @@ body {
 <script type="text/javascript">
 var courseId = "{{courseId}}";
 </script>
-<input type="hidden" value="{{isBuyFlag}}" id='isBuyFlag'>
+<!-- <input type="hidden" value="{{isBuyFlag}}" id='isBuyFlag'> -->
 <section class="course">
     <div class="pic">
         <div class="am-slider am-slider-default" data-am-flexslider>
@@ -58,7 +58,9 @@ var courseId = "{{courseId}}";
               </div>
             </li>
             <li>
-                <i class="am-icon-clock-o"></i><span>所需课时：<em id="openCourseNum"></em>课时，限<em id="buyerNum"></em>人</span>
+                <i class="am-icon-clock-o"></i><span>所需课时：<em id="openCourseNum"></em>课时
+                <!-- ，限<em id="buyerNum"></em>人 -->
+                </span>
             </li>
             <li>
                 <i class="am-icon-map-marker"></i><span id="storeAddress" class="address-span">&nbsp;</span><a href="javascript:void(0);" class="col-red view-map">查看地图</a>

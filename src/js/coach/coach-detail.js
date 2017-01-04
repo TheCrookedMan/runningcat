@@ -1,5 +1,4 @@
 (function() {
-    var isBuyFlag = $("#isBuyFlag").val();
     $.post('/coachDetail', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
         var res = data.data;
         $("#contactPhone").html(res.contactPhone);
@@ -18,18 +17,10 @@
 
         $("#courseTarget").html(res.courseTarget);
 
-        if (!res.buyerNum) {
-            res.buyerNum = 0;
-        }
-
         var startTimes = res.startTimes;
 
         $(".onceCourseHour").text("所需课时：" + res.onceCourseHour + "课时");
 
-        if (res.buyerNum <= 0) {
-            isBuyFlag = 1;
-        }
-        $("#buyerNum").html(res.buyerNum);
         var carouselFigure = res.carouselFigure;
         var playTimePictures = res.playTimePictures;
         //console.log(carouselFigure)
@@ -45,14 +36,19 @@
 
         /*循环人数*/
         for (i = 1; i <= 3; i++) {
-            var pricestr = "<a href='javascript:void(0);'><p data-id=" + i + ">" + i + "V" + i + "</p></a>";
+            var pricestr = "<a href='javascript:void(0);' class='forNumber' data-num='" + i + "'><p data-id=" + i + ">" + i + "V" + i + "</p></a>";
             $(".ypeo").append(pricestr);
             $(".ypeo a:first").addClass('cur');
         }
 
+        var oc = !!res.onceCourseHour ? res.onceCourseHour : 0;
+
+        $("body").on("click", "a.forNumber", function() {
+            var number = $(this).data('num');
+            $("#openCourseNum").html(oc*number);
+        })
+
         var buyCopies = $(".ypeo a.cur p").data("id");
-
-
 
         $(".ypeo").on("click", "a", function(ev) {
             var url = $(this).data("href");
@@ -73,27 +69,13 @@
             var url = $(this).data("href");
             $(this).siblings(".cur").removeClass("cur");
             $(this).addClass("cur");
-            if (isBuyFlag != 1) {
-                window.location.href = url + "&buyCopies=" + buyCopies;
-            }
-
+            window.location.href = url + "&buyCopies=" + buyCopies;
         })
 
         $('.am-slider').flexslider();
         for (var ele in playTimePictures) {
             var str = "<p><img src='" + window.imageAddress + playTimePictures[ele].imgUrl + "'/></p>";
             $('#playTimePictures').append(str);
-        }
-
-        if (res.buyerNum == res.courseMaxNum) {
-            $(".pub-rbtn .btn").removeAttr("href");
-            $(".pub-rbtn .btn").addClass("end");
-        }
-
-        if (isBuyFlag == 1) {
-            $(".pub-rbtn .btn").removeAttr("href");
-            $(".pub-rbtn .btn").addClass("end");
-            $(".pub-rbtn .btn").removeClass("can");
         }
 
         $(".pub-rbtn .can").on("click", function() {

@@ -1,5 +1,5 @@
 (function() {
-    var isBuyFlag = $("#isBuyFlag").val();
+    // var isBuyFlag = $("#isBuyFlag").val();
     $.post('/trainingDetail', { 'userId': userInfo.memberId, 'courseId': courseId }).success(function(data) {
         var res = data.data;
         //console.log(res);
@@ -15,7 +15,7 @@
         $("#storeAddress").html(res.storeAddress);
         $("#startTime").html(res.startTime);
         $("#endTime").html(res.endTime);
-        $("#buyerNum").html(res.courseMaxNum);
+        // $("#buyerNum").html(res.courseMaxNum);
         $(".courseTarget .con").html(res.courseTarget);
         $("#openCourseNum").html(res.onceCourseHour);
         $("#dayOfWeek").html(res.dayOfWeek);
@@ -43,16 +43,8 @@
                 $("#dayOfWeek").html("周六");
                 break;
         }
-        if (!res.buyerNum) {
-            res.buyerNum = 0;
-        }
-
         $(".onceCourseHour").text("所需课时：" + res.onceCourseHour + "课时");
 
-        if (res.buyerNum <= 0) {
-            isBuyFlag = 1;
-        }
-        $("#buyerNum").html(res.buyerNum);
         //var carouselFigure = res.carouselFigure;
         var playTimePictures = res.playTimePictures;
 
@@ -78,17 +70,9 @@
             var url = $(this).data("href");
             $(this).siblings(".cur").removeClass("cur");
             $(this).addClass("cur");
-            if (isBuyFlag != 1) {
-                window.location.href = url;
-            }
+            window.location.href = url;
         })
-
-        if (isBuyFlag == 1) {
-            $(".pub-rbtn .btn").removeAttr("href");
-            $(".pub-rbtn .btn").addClass("end");
-            $(".pub-rbtn .btn").removeClass("can");
-        }
-
+        
         $(".pub-rbtn .can").on("click", function() {
             window.location.href = $(".pub_peolist a.cur").data("href");
         })
